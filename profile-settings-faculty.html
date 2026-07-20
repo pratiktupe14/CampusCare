@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Profile &amp; Settings (Faculty) - CampusCare</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-shadow {
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05);
+        }
+        .active-nav-item {
+            background-color: #da3437;
+            color: #ffffff;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e6bdb8;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#916f6b",
+                      "on-secondary-fixed-variant": "#930013",
+                      "inverse-on-surface": "#ffedea",
+                      "tertiary-fixed-dim": "#bdc7d9",
+                      "inverse-primary": "#ffb4ab",
+                      "tertiary": "#505a69",
+                      "tertiary-container": "#687283",
+                      "secondary-fixed-dim": "#ffb3ad",
+                      "tertiary-fixed": "#d9e3f6",
+                      "surface-variant": "#fbdbd7",
+                      "error": "#ba1a1a",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed": "#121c2a",
+                      "surface-tint": "#bf0715",
+                      "on-tertiary-container": "#f5f7ff",
+                      "on-error-container": "#93000a",
+                      "background": "#fff8f7",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#fffbff",
+                      "on-tertiary-fixed-variant": "#3d4756",
+                      "surface-container-highest": "#fbdbd7",
+                      "secondary-fixed": "#ffdad7",
+                      "on-secondary-fixed": "#410004",
+                      "surface-dim": "#f3d3cf",
+                      "primary-fixed-dim": "#ffb4ab",
+                      "surface-container": "#ffe9e6",
+                      "on-background": "#281715",
+                      "secondary": "#b61722",
+                      "on-secondary": "#ffffff",
+                      "outline-variant": "#e6bdb8",
+                      "on-surface": "#281715",
+                      "secondary-container": "#da3437",
+                      "primary": "#b70011",
+                      "on-surface-variant": "#5c403c",
+                      "on-primary-fixed-variant": "#93000b",
+                      "on-primary-fixed": "#410002",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#3f2c29",
+                      "primary-container": "#dc2626",
+                      "primary-fixed": "#ffdad6",
+                      "surface": "#fff8f7",
+                      "on-primary-container": "#fff6f5",
+                      "surface-container-high": "#ffe2de",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#fff0ee",
+                      "surface-bright": "#fff8f7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "16px",
+                      "xl": "20px",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "base": "8px",
+                      "gutter": "24px",
+                      "xs": "4px",
+                      "container-max": "1440px",
+                      "xl": "32px",
+                      "sm": "12px",
+                      "md": "16px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "title-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface-container-lowest">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<a href="dashboard-faculty.html" class="font-headline-lg text-primary font-bold">CampusCare</a>
+<div class="hidden md:flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant w-96 ml-8">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full ml-2 text-on-surface outline-none" placeholder="Search resources..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-md">
+<a href="notifications-faculty.html" class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</a>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">help</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="text-right hidden sm:block">
+<p class="text-label-md font-bold text-on-surface">Dr. Pratik Tupe</p>
+<p class="text-label-md text-on-surface-variant">Computer Science</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="A professional close-up portrait of a senior male professor with a kind expression, wearing a tailored charcoal blazer and a crisp white shirt. The background is a soft-focus academic setting with warm wooden bookshelves. The lighting is bright and even, reflecting a clean light-mode aesthetic with vibrant red accent tones in the surrounding UI elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4LUJVGo6wFHOc6xeO9h2JvIpOWO7DzZjdzEato_839AgO7Pgt4BjFVm8vf1zGIVXpqm2aYhKiScRbObOOqxsVNCuG_R7MPSPAiSBjOehhBDDqIA94em4Ype0f-xMieAbFVrqxCv5_RbQ1FF__anch8IJ6fMisDo-gH0tcSLzksSbZnabSL78ikfWOuTB40dbd9Ao_LGfm9V0iiK0fXfhEKDbR26K9LRCBZpZrnzMlSrOqjJ1VdSzGpA">
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-[280px] bg-surface border-r border-outline-variant flex flex-col p-md hidden md:flex">
+<div class="mb-8 p-4">
+<a href="dashboard-faculty.html" class="text-title-md font-black text-primary">CampusCare</a>
+<p class="text-label-md text-on-surface-variant">Faculty Management</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="dashboard-faculty.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="report-complaint-faculty.html">
+<span class="material-symbols-outlined">build</span>
+<span class="text-label-md">Report Complaint</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="my-complaints-faculty.html">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-label-md">My Complaints</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="complaint-history-faculty.html">
+<span class="material-symbols-outlined">history</span>
+<span class="text-label-md">Complaint History</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold" href="profile-settings-faculty.html">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-label-md">Profile &amp; Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+<p class="text-label-md font-bold text-on-surface mb-2">Need Support?</p>
+<p class="text-[11px] text-on-surface-variant mb-4">Our IT team is available 24/7 for campus emergencies.</p>
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg text-label-md font-bold">Contact Help</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-[280px] mt-16 p-lg min-h-screen">
+<div class="max-w-6xl mx-auto space-y-lg">
+<!-- 1. Profile Header -->
+<section class="bg-white rounded-lg p-lg border border-outline-variant custom-shadow flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-20 -mt-20"></div>
+<div class="relative">
+<img class="w-40 h-40 rounded-full border-4 border-white shadow-xl object-cover relative z-10" data-alt="A sophisticated headshot of a mature academic professional in a modern office. The subject is wearing a professional suit, and the background features a soft bokeh of a library or research facility. The image is bright, high-contrast, and clean, aligned with a corporate minimalism design aesthetic featuring white and deep red tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9_K5aYkl40yK5a-B4qXO3YKNjhQ5nsnlOnLgSWCScUgaYcdL3jQznMa2BmO8SCifA8uPQ3_jE4Fiphy7cA32pGfB923Ai9F9EwBnzo4T4ZmV2qxdnNMaCiGyrQSDJcl5WFXS1jteIWvW7BLa7B82_uilizrI5DqD2yNeVi9OP9V6GxkWwHZe5yC8GLJ7Uo3cBistBPE8vQbWxx_1tFwAjqRnSCexnHv-1ZhhR9JFgKMAtnwr20P8HsA">
+<div class="absolute bottom-2 right-2 w-8 h-8 bg-green-500 border-4 border-white rounded-full z-20"></div>
+</div>
+<div class="flex-1 text-center md:text-left space-y-2 relative z-10">
+<div class="flex flex-col md:flex-row md:items-center gap-3">
+<h1 class="font-headline-lg text-on-background">Dr. Pratik Tupe</h1>
+<span class="px-3 py-1 bg-green-100 text-green-700 text-label-md rounded-full font-bold self-center md:self-auto">ACTIVE</span>
+</div>
+<p class="text-body-lg text-on-surface-variant font-medium">Senior Lecturer • Department of Computer Science</p>
+<div class="flex flex-wrap justify-center md:justify-start gap-4 mt-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span class="text-body-md font-medium">ID: EMP-2024-008</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="text-body-md font-medium">Room 402, Science Block</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 w-full md:w-auto relative z-10">
+<button class="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">edit</span>
+                        Edit Profile
+                    </button>
+<button class="px-6 py-3 border border-outline text-on-surface font-bold rounded-lg hover:bg-surface-container-low transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                        Download CV
+                    </button>
+</div>
+</section>
+<!-- 2. Complaint Statistics & Quick Actions -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-lg">
+<!-- Statistics -->
+<div class="xl:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-white p-lg rounded-lg border border-outline-variant custom-shadow flex flex-col items-center justify-center text-center">
+<span class="text-headline-lg font-bold text-on-surface">42</span>
+<p class="text-label-md text-on-surface-variant uppercase tracking-wider">Total</p>
+<div class="w-full h-1 bg-surface-container-highest mt-4 rounded-full overflow-hidden">
+<div class="h-full bg-on-surface w-full"></div>
+</div>
+</div>
+<div class="bg-white p-lg rounded-lg border border-outline-variant custom-shadow flex flex-col items-center justify-center text-center">
+<span class="text-headline-lg font-bold text-error">03</span>
+<p class="text-label-md text-on-surface-variant uppercase tracking-wider">Open</p>
+<div class="w-full h-1 bg-surface-container-highest mt-4 rounded-full overflow-hidden">
+<div class="h-full bg-error w-1/4"></div>
+</div>
+</div>
+<div class="bg-white p-lg rounded-lg border border-outline-variant custom-shadow flex flex-col items-center justify-center text-center">
+<span class="text-headline-lg font-bold text-amber-500">08</span>
+<p class="text-label-md text-on-surface-variant uppercase tracking-wider">Progress</p>
+<div class="w-full h-1 bg-surface-container-highest mt-4 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 w-1/2"></div>
+</div>
+</div>
+<div class="bg-white p-lg rounded-lg border border-outline-variant custom-shadow flex flex-col items-center justify-center text-center">
+<span class="text-headline-lg font-bold text-green-600">31</span>
+<p class="text-label-md text-on-surface-variant uppercase tracking-wider">Solved</p>
+<div class="w-full h-1 bg-surface-container-highest mt-4 rounded-full overflow-hidden">
+<div class="h-full bg-green-600 w-3/4"></div>
+</div>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="bg-white p-lg rounded-lg border border-outline-variant custom-shadow">
+<p class="text-label-md font-bold text-on-surface-variant uppercase mb-4">Quick Actions</p>
+<div class="space-y-3">
+<a href="report-complaint-faculty.html" class="w-full py-3 px-4 flex items-center justify-between text-on-surface bg-surface-container-low hover:bg-surface-container-high rounded-lg transition-all group border border-transparent hover:border-primary/20">
+<span class="text-body-md font-bold">Report New Complaint</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">add_circle</span>
+</a>
+<a href="my-complaints-faculty.html" class="w-full py-3 px-4 flex items-center justify-between text-on-surface bg-surface-container-low hover:bg-surface-container-high rounded-lg transition-all group border border-transparent hover:border-primary/20">
+<span class="text-body-md font-bold">View My History</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">history</span>
+</a>
+<button class="w-full py-3 px-4 flex items-center justify-between text-on-surface bg-surface-container-low hover:bg-surface-container-high rounded-lg transition-all group border border-transparent hover:border-primary/20">
+<span class="text-body-md font-bold">Class Schedule</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">calendar_today</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout for Information -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
+<!-- 3. Personal Information -->
+<section class="bg-white rounded-lg p-lg border border-outline-variant custom-shadow">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<h2 class="font-title-md text-on-surface">Personal Information</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
+<div class="space-y-1">
+<label class="text-label-md text-on-surface-variant">Gender</label>
+<p class="text-body-md font-bold text-on-surface">Male</p>
+</div>
+<div class="space-y-1">
+<label class="text-label-md text-on-surface-variant">Date of Birth</label>
+<p class="text-body-md font-bold text-on-surface">14 May 1978</p>
+</div>
+<div class="space-y-1">
+<label class="text-label-md text-on-surface-variant">Blood Group</label>
+<p class="text-body-md font-bold text-on-surface">A+</p>
+</div>
+<div class="space-y-1">
+<label class="text-label-md text-on-surface-variant">Mobile Number</label>
+<p class="text-body-md font-bold text-on-surface">+1 (555) 012-3456</p>
+</div>
+<div class="space-y-1 sm:col-span-2">
+<label class="text-label-md text-on-surface-variant">Email Address</label>
+<p class="text-body-md font-bold text-on-surface">pratik.tupe@campuscare.edu</p>
+</div>
+<div class="space-y-1 sm:col-span-2">
+<label class="text-label-md text-on-surface-variant">Residential Address</label>
+<p class="text-body-md font-bold text-on-surface">124 Academic Way, University District, MA 02118</p>
+</div>
+</div>
+</section>
+<!-- 4. Academic Information -->
+<section class="bg-white rounded-lg p-lg border border-outline-variant custom-shadow">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">school</span>
+</div>
+<h2 class="font-title-md text-on-surface">Academic Information</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
+<div class="space-y-1">
+<label class="text-label-md text-on-surface-variant">Highest Qualification</label>
+<p class="text-body-md font-bold text-on-surface">Ph.D. in Computer Science</p>
+</div>
+<div class="space-y-1">
+<label class="text-label-md text-on-surface-variant">Specialization</label>
+<p class="text-body-md font-bold text-on-surface">Software Systems &amp; AI</p>
+</div>
+<div class="space-y-1">
+<label class="text-label-md text-on-surface-variant">Experience</label>
+<p class="text-body-md font-bold text-on-surface">15+ Years</p>
+</div>
+<div class="space-y-1">
+<label class="text-label-md text-on-surface-variant">Office Number</label>
+<p class="text-body-md font-bold text-on-surface">B-402, Science Wing</p>
+</div>
+<div class="space-y-1 sm:col-span-2">
+<label class="text-label-md text-on-surface-variant">Core Subjects Handled</label>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant rounded-full text-label-md font-medium border border-outline-variant">Distributed Systems</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant rounded-full text-label-md font-medium border border-outline-variant">Database Architecture</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant rounded-full text-label-md font-medium border border-outline-variant">Cloud Infrastructure</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- 5. Account Settings & Security -->
+<section class="bg-white rounded-lg p-lg border border-outline-variant custom-shadow">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">security</span>
+</div>
+<h2 class="font-title-md text-on-surface">Account &amp; Security</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<div class="space-y-6">
+<h3 class="text-label-md font-bold text-on-surface-variant uppercase">Security Preferences</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant">
+<div>
+<p class="text-body-md font-bold text-on-surface">Two-Factor Authentication</p>
+<p class="text-label-md text-on-surface-variant">Highly recommended for staff accounts</p>
+</div>
+<div class="relative inline-flex h-6 w-11 items-center rounded-full bg-green-500 cursor-pointer">
+<span class="inline-block h-4 w-4 translate-x-6 transform rounded-full bg-white transition"></span>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant">
+<div>
+<p class="text-body-md font-bold text-on-surface">Password Last Changed</p>
+<p class="text-label-md text-on-surface-variant">90 days ago</p>
+</div>
+<button class="text-primary text-label-md font-bold hover:underline">Update</button>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant">
+<div>
+<p class="text-body-md font-bold text-on-surface">Session Timeout</p>
+<p class="text-label-md text-on-surface-variant">Automatically logout after 30 mins</p>
+</div>
+<button class="text-primary text-label-md font-bold hover:underline">Manage</button>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<h3 class="text-label-md font-bold text-on-surface-variant uppercase">Recent Login History</h3>
+<div class="border border-outline-variant rounded-lg overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-4 py-3 text-label-md font-bold text-on-surface-variant">Device</th>
+<th class="px-4 py-3 text-label-md font-bold text-on-surface-variant">Location</th>
+<th class="px-4 py-3 text-label-md font-bold text-on-surface-variant">Time</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-3 text-body-md text-on-surface">MacBook Pro (Chrome)</td>
+<td class="px-4 py-3 text-body-md text-on-surface">Boston, US</td>
+<td class="px-4 py-3 text-label-md text-on-surface-variant">Today, 09:45 AM</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-3 text-body-md text-on-surface">iPhone 15 Pro</td>
+<td class="px-4 py-3 text-body-md text-on-surface">Boston, US</td>
+<td class="px-4 py-3 text-label-md text-on-surface-variant">Yesterday, 10:12 PM</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-3 text-body-md text-on-surface">iPad Air</td>
+<td class="px-4 py-3 text-body-md text-on-surface">Boston, US</td>
+<td class="px-4 py-3 text-label-md text-on-surface-variant">12 Mar, 02:30 PM</td>
+</tr>
+</tbody>
+</table>
+<button class="w-full py-3 text-label-md font-bold text-primary hover:bg-surface-container-high transition-colors">View All Activity</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Mobile Bottom Navigation (Hidden on Desktop) -->
+<nav class="fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant flex justify-around items-center h-16 md:hidden z-50">
+<a href="dashboard-faculty.html" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</a>
+<a href="report-complaint-faculty.html" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">build</span>
+<span class="text-[10px] font-bold">Maintenance</span>
+</a>
+<a href="profile-settings-faculty.html" class="flex flex-col items-center justify-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="text-[10px] font-bold">Profile</span>
+</a>
+<a href="notifications-faculty.html" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-[10px] font-bold">Alerts</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and subtle effects
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Toggle state for 2FA switch
+        const toggleSwitch = document.querySelector('.inline-flex');
+        if(toggleSwitch) {
+            toggleSwitch.addEventListener('click', () => {
+                const circle = toggleSwitch.querySelector('span');
+                if(circle.classList.contains('translate-x-6')) {
+                    circle.classList.remove('translate-x-6');
+                    circle.classList.add('translate-x-1');
+                    toggleSwitch.classList.replace('bg-green-500', 'bg-outline-variant');
+                } else {
+                    circle.classList.remove('translate-x-1');
+                    circle.classList.add('translate-x-6');
+                    toggleSwitch.classList.replace('bg-outline-variant', 'bg-green-500');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
