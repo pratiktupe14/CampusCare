@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Report Complaint (Faculty) - CampusCare</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#121c2a",
+                    "on-surface-variant": "#5c403c",
+                    "on-background": "#281715",
+                    "tertiary": "#505a69",
+                    "primary": "#b70011",
+                    "surface-container-highest": "#fbdbd7",
+                    "on-error": "#ffffff",
+                    "outline": "#916f6b",
+                    "on-primary-fixed": "#410002",
+                    "surface": "#fff8f7",
+                    "on-secondary-container": "#fffbff",
+                    "on-tertiary-container": "#f5f7ff",
+                    "inverse-surface": "#3f2c29",
+                    "primary-fixed": "#ffdad6",
+                    "surface-container": "#ffe9e6",
+                    "secondary-container": "#da3437",
+                    "tertiary-fixed-dim": "#bdc7d9",
+                    "on-primary-container": "#fff6f5",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#ffdad7",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#bf0715",
+                    "on-primary-fixed-variant": "#93000b",
+                    "on-secondary-fixed-variant": "#930013",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#ffb3ad",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#fff8f7",
+                    "secondary": "#b61722",
+                    "surface-container-high": "#ffe2de",
+                    "surface-variant": "#fbdbd7",
+                    "on-tertiary-fixed-variant": "#3d4756",
+                    "primary-container": "#dc2626",
+                    "outline-variant": "#e6bdb8",
+                    "inverse-primary": "#ffb4ab",
+                    "background": "#fff8f7",
+                    "tertiary-container": "#687283",
+                    "surface-container-low": "#fff0ee",
+                    "on-secondary-fixed": "#410004",
+                    "inverse-on-surface": "#ffedea",
+                    "on-surface": "#281715",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#ffb4ab",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#d9e3f6",
+                    "surface-dim": "#f3d3cf"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "container-max": "1440px",
+                    "base": "8px",
+                    "sm": "12px",
+                    "xs": "4px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "xl": "32px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .form-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05);
+        }
+        .segmented-btn {
+            transition: all 0.2s ease;
+        }
+        .segmented-btn.active {
+            background-color: #DC2626;
+            color: white;
+            border-color: #DC2626;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- TopNavBar (Shared Component Reference) -->
+<header class="bg-surface border-b border-outline-variant shadow-sm flex justify-between items-center px-lg py-sm sticky top-0 z-40 w-full">
+<div class="flex items-center gap-md">
+<a href="dashboard-faculty.html" class="font-display-lg text-display-lg font-bold text-primary">CampusCare</a>
+<div class="hidden md:flex ml-xl gap-lg">
+<a class="text-on-surface-variant hover:bg-surface-container-low transition-colors px-3 py-1 rounded-md font-title-md text-title-md" href="dashboard-faculty.html">Dashboard</a>
+<a class="text-primary font-bold border-b-2 border-primary px-3 py-1 font-title-md text-title-md" href="report-complaint-faculty.html">Report</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-md w-64 focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Search facilities..." type="text">
+</div>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+<button class="p-1 hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-primary text-[32px]">account_circle</span>
+</button>
+</div>
+</header>
+<div class="flex min-h-[calc(100vh-72px)]">
+<!-- SideNavBar (Shared Component Reference) -->
+<aside class="hidden md:flex flex-col p-md gap-base h-full border-r border-outline-variant w-[280px] shrink-0 bg-white sticky top-[72px]">
+<div class="mb-lg">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest px-md">Navigation</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="dashboard-faculty.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md p-md bg-secondary-container text-on-secondary-container rounded-lg font-semibold shadow-sm" href="report-complaint-faculty.html">
+<span class="material-symbols-outlined">add_box</span>
+<span class="font-label-md text-label-md">Report Complaint</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="my-complaints.html">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="font-label-md text-label-md">My Complaints</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="complaint-history.html">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">Complaint History</span>
+</a>
+<div class="my-md border-t border-outline-variant opacity-50"></div>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-label-md">Notifications</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-md bg-surface border border-outline-variant rounded-xl flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">JD</div>
+<div>
+<p class="font-label-md text-label-md font-bold">Dr. Pratik Tupe</p>
+<p class="text-[10px] text-on-surface-variant">CS Faculty Member</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 bg-[#F8FAFC] p-lg pb-24 md:pb-8">
+<div class="max-w-5xl mx-auto">
+<div class="flex items-center justify-between mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background">Submit New Complaint</h2>
+<p class="text-on-surface-variant font-body-md text-body-md mt-1">Please provide detailed information about the facility issue.</p>
+</div>
+<div class="flex items-center gap-sm">
+<span class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                            Oct 24, 2023
+                        </span>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<span class="text-on-surface-variant font-label-md text-label-md">Ref: #CC-TEMP-882</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Left Column: Main Form -->
+<div class="lg:col-span-7 flex flex-col gap-lg">
+<section class="form-card p-lg">
+<h3 class="font-title-md text-title-md mb-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">description</span>
+                                Problem Details
+                            </h3>
+<div class="space-y-lg">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Complaint Title</label>
+<input class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md" placeholder="e.g., Broken AC in Lecture Hall A" type="text">
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Category</label>
+<select class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md appearance-none">
+<option>Electrical</option>
+<option>Plumbing</option>
+<option>HVAC / Cooling</option>
+<option>Carpentry</option>
+<option>Janitorial</option>
+<option>Others</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Priority Level</label>
+<div class="flex p-1 bg-surface-container-low border border-outline-variant rounded-xl">
+<button class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg text-on-surface-variant hover:bg-surface" onclick="setPriority(this)">Low</button>
+<button class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg bg-primary text-white shadow-sm" onclick="setPriority(this)">Med</button>
+<button class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg text-on-surface-variant hover:bg-surface" onclick="setPriority(this)">High</button>
+</div>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Description</label>
+<textarea class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md resize-none" placeholder="Describe the issue in detail. What happened? How long has it been occurring?" rows="5"></textarea>
+</div>
+</div>
+</section>
+<section class="form-card p-lg">
+<h3 class="font-title-md text-title-md mb-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">attachment</span>
+                                Evidence Section
+                            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center group cursor-pointer hover:border-primary hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[40px] mb-sm">photo_camera</span>
+<p class="font-label-md text-label-md text-on-surface-variant font-bold">Upload Photo</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Capture or browse from gallery</p>
+</div>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center group cursor-pointer hover:border-primary hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[40px] mb-sm">mic</span>
+<p class="font-label-md text-label-md text-on-surface-variant font-bold">Voice Note</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Record a short audio description</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Location & Summary -->
+<div class="lg:col-span-5 flex flex-col gap-lg">
+<section class="form-card p-lg relative overflow-hidden">
+<!-- Visual Flair: Subtle map background pattern at bottom -->
+<div class="absolute bottom-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[128px]">map</span>
+</div>
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-title-md text-title-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">location_on</span>
+                                    Location Panel
+                                </h3>
+<button class="flex items-center gap-1 px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-lg hover:bg-primary hover:text-white transition-all text-[11px] font-bold">
+<span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
+                                    Scan Room QR
+                                </button>
+</div>
+<div class="space-y-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Building</label>
+<select class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md appearance-none">
+<option>Academic Block A</option>
+<option>Engineering Wing</option>
+<option>Main Library</option>
+<option>Student Union Hub</option>
+<option>Science Complex</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Floor</label>
+<select class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md">
+<option>Basement</option>
+<option>Ground Floor</option>
+<option selected="">1st Floor</option>
+<option>2nd Floor</option>
+<option>Roof</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Room Number</label>
+<input class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md" placeholder="e.g., 102B" type="text">
+</div>
+</div>
+</div>
+
+</section>
+<section class="form-card p-lg bg-primary-fixed text-on-primary-fixed border-none">
+<h3 class="font-title-md text-title-md mb-sm flex items-center gap-2">
+<span class="material-symbols-outlined">info</span>
+                                Institutional Policy
+                            </h3>
+<p class="text-on-primary-fixed-variant text-body-md leading-relaxed">
+                                CampusCare ensures all maintenance requests are logged and assigned to appropriate personnel within 4 working hours. Please ensure your report is accurate to avoid processing delays.
+                            </p>
+</section>
+<div class="mt-auto flex flex-col gap-sm pt-xl">
+<button id="submitBtn" class="w-full py-4 bg-primary text-white rounded-xl font-title-md text-title-md font-bold shadow-lg shadow-primary/20 hover:bg-secondary transition-all active:scale-[0.98]">
+                                Submit Complaint
+                            </button>
+<a href="dashboard-faculty.html" class="w-full py-3 bg-white text-on-surface-variant border border-outline-variant rounded-xl font-label-md text-label-md font-bold hover:bg-surface-container-low transition-all text-center block">
+                                Cancel &amp; Discard
+                            </a>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Nav (Shared Component Reference) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface border-t border-outline-variant shadow-[0_-2px_10px_rgba(0,0,0,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="dashboard-faculty.html">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-2 scale-110 -translate-y-2 shadow-lg" href="report-complaint-faculty.html">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-md text-[10px]">Report</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-[10px]">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-[10px]">Profile</span>
+</a>
+</nav>
+<script>
+        function setPriority(btn) {
+            const container = btn.closest('div');
+            const buttons = container.querySelectorAll('.segmented-btn');
+            
+            buttons.forEach(b => {
+                b.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                b.classList.add('text-on-surface-variant', 'hover:bg-surface');
+            });
+            
+            btn.classList.remove('text-on-surface-variant', 'hover:bg-surface');
+            btn.classList.add('bg-primary', 'text-white', 'shadow-sm');
+        }
+
+        // Success toast simulator
+        const submitBtn = document.getElementById('submitBtn');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', () => {
+                const toast = document.createElement('div');
+                toast.className = 'fixed top-10 left-1/2 -translate-x-1/2 bg-surface text-on-surface border border-primary px-lg py-md rounded-xl shadow-2xl z-[100] flex items-center gap-md animate-bounce';
+                toast.innerHTML = `
+                    <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    <span class="font-title-md">Report submitted successfully!</span>
+                `;
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 3000);
+            });
+        }
+    </script>
+</body>
+</html>
