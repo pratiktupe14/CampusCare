@@ -1,0 +1,471 @@
+<!DOCTYPE html><html lang="en" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#b61722",
+                        "primary-fixed": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#fbdbd7",
+                        "surface": "#fff8f7",
+                        "background": "#fff8f7",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "outline": "#916f6b",
+                        "tertiary-container": "#687283",
+                        "secondary-container": "#da3437",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#ffedea",
+                        "on-secondary-fixed": "#410004",
+                        "on-tertiary-fixed-variant": "#3d4756",
+                        "on-surface": "#281715",
+                        "on-surface-variant": "#5c403c",
+                        "tertiary-fixed-dim": "#bdc7d9",
+                        "surface-container-highest": "#fbdbd7",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "on-primary-fixed-variant": "#93000b",
+                        "secondary-fixed": "#ffdad7",
+                        "primary": "#b70011",
+                        "surface-bright": "#fff8f7",
+                        "outline-variant": "#e6bdb8",
+                        "on-secondary-container": "#fffbff",
+                        "on-tertiary-container": "#f5f7ff",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-tint": "#bf0715",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#410002",
+                        "on-primary-container": "#fff6f5",
+                        "surface-container-high": "#ffe2de",
+                        "surface-container-low": "#fff0ee",
+                        "primary-container": "#dc2626",
+                        "tertiary": "#505a69",
+                        "on-background": "#281715",
+                        "secondary-fixed-dim": "#ffb3ad",
+                        "inverse-surface": "#3f2c29",
+                        "surface-dim": "#f3d3cf",
+                        "tertiary-fixed": "#d9e3f6",
+                        "surface-container": "#ffe9e6",
+                        "on-tertiary-fixed": "#121c2a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "16px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "8px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    },
+                    "boxShadow": {
+                        "elevation-2": "0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05)",
+                        "elevation-3": "0px 10px 25px -5px rgba(0,0,0,0.08), 0px 8px 10px -6px rgba(0,0,0,0.08)"
+                    }
+                }
+            }
+        }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="text-on-surface bg-white">
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full w-[280px] dark:bg-surface-container border-r border-outline-variant flex flex-col py-lg z-50 shadow-sm bg-white">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">CampusCare</h1>
+<p class="text-label-md font-label-md text-on-surface-variant">Admin Console</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a href="#" class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100 font-label-md text-label-md">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard Overview
+            </a>
+<a href="#" class="flex items-center gap-md px-lg py-md text-primary bg-primary-fixed-dim/10 rounded-r-full font-bold transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined">assignment</span>
+                Complaint Management
+            </a>
+<a href="#" class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100 font-label-md text-label-md">
+<span class="material-symbols-outlined">group</span>
+                User Management
+            </a>
+<a href="#" class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100 font-label-md text-label-md">
+<span class="material-symbols-outlined">domain</span>
+                Campus Management
+            </a>
+<a href="#" class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100 font-label-md text-label-md">
+<span class="material-symbols-outlined">payments</span>
+                Budget &amp; Finance
+            </a>
+<a href="#" class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100 font-label-md text-label-md">
+<span class="material-symbols-outlined">engineering</span>
+                Maintenance Management
+            </a>
+</nav>
+<div class="px-lg pt-lg border-t border-outline-variant">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="text-label-md font-bold text-on-surface">Admin User</p>
+<p class="text-[10px] text-on-surface-variant">System Administrator</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] min-h-screen bg-white">
+<!-- Top App Bar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 backdrop-blur-md flex items-center justify-between px-lg z-40 border-b border-outline-variant bg-white">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input type="text" placeholder="Search complaints, IDs, or users..." class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body-md outline-none">
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-md">
+<button class="relative p-2 text-on-surface-variant hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-sm cursor-pointer group">
+<img class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a campus administrator, middle-aged with a friendly expression, wearing a red polo shirt with a subtle school logo. The background is a clean, softly blurred modern office environment with warm natural light, aligning with a high-end corporate minimalism aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0yn-UvUc7kbg_Oh6HwXYmWGh_W79mXFasTBAd1HIxb8kfEgRjHOe8mulWH7DWSmrgi7dhDFYyJ9U_KA6eNRutM3VxwShsnskG7uEYE2bczpZg-_DQj-XfWNwKV2FooyyYlsdbofenrLXMi41LF-NDqOV4pup-m6PJWDmGj9kg7MdryeDom1QHrsyQduiP9oSsFCLNdJ7m-oLPClIpaY1e-pslwxrGDRU92EHFN7eRM2xQMExdJjtEOg">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="pt-24 px-gutter pb-xl max-w-[1600px] mx-auto">
+<!-- Summary Cards Bento Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-md mb-xl">
+<div class="bg-white p-lg rounded-2xl border border-outline-variant shadow-elevation-2 flex flex-col gap-xs group hover:shadow-elevation-3 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-lg">assessment</span>
+<span class="text-label-md text-on-surface-variant font-medium">+12%</span>
+</div>
+<p class="text-headline-lg font-bold mt-sm">1,284</p>
+<p class="text-label-md text-on-surface-variant">Total Complaints</p>
+</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant shadow-elevation-2 flex flex-col gap-xs group hover:shadow-elevation-3 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-on-primary bg-primary-container p-2 rounded-lg">new_releases</span>
+<span class="text-label-md text-primary font-bold">New</span>
+</div>
+<p class="text-headline-lg font-bold mt-sm">42</p>
+<p class="text-label-md text-on-surface-variant">New Requests</p>
+</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant shadow-elevation-2 flex flex-col gap-xs group hover:shadow-elevation-3 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-on-tertiary-container bg-tertiary-fixed p-2 rounded-lg">pending_actions</span>
+</div>
+<p class="text-headline-lg font-bold mt-sm">156</p>
+<p class="text-label-md text-on-surface-variant">Pending Approval</p>
+</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant shadow-elevation-2 flex flex-col gap-xs group hover:shadow-elevation-3 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-on-surface bg-surface-container p-2 rounded-lg">person_pin</span>
+</div>
+<p class="text-headline-lg font-bold mt-sm">843</p>
+<p class="text-label-md text-on-surface-variant">Assigned</p>
+</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant shadow-elevation-2 flex flex-col gap-xs group hover:shadow-elevation-3 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-[#166534] bg-green-100 p-2 rounded-lg">task_alt</span>
+</div>
+<p class="text-headline-lg font-bold mt-sm">231</p>
+<p class="text-label-md text-on-surface-variant">Completed</p>
+</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant shadow-elevation-2 flex flex-col gap-xs group hover:shadow-elevation-3 transition-all duration-300 border-l-4 border-l-primary">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-error bg-error-container p-2 rounded-lg">emergency</span>
+<span class="flex h-2 w-2 rounded-full bg-error animate-pulse"></span>
+</div>
+<p class="text-headline-lg font-bold mt-sm text-error">12</p>
+<p class="text-label-md text-on-surface-variant">Critical Severity</p>
+</div>
+</section>
+<!-- Advanced Search & Filter Panel -->
+<section class="bg-white p-xl rounded-2xl border border-outline-variant shadow-elevation-2 mb-xl">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary">filter_list</span>
+<h2 class="text-title-md font-title-md">Advanced Filters</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
+<div class="space-y-xs">
+<label class="text-label-md font-label-md text-on-surface-variant px-1">Complaint ID / Title</label>
+<input class="w-full px-md py-sm bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all" placeholder="e.g. COMP-90210" type="text">
+</div>
+<div class="space-y-xs">
+<label class="text-label-md font-label-md text-on-surface-variant px-1">Building / Location</label>
+<select class="w-full px-md py-sm bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all appearance-none cursor-pointer">
+<option>All Buildings</option>
+<option>Main Academic Wing</option>
+<option>Dormitory East</option>
+<option>Sports Complex</option>
+</select>
+</div>
+<div class="space-y-xs">
+<label class="text-label-md font-label-md text-on-surface-variant px-1">Priority Level</label>
+<select class="w-full px-md py-sm bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all appearance-none cursor-pointer">
+<option>Any Priority</option>
+<option>Critical</option>
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+</select>
+</div>
+<div class="space-y-xs">
+<label class="text-label-md font-label-md text-on-surface-variant px-1">AI Verification Status</label>
+<select class="w-full px-md py-sm bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all appearance-none cursor-pointer">
+<option>All Statuses</option>
+<option>Verified (High Confidence)</option>
+<option>Potential False Positive</option>
+<option>Awaiting Analysis</option>
+</select>
+</div>
+</div>
+<div class="mt-lg flex justify-end gap-md">
+<button class="px-lg py-2 rounded-xl text-on-surface-variant font-medium hover:bg-surface-container transition-colors">Clear All</button>
+<button class="px-xl py-2 bg-primary text-on-primary rounded-xl font-bold shadow-sm hover:bg-secondary transition-all active:scale-95">Apply Filters</button>
+</div>
+</section>
+<!-- Complaint Management Table -->
+<section class="bg-white rounded-2xl border border-outline-variant shadow-elevation-2 overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-white">
+<th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">ID</th>
+<th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">Complaint</th>
+<th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">Category</th>
+<th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">Location</th>
+<th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">Reporter</th>
+<th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">AI Status</th>
+<th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">Priority</th>
+<th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- AI Highlighted Row -->
+<tr class="ai-gradient-border group">
+<td class="px-lg py-md">
+<span class="font-bold text-primary text-body-md">#C-8821</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-outline-variant" data-alt="A sharp, clear macro photograph showing a broken glass window pane with cracks spider-webbing outwards. The lighting is cold and clinical, highlighting the jagged edges of the glass in an institutional hallway. The image is framed as a maintenance documentation photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfOre3hpsKihf4N2nbIjFZrn3xlITGe5zYPi9lZvJpsJ34hQ0vBdUOthJLEn0CV-ebVF8USEEVYAxwzXBtdW_nsEjHS763MWja_ZKrj5t_0AhekFim1eQPfrncJP_s0bhP4tbE-KZMyRYa6F7tbPTw5i_GqMRjSTjjpPnptEwirlFtiliDn2o3PQZyNg34oqzT8oVuRERdUG-2VeNqLrTzCIC63mBX2eYCN4-hkxnqjtNWYbvUNnPz9Q">
+<div>
+<p class="font-bold text-body-md leading-tight">Shattered Window Pane</p>
+<p class="text-[11px] text-on-surface-variant">Reported 2h ago</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 bg-surface-container-high rounded-full text-[11px] font-medium border border-outline-variant">Facilities</span>
+</td>
+<td class="px-lg py-md">
+<div class="text-body-md">
+<p class="font-medium">Science Block</p>
+<p class="text-[11px] text-on-surface-variant text-nowrap">Floor 3, Lab 304</p>
+</div>
+</td>
+<td class="px-lg py-md text-body-md">Sarah Jenkins</td>
+<td class="px-lg py-md text-center">
+<div class="inline-flex flex-col items-center bg-primary-fixed-dim/20 p-2 rounded-xl border border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-[10px] font-bold text-primary">98% Match</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 bg-red-100 text-red-700 rounded-full text-[11px] font-bold border border-red-200">CRITICAL</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span class="text-body-md font-medium text-amber-700">Pending</span>
+</div>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors bg-surface-container rounded-lg"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors bg-surface-container rounded-lg"><span class="material-symbols-outlined text-[20px]">engineering</span></button>
+</div>
+</td>
+</tr>
+<!-- AI Analysis Details Sub-row -->
+<tr class="bg-primary/5">
+
+</tr>
+<!-- Standard Row -->
+<tr class="table-row-hover">
+<td class="px-lg py-md">
+<span class="font-medium text-on-surface-variant text-body-md">#C-8819</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-outline-variant" data-alt="A maintenance photo of a dripping bathroom faucet in a public restroom. Water drops are captured in sharp focus against a chrome finish. The surrounding area features white tiling and a bright, sterile light, conveying a typical campus facility environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1YQTp3R-3XlnHBZqG2iKjUwA_YTvTidjdoeIGKxRzkjBVhR0XBKBVBSz6UqJOiyVSCvdbmxzribH-2Dq9FYoQiiZCANUHC7VwoJ3m2j1Lf8Fgf5afPgw7o1Hy3cMiSxCWBl68sIdLyEB6okjeajxZqweBaTNx7J4wj3fMOzKNAHSn7rN8tUM1iFe3pXadw0gyJjGVb0rBYkKZ5wtd4EH3VjTRqLo5qTSDGcpq1xwVreX9uHdEWwh1Eg">
+<div>
+<p class="font-medium text-body-md leading-tight">Leaking Faucet</p>
+<p class="text-[11px] text-on-surface-variant">Reported 4h ago</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 bg-surface-container-high rounded-full text-[11px] font-medium border border-outline-variant">Plumbing</span>
+</td>
+<td class="px-lg py-md">
+<div class="text-body-md">
+<p class="font-medium">Dining Hall</p>
+<p class="text-[11px] text-on-surface-variant">Washroom B</p>
+</div>
+</td>
+<td class="px-lg py-md text-body-md">Marcus Thorne</td>
+<td class="px-lg py-md text-center">
+<div class="inline-flex flex-col items-center bg-surface-container p-2 rounded-xl">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">verified_user</span>
+<span class="text-[10px] font-medium text-on-surface-variant">Low Conf.</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 bg-blue-100 text-blue-700 rounded-full text-[11px] font-bold border border-blue-200">MEDIUM</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span>
+<span class="text-body-md font-medium text-blue-700">Assigned</span>
+</div>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Standard Row 2 -->
+<tr class="table-row-hover">
+<td class="px-lg py-md">
+<span class="font-medium text-on-surface-variant text-body-md">#C-8815</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-outline-variant" data-alt="A close-up image of a broken electrical wall outlet. The faceplate is cracked and slightly hanging off the wall, with wires visible inside. The wall has a neutral, light-colored paint. The lighting is direct and clear, emphasizing the safety concern and the need for electrical repair." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrbhb9MMBA5qBOkI31YyJLjcFWgoKgR_7xZU7pDselplj_ElheEtj5AzLgI4Uy7mNg4wAqx640TexBJIDwcBOxUJZQDahA0PXx1nG8ja13SecDvcffLlf7nbDYVRmYW3zguP-d2EsBegsSswCH6Z4HsKnxu8k5UQGwYTDPvlZ193QNk2bgj6tDj4ZmWsD8ELJBQM4LrSuEiwN4x8Xw-xCCoH9SHTI2UJTjOqZFIEmCfRMjhkvCtLqztQ">
+<div>
+<p class="font-medium text-body-md leading-tight">Broken Power Outlet</p>
+<p class="text-[11px] text-on-surface-variant">Reported 1d ago</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 bg-surface-container-high rounded-full text-[11px] font-medium border border-outline-variant">Electrical</span>
+</td>
+<td class="px-lg py-md">
+<div class="text-body-md">
+<p class="font-medium">Library North</p>
+<p class="text-[11px] text-on-surface-variant">Quiet Zone, Desk 42</p>
+</div>
+</td>
+<td class="px-lg py-md text-body-md">Elena Rodriguez</td>
+<td class="px-lg py-md text-center">
+<div class="inline-flex flex-col items-center bg-green-50 p-2 rounded-xl border border-green-200">
+<span class="material-symbols-outlined text-green-600 text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[10px] font-bold text-green-700">82% Conf.</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 bg-orange-100 text-orange-700 rounded-full text-[11px] font-bold border border-orange-200">HIGH</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-body-md font-medium text-green-700">Completed</span>
+</div>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-lg py-md border-t border-outline-variant flex items-center justify-between bg-white">
+<p class="text-label-md text-on-surface-variant">Showing 1 to 10 of 1,284 complaints</p>
+<div class="flex gap-xs">
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-white transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg bg-primary text-on-primary font-bold shadow-sm">1</button>
+<button class="w-10 h-10 rounded-lg border border-outline-variant hover:bg-white transition-colors">2</button>
+<button class="w-10 h-10 rounded-lg border border-outline-variant hover:bg-white transition-colors">3</button>
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- FAB for New Complaint (Contextual) -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-elevation-3 flex items-center justify-center hover:scale-110 active:scale-95 transition-all group z-50">
+<span class="material-symbols-outlined text-[28px] group-hover:rotate-90 transition-transform duration-300">add</span>
+</button>
+<script>
+        // Micro-interactions and UI Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simulated search focus effect
+            const searchInput = document.querySelector('input[type="text"]');
+            searchInput.addEventListener('focus', () => {
+                searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+            });
+
+            // Smooth entrance for summary cards
+            const cards = document.querySelectorAll('section > div > div');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+
+</body></html>
