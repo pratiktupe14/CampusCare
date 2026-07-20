@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Notifications (Faculty) - CampusCare</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff8f7;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e6bdb8;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#fbdbd7",
+                        "surface-container-high": "#ffe2de",
+                        "secondary-fixed": "#ffdad7",
+                        "on-tertiary-fixed-variant": "#3d4756",
+                        "inverse-surface": "#3f2c29",
+                        "tertiary-fixed": "#d9e3f6",
+                        "surface": "#fff8f7",
+                        "on-secondary-fixed-variant": "#930013",
+                        "primary-fixed": "#ffdad6",
+                        "on-tertiary-fixed": "#121c2a",
+                        "surface-bright": "#fff8f7",
+                        "on-primary-fixed-variant": "#93000b",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#dc2626",
+                        "tertiary": "#505a69",
+                        "inverse-on-surface": "#ffedea",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#ffb3ad",
+                        "on-tertiary-container": "#f5f7ff",
+                        "on-background": "#281715",
+                        "surface-container-highest": "#fbdbd7",
+                        "on-surface": "#281715",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#e6bdb8",
+                        "inverse-primary": "#ffb4ab",
+                        "on-surface-variant": "#5c403c",
+                        "tertiary-fixed-dim": "#bdc7d9",
+                        "on-secondary-container": "#fffbff",
+                        "secondary-container": "#da3437",
+                        "secondary": "#b61722",
+                        "on-primary-fixed": "#410002",
+                        "surface-container-low": "#fff0ee",
+                        "tertiary-container": "#687283",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#916f6b",
+                        "surface-dim": "#f3d3cf",
+                        "on-secondary-fixed": "#410004",
+                        "background": "#fff8f7",
+                        "on-primary-container": "#fff6f5",
+                        "surface-tint": "#bf0715",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#ffe9e6",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "primary": "#b70011"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "sm": "12px",
+                        "container-max": "1440px",
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="text-on-surface bg-white">
+<!-- Desktop Side Navigation -->
+<aside class="h-screen w-[280px] hidden md:flex flex-col fixed left-0 top-0 border-r border-outline-variant z-40 p-md gap-base bg-white">
+<div class="mb-lg px-base">
+<a href="dashboard-faculty.html" class="font-headline-lg text-headline-lg font-black text-primary">CampusCare</a>
+<p class="text-on-surface-variant font-label-md text-label-md opacity-70">Faculty Management</p>
+</div>
+<nav class="flex flex-col gap-xs flex-1">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="dashboard-faculty.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="report-complaint-faculty.html">
+<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
+<span class="font-label-md text-label-md">Report Complaint</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="my-complaints-faculty.html">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-label-md text-label-md">My Complaints</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="complaint-history-faculty.html">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md text-label-md">History</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container rounded-xl font-bold transition-all duration-200 cursor-pointer active:scale-95" href="notifications-faculty.html">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="font-label-md text-label-md">Notifications</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<a href="report-complaint-faculty.html" class="bg-primary-container text-on-primary hover:opacity-90 transition-opacity flex items-center justify-center gap-sm py-md rounded-xl font-bold active:scale-95 shadow-sm text-center">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span class="">New Request</span>
+</a>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="w-full top-0 sticky border-b border-outline-variant z-30 shadow-sm bg-white">
+<div class="flex justify-between items-center px-lg py-sm w-full max-w-container-max mx-auto md:pl-[300px]">
+<div class="flex items-center gap-md">
+<button class="md:hidden p-xs rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="font-title-md text-title-md text-primary font-bold">Notifications</h2>
+</div>
+<div class="flex items-center gap-lg">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant opacity-60">search</span>
+<input class="pl-xl pr-md py-xs border-none rounded-full text-body-md font-body-md w-64 focus:ring-2 focus:ring-primary focus:outline-none bg-white border" placeholder="Search notifications..." type="text">
+</div>
+<div class="flex items-center gap-md">
+<button class="p-xs rounded-full hover:bg-surface-container-low transition-colors material-symbols-outlined" data-icon="help">help</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a middle-aged female college professor with glasses, wearing professional academic attire, smiling warmly against a soft-focus background of a bright modern university library. The lighting is soft and natural, emphasizing a professional and trustworthy academic persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyhiMjE0hn8rWvFZfNeTakPtTwtboW1Aon7a2XMJYK_6xffKefb4zH7nWByXTCySOqLEaQMseUYerrEF3oh8Dm96lRzc_qlzzbZgeuQrnJzVusoUiWE04wdRhl4Sg8_QNtLYw0FSW-AnON_8n7kO1BE41B61S6QjANMZvajja29X579D1Y4gQFZMJg35N6aCtZ1Xk6SXaQWQ1sc-CNSnm77aG-fNP0VAP1uS4VfEcCpa_I5yOqAfjpNA">
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="md:pl-[280px] min-h-screen bg-white">
+<div class="max-w-4xl mx-auto p-lg mb-xl md:mb-0">
+<!-- Filter Bar & Actions -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md mb-lg">
+<div class="flex items-center gap-sm overflow-x-auto pb-xs sm:pb-0 w-full sm:w-auto no-scrollbar">
+<button class="px-md py-xs bg-primary text-on-primary rounded-full text-label-md font-label-md whitespace-nowrap active:scale-95 transition-transform">All</button>
+<button class="px-md py-xs bg-surface-container text-on-surface-variant border border-outline-variant rounded-full text-label-md font-label-md whitespace-nowrap hover:bg-surface-variant transition-colors active:scale-95">Unread</button>
+<button class="px-md py-xs bg-surface-container text-on-surface-variant border border-outline-variant rounded-full text-label-md font-label-md whitespace-nowrap hover:bg-surface-variant transition-colors active:scale-95">Important</button>
+</div>
+<button class="flex items-center gap-xs text-primary font-semibold text-label-md hover:underline active:opacity-70 transition-opacity whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+                    Mark all as read
+                </button>
+</div>
+<!-- Notifications Feed -->
+<div class="space-y-xl">
+<!-- Category: Emergency Alerts -->
+<section>
+<div class="flex items-center gap-md mb-md cursor-pointer select-none">
+<span class="text-error material-symbols-outlined" data-icon="emergency_home" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+<h3 class="font-title-md text-title-md text-error">Emergency Alerts</h3>
+</div>
+<div class="space-y-md">
+<div class="bg-surface-container-lowest border border-error p-lg rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer flex gap-lg">
+<div class="flex-shrink-0 w-12 h-12 bg-error-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-error" data-icon="bolt">bolt</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-xs">
+<h4 class="font-title-md text-title-md leading-none">Power Outage: Science Block</h4>
+<span class="text-on-surface-variant text-label-md font-label-md opacity-60">10m ago</span>
+</div>
+<p class="text-on-surface-variant text-body-md mb-sm">A major circuit failure has been reported in the Science Block. Technicians are on-site. Expect 2 hours of downtime.</p>
+<div class="flex gap-md">
+<a href="complaint-history-faculty.html" class="text-primary font-bold text-label-md">View Details</a>
+<button class="text-on-surface-variant font-medium text-label-md" onclick="this.closest('.border-error').remove()">Dismiss</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Category: Complaint Updates -->
+<section>
+<div class="flex items-center gap-md mb-md cursor-pointer select-none">
+<span class="text-primary material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<h3 class="font-title-md text-title-md">Complaint Updates</h3>
+</div>
+<div class="space-y-md">
+<!-- Notification Item -->
+<div class="bg-white border border-outline-variant p-lg rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer flex gap-lg relative group overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex-shrink-0 w-12 h-12 bg-primary-fixed-dim rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="build">build</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-xs">
+<h4 class="font-title-md text-title-md leading-none font-bold">Complaint #4502 Resolved</h4>
+<span class="text-on-surface-variant text-label-md font-label-md opacity-60">2h ago</span>
+</div>
+<p class="text-on-surface-variant text-body-md mb-sm">The air conditioning unit in Room 302 has been repaired and tested. Please confirm if the cooling is satisfactory.</p>
+<div class="flex items-center gap-sm">
+<div class="px-md py-0.5 bg-green-100 text-green-800 rounded-full text-[10px] uppercase tracking-wider font-bold">Resolved</div>
+<span class="text-on-surface-variant text-label-md font-label-md opacity-60">• Maintenance Team</span>
+</div>
+</div>
+</div>
+<!-- Notification Item (Read) -->
+<div class="border border-outline-variant p-lg rounded-xl opacity-80 hover:opacity-100 transition-all cursor-pointer flex gap-lg bg-white">
+<div class="flex-shrink-0 w-12 h-12 bg-surface-variant rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="pending_actions">pending_actions</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-xs">
+<h4 class="font-title-md text-title-md leading-none">Technician Assigned</h4>
+<span class="text-on-surface-variant text-label-md font-label-md opacity-60">Yesterday</span>
+</div>
+<p class="text-on-surface-variant text-body-md">John Doe has been assigned to your request for 'Leaking Faucet' in Staff Lounge.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Category: Admin Announcements -->
+<section>
+<div class="flex items-center gap-md mb-md cursor-pointer select-none">
+<span class="text-tertiary-container material-symbols-outlined" data-icon="campaign">campaign</span>
+<h3 class="font-title-md text-title-md">Admin Announcements</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="bg-white border border-outline-variant p-lg rounded-xl hover:shadow-md transition-all cursor-pointer flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 bg-tertiary-fixed rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="schedule">schedule</span>
+</div>
+<span class="text-on-surface-variant text-label-md font-label-md opacity-60">3h ago</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md mb-xs">Scheduled Maintenance</h4>
+<p class="text-on-surface-variant text-body-md">Elevators in West Wing will be under maintenance this Sunday from 8 AM to 4 PM.</p>
+</div>
+</div>
+<div class="bg-white border border-outline-variant p-lg rounded-xl hover:shadow-md transition-all cursor-pointer flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 bg-surface-variant rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="info">info</span>
+</div>
+<span class="text-on-surface-variant text-label-md font-label-md opacity-60">1d ago</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md mb-xs">New Policy Update</h4>
+<p class="text-on-surface-variant text-body-md">Please review the updated guidelines for weekend facility access requests.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-md pb-safe pt-2 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] md:hidden z-50 rounded-t-xl bg-white">
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-2 flex-1" href="dashboard-faculty.html">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-2 flex-1" href="report-complaint-faculty.html">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-label-md text-label-md">Report</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-2 flex-1" href="my-complaints-faculty.html">
+<span class="material-symbols-outlined" data-icon="list_alt">list_alt</span>
+<span class="font-label-md text-label-md">My Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 flex-1 transition-transform duration-150 active:scale-95" href="notifications-faculty.html">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="font-label-md text-label-md">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-2 flex-1" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button (FAB) -->
+<a href="report-complaint-faculty.html" class="fixed bottom-24 right-lg md:bottom-lg md:right-lg bg-primary-container text-on-primary w-14 h-14 rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform md:hidden">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</a>
+<script>
+        // Micro-interactions for notification items
+        document.querySelectorAll('.cursor-pointer').forEach(item => {
+            item.addEventListener('mousedown', () => {
+                item.style.transform = 'scale(0.98)';
+            });
+            item.addEventListener('mouseup', () => {
+                item.style.transform = 'scale(1)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+
+        // Toggle Category collapse simulation
+        document.querySelectorAll('h3').forEach(header => {
+            if (header.parentElement) {
+                header.parentElement.classList.add('cursor-pointer', 'select-none');
+                header.parentElement.addEventListener('click', () => {
+                    const nextEl = header.parentElement.nextElementSibling;
+                    if(nextEl) {
+                        nextEl.style.display = nextEl.style.display === 'none' ? 'grid' : 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
