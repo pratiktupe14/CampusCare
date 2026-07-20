@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Management | CampusCare Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+        .elevated-clarity {
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#f3d3cf",
+                      "inverse-surface": "#3f2c29",
+                      "surface-container": "#ffe9e6",
+                      "surface-container-low": "#fff0ee",
+                      "on-secondary-fixed": "#410004",
+                      "secondary": "#b61722",
+                      "tertiary-container": "#687283",
+                      "inverse-primary": "#ffb4ab",
+                      "on-tertiary-fixed-variant": "#3d4756",
+                      "tertiary": "#505a69",
+                      "on-primary-fixed": "#410002",
+                      "secondary-container": "#da3437",
+                      "on-tertiary-fixed": "#121c2a",
+                      "surface-bright": "#fff8f7",
+                      "on-surface-variant": "#5c403c",
+                      "primary-container": "#dc2626",
+                      "on-primary-container": "#fff6f5",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed-dim": "#ffb3ad",
+                      "on-primary": "#ffffff",
+                      "surface-container-high": "#ffe2de",
+                      "tertiary-fixed-dim": "#bdc7d9",
+                      "on-tertiary": "#ffffff",
+                      "surface": "#ffffff", /* Override for Total Whiteout */
+                      "on-background": "#281715",
+                      "inverse-on-surface": "#ffedea",
+                      "on-tertiary-container": "#f5f7ff",
+                      "primary-fixed-dim": "#ffb4ab",
+                      "on-primary-fixed-variant": "#93000b",
+                      "surface-tint": "#bf0715",
+                      "primary": "#b70011",
+                      "surface-variant": "#fbdbd7",
+                      "background": "#ffffff", /* Total Whiteout */
+                      "outline": "#916f6b",
+                      "on-secondary": "#ffffff",
+                      "surface-container-highest": "#fbdbd7",
+                      "secondary-fixed": "#ffdad7",
+                      "on-secondary-fixed-variant": "#930013",
+                      "outline-variant": "#e6bdb8",
+                      "on-surface": "#281715",
+                      "tertiary-fixed": "#d9e3f6",
+                      "on-secondary-container": "#fffbff",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "12px",
+                      "container-max": "1440px",
+                      "xs": "4px",
+                      "margin-mobile": "16px",
+                      "base": "8px",
+                      "gutter": "24px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "title-md": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="w-[280px] h-screen sticky left-0 top-0 border-r border-outline-variant bg-surface-container-lowest flex flex-col py-lg z-40">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">CampusCare</h1>
+<p class="font-label-md text-label-md text-on-surface-variant tracking-wider uppercase">Admin Console</p>
+</div>
+<nav class="flex-1 space-y-1 pr-md">
+<!-- Navigation Items Mapping -->
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-low rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95 group" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard Overview</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-low rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95 group" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-body-md text-body-md">Complaint Management</span>
+</a>
+<!-- ACTIVE: User Management -->
+<a class="flex items-center gap-md px-lg py-sm bg-secondary-fixed text-on-secondary-fixed font-bold rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-body-md text-body-md">User Management</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-low rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95 group" href="#">
+<span class="material-symbols-outlined" data-icon="domain">domain</span>
+<span class="font-body-md text-body-md">Campus Management</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-low rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95 group" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body-md text-body-md">Budget &amp; Finance</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-low rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95 group" href="#">
+<span class="material-symbols-outlined" data-icon="build">build</span>
+<span class="font-body-md text-body-md">Maintenance Management</span>
+</a>
+</nav>
+<div class="mt-auto px-lg pt-lg border-t border-outline-variant space-y-1">
+<a class="flex items-center gap-md py-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md py-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 bg-surface">
+<!-- TopNavBar (Execution from JSON) -->
+<header class="w-full h-16 sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-lg">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-4 py-2 bg-surface-container-low border-none rounded-full font-body-md text-body-md focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="Search users, roles, or departments..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-sm"></div>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-low p-1 rounded-full transition-all">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a campus administrator in a bright, modern corporate office. High-key lighting highlights clean, minimalist aesthetics with soft shadows. The atmosphere is professional and authoritative, utilizing a primary palette of white and professional red accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1FE-h4eda4VwC1XQlPYobhefnmtMaXRSeTbV2eyAhXqCGUQfHPynaBDJigtbZN3qHQlA9NnDZm8G26Dg8izm-1TDWnzLoaUFk8k3pt1eRz5wBgbbaozSzOECSjRQZGvtGbclZLL0RWyV5K5YR831vMJls1Hqxh2cvqlZMkpmzsbUf4zlVHfsyzW4BocaPXtRRjkb8puJT4LrMpB8ccWxslc4n-lWj4gnL2Jc2h9GBwauSyZ63VI2P2w"/>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold hidden md:block">Admin User</span>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-lg space-y-gutter overflow-y-auto custom-scrollbar flex-1">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">User Management</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage campus students, faculty, and administrative staff permissions.</p>
+</div>
+<button class="bg-primary hover:bg-primary-container text-white px-lg py-[10px] rounded-xl flex items-center gap-base transition-all font-label-md elevated-clarity">
+<span class="material-symbols-outlined text-[20px]" data-icon="person_add">person_add</span>
+<span>Add New User</span>
+</button>
+</div>
+<!-- Statistics Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-md">
+<!-- Total Students -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl elevated-clarity group hover:border-primary transition-colors">
+<div class="flex items-center justify-between mb-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+</div>
+<span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">+12%</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Total Students</p>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">12,482</h3>
+</div>
+<!-- Total Teachers -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl elevated-clarity group hover:border-primary transition-colors">
+<div class="flex items-center justify-between mb-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">Fixed</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Total Teachers</p>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">842</h3>
+</div>
+<!-- Service Staff -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl elevated-clarity group hover:border-primary transition-colors">
+<div class="flex items-center justify-between mb-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="engineering">engineering</span>
+</div>
+<span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded-full">-2%</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Service Staff</p>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">156</h3>
+</div>
+<!-- Active Users -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl elevated-clarity group hover:border-primary transition-colors">
+<div class="flex items-center justify-between mb-sm">
+<div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-700">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Active Now</p>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">3,120</h3>
+</div>
+<!-- Total Roles -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl elevated-clarity group hover:border-primary transition-colors">
+<div class="flex items-center justify-between mb-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="shield_person">shield_person</span>
+</div>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Total Roles</p>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">14</h3>
+</div>
+<!-- Active Permissions -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl elevated-clarity group hover:border-primary transition-colors">
+<div class="flex items-center justify-between mb-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="key">key</span>
+</div>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Permissions</p>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">124</h3>
+</div>
+</div>
+<!-- Management Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl elevated-clarity overflow-hidden">
+<!-- Tab Navigation -->
+<div class="flex items-center border-b border-outline-variant px-lg overflow-x-auto scrollbar-hide">
+<button class="px-lg py-md font-label-md text-label-md text-primary border-b-2 border-primary whitespace-nowrap">Students</button>
+<button class="px-lg py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface whitespace-nowrap">Teachers</button>
+<button class="px-lg py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface whitespace-nowrap">Service Staff</button>
+<button class="px-lg py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface whitespace-nowrap">Roles &amp; Permissions</button>
+<div class="ml-auto flex items-center gap-base py-sm">
+<button class="p-2 hover:bg-surface-container-low rounded-lg text-on-surface-variant transition-all">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-lg text-on-surface-variant transition-all">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Student ID</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Name &amp; Department</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Year</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Email Address</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md font-body-md text-body-md font-mono text-on-surface-variant">#ST-2024-001</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young male university student in a modern architectural setting. Soft natural lighting, minimalist composition, and a professional look. The background features high-key white elements consistent with a clean campus aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-6UBsqQ8ksVmqgiUzlHyHcwPLK6FH1TqROgESsmExLchN85zO5CgCnIZFWL5TIeo2CV5sRaPsQm0Cvc8sWGqHBR_fcCH_lIaM5POmx1aod4jv7G36wbwAAOvRdRmRFq79cuh_XbAlNl2Oi9iYVeHQJl10Y6uEENshWTht5NDY-ZCJt5ixo5xhkR5j2euXKp6KJ6VhBwXPhT-8-jx2OTwIaONKJNipnnZ8PV6OWoPfvS3AmYS-TDUmFw"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Alex Rivers</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Computer Science</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">Year 3</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">a.rivers@campuscare.edu</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-2"></span> Active
+                                    </span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md font-body-md text-body-md font-mono text-on-surface-variant">#ST-2024-042</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a female university student in a bright library environment. The image uses clean white lighting and sharp focus to capture a professional academic vibe. Minimalist and high-clarity style, mirroring an enterprise administrative interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzC9cMMQfeTCKB_KkOmwFup3yl5tg6uXZ7TiPdxB2gzlvKqWQJ_rn76U9TnWzyAnGTWyQeOM7QqtAwYyw-6HmRU1Q9hOqp3fn4Yo5rcohviOhnrEDEXykfqevkjFi3TSjAwadgDgwabg-AstVjGEPk0fTxjcRwu5kteILiEJjbJe9bXGHS8AZPELJMj2VTv0dsDntd17Ktp5dlr714doeZ0Z-9HM_OpqAdzQ_MijDI-3h3Ge-d0-Qzjg"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Elena Chen</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Mechanical Engineering</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">Year 2</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">e.chen@campuscare.edu</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-2"></span> Active
+                                    </span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group border-b-0">
+<td class="px-lg py-md font-body-md text-body-md font-mono text-on-surface-variant">#ST-2023-119</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Portrait of a diverse university student in a high-tech campus laboratory. Crisp, clear white lighting with deep red accents in the background. The style is modern, professional, and sophisticated, reflecting a premium digital experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9oiN6h2nDtgLKQkiUWXdVQLEPQ5L-0xHpqUHDrLIjygimuXk1sR8bTSHw_SsMjL--gFqgwVOWerZC1uK8o0yMUFS3LjoVfswhRCXoFlT-4gWbItDOGy7QiUrx7GisXaa7UzTWyoykk3OGTZSDpsLHw1ul_0nb6quynGMpHY8-DLxH1RfnRjdt6lHadPsWfK2bSNMhT_yzwBuqVnP2UdCK0-UcTVz5JlB1g_mQGwLhJb8zOasV9aTRYw"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Jordan Smith</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Business Admin</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">Year 4</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">j.smith@campuscare.edu</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2"></span> Suspended
+                                    </span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group border-b-0">
+<td class="px-lg py-md font-body-md text-body-md font-mono text-on-surface-variant">#ST-2024-201</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Modern professional portrait of a medical student in a clinical training environment. The lighting is high-key white, creating a clean and sterilized aesthetic. Minimalist backdrop with subtle campus branding, conveying a premium and focused academic atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFPq0fL8PtS21-eRTGGhr3q0_o0-hmEjKURVCF4davX2TSTkXuoClXPEMbZyDTTs1dKfaJuEpysV0EwoHZ4sRcwfsek-9__EtlCWo_-k2VXvNeK4QwWR_omDNL-T4njqBA3W6tuGsoBtaWJ92y_uvxIOnTNipSAOE94MgTd9XxD4j8tmsKYNhvSvtV0iEdndKhW-84V0xlkPgmuTQXkGl0iV2_zKYAmLu9ZZSkpUEo-dQQFtJt8xSrVQ"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Marcus Thorne</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Medical Sciences</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">Year 1</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface-variant">m.thorne@campuscare.edu</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-2"></span> Active
+                                    </span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-lg py-md border-t border-outline-variant flex items-center justify-between bg-surface-container-lowest">
+<p class="font-label-md text-label-md text-on-surface-variant">Showing 1-10 of 12,482 students</p>
+<div class="flex items-center gap-base">
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-all disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<div class="flex items-center gap-xs">
+<button class="w-8 h-8 rounded-lg bg-primary text-white font-label-md text-label-md elevated-clarity">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-low font-label-md text-label-md transition-all">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-low font-label-md text-label-md transition-all">3</button>
+<span class="text-on-surface-variant px-1">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-low font-label-md text-label-md transition-all">1248</button>
+</div>
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Role Insights (Secondary Bento Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg elevated-clarity">
+<h4 class="font-title-md text-title-md text-on-surface mb-md">Recent Permission Changes</h4>
+<div class="space-y-md">
+<div class="flex items-start gap-md">
+<div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+<div>
+<p class="font-body-md text-body-md text-on-surface"><strong>System Admin</strong> updated permissions for <span class="text-primary">Department Heads</span>.</p>
+<p class="font-label-md text-label-md text-on-surface-variant">2 hours ago</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">New role <strong>Academic Coordinator</strong> created with 12 assigned users.</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Yesterday at 4:15 PM</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg elevated-clarity relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-title-md text-title-md text-on-surface mb-md">User Activity Flow</h4>
+<div class="h-32 flex items-end justify-between gap-base px-lg">
+<div class="w-full bg-primary-fixed hover:bg-primary transition-all rounded-t-lg h-2/3"></div>
+<div class="w-full bg-primary-fixed hover:bg-primary transition-all rounded-t-lg h-1/2"></div>
+<div class="w-full bg-primary-fixed hover:bg-primary transition-all rounded-t-lg h-5/6"></div>
+<div class="w-full bg-primary-fixed hover:bg-primary transition-all rounded-t-lg h-3/4"></div>
+<div class="w-full bg-primary-fixed hover:bg-primary transition-all rounded-t-lg h-2/3"></div>
+<div class="w-full bg-primary-fixed hover:bg-primary transition-all rounded-t-lg h-4/5"></div>
+<div class="w-full bg-primary-fixed hover:bg-primary transition-all rounded-t-lg h-1/3"></div>
+</div>
+<div class="flex justify-between mt-sm">
+<span class="font-label-md text-label-md text-on-surface-variant">Mon</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Sun</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interactions and Tab Logic
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', (e) => {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                el.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        const searchContainer = searchInput.parentElement;
+        searchInput.addEventListener('focus', () => {
+            searchContainer.classList.add('ring-2', 'ring-primary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchContainer.classList.remove('ring-2', 'ring-primary');
+        });
+    </script>
+</body></html>
