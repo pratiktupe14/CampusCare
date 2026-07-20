@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Complaints - CampusCare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+    try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#ffdad7",
+                    "surface-tint": "#bf0715",
+                    "error-container": "#ffdad6",
+                    "secondary": "#b61722",
+                    "on-tertiary-fixed": "#121c2a",
+                    "tertiary-fixed": "#d9e3f6",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#410002",
+                    "inverse-surface": "#3f2c29",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#da3437",
+                    "tertiary-fixed-dim": "#bdc7d9",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#ffe9e6",
+                    "surface-variant": "#fbdbd7",
+                    "background": "#fff8f7",
+                    "on-primary-container": "#fff6f5",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#fff8f7",
+                    "outline": "#916f6b",
+                    "primary": "#b70011",
+                    "surface-dim": "#f3d3cf",
+                    "surface-container-low": "#fff0ee",
+                    "surface-container-high": "#ffe2de",
+                    "on-tertiary-fixed-variant": "#3d4756",
+                    "secondary-fixed-dim": "#ffb3ad",
+                    "on-surface-variant": "#5c403c",
+                    "outline-variant": "#e6bdb8",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#505a69",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#ffb4ab",
+                    "surface-bright": "#fff8f7",
+                    "on-tertiary-container": "#f5f7ff",
+                    "on-surface": "#281715",
+                    "primary-fixed": "#ffdad6",
+                    "primary-container": "#dc2626",
+                    "inverse-on-surface": "#ffedea",
+                    "tertiary-container": "#687283",
+                    "on-primary-fixed-variant": "#93000b",
+                    "on-background": "#281715",
+                    "inverse-primary": "#ffb4ab",
+                    "on-secondary-container": "#fffbff",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#fbdbd7",
+                    "on-secondary-fixed": "#410004",
+                    "on-secondary-fixed-variant": "#930013"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "gutter": "24px",
+                    "sm": "12px",
+                    "xl": "32px",
+                    "base": "8px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    }catch(_e){}
+    </script>
+    <style>
+        .progress-line { flex: 1; height: 4px; background-color: #e6bdb8; }
+        .progress-line-active { background-color: #b70011; }
+        .active-step-circle { background-color: #b70011; color: white; }
+        .inactive-step-circle { background-color: #ffe2de; border: 1px solid #e6bdb8; color: #5c403c; }
+        .active-step { font-weight: 700; color: #b70011; }
+    </style>
+</head>
+<body class="dark:bg-surface-dim bg-white">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center h-16 px-gutter bg-white">
+<div class="flex items-center gap-4">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDyW5wPzazAdUFRXV_630mmlGNqDj6pyB3Rku9lJT_0n1D7RvoQ0kYJd-XBGe28fs-2wixy5Gk7NEI6CI6MBa-4F-qTnh55DamSaTpfLb6xZRUeCV3brDr6ehta4Z60ghue0uW1PBvU28SExI6sQFrG9CFWLWDncwA-NT8p3AzTzdwIvaR8MxzWa0upY7DcZN5iifjZ7wnOcZuSkrvA8hxbuRqWgW8aXmThUECRXcILx7rxZnsLZvmw" class="h-10 w-10 rounded-md" alt="CampusCare Logo">
+<a href="index.html" class="font-display-lg text-title-md font-extrabold text-primary dark:text-primary-fixed tracking-tight">CampusCare</a>
+</div>
+<div class="hidden md:flex flex-1 max-w-xl mx-8">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl py-2 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-transparent outline-none font-body-md" placeholder="Search complaints by ID or Title..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 rounded-full">notifications</button>
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 rounded-full">help</button>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary-fixed cursor-pointer active:scale-95">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a college student, clean background, soft studio lighting, high resolution, modern minimalist style consistent with academic administrative interfaces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG_pVdKVC0kzZv4ijYQhgZaXVJ2llJVCdo9MsksfqiP29uZVljEj8hHOZd3nZYbCCP0T8ENDMy6nL7SdIm4oCUHdiu-DDldRtutGVjZ1qkh81rxarDDyHBiwOFu4djPqlTZPra7Lra8ZimrmIUiHdLtvyfUQ5WvsItDxTJxN5bs_WlHkY1lhM91XfAJ4lBV5qo1LZPeO8ovXpyQ9xRU-8d86-9GhnL6bsI9LCabAk9r_m5LyYwvdShSQ">
+</div>
+</div>
+</header>
+<!-- SideNavBar (Desktop Only) -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-[280px] hidden md:flex flex-col dark:bg-surface-dim border-r border-outline-variant dark:border-outline py-md pr-md flex-shrink-0 bg-white z-40">
+<div class="px-md mb-md">
+<a href="report-complaint.html" class="w-full bg-primary text-white py-3 px-4 rounded-xl font-title-md flex items-center justify-center gap-2 hover:bg-opacity-90 transition-all active:scale-95 shadow-sm">
+<span class="material-symbols-outlined">add_circle</span>
+                New Request
+</a>
+</div>
+<nav class="flex flex-col gap-1 overflow-y-auto px-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-r-full font-label-md transition-all" href="index.html">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-r-full font-label-md transition-all" href="report-complaint.html">
+<span class="material-symbols-outlined">add_circle</span> Report Complaint
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container font-bold rounded-r-full font-label-md transition-all" href="my-complaints.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">list_alt</span> My Complaints
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-r-full font-label-md transition-all" href="complaint-history.html">
+<span class="material-symbols-outlined">history</span> Complaint History
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-r-full font-label-md transition-all" href="#">
+<span class="material-symbols-outlined">notifications</span> Notifications
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-r-full font-label-md transition-all" href="#">
+<span class="material-symbols-outlined">assessment</span> Reports
+            </a>
+<div class="mt-auto border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-r-full font-label-md transition-all" href="#">
+<span class="material-symbols-outlined">person</span> Profile
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-r-full font-label-md transition-all" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+                </a>
+</div>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-24 md:pl-[300px] md:pr-gutter px-margin-mobile transition-all duration-300">
+<!-- Header & Filters Section -->
+<div class="mb-lg flex flex-col gap-md">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md bg-white">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">My Complaints</h2>
+<p class="font-body-md text-on-surface-variant">Track and manage your submitted maintenance requests.</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg bg-surface hover:bg-surface-container transition-colors font-body-md">
+<span class="material-symbols-outlined text-[20px]">sort</span>
+                        Sort by: Newest
+                    </button>
+<a href="report-complaint.html" class="flex md:hidden items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg font-body-md active:scale-95 shadow-md">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                        New Request
+                    </a>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="border border-outline-variant rounded-xl p-md flex flex-wrap items-center gap-md shadow-sm bg-white">
+<div class="flex items-center gap-xs text-on-surface-variant font-label-md">
+<span class="material-symbols-outlined">filter_list</span>
+<span class="">Filters:</span>
+</div>
+<select class="bg-surface-container-low border border-outline-variant rounded-lg py-1.5 px-3 font-body-md focus:ring-primary focus:border-primary text-on-surface">
+<option>All Statuses</option>
+<option>Pending</option>
+<option>In Progress</option>
+<option>Completed</option>
+</select>
+<select class="bg-surface-container-low border border-outline-variant rounded-lg py-1.5 px-3 font-body-md focus:ring-primary focus:border-primary text-on-surface">
+<option>All Priorities</option>
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+</select>
+<div class="flex items-center gap-sm ml-auto">
+<input class="bg-surface-container-low border border-outline-variant rounded-lg py-1.5 px-3 font-body-md focus:ring-primary focus:border-primary text-on-surface" type="date">
+<button class="text-primary font-bold font-label-md hover:underline">Clear Filters</button>
+</div>
+</div>
+</div>
+<!-- Complaints Grid/List -->
+<div class="flex flex-col gap-md">
+<!-- Complaint Card 1: In Progress -->
+<div class="border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 bg-white">
+<div class="p-lg">
+<!-- Card Header -->
+<div class="flex flex-wrap items-start justify-between gap-md mb-md">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-surface-container-high px-2 py-1 rounded text-primary font-bold font-label-md">#CMP-8219</span>
+<span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-label-md font-bold uppercase tracking-wider">In Progress</span>
+<span class="bg-red-100 text-red-700 px-3 py-1 rounded-full font-label-md font-bold uppercase tracking-wider">High Priority</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Main Lab AC Leakage</h3>
+<div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-2 text-on-surface-variant">
+<div class="flex items-center gap-1 font-body-md">
+<span class="material-symbols-outlined text-[18px]">category</span>
+<span class="">Facilities Maintenance</span>
+</div>
+<div class="flex items-center gap-1 font-body-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="">Science Block, Room 402</span>
+</div>
+<div class="flex items-center gap-1 font-body-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="">Oct 24, 2023</span>
+</div>
+</div>
+</div>
+<button class="px-6 py-2 border border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all active:scale-95 font-body-md">View Details</button>
+</div>
+<!-- Progress Timeline -->
+<div class="mt-8 border-t border-outline-variant pt-lg">
+<div class="relative flex items-center justify-between">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full flex px-4">
+<div class="progress-line progress-line-active"></div>
+<div class="progress-line progress-line-active"></div>
+<div class="progress-line"></div>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center active-step-circle">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<span class="font-label-md active-step">Submitted</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center active-step-circle">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<span class="font-label-md active-step">Assigned</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center active-step-circle animate-pulse">
+<span class="material-symbols-outlined text-[20px]">engineering</span>
+</div>
+<span class="font-label-md active-step">Repair Started</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center inactive-step-circle">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<span class="font-label-md text-on-surface-variant">Completed</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Complaint Card 2: Pending -->
+<div class="border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 bg-white">
+<div class="p-lg">
+<div class="flex flex-wrap items-start justify-between gap-md mb-md">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-surface-container-high px-2 py-1 rounded text-primary font-bold font-label-md">#CMP-8225</span>
+<span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full font-label-md font-bold uppercase tracking-wider">Pending</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-label-md font-bold uppercase tracking-wider">Medium Priority</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Broken Window Latch</h3>
+<div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-2 text-on-surface-variant">
+<div class="flex items-center gap-1 font-body-md">
+<span class="material-symbols-outlined text-[18px]">category</span>
+<span class="">Carpentry</span>
+</div>
+<div class="flex items-center gap-1 font-body-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="">Dormitory Block C, Room 12B</span>
+</div>
+<div class="flex items-center gap-1 font-body-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="">Oct 26, 2023</span>
+</div>
+</div>
+</div>
+<button class="px-6 py-2 border border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all active:scale-95 font-body-md">View Details</button>
+</div>
+<div class="mt-8 border-t border-outline-variant pt-lg">
+<div class="relative flex items-center justify-between">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full flex px-4">
+<div class="progress-line"></div>
+<div class="progress-line"></div>
+<div class="progress-line"></div>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center active-step-circle">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<span class="font-label-md active-step">Submitted</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center inactive-step-circle">
+<span class="material-symbols-outlined text-[20px]">person_search</span>
+</div>
+<span class="font-label-md text-on-surface-variant">Assigned</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center inactive-step-circle">
+<span class="material-symbols-outlined text-[20px]">engineering</span>
+</div>
+<span class="font-label-md text-on-surface-variant">Repair Started</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center inactive-step-circle">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<span class="font-label-md text-on-surface-variant">Completed</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Complaint Card 3: Completed -->
+<div class="border border-outline-variant rounded-xl overflow-hidden shadow-sm opacity-90 transition-all duration-200 bg-white">
+<div class="p-lg">
+<div class="flex flex-wrap items-start justify-between gap-md mb-md">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-surface-container-high px-2 py-1 rounded text-primary font-bold font-label-md">#CMP-8102</span>
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-label-md font-bold uppercase tracking-wider">Completed</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-label-md font-bold uppercase tracking-wider">Low Priority</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Flickering Hallway Lights</h3>
+<div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-2 text-on-surface-variant">
+<div class="flex items-center gap-1 font-body-md">
+<span class="material-symbols-outlined text-[18px]">category</span>
+<span class="">Electrical</span>
+</div>
+<div class="flex items-center gap-1 font-body-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="">Library, Level 2 South</span>
+</div>
+<div class="flex items-center gap-1 font-body-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="">Oct 15, 2023</span>
+</div>
+</div>
+</div>
+<button class="px-6 py-2 border border-outline text-outline font-bold rounded-lg hover:bg-surface-container transition-all active:scale-95 font-body-md">View Receipt</button>
+</div>
+<div class="mt-8 border-t border-outline-variant pt-lg">
+<div class="relative flex items-center justify-between">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full flex px-4">
+<div class="progress-line progress-line-active"></div>
+<div class="progress-line progress-line-active"></div>
+<div class="progress-line progress-line-active"></div>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center active-step-circle">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<span class="font-label-md active-step">Submitted</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center active-step-circle">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<span class="font-label-md active-step">Assigned</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center active-step-circle">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<span class="font-label-md active-step">Repair Started</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center active-step-circle">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<span class="font-label-md active-step">Completed</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden bg-surface dark:bg-surface-dim border-t border-outline-variant dark:border-outline shadow-lg flex justify-around items-center h-20 px-4 pb-safe">
+<a href="index.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md">Home</span>
+</a>
+<a href="report-complaint.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined">add_box</span>
+<span class="font-label-md">Request</span>
+</a>
+<a href="my-complaints.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-1 transition-transform active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-md">History</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md">Profile</span>
+</a>
+</nav>
+<!-- Contextual FAB (Aligned with Primary Action) -->
+<a href="report-complaint.html" class="fixed bottom-24 right-6 md:bottom-12 md:right-12 w-14 h-14 bg-primary-container text-on-primary-container rounded-2xl shadow-xl flex items-center justify-center transition-transform active:scale-95 z-40">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</a>
+<script>
+    // Simple Micro-interaction for filter selectors
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', (e) => {
+            console.log(`Filtering by: ${e.target.value}`);
+            e.target.classList.add('border-primary');
+            setTimeout(() => e.target.classList.remove('border-primary'), 500);
+        });
+    });
+</script>
+</body>
+</html>
