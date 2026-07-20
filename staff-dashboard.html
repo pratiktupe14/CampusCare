@@ -1,0 +1,422 @@
+<!DOCTYPE html><html class="light" lang="en" style="font-size: 14px;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CampusCare | Service Staff Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#3d4756",
+                        "on-background": "#281715",
+                        "on-surface": "#281715",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#3f2c29",
+                        "secondary": "#b61722",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#fbdbd7",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#ffedea",
+                        "tertiary-fixed-dim": "#bdc7d9",
+                        "primary-container": "#dc2626",
+                        "background": "#fff8f7",
+                        "on-secondary-fixed-variant": "#930013",
+                        "outline": "#916f6b",
+                        "inverse-primary": "#ffb4ab",
+                        "tertiary-fixed": "#d9e3f6",
+                        "surface-container-highest": "#fbdbd7",
+                        "on-secondary-container": "#fffbff",
+                        "surface-dim": "#f3d3cf",
+                        "secondary-container": "#da3437",
+                        "on-primary-fixed-variant": "#93000b",
+                        "on-primary-fixed": "#410002",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fff8f7",
+                        "on-tertiary-fixed": "#121c2a",
+                        "surface-container": "#ffe9e6",
+                        "primary-fixed": "#ffdad6",
+                        "outline-variant": "#e6bdb8",
+                        "error": "#ba1a1a",
+                        "surface": "#fff8f7",
+                        "secondary-fixed": "#ffdad7",
+                        "on-tertiary-container": "#f5f7ff",
+                        "on-surface-variant": "#5c403c",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#ffb3ad",
+                        "on-secondary-fixed": "#410004",
+                        "surface-container-low": "#fff0ee",
+                        "surface-tint": "#bf0715",
+                        "tertiary": "#505a69",
+                        "surface-container-high": "#ffe2de",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "primary": "#b70011",
+                        "on-primary-container": "#fff6f5",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#687283"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "16px",
+                        "xl": "20px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xl": "24px",
+                        "margin-mobile": "12px",
+                        "base": "6px",
+                        "container-max": "1024px",
+                        "md": "12px",
+                        "xs": "2px",
+                        "gutter": "16px",
+                        "lg": "16px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                        "label-md": ["10px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-lg": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #281715;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-shadow {
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05);
+        }
+        .active-nav-border {
+            border-right: 4px solid #DC2626;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen bg-white">
+<!-- SideNavBar (Fixed Shell) -->
+<aside class="fixed left-0 top-0 h-full w-[220px] bg-white border-r border-outline-variant flex flex-col py-lg z-50">
+<div class="px-lg mb-xl flex items-center gap-md">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">apartment</span>
+</div>
+<span class="font-display-lg text-title-md font-bold text-primary">CampusCare</span>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<!-- Active State: Dashboard -->
+<a class="flex items-center gap-md px-lg py-md text-primary font-bold border-r-4 border-primary bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-title-md text-body-lg">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-body-md text-body-lg">Task Management</span>
+</a>
+<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
+<span class="font-body-md text-body-lg">Assign Work</span>
+</a>
+<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-body-md text-body-lg">Notifications</span>
+</a>
+<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-lg">Reports</span>
+</a>
+</nav>
+<div class="mt-auto px-lg flex flex-col gap-xs pt-lg border-t border-outline-variant">
+<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-body-md text-body-lg">Profile</span>
+</a>
+<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-lg">Settings</span>
+</a>
+<a class="flex items-center gap-md px-lg py-md text-primary hover:bg-red-50 transition-colors rounded-lg mt-md" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-lg">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[220px] flex-1 flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-220px)] z-40 bg-white/80 backdrop-blur-md border-b border-outline-variant h-16 px-xl flex justify-between items-center">
+<div class="flex items-center gap-xl w-full">
+<h1 class="font-title-md text-title-md font-black text-primary uppercase tracking-tight">Dashboard</h1>
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-md" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-body-md" placeholder="Search tasks, building IDs, or equipment..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-lg ml-xl shrink-0">
+<div class="text-right hidden xl:block">
+<p class="font-label-md text-on-surface-variant" id="current-date">Monday, Jul 20, 2026</p>
+<p class="font-title-md text-sm font-bold text-primary" id="current-time">07:08 PM</p>
+</div>
+<button class="relative p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-primary border-2 border-white rounded-full"></span>
+</button>
+<div class="flex items-center gap-md pl-md border-l border-outline-variant">
+<div class="text-right">
+<p class="font-body-md font-bold text-on-surface leading-none">Marcus Chen</p>
+<p class="font-label-md text-on-surface-variant">#ST-99283</p>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged service technician named Marcus Chen wearing a clean grey CampusCare uniform. He is standing against a soft, bright architectural background with warm lighting. The image conveys institutional trust, reliability, and professional excellence in a modern university facility setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWM7O4p8mLqPJRRyVURE64HB4Ex-2fNpRqKYEHfatFY_bo3PSfFwShI8K6rcBTtS3nTkTPL0XU_1hlCb1mT31ywevq44Fs4rl9CncJa4P7yC1cw5Nvs3AGC77DfRViXxaNwYMVtqAVhBZpjOjIa6bLj6spk9yYqWefbJt7urLTNkZrYffFkYQ-_eMZDn8DrmOdKIgN1wVXiPH1QvQTbxZcukN6UtaWUI20oA4oDyAW--Effkx2kBoLQA">
+</div>
+</div>
+</div>
+</header>
+<!-- Canvas Content Area -->
+<div class="pt-24 pb-xl px-xl flex flex-col gap-xl">
+<!-- Welcome Banner -->
+<section class="relative bg-white rounded-xl card-shadow border border-outline-variant overflow-hidden flex flex-col md:flex-row p-xl gap-xl items-center min-h-[240px]">
+<div class="flex-1 relative z-10">
+<div class="flex items-center gap-sm mb-xs">
+<span class="px-sm py-xs bg-red-50 text-primary font-label-md rounded-full border border-primary/20">Morning Shift</span>
+<span class="font-label-md text-on-surface-variant">Facilities Maintenance Dept</span>
+</div>
+<h2 class="font-display-lg text-headline-lg font-bold text-on-surface mb-xs">Welcome, Service Staff!</h2>
+<p class="font-title-md text-primary font-semibold mb-md">Marcus Chen • Staff ID: #ST-99283</p>
+<p class="font-body-md text-on-surface-variant max-w-xl italic">
+                        "Precision in service ensures excellence in education. Your attention to detail keeps our campus thriving. Have a productive shift today!"
+                    </p>
+</div>
+<div class="w-full md:w-64 h-48 relative flex items-center justify-center">
+<div class="absolute inset-0 bg-red-50 rounded-full scale-75 opacity-50 blur-2xl"></div>
+<div class="animate-float">
+<span class="material-symbols-outlined text-[120px] text-primary/10 select-none" data-icon="construction" style="font-variation-settings: 'wght' 200">construction</span>
+</div>
+<div class="absolute bottom-4 right-4 bg-white p-sm rounded-lg card-shadow border border-outline-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" data-icon="event_note">event_note</span>
+<span class="font-label-md font-bold">Oct 23, 2023</span>
+</div>
+</div>
+</section>
+<!-- Stats Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Total Assigned -->
+<div class="stat-card bg-white p-lg rounded-xl card-shadow border border-outline-variant flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="clipboard">assignment</span>
+</div>
+<span class="font-label-md bg-surface-container text-on-surface-variant px-sm py-xs rounded-full">+4 Today</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Total Assigned</p>
+<h3 class="font-display-lg text-4xl font-black text-on-surface" id="stat-total">142</h3>
+</div>
+</div>
+<!-- Pending -->
+<div class="stat-card bg-white p-lg rounded-xl card-shadow border border-outline-variant flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600">
+<span class="material-symbols-outlined" data-icon="clock">schedule</span>
+</div>
+<span class="w-3 h-3 bg-amber-500 rounded-full animate-pulse"></span>
+</div>
+<div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Pending Review</p>
+<h3 class="font-display-lg text-4xl font-black text-amber-600" id="stat-pending">12</h3>
+</div>
+</div>
+<!-- In Progress -->
+<div class="stat-card bg-white p-lg rounded-xl card-shadow border border-outline-variant flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined" data-icon="wrench">build</span>
+</div>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white bg-blue-100"></div>
+<div class="w-6 h-6 rounded-full border-2 border-white bg-blue-200"></div>
+</div>
+</div>
+<div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">In Progress</p>
+<h3 class="font-display-lg text-4xl font-black text-blue-600" id="stat-progress">8</h3>
+</div>
+</div>
+<!-- Completed -->
+<div class="stat-card bg-white p-lg rounded-xl card-shadow border border-outline-variant flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</div>
+<span class="font-label-md text-emerald-600 font-bold">92% Rate</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Completed Tasks</p>
+<h3 class="font-display-lg text-4xl font-black text-emerald-600" id="stat-completed">114</h3>
+</div>
+</div>
+<!-- Overdue -->
+<div class="stat-card bg-white p-lg rounded-xl card-shadow border border-outline-variant flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-red-50 flex items-center justify-center text-red-600">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</div>
+<span class="font-label-md text-red-600 font-bold bg-red-50 px-2 rounded">Urgent</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Overdue Alert</p>
+<h3 class="font-display-lg text-4xl font-black text-red-600" id="stat-overdue">3</h3>
+</div>
+</div>
+<!-- Today's Progress -->
+<div class="stat-card bg-white p-lg rounded-xl card-shadow border border-outline-variant flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+</div>
+<span class="font-label-md text-on-surface-variant">Daily Goal</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Today's Progress</p>
+<div class="flex items-center gap-md">
+<h3 class="font-display-lg text-4xl font-black text-on-surface" id="stat-today">65%</h3>
+<div class="flex-1 h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[65%] rounded-full transition-all duration-1000 ease-out"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Today's Task List (Secondary Section) -->
+<section class="bg-white rounded-xl card-shadow border border-outline-variant overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-low/30">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Active Task Queue</h3>
+<p class="font-body-md text-on-surface-variant">Prioritized maintenance for Science Block &amp; Housing</p>
+</div>
+<button class="bg-primary text-white px-lg py-md rounded-lg font-label-md font-bold hover:bg-secondary transition-transform active:scale-95 flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                        New Request
+                    </button>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Task Item 1 -->
+<div class="p-lg flex items-center gap-lg hover:bg-surface-container-low transition-colors group">
+<div class="w-12 h-12 shrink-0 rounded-full bg-red-50 flex items-center justify-center text-primary border border-primary/10">
+<span class="material-symbols-outlined" data-icon="plumbing">plumbing</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-md font-bold text-on-surface">#WR-28491</span>
+<span class="px-2 py-0.5 bg-red-100 text-red-800 rounded-full font-label-md text-[10px] font-black uppercase">High Priority</span>
+</div>
+<h4 class="font-title-md text-body-lg font-bold group-hover:text-primary transition-colors">Burst pipe in Chemistry Lab 302</h4>
+<p class="font-body-md text-on-surface-variant">Science Building • Floor 3 • Wing B</p>
+</div>
+<div class="text-right shrink-0">
+<p class="font-label-md font-bold text-on-surface">Assigned 15m ago</p>
+<p class="font-label-md text-on-surface-variant">Response Due: 09:30 AM</p>
+</div>
+<button class="p-md text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Task Item 2 -->
+<div class="p-lg flex items-center gap-lg hover:bg-surface-container-low transition-colors group">
+<div class="w-12 h-12 shrink-0 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
+<span class="material-symbols-outlined" data-icon="electric_bolt">electric_bolt</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-md font-bold text-on-surface">#WR-28504</span>
+<span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full font-label-md text-[10px] font-black uppercase">Standard</span>
+</div>
+<h4 class="font-title-md text-body-lg font-bold group-hover:text-primary transition-colors">Lighting fixture replacement</h4>
+<p class="font-body-md text-on-surface-variant">North Dormitory • Main Hallway</p>
+</div>
+<div class="text-right shrink-0">
+<p class="font-label-md font-bold text-on-surface">Assigned 2h ago</p>
+<p class="font-label-md text-on-surface-variant">Status: In Progress</p>
+</div>
+<button class="p-md text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="p-md text-center bg-surface-container-low/20">
+<a class="font-label-md font-bold text-primary hover:underline" href="#">View All Active Tasks</a>
+</div>
+</section>
+</div>
+</main>
+<script>
+        // Update Time and Date
+        function updateDateTime() {
+            const now = new Date();
+            const dateOptions = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
+            const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
+            
+            document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', dateOptions);
+            document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', timeOptions);
+        }
+        
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // Animate counter effect for stats
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + (obj.id === 'stat-today' ? '%' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        window.onload = () => {
+            animateValue(document.getElementById('stat-total'), 0, 142, 1500);
+            animateValue(document.getElementById('stat-pending'), 0, 12, 1200);
+            animateValue(document.getElementById('stat-progress'), 0, 8, 1000);
+            animateValue(document.getElementById('stat-completed'), 0, 114, 1800);
+            animateValue(document.getElementById('stat-overdue'), 0, 3, 800);
+            animateValue(document.getElementById('stat-today'), 0, 65, 2000);
+        };
+    </script>
+</body></html>
