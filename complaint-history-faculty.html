@@ -23,53 +23,7 @@
     </style>
 </head>
 <body class="flex overflow-hidden h-screen bg-white">
-<!-- SideNavBar (Desktop) -->
-<aside class="hidden md:flex flex-col p-md gap-xs w-[220px] h-screen fixed left-0 top-0 bg-white border-r border-outline-variant z-40">
-<div class="flex flex-col gap-xs mb-lg px-md py-sm">
-<a href="dashboard-faculty.html" class="text-headline-lg font-headline-lg text-primary">CampusCare</a>
-<p class="text-label-md font-label-md text-on-surface-variant">Faculty Management</p>
-</div>
-<nav class="flex-1 space-y-1">
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-full group" href="dashboard-faculty.html">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-full group" href="report-complaint-faculty.html">
-<span class="material-symbols-outlined">report_problem</span>
-<span class="font-label-md text-label-md">Report Complaint</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-full group" href="my-complaints-faculty.html">
-<span class="material-symbols-outlined">assignment</span>
-<span class="font-label-md text-label-md">My Complaints</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm sidebar-item-active transition-all rounded-full group shadow-md shadow-primary/20" href="complaint-history-faculty.html">
-<span class="material-symbols-outlined">history</span>
-<span class="font-label-md text-label-md">Complaint History</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-full group" href="notifications-faculty.html">
-<span class="material-symbols-outlined">notifications</span>
-<span class="font-label-md text-label-md">Notifications</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-full group" href="#">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a>
-</nav>
-<div class="mt-auto pt-lg border-t border-outline-variant flex flex-col gap-sm">
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-full group" href="profile-settings-faculty.html">
-<span class="material-symbols-outlined">person</span>
-<span class="font-label-md text-label-md">Profile</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-full group" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a href="report-complaint-faculty.html" class="mt-md bg-primary text-on-primary font-label-md text-label-md py-md px-lg rounded-xl flex items-center justify-center gap-sm active:scale-95 transition-transform text-center">
-<span class="material-symbols-outlined">add</span>
-<span class="">New Request</span>
-</a>
-</div>
-</aside>
+<app-sidebar active="complaint-history" role="faculty"></app-sidebar>
 <!-- Main Content Area -->
 <main class="flex-1 md:ml-[220px] h-screen overflow-y-auto flex flex-col custom-scrollbar bg-white">
 <!-- TopNavBar (Mobile/Desktop Header) -->
@@ -449,5 +403,8 @@
             });
         }
     </script>
+
+<script src="src/components/sidebar.js" type="module"></script>
+<script src="src/router.js" type="module"></script>
 </body>
 </html>

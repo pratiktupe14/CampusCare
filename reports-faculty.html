@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reports (Faculty) - CampusCare</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="shared-tailwind-config.js"></script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-shadow {
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+        
+        /* Bar Chart Styles */
+        .bar-chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 250px;
+            padding-top: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            border-left: 1px solid #e5e7eb;
+        }
+        .bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+            width: 40px;
+            position: relative;
+        }
+        .bar {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease-out;
+        }
+        .bar-label {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #6b7280;
+            text-align: center;
+        }
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #374151;
+        }
+    </style>
+</head>
+<body class="text-on-surface min-h-screen flex">
+    
+    <app-sidebar active="reports" role="faculty"></app-sidebar>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 md:ml-[220px] bg-white min-h-screen pb-24 md:pb-8">
+        <!-- Top Bar -->
+        <header class="h-16 flex justify-between items-center px-lg py-sm sticky top-0 z-40 w-full bg-white border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-90">
+            <div class="flex items-center gap-md">
+                <button class="md:hidden p-base">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="hidden md:flex bg-white items-center px-md py-2 rounded-full border border-gray-200 w-96">
+                    <span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+                    <input class="bg-transparent border-none focus:ring-0 text-body-md w-full outline-none" placeholder="Search complaints, rooms, or faculty..." type="text">
+                </div>
+            </div>
+            <div class="flex items-center gap-md">
+                <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors relative">
+                    <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+                </button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+                    <span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Body -->
+        <div class="p-lg max-w-7xl mx-auto space-y-lg">
+            
+            <div class="flex justify-between items-end">
+                <div>
+                    <h2 class="text-2xl font-bold text-on-surface">Complaint Reports</h2>
+                    <p class="text-sm text-gray-500 mt-1">Analytics and overview of maintenance operations.</p>
+                </div>
+                <div class="flex gap-3">
+                    <button class="flex items-center gap-2 px-4 py-2 border border-gray-200 bg-white hover:bg-gray-50 rounded-lg text-sm font-semibold transition-colors card-shadow text-gray-700">
+                        <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                        Export PDF
+                    </button>
+                    <button class="flex items-center gap-2 px-4 py-2 border border-gray-200 bg-white hover:bg-gray-50 rounded-lg text-sm font-semibold transition-colors card-shadow text-gray-700">
+                        <span class="material-symbols-outlined text-[18px]">table</span>
+                        Export Excel
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Row -->
+            <div class="bg-white border border-gray-200 rounded-xl p-4 flex flex-wrap gap-4 items-center shadow-sm">
+                <div class="flex-1 min-w-[150px]">
+                    <select class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                        <option>All Statuses</option>
+                        <option>Pending</option>
+                        <option>In Progress</option>
+                        <option>Completed</option>
+                    </select>
+                </div>
+                <div class="flex-1 min-w-[150px]">
+                    <select class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                        <option>All Buildings</option>
+                        <option>Science Block</option>
+                        <option>Library</option>
+                        <option>Student Union</option>
+                    </select>
+                </div>
+                <div class="flex-1 min-w-[150px]">
+                    <select class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                        <option>All Categories</option>
+                        <option>HVAC</option>
+                        <option>Plumbing</option>
+                        <option>Electrical</option>
+                    </select>
+                </div>
+                <div class="flex-1 min-w-[150px]">
+                    <select class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                        <option>Last 30 Days</option>
+                        <option>Last 7 Days</option>
+                        <option>This Year</option>
+                    </select>
+                </div>
+                <button class="bg-primary text-white hover:bg-red-800 font-semibold py-2 px-6 rounded-lg transition-colors flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">filter_list</span>
+                    Apply
+                </button>
+            </div>
+
+            <!-- Statistics Grid -->
+            <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-md">
+                <!-- Stat Card 1 -->
+                <div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow group hover:border-primary transition-all">
+                    <div class="flex justify-between items-start mb-base">
+                        <span class="material-symbols-outlined p-2 bg-surface-variant text-primary rounded-xl">inbox</span>
+                        <span class="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">+12%</span>
+                    </div>
+                    <p class="text-label-md text-on-surface-variant font-medium">Total Complaints</p>
+                    <p class="text-title-md font-bold mt-xs">128</p>
+                </div>
+                <!-- Stat Card 2 -->
+                <div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow hover:border-primary transition-all">
+                    <div class="flex justify-between items-start mb-base">
+                        <span class="material-symbols-outlined p-2 bg-red-50 text-red-600 rounded-xl">emergency_home</span>
+                    </div>
+                    <p class="text-label-md text-on-surface-variant font-medium">Open</p>
+                    <p class="text-title-md font-bold mt-xs">12</p>
+                </div>
+                <!-- Stat Card 3 -->
+                <div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow hover:border-primary transition-all">
+                    <div class="flex justify-between items-start mb-base">
+                        <span class="material-symbols-outlined p-2 bg-blue-50 text-blue-600 rounded-xl">engineering</span>
+                    </div>
+                    <p class="text-label-md text-on-surface-variant font-medium">In Progress</p>
+                    <p class="text-title-md font-bold mt-xs">24</p>
+                </div>
+                <!-- Stat Card 4 -->
+                <div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow hover:border-primary transition-all">
+                    <div class="flex justify-between items-start mb-base">
+                        <span class="material-symbols-outlined p-2 bg-green-50 text-green-600 rounded-xl">check_circle</span>
+                    </div>
+                    <p class="text-label-md text-on-surface-variant font-medium">Completed</p>
+                    <p class="text-title-md font-bold mt-xs">85</p>
+                </div>
+                <!-- Stat Card 5 -->
+                <div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow hover:border-primary transition-all">
+                    <div class="flex justify-between items-start mb-base">
+                        <span class="material-symbols-outlined p-2 bg-amber-50 text-amber-600 rounded-xl">pending_actions</span>
+                    </div>
+                    <p class="text-label-md text-on-surface-variant font-medium">Pending Verif.</p>
+                    <p class="text-title-md font-bold mt-xs">7</p>
+                </div>
+                <!-- Stat Card 6 -->
+                <div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow hover:border-primary transition-all">
+                    <div class="flex justify-between items-start mb-base">
+                        <span class="material-symbols-outlined p-2 bg-purple-50 text-purple-600 rounded-xl">avg_time</span>
+                    </div>
+                    <p class="text-label-md text-on-surface-variant font-medium">Avg. Resolution</p>
+                    <p class="text-title-md font-bold mt-xs">2.4 Days</p>
+                </div>
+            </section>
+
+            <!-- Chart Area -->
+            <section class="bg-white border border-gray-200 rounded-2xl p-6 card-shadow">
+                <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                    <h3 class="text-primary font-bold text-lg">Complaints by Category</h3>
+                    <select class="bg-white border border-gray-200 rounded-lg py-1 px-3 text-sm focus:ring-primary focus:border-primary outline-none text-gray-700">
+                        <option>This Month</option>
+                        <option>Last Month</option>
+                        <option>This Year</option>
+                    </select>
+                </div>
+                
+                <div class="px-4">
+                    <div class="bar-chart-container">
+                        <div class="bar-wrapper">
+                            <span class="bar-value">35</span>
+                            <div class="bar bg-blue-500" style="height: 45%;"></div>
+                            <span class="bar-label">Electrical</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <span class="bar-value">28</span>
+                            <div class="bar bg-teal-500" style="height: 35%;"></div>
+                            <span class="bar-label">Plumbing</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <span class="bar-value">45</span>
+                            <div class="bar bg-primary" style="height: 100%;"></div>
+                            <span class="bar-label">HVAC</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <span class="bar-value">12</span>
+                            <div class="bar bg-amber-500" style="height: 25%;"></div>
+                            <span class="bar-label">Cleaning</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <span class="bar-value">8</span>
+                            <div class="bar bg-gray-500" style="height: 15%;"></div>
+                            <span class="bar-label">Other</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Bottom Navigation Mobile Only -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-outline-variant shadow-lg">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="dashboard-faculty.html">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-[10px] font-medium">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="report-complaint-faculty.html">
+            <span class="material-symbols-outlined">add_circle</span>
+            <span class="text-[10px] font-medium">Report</span>
+        </a>
+        <a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1" href="#">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assessment</span>
+            <span class="text-[10px] font-bold">Reports</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="profile-settings-faculty.html">
+            <span class="material-symbols-outlined">person</span>
+            <span class="text-[10px] font-medium">Profile</span>
+        </a>
+    </nav>
+    <script src="src/components/sidebar.js" type="module"></script>
+    <script src="src/router.js" type="module"></script>
+</body>
+</html>

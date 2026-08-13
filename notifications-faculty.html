@@ -29,47 +29,7 @@
 <script src="shared-tailwind-config.js"></script>
 </head>
 <body class="text-on-surface bg-white">
-<!-- Desktop Side Navigation -->
-<aside class="h-screen w-[220px] hidden md:flex flex-col fixed left-0 top-0 border-r border-outline-variant z-40 p-md gap-base bg-white">
-<div class="mb-lg px-base">
-<a href="dashboard-faculty.html" class="font-headline-lg text-headline-lg font-black text-primary">CampusCare</a>
-<p class="text-on-surface-variant font-label-md text-label-md opacity-70">Faculty Management</p>
-</div>
-<nav class="flex flex-col gap-xs flex-1">
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="dashboard-faculty.html">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="report-complaint-faculty.html">
-<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
-<span class="font-label-md text-label-md">Report Complaint</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="my-complaints-faculty.html">
-<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
-<span class="font-label-md text-label-md">My Complaints</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="complaint-history-faculty.html">
-<span class="material-symbols-outlined" data-icon="history">history</span>
-<span class="font-label-md text-label-md">History</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container rounded-xl font-bold transition-all duration-200 cursor-pointer active:scale-95" href="notifications-faculty.html">
-<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
-<span class="font-label-md text-label-md">Notifications</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="#">
-<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-xl transition-all duration-200 cursor-pointer active:scale-95" href="profile-settings-faculty.html">
-<span class="material-symbols-outlined" data-icon="person">person</span>
-<span class="font-label-md text-label-md">Profile</span>
-</a>
-</nav>
-<a href="report-complaint-faculty.html" class="bg-primary-container text-on-primary hover:opacity-90 transition-opacity flex items-center justify-center gap-sm py-md rounded-xl font-bold active:scale-95 shadow-sm text-center">
-<span class="material-symbols-outlined" data-icon="add">add</span>
-<span class="">New Request</span>
-</a>
-</aside>
+<app-sidebar active="notifications" role="faculty"></app-sidebar>
 <!-- Top Navigation Bar -->
 <header class="h-16 w-full top-0 sticky border-b border-outline-variant z-30 shadow-sm bg-white">
 <div class="flex justify-between items-center px-lg py-sm w-full max-w-container-max mx-auto md:pl-[300px]">
@@ -265,5 +225,8 @@
             }
         });
     </script>
+
+<script src="src/components/sidebar.js" type="module"></script>
+<script src="src/router.js" type="module"></script>
 </body>
 </html>

@@ -56,54 +56,7 @@
 </div>
 </header>
 <div class="flex min-h-[calc(100vh-72px)]">
-<!-- SideNavBar (Shared Component Reference) -->
-<aside class="hidden md:flex flex-col p-md gap-base h-full border-r border-outline-variant w-[220px] shrink-0 bg-white sticky top-[72px]">
-<div class="mb-lg">
-<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest px-md">Navigation</p>
-</div>
-<nav class="flex flex-col gap-1">
-<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="dashboard-faculty.html">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<a class="flex items-center gap-md p-md bg-secondary-container text-on-secondary-container rounded-lg font-semibold shadow-sm" href="report-complaint-faculty.html">
-<span class="material-symbols-outlined">add_box</span>
-<span class="font-label-md text-label-md">Report Complaint</span>
-</a>
-<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="my-complaints-faculty.html">
-<span class="material-symbols-outlined">list_alt</span>
-<span class="font-label-md text-label-md">My Complaints</span>
-</a>
-<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="complaint-history-faculty.html">
-<span class="material-symbols-outlined">history</span>
-<span class="font-label-md text-label-md">Complaint History</span>
-</a>
-<div class="my-md border-t border-outline-variant opacity-50"></div>
-<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="notifications-faculty.html">
-<span class="material-symbols-outlined">notifications</span>
-<span class="font-label-md text-label-md">Notifications</span>
-</a>
-<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a>
-<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="profile-settings-faculty.html">
-<span class="material-symbols-outlined">person</span>
-<span class="font-label-md text-label-md">Profile</span>
-</a>
-<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-</nav>
-<div class="mt-auto p-md bg-surface border border-outline-variant rounded-xl flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">JD</div>
-<div>
-<p class="font-label-md text-label-md font-bold">Dr. Pratik Tupe</p>
-<p class="text-[10px] text-on-surface-variant">CS Faculty Member</p>
-</div>
-</div>
-</aside>
+<app-sidebar active="report-complaint" role="faculty"></app-sidebar>
 <!-- Main Content Canvas -->
 <main class="flex-1 bg-[#F8FAFC] p-lg pb-24 md:pb-8">
 <div class="max-w-5xl mx-auto">
@@ -297,5 +250,8 @@
             });
         }
     </script>
+
+<script src="src/components/sidebar.js" type="module"></script>
+<script src="src/router.js" type="module"></script>
 </body>
 </html>

@@ -2,17 +2,22 @@ class AppSidebar extends HTMLElement {
     connectedCallback() {
         // Read the explicit active state attribute
         const currentActive = this.getAttribute('active') || 'dashboard';
+        const role = this.getAttribute('role') || 'student';
+        const isFaculty = role === 'faculty';
+
+        const subtitle = isFaculty ? 'Faculty Management' : 'Student Access';
+        const newRequestHref = isFaculty ? 'report-complaint-faculty.html' : 'report-complaint.html';
 
         const navItems = [
-            { id: 'dashboard', href: 'index.html', icon: 'dashboard', text: 'Dashboard', fill: true },
-            { id: 'report-complaint', href: 'report-complaint.html', icon: 'add_circle', text: 'Report Complaint', fill: false },
-            { id: 'my-complaints', href: 'my-complaints.html', icon: 'list_alt', text: 'My Complaints', fill: false },
-            { id: 'complaint-history', href: 'complaint-history.html', icon: 'history', text: 'Complaint History', fill: false },
+            { id: 'dashboard', href: isFaculty ? 'dashboard-faculty.html' : 'index.html', icon: 'dashboard', text: 'Dashboard', fill: true },
+            { id: 'report-complaint', href: isFaculty ? 'report-complaint-faculty.html' : 'report-complaint.html', icon: 'add_circle', text: 'Report Complaint', fill: false },
+            { id: 'my-complaints', href: isFaculty ? 'my-complaints-faculty.html' : 'my-complaints.html', icon: 'list_alt', text: 'My Complaints', fill: false },
+            { id: 'complaint-history', href: isFaculty ? 'complaint-history-faculty.html' : 'complaint-history.html', icon: 'history', text: 'Complaint History', fill: false },
             { divider: true },
-            { id: 'notifications', href: 'notifications.html', icon: 'notifications', text: 'Notifications', fill: false },
-            { id: 'reports', href: 'reports.html', icon: 'assessment', text: 'Reports', fill: false },
-            { id: 'profile', href: 'profile.html', icon: 'person', text: 'Profile', fill: false },
-            { id: 'settings', href: 'settings.html', icon: 'settings', text: 'Settings', fill: false },
+            { id: 'notifications', href: isFaculty ? 'notifications-faculty.html' : 'notifications.html', icon: 'notifications', text: 'Notifications', fill: false },
+            { id: 'reports', href: isFaculty ? 'reports-faculty.html' : 'reports.html', icon: 'assessment', text: 'Reports', fill: false },
+            { id: 'profile', href: isFaculty ? 'profile-settings-faculty.html' : 'profile.html', icon: 'person', text: 'Profile', fill: false },
+            { id: 'settings', href: isFaculty ? 'settings-faculty.html' : 'settings.html', icon: 'settings', text: 'Settings', fill: false },
         ];
 
         let navHTML = '';
@@ -43,7 +48,7 @@ class AppSidebar extends HTMLElement {
                     <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">school</span>
                     <div>
                         <p class="text-base font-bold text-primary">Maintenance Portal</p>
-                        <p class="text-xs text-on-surface-variant uppercase tracking-wider">Student Access</p>
+                        <p class="text-xs text-on-surface-variant uppercase tracking-wider">${subtitle}</p>
                     </div>
                 </div>
             </div>
@@ -51,7 +56,7 @@ class AppSidebar extends HTMLElement {
                 ${navHTML}
             </nav>
             <div class="mt-auto px-4 py-4 w-full flex flex-col">
-                <a href="report-complaint.html" class="w-full bg-primary-container text-on-primary-container py-2 px-4 text-sm rounded-xl font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-95 shadow-md mb-4">
+                <a href="${newRequestHref}" class="w-full bg-primary-container text-on-primary-container py-2 px-4 text-sm rounded-xl font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-95 shadow-md mb-4">
                     <span class="material-symbols-outlined text-[18px]">add</span>
                     <span class="">New Request</span>
                 </a>

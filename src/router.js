@@ -35,7 +35,19 @@ document.addEventListener('click', async (e) => {
                 'index.html': 'dashboard',
                 'report-complaint.html': 'report-complaint',
                 'my-complaints.html': 'my-complaints',
-                'complaint-history.html': 'complaint-history'
+                'complaint-history.html': 'complaint-history',
+                'notifications.html': 'notifications',
+                'reports.html': 'reports',
+                'profile.html': 'profile',
+                'settings.html': 'settings',
+                'dashboard-faculty.html': 'dashboard',
+                'report-complaint-faculty.html': 'report-complaint',
+                'my-complaints-faculty.html': 'my-complaints',
+                'complaint-history-faculty.html': 'complaint-history',
+                'notifications-faculty.html': 'notifications',
+                'reports-faculty.html': 'reports',
+                'profile-settings-faculty.html': 'profile',
+                'settings-faculty.html': 'settings'
             };
             const activeId = mapping[href] || 'dashboard';
             
@@ -48,12 +60,12 @@ document.addEventListener('click', async (e) => {
                 const span = a.querySelector('span.material-symbols-outlined');
                 
                 if (isMatch) {
-                    a.className = "flex items-center gap-md px-gutter py-3 rounded-r-full transition-all duration-200 bg-secondary-container text-on-secondary-container font-bold";
+                    a.className = "flex items-center gap-3 px-3 py-2 rounded-r-full transition-all duration-200 bg-secondary-container text-on-secondary-container font-bold";
                     if (span) span.style.fontVariationSettings = "'FILL' 1";
                 } else {
-                    a.className = "flex items-center gap-md px-gutter py-3 rounded-r-full transition-all duration-200 text-on-surface-variant hover:bg-surface-container-high";
-                    if (span && !a.href.includes('index.html')) {
-                        // index.html icon might be set to fill true by default in config, keeping it simple
+                    a.className = "flex items-center gap-3 px-3 py-2 rounded-r-full transition-all duration-200 text-on-surface-variant hover:bg-surface-container-high";
+                    if (span && !a.href.includes('index.html') && !a.href.includes('dashboard-faculty.html')) {
+                        // index.html or dashboard-faculty.html icon might be set to fill true by default in config, keeping it simple
                         span.style.fontVariationSettings = "";
                     }
                 }

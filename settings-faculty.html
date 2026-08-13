@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Settings (Faculty) - CampusCare</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="shared-tailwind-config.js"></script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-shadow {
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+        
+        /* Custom Toggle Switch CSS */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #B91C2E;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #B91C2E;
+        }
+    </style>
+</head>
+<body class="text-on-surface min-h-screen flex">
+    
+    <app-sidebar active="settings" role="faculty"></app-sidebar>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 md:ml-[220px] bg-white min-h-screen pb-24 md:pb-8">
+        <!-- Top Bar -->
+        <header class="h-16 flex justify-between items-center px-lg py-sm sticky top-0 z-40 w-full bg-white border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-90">
+            <div class="flex items-center gap-md">
+                <button class="md:hidden p-base">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="hidden md:flex bg-white items-center px-md py-2 rounded-full border border-gray-200 w-96">
+                    <span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+                    <input class="bg-transparent border-none focus:ring-0 text-body-md w-full outline-none" placeholder="Search complaints, rooms, or faculty..." type="text">
+                </div>
+            </div>
+            <div class="flex items-center gap-md">
+                <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors relative">
+                    <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+                </button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+                    <span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Body -->
+        <div class="p-lg max-w-4xl mx-auto space-y-lg">
+            
+            <div>
+                <h2 class="text-2xl font-bold text-on-surface">Settings</h2>
+                <p class="text-sm text-gray-500 mt-1">Manage your account, preferences, and notifications.</p>
+            </div>
+
+            <!-- Account Settings -->
+            <section class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                <h3 class="text-primary font-bold text-lg mb-6 pb-2 border-b border-gray-100">Account</h3>
+                
+                <div class="space-y-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
+                            <input type="text" value="Dr. Sarah H." class="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 text-gray-900 focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
+                            <input type="email" value="sarah.h@university.edu" class="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 text-gray-900 focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Department</label>
+                        <select class="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 text-gray-900 focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                            <option>Computer Science</option>
+                            <option>Engineering</option>
+                            <option>Mathematics</option>
+                            <option>Physics</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center justify-between py-3 border-t border-gray-100 mt-4">
+                        <div>
+                            <p class="font-medium text-gray-900">Change Password</p>
+                            <p class="text-sm text-gray-500">Update your account password regularly.</p>
+                        </div>
+                        <button class="text-sm font-semibold text-gray-700 border border-gray-200 bg-white hover:bg-gray-50 px-4 py-2 rounded-lg transition-colors card-shadow">
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notifications Preferences -->
+            <section class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                <h3 class="text-primary font-bold text-lg mb-6 pb-2 border-b border-gray-100">Notification Preferences</h3>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                        <div>
+                            <p class="font-medium text-gray-900">Email Notifications</p>
+                            <p class="text-sm text-gray-500">Receive updates about departmental complaints via email.</p>
+                        </div>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle" id="email_notif" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer" checked/>
+                            <label for="email_notif" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                        <div>
+                            <p class="font-medium text-gray-900">Push Notifications</p>
+                            <p class="text-sm text-gray-500">Receive instant alerts on your browser or device.</p>
+                        </div>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle" id="push_notif" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="push_notif" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between py-3">
+                        <div>
+                            <p class="font-medium text-gray-900">Weekly Digest</p>
+                            <p class="text-sm text-gray-500">Get a summary of campus maintenance activities.</p>
+                        </div>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle" id="digest_notif" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer" checked/>
+                            <label for="digest_notif" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appearance -->
+            <section class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                <h3 class="text-primary font-bold text-lg mb-6 pb-2 border-b border-gray-100">Appearance</h3>
+                
+                <div class="flex items-center justify-between py-3">
+                    <div>
+                        <p class="font-medium text-gray-900">Theme Preference</p>
+                        <p class="text-sm text-gray-500">Choose between light, dark, or system default.</p>
+                    </div>
+                    <select class="bg-white border border-gray-300 rounded-lg py-2 px-4 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none text-gray-900">
+                        <option>Light Theme</option>
+                        <option>Dark Theme</option>
+                        <option>System Default</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Save Action -->
+            <div class="flex justify-end pt-4">
+                <button type="button" class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-red-800 transition-colors shadow-sm">
+                    Save Settings
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Bottom Navigation Mobile Only -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-outline-variant shadow-lg">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="dashboard-faculty.html">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-[10px] font-medium">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="report-complaint-faculty.html">
+            <span class="material-symbols-outlined">add_circle</span>
+            <span class="text-[10px] font-medium">Report</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="reports-faculty.html">
+            <span class="material-symbols-outlined">assessment</span>
+            <span class="text-[10px] font-medium">Reports</span>
+        </a>
+        <a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1" href="#">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+            <span class="text-[10px] font-bold">Settings</span>
+        </a>
+    </nav>
+    <script src="src/components/sidebar.js" type="module"></script>
+    <script src="src/router.js" type="module"></script>
+</body>
+</html>

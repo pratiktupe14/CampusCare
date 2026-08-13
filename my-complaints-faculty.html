@@ -15,59 +15,7 @@
 </head>
 <body class="bg-background text-on-surface">
 
-    <!-- Side Navigation Shell -->
-    <aside class="fixed h-screen w-[220px] left-0 top-0 border-r border-outline-variant hidden md:flex flex-col p-md gap-base z-50 bg-white">
-        <div class="px-md py-lg mb-base">
-            <a href="dashboard-faculty.html" class="font-headline-lg text-headline-lg font-black text-primary">CampusCare</a>
-            <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-1">Faculty Management</p>
-        </div>
-
-        <nav class="flex-1 space-y-1">
-            <a href="dashboard-faculty.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
-                <span class="material-symbols-outlined">dashboard</span>
-                <span class="font-label-md text-label-md">Dashboard</span>
-            </a>
-            <a href="report-complaint-faculty.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
-                <span class="material-symbols-outlined">add_box</span>
-                <span class="font-label-md text-label-md">Report Complaint</span>
-            </a>
-            <a href="my-complaints-faculty.html" class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container rounded-lg font-semibold transition-all">
-                <span class="material-symbols-outlined">list_alt</span>
-                <span class="font-label-md text-label-md">My Complaints</span>
-            </a>
-            <a href="complaint-history-faculty.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
-                <span class="material-symbols-outlined">history</span>
-                <span class="font-label-md text-label-md">Complaint History</span>
-            </a>
-            <a href="notifications-faculty.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
-                <span class="material-symbols-outlined">notifications</span>
-                <span class="font-label-md text-label-md">Notifications</span>
-            </a>
-            <a href="#" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
-                <span class="material-symbols-outlined">assessment</span>
-                <span class="font-label-md text-label-md">Reports</span>
-            </a>
-            <div class="pt-xl mt-xl border-t border-outline-variant/30">
-                <a href="profile-settings-faculty.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
-                    <span class="material-symbols-outlined">person</span>
-                    <span class="font-label-md text-label-md">Profile</span>
-                </a>
-                <a href="#" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
-                    <span class="material-symbols-outlined">settings</span>
-                    <span class="font-label-md text-label-md">Settings</span>
-                </a>
-            </div>
-        </nav>
-
-        <div class="mt-auto p-md bg-surface-container-high rounded-xl flex items-center gap-md">
-            <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold">JD</div>
-            <div class="overflow-hidden">
-                <p class="font-label-md text-label-md font-bold truncate">Dr. Pratik Tupe</p>
-                <p class="text-[10px] text-on-surface-variant truncate">CS Faculty Member</p>
-            </div>
-            <button class="ml-auto material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">logout</button>
-        </div>
-    </aside>
+    <app-sidebar active="my-complaints" role="faculty"></app-sidebar>
 
     <!-- Main Content Canvas -->
     <main class="md:ml-[220px] min-h-screen flex flex-col">
@@ -347,5 +295,8 @@
             });
         }
     </script>
+
+<script src="src/components/sidebar.js" type="module"></script>
+<script src="src/router.js" type="module"></script>
 </body>
 </html>

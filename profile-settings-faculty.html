@@ -61,40 +61,7 @@
 </div>
 </div>
 </header>
-<!-- Side Navigation Bar -->
-<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-[220px] bg-surface border-r border-outline-variant flex flex-col p-md hidden md:flex">
-<div class="mb-8 p-4">
-<a href="dashboard-faculty.html" class="text-title-md font-black text-primary">CampusCare</a>
-<p class="text-label-md text-on-surface-variant">Faculty Management</p>
-</div>
-<nav class="flex flex-col gap-1">
-<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="dashboard-faculty.html">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="text-label-md">Dashboard</span>
-</a>
-<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="report-complaint-faculty.html">
-<span class="material-symbols-outlined">build</span>
-<span class="text-label-md">Report Complaint</span>
-</a>
-<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="my-complaints-faculty.html">
-<span class="material-symbols-outlined">inventory_2</span>
-<span class="text-label-md">My Complaints</span>
-</a>
-<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="complaint-history-faculty.html">
-<span class="material-symbols-outlined">history</span>
-<span class="text-label-md">Complaint History</span>
-</a>
-<a class="flex items-center gap-4 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold" href="profile-settings-faculty.html">
-<span class="material-symbols-outlined">account_circle</span>
-<span class="text-label-md">Profile &amp; Settings</span>
-</a>
-</nav>
-<div class="mt-auto p-4 bg-surface-container-low rounded-xl border border-outline-variant">
-<p class="text-label-md font-bold text-on-surface mb-2">Need Support?</p>
-<p class="text-[11px] text-on-surface-variant mb-4">Our IT team is available 24/7 for campus emergencies.</p>
-<button class="w-full py-2 bg-primary text-on-primary rounded-lg text-label-md font-bold">Contact Help</button>
-</div>
-</aside>
+<app-sidebar active="profile" role="faculty"></app-sidebar>
 <!-- Main Content Area -->
 <main class="md:ml-[220px] mt-16 p-lg min-h-screen">
 <div class="max-w-6xl mx-auto space-y-lg">
@@ -381,5 +348,8 @@
             });
         }
     </script>
+
+<script src="src/components/sidebar.js" type="module"></script>
+<script src="src/router.js" type="module"></script>
 </body>
 </html>
