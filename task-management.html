@@ -5,100 +5,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "tertiary-fixed": "#d9e3f6",
-                        "surface": "#fff8f7",
-                        "on-secondary-fixed-variant": "#930013",
-                        "inverse-surface": "#3f2c29",
-                        "surface-variant": "#fbdbd7",
-                        "secondary-fixed": "#ffdad7",
-                        "on-tertiary-fixed-variant": "#3d4756",
-                        "surface-container-high": "#ffe2de",
-                        "error-container": "#ffdad6",
-                        "tertiary": "#505a69",
-                        "inverse-on-surface": "#ffedea",
-                        "on-surface": "#281715",
-                        "secondary-fixed-dim": "#ffb3ad",
-                        "on-tertiary-container": "#f5f7ff",
-                        "on-background": "#281715",
-                        "surface-container-highest": "#fbdbd7",
-                        "on-tertiary-fixed": "#121c2a",
-                        "primary-fixed": "#ffdad6",
-                        "on-primary": "#ffffff",
-                        "primary-container": "#dc2626",
-                        "surface-bright": "#fff8f7",
-                        "on-primary-fixed-variant": "#93000b",
-                        "error": "#ba1a1a",
-                        "on-surface-variant": "#5c403c",
-                        "tertiary-fixed-dim": "#bdc7d9",
-                        "on-secondary-container": "#fffbff",
-                        "inverse-primary": "#ffb4ab",
-                        "on-error-container": "#93000a",
-                        "on-error": "#ffffff",
-                        "on-secondary": "#ffffff",
-                        "outline-variant": "#e6bdb8",
-                        "on-primary-container": "#fff6f5",
-                        "background": "#fff8f7",
-                        "surface-container": "#ffe9e6",
-                        "primary-fixed-dim": "#ffb4ab",
-                        "primary": "#b70011",
-                        "surface-tint": "#bf0715",
-                        "on-tertiary": "#ffffff",
-                        "secondary": "#b61722",
-                        "on-primary-fixed": "#410002",
-                        "secondary-container": "#da3437",
-                        "outline": "#916f6b",
-                        "surface-dim": "#f3d3cf",
-                        "on-secondary-fixed": "#410004",
-                        "surface-container-low": "#fff0ee",
-                        "tertiary-container": "#687283",
-                        "surface-container-lowest": "#ffffff"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "margin-mobile": "16px",
-                        "gutter": "24px",
-                        "md": "16px",
-                        "xl": "32px",
-                        "base": "8px",
-                        "xs": "4px",
-                        "sm": "12px",
-                        "container-max": "1440px",
-                        "lg": "24px"
-                    },
-                    "fontFamily": {
-                        "label-md": ["Inter"],
-                        "display-lg": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "title-md": ["Inter"],
-                        "headline-lg-mobile": ["Inter"],
-                        "body-md": ["Inter"],
-                        "headline-lg": ["Inter"]
-                    },
-                    "fontSize": {
-                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
-                    }
-                },
-            },
-        }
-    </script>
+<script src="shared-tailwind-config.js"></script>
 <style>
         body { background-color: #F8FAFC; font-family: 'Inter', sans-serif; }
         .soft-elevation { box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05); }
@@ -108,7 +15,7 @@
 </head>
 <body class="text-on-surface" style="background-color: rgb(255, 255, 255);">
 <!-- Sidebar Navigation -->
-<aside class="fixed left-0 top-0 h-screen flex flex-col p-md gap-base z-40 border-r border-outline-variant w-72 bg-white">
+<aside class="fixed left-0 top-0 h-screen flex flex-col p-md gap-base z-40 border-r border-outline-variant w-[220px] bg-white">
 <div class="px-md py-xl mb-base">
 <h1 class="text-headline-lg font-headline-lg text-primary">CampusCare</h1>
 <p class="text-label-md font-label-md text-on-surface-variant opacity-70">Maintenance Staff</p>
@@ -150,7 +57,7 @@
 </div>
 </aside>
 <!-- Main Content Area -->
-<main class="ml-72 min-h-screen">
+<main class="md:ml-[220px] min-h-screen">
 <!-- Top Bar -->
 <header class="flex justify-between items-center w-full px-lg h-16 sticky top-0 z-50 border-b border-outline-variant shadow-sm bg-white">
 <div class="flex items-center gap-sm">
@@ -278,7 +185,7 @@
 <div class="space-y-md">
 <div>
 <label class="block text-label-md font-label-md text-on-surface mb-base">Repair Notes</label>
-<textarea class="w-full h-32 rounded-2xl border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md p-md bg-surface-container-lowest placeholder:text-on-surface-variant/40 transition-all" placeholder="Describe the work performed, parts used, and any follow-up actions required..."></textarea>
+<textarea class="w-full h-32 rounded-2xl border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary text-body-md p-md bg-white transition-all" placeholder="Describe the work performed, parts used, and any follow-up actions required..."></textarea>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
 <div>

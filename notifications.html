@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" class="light" style="font-size: 14px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications | CampusCare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="shared-tailwind-config.js"></script>
+</head>
+<body class="text-on-background min-h-screen bg-white">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 w-full z-50 bg-white border-b border-outline-variant shadow-sm flex justify-between items-center h-16 px-gutter">
+        <div class="flex items-center gap-md">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDyW5wPzazAdUFRXV_630mmlGNqDj6pyB3Rku9lJT_0n1D7RvoQ0kYJd-XBGe28fs-2wixy5Gk7NEI6CI6MBa-4F-qTnh55DamSaTpfLb6xZRUeCV3brDr6ehta4Z60ghue0uW1PBvU28SExI6sQFrG9CFWLWDncwA-NT8p3AzTzdwIvaR8MxzWa0upY7DcZN5iifjZ7wnOcZuSkrvA8hxbuRqWgW8aXmThUECRXcILx7rxZnsLZvmw" class="h-8 w-8 object-contain" alt="CampusCare Logo">
+            <h1 class="font-display-lg text-title-md font-bold text-primary">CampusCare</h1>
+        </div>
+        <div class="flex-1 max-w-xl mx-xl hidden md:block">
+            <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+                <input type="text" placeholder="Search complaints or info..." class="w-full bg-white border border-gray-200 rounded-xl py-2 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-primary">
+            </div>
+        </div>
+        <div class="flex items-center gap-sm">
+            <button class="p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer active:scale-95">
+                <span class="material-symbols-outlined text-primary">notifications</span>
+            </button>
+            <button class="p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer active:scale-95">
+                <span class="material-symbols-outlined text-primary">help</span>
+            </button>
+            <div class="h-8 w-8 rounded-full bg-primary-fixed overflow-hidden ml-2 cursor-pointer border border-outline-variant">
+                <img class="h-full w-full object-cover" data-alt="A professional studio portrait of a university student with a friendly expression, wearing a neutral colored sweater. The background is a clean, softly blurred academic hallway with warm sunlight filtering through windows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX16q4n1KvkPaf9esUQ4fNXcwYwcv-_fKANCQ_w7WSm0aO_BeSn34uTlAw3hKK3PNjrkxg4UaIonXPFdggOlJFOHRA_pO4xbYBOVT0pgxqqH8bekSpxlEyR7RvTm71U-K9quscABubVME84su2-tIWhHkJoVyxnwQ23A3To0LcFqqphwmCM-eBbKnNN2ZVOVrMrzR_DhDJmvTGBv9fmmRdlLe1qecKLpe8Z3_q-KAz_NOE23lNyJdVIA">
+            </div>
+        </div>
+    </header>
+    
+    <app-sidebar active="notifications"></app-sidebar>
+
+    <!-- Main Content -->
+    <main class="md:ml-[220px] pt-16 pb-24 md:pb-lg px-margin-mobile md:px-gutter bg-white">
+        <div class="max-w-7xl mx-auto w-full mt-lg">
+            
+            <div class="flex justify-between items-end mb-xl">
+                <div>
+                    <h2 class="text-2xl font-bold text-on-surface">Notifications</h2>
+                    <p class="text-sm text-gray-500 mt-1">Stay updated on your maintenance requests and campus alerts.</p>
+                </div>
+                <button class="px-4 py-2 bg-white text-gray-700 border border-gray-200 rounded-lg text-sm font-semibold hover:bg-gray-50 transition-colors">
+                    Mark all as read
+                </button>
+            </div>
+
+            <!-- Today Section -->
+            <h3 class="text-red-700 font-semibold mb-md">Today</h3>
+            <div class="flex flex-col gap-4 mb-xl">
+                
+                <!-- Notification Item (Unread) -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5 flex gap-4 hover:bg-gray-50 transition-colors relative cursor-pointer group">
+                    <div class="w-3 h-3 bg-red-600 rounded-full absolute top-5 right-5"></div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-50 text-primary rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    </div>
+                    <div class="flex-1 pr-8">
+                        <h4 class="text-base font-bold text-gray-900">Complaint Resolved: #CC-8288</h4>
+                        <p class="text-sm text-gray-600 mt-1">The leaking faucet in C-Dorm has been fixed. Please rate the service.</p>
+                        <span class="text-xs text-gray-400 mt-2 block">10 mins ago</span>
+                    </div>
+                </div>
+
+                <!-- Notification Item -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5 flex gap-4 hover:bg-gray-50 transition-colors cursor-pointer group opacity-80 hover:opacity-100">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-50 text-blue-700 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">sync</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-base font-bold text-gray-900">Status Update: #CC-8291</h4>
+                        <p class="text-sm text-gray-600 mt-1">Maintenance team has started working on the broken light in Hall B.</p>
+                        <span class="text-xs text-gray-400 mt-2 block">2 hours ago</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Earlier Section -->
+            <h3 class="text-red-700 font-semibold mb-md">Earlier</h3>
+            <div class="flex flex-col gap-4">
+                
+                <!-- Notification Item -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5 flex gap-4 hover:bg-gray-50 transition-colors cursor-pointer group opacity-80 hover:opacity-100">
+                    <div class="flex-shrink-0 w-12 h-12 bg-amber-50 text-amber-700 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined">campaign</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-base font-bold text-gray-900">Campus Announcement</h4>
+                        <p class="text-sm text-gray-600 mt-1">Water supply in the Science Block will be interrupted from 2 PM to 4 PM tomorrow.</p>
+                        <span class="text-xs text-gray-400 mt-2 block">Oct 21, 2023</span>
+                    </div>
+                </div>
+
+                <!-- Notification Item -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5 flex gap-4 hover:bg-gray-50 transition-colors cursor-pointer group opacity-80 hover:opacity-100">
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-100 text-gray-700 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined">rate_review</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-base font-bold text-gray-900">Feedback Requested</h4>
+                        <p class="text-sm text-gray-600 mt-1">How was your experience with recent HVAC repairs? Let us know!</p>
+                        <span class="text-xs text-gray-400 mt-2 block">Oct 19, 2023</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav class="fixed bottom-0 w-full z-50 md:hidden border-t border-outline-variant shadow-lg flex justify-around items-center h-20 px-4 pb-safe bg-white">
+        <a href="index.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
+            <span class="material-symbols-outlined">home</span>
+            <span class="font-label-md">Home</span>
+        </a>
+        <a href="report-complaint.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
+            <span class="material-symbols-outlined">add_box</span>
+            <span class="font-label-md">Request</span>
+        </a>
+        <a href="my-complaints.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
+            <span class="material-symbols-outlined">list_alt</span>
+            <span class="font-label-md">My Complaints</span>
+        </a>
+        <a href="notifications.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-1 transition-transform active:scale-90">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+            <span class="font-label-md">Alerts</span>
+        </a>
+    </nav>
+    
+    <script src="src/components/sidebar.js" type="module"></script>
+</body>
+</html>

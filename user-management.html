@@ -21,103 +21,11 @@
             box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05);
         }
     </style>
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "error": "#ba1a1a",
-                      "error-container": "#ffdad6",
-                      "surface-dim": "#f3d3cf",
-                      "inverse-surface": "#3f2c29",
-                      "surface-container": "#ffe9e6",
-                      "surface-container-low": "#fff0ee",
-                      "on-secondary-fixed": "#410004",
-                      "secondary": "#b61722",
-                      "tertiary-container": "#687283",
-                      "inverse-primary": "#ffb4ab",
-                      "on-tertiary-fixed-variant": "#3d4756",
-                      "tertiary": "#505a69",
-                      "on-primary-fixed": "#410002",
-                      "secondary-container": "#da3437",
-                      "on-tertiary-fixed": "#121c2a",
-                      "surface-bright": "#fff8f7",
-                      "on-surface-variant": "#5c403c",
-                      "primary-container": "#dc2626",
-                      "on-primary-container": "#fff6f5",
-                      "on-error-container": "#93000a",
-                      "secondary-fixed-dim": "#ffb3ad",
-                      "on-primary": "#ffffff",
-                      "surface-container-high": "#ffe2de",
-                      "tertiary-fixed-dim": "#bdc7d9",
-                      "on-tertiary": "#ffffff",
-                      "surface": "#ffffff", /* Override for Total Whiteout */
-                      "on-background": "#281715",
-                      "inverse-on-surface": "#ffedea",
-                      "on-tertiary-container": "#f5f7ff",
-                      "primary-fixed-dim": "#ffb4ab",
-                      "on-primary-fixed-variant": "#93000b",
-                      "surface-tint": "#bf0715",
-                      "primary": "#b70011",
-                      "surface-variant": "#fbdbd7",
-                      "background": "#ffffff", /* Total Whiteout */
-                      "outline": "#916f6b",
-                      "on-secondary": "#ffffff",
-                      "surface-container-highest": "#fbdbd7",
-                      "secondary-fixed": "#ffdad7",
-                      "on-secondary-fixed-variant": "#930013",
-                      "outline-variant": "#e6bdb8",
-                      "on-surface": "#281715",
-                      "tertiary-fixed": "#d9e3f6",
-                      "on-secondary-container": "#fffbff",
-                      "on-error": "#ffffff",
-                      "surface-container-lowest": "#ffffff",
-                      "primary-fixed": "#ffdad6"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "sm": "12px",
-                      "container-max": "1440px",
-                      "xs": "4px",
-                      "margin-mobile": "16px",
-                      "base": "8px",
-                      "gutter": "24px",
-                      "xl": "32px",
-                      "md": "16px",
-                      "lg": "24px"
-              },
-              "fontFamily": {
-                      "display-lg": ["Inter"],
-                      "body-lg": ["Inter"],
-                      "headline-lg-mobile": ["Inter"],
-                      "body-md": ["Inter"],
-                      "label-md": ["Inter"],
-                      "title-md": ["Inter"],
-                      "headline-lg": ["Inter"]
-              },
-              "fontSize": {
-                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                      "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
-              }
-            },
-          },
-        }
-      </script>
+<script src="shared-tailwind-config.js"></script>
 </head>
 <body class="bg-surface text-on-surface flex min-h-screen">
 <!-- SideNavBar (Execution from JSON) -->
-<aside class="w-[280px] h-screen sticky left-0 top-0 border-r border-outline-variant bg-surface-container-lowest flex flex-col py-lg z-40">
+<aside class="w-[220px] h-screen sticky left-0 top-0 border-r border-outline-variant bg-surface-container-lowest flex flex-col py-lg z-40">
 <div class="px-lg mb-xl">
 <h1 class="font-headline-lg text-headline-lg font-bold text-primary">CampusCare</h1>
 <p class="font-label-md text-label-md text-on-surface-variant tracking-wider uppercase">Admin Console</p>

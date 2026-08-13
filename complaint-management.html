@@ -1,98 +1,6 @@
-<!DOCTYPE html><html lang="en" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "secondary": "#b61722",
-                        "primary-fixed": "#ffdad6",
-                        "on-tertiary": "#ffffff",
-                        "surface-container-lowest": "#ffffff",
-                        "error": "#ba1a1a",
-                        "on-error": "#ffffff",
-                        "surface-variant": "#fbdbd7",
-                        "surface": "#fff8f7",
-                        "background": "#fff8f7",
-                        "on-secondary": "#ffffff",
-                        "on-error-container": "#93000a",
-                        "outline": "#916f6b",
-                        "tertiary-container": "#687283",
-                        "secondary-container": "#da3437",
-                        "error-container": "#ffdad6",
-                        "inverse-on-surface": "#ffedea",
-                        "on-secondary-fixed": "#410004",
-                        "on-tertiary-fixed-variant": "#3d4756",
-                        "on-surface": "#281715",
-                        "on-surface-variant": "#5c403c",
-                        "tertiary-fixed-dim": "#bdc7d9",
-                        "surface-container-highest": "#fbdbd7",
-                        "primary-fixed-dim": "#ffb4ab",
-                        "on-primary-fixed-variant": "#93000b",
-                        "secondary-fixed": "#ffdad7",
-                        "primary": "#b70011",
-                        "surface-bright": "#fff8f7",
-                        "outline-variant": "#e6bdb8",
-                        "on-secondary-container": "#fffbff",
-                        "on-tertiary-container": "#f5f7ff",
-                        "inverse-primary": "#ffb4ab",
-                        "surface-tint": "#bf0715",
-                        "on-primary": "#ffffff",
-                        "on-primary-fixed": "#410002",
-                        "on-primary-container": "#fff6f5",
-                        "surface-container-high": "#ffe2de",
-                        "surface-container-low": "#fff0ee",
-                        "primary-container": "#dc2626",
-                        "tertiary": "#505a69",
-                        "on-background": "#281715",
-                        "secondary-fixed-dim": "#ffb3ad",
-                        "inverse-surface": "#3f2c29",
-                        "surface-dim": "#f3d3cf",
-                        "tertiary-fixed": "#d9e3f6",
-                        "surface-container": "#ffe9e6",
-                        "on-tertiary-fixed": "#121c2a"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "16px",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "gutter": "24px",
-                        "base": "8px",
-                        "sm": "12px",
-                        "lg": "24px",
-                        "xl": "32px",
-                        "md": "16px",
-                        "margin-mobile": "16px",
-                        "xs": "4px",
-                        "container-max": "1440px"
-                    },
-                    "fontFamily": {
-                        "label-md": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "headline-lg": ["Inter"],
-                        "body-md": ["Inter"],
-                        "title-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
-                    },
-                    "boxShadow": {
-                        "elevation-2": "0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05)",
-                        "elevation-3": "0px 10px 25px -5px rgba(0,0,0,0.08), 0px 8px 10px -6px rgba(0,0,0,0.08)"
-                    }
-                }
-            }
-        }
-    }catch(_e){}</script><meta charset="utf-8"></head><body class="text-on-surface bg-white">
+<!DOCTYPE html><html lang="en" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script src="shared-tailwind-config.js"></script><meta charset="utf-8"></head><body class="text-on-surface bg-white">
 <!-- Side Navigation Shell -->
-<aside class="fixed left-0 top-0 h-full w-[280px] dark:bg-surface-container border-r border-outline-variant flex flex-col py-lg z-50 shadow-sm bg-white">
+<aside class="fixed left-0 top-0 h-full w-[220px] dark:bg-surface-container border-r border-outline-variant flex flex-col py-lg z-50 shadow-sm bg-white">
 <div class="px-lg mb-xl">
 <h1 class="font-headline-lg text-headline-lg font-bold text-primary">CampusCare</h1>
 <p class="text-label-md font-label-md text-on-surface-variant">Admin Console</p>
@@ -136,13 +44,13 @@
 </div>
 </aside>
 <!-- Main Content Area -->
-<main class="ml-[280px] min-h-screen bg-white">
+<main class="md:ml-[220px] min-h-screen bg-white">
 <!-- Top App Bar Shell -->
-<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 backdrop-blur-md flex items-center justify-between px-lg z-40 border-b border-outline-variant bg-white">
+<header class="fixed top-0 right-0 w-[calc(100%-220px)] h-16 backdrop-blur-md flex items-center justify-between px-lg z-40 border-b border-outline-variant bg-white">
 <div class="flex items-center flex-1 max-w-xl">
 <div class="relative w-full">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
-<input type="text" placeholder="Search complaints, IDs, or users..." class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body-md outline-none">
+<input type="text" placeholder="Search complaints, IDs, or users..." class="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body-md outline-none">
 </div>
 </div>
 <div class="flex items-center gap-lg">
@@ -221,11 +129,11 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
 <div class="space-y-xs">
 <label class="text-label-md font-label-md text-on-surface-variant px-1">Complaint ID / Title</label>
-<input class="w-full px-md py-sm bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all" placeholder="e.g. COMP-90210" type="text">
+<input class="w-full px-md py-sm bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all" placeholder="e.g. COMP-90210" type="text">
 </div>
 <div class="space-y-xs">
 <label class="text-label-md font-label-md text-on-surface-variant px-1">Building / Location</label>
-<select class="w-full px-md py-sm bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all appearance-none cursor-pointer">
+<select class="w-full px-md py-sm bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all appearance-none cursor-pointer">
 <option>All Buildings</option>
 <option>Main Academic Wing</option>
 <option>Dormitory East</option>
@@ -234,7 +142,7 @@
 </div>
 <div class="space-y-xs">
 <label class="text-label-md font-label-md text-on-surface-variant px-1">Priority Level</label>
-<select class="w-full px-md py-sm bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all appearance-none cursor-pointer">
+<select class="w-full px-md py-sm bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all appearance-none cursor-pointer">
 <option>Any Priority</option>
 <option>Critical</option>
 <option>High</option>
@@ -244,7 +152,7 @@
 </div>
 <div class="space-y-xs">
 <label class="text-label-md font-label-md text-on-surface-variant px-1">AI Verification Status</label>
-<select class="w-full px-md py-sm bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all appearance-none cursor-pointer">
+<select class="w-full px-md py-sm bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md transition-all appearance-none cursor-pointer">
 <option>All Statuses</option>
 <option>Verified (High Confidence)</option>
 <option>Potential False Positive</option>

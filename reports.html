@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" class="light" style="font-size: 14px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | CampusCare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="shared-tailwind-config.js"></script>
+    <style>
+        .bar-chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 250px;
+            padding-top: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            border-left: 1px solid #e5e7eb;
+        }
+        .bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+            width: 40px;
+            position: relative;
+        }
+        .bar {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease-out;
+        }
+        .bar-label {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #6b7280;
+            text-align: center;
+        }
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #374151;
+        }
+    </style>
+</head>
+<body class="text-on-background min-h-screen bg-white">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 w-full z-50 bg-white border-b border-outline-variant shadow-sm flex justify-between items-center h-16 px-gutter">
+        <div class="flex items-center gap-md">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDyW5wPzazAdUFRXV_630mmlGNqDj6pyB3Rku9lJT_0n1D7RvoQ0kYJd-XBGe28fs-2wixy5Gk7NEI6CI6MBa-4F-qTnh55DamSaTpfLb6xZRUeCV3brDr6ehta4Z60ghue0uW1PBvU28SExI6sQFrG9CFWLWDncwA-NT8p3AzTzdwIvaR8MxzWa0upY7DcZN5iifjZ7wnOcZuSkrvA8hxbuRqWgW8aXmThUECRXcILx7rxZnsLZvmw" class="h-8 w-8 object-contain" alt="CampusCare Logo">
+            <h1 class="font-display-lg text-title-md font-bold text-primary">CampusCare</h1>
+        </div>
+        <div class="flex-1 max-w-xl mx-xl hidden md:block">
+            <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+                <input type="text" placeholder="Search complaints or info..." class="w-full bg-white border border-gray-200 rounded-xl py-2 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-primary">
+            </div>
+        </div>
+        <div class="flex items-center gap-sm">
+            <button class="p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer active:scale-95">
+                <span class="material-symbols-outlined text-primary">notifications</span>
+            </button>
+            <button class="p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer active:scale-95">
+                <span class="material-symbols-outlined text-primary">help</span>
+            </button>
+            <div class="h-8 w-8 rounded-full bg-primary-fixed overflow-hidden ml-2 cursor-pointer border border-outline-variant">
+                <img class="h-full w-full object-cover" data-alt="A professional studio portrait of a university student with a friendly expression, wearing a neutral colored sweater. The background is a clean, softly blurred academic hallway with warm sunlight filtering through windows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX16q4n1KvkPaf9esUQ4fNXcwYwcv-_fKANCQ_w7WSm0aO_BeSn34uTlAw3hKK3PNjrkxg4UaIonXPFdggOlJFOHRA_pO4xbYBOVT0pgxqqH8bekSpxlEyR7RvTm71U-K9quscABubVME84su2-tIWhHkJoVyxnwQ23A3To0LcFqqphwmCM-eBbKnNN2ZVOVrMrzR_DhDJmvTGBv9fmmRdlLe1qecKLpe8Z3_q-KAz_NOE23lNyJdVIA">
+            </div>
+        </div>
+    </header>
+    
+    <app-sidebar active="reports"></app-sidebar>
+
+    <!-- Main Content -->
+    <main class="md:ml-[220px] pt-16 pb-24 md:pb-lg px-margin-mobile md:px-gutter bg-white">
+        <div class="max-w-7xl mx-auto w-full mt-lg">
+            
+            <div class="mb-xl">
+                <h2 class="text-2xl font-bold text-on-surface">Complaint Reports</h2>
+                <p class="text-sm text-gray-500 mt-1">Analytics and overview of maintenance operations.</p>
+            </div>
+
+            <!-- Filter Row -->
+            <div class="bg-white border border-gray-200 rounded-xl p-4 flex flex-wrap gap-4 items-center mb-xl shadow-sm">
+                <div class="flex-1 min-w-[200px]">
+                    <select class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-primary focus:border-primary">
+                        <option>All Statuses</option>
+                        <option>Pending</option>
+                        <option>In Progress</option>
+                        <option>Completed</option>
+                    </select>
+                </div>
+                <div class="flex-1 min-w-[200px]">
+                    <select class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-primary focus:border-primary">
+                        <option>All Buildings</option>
+                        <option>Science Block</option>
+                        <option>Library</option>
+                        <option>Student Union</option>
+                    </select>
+                </div>
+                <div class="flex-1 min-w-[200px]">
+                    <select class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-primary focus:border-primary">
+                        <option>All Priorities</option>
+                        <option>High Priority</option>
+                        <option>Medium Priority</option>
+                        <option>Low Priority</option>
+                    </select>
+                </div>
+                <button class="bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 font-semibold py-2 px-6 rounded-lg transition-colors flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">filter_list</span>
+                    Apply Filters
+                </button>
+            </div>
+
+            <!-- Stats Grid -->
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md mb-xl">
+                
+                <div class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start">
+                        <div class="p-2 bg-gray-100 rounded-lg">
+                            <span class="material-symbols-outlined text-gray-700">analytics</span>
+                        </div>
+                    </div>
+                    <div class="mt-md">
+                        <p class="text-sm font-medium text-gray-500">Total Complaints</p>
+                        <p class="text-3xl font-bold tracking-tight text-gray-900">42</p>
+                    </div>
+                    <div class="mt-sm w-full bg-gray-100 h-1 rounded-full overflow-hidden">
+                        <div class="bg-gray-700 h-full" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="p-2 bg-amber-50 rounded-lg w-fit">
+                        <span class="material-symbols-outlined text-amber-600" style="font-variation-settings: 'FILL' 1;">pending</span>
+                    </div>
+                    <div class="mt-md">
+                        <p class="text-sm font-medium text-gray-500">Pending</p>
+                        <p class="text-3xl font-bold tracking-tight text-gray-900">12</p>
+                    </div>
+                    <div class="mt-sm w-full bg-amber-50 h-1 rounded-full overflow-hidden">
+                        <div class="bg-amber-500 h-full" style="width: 28%"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="p-2 bg-blue-50 rounded-lg w-fit">
+                        <span class="material-symbols-outlined text-blue-600" style="font-variation-settings: 'FILL' 1;">sync</span>
+                    </div>
+                    <div class="mt-md">
+                        <p class="text-sm font-medium text-gray-500">In Progress</p>
+                        <p class="text-3xl font-bold tracking-tight text-gray-900">08</p>
+                    </div>
+                    <div class="mt-sm w-full bg-blue-50 h-1 rounded-full overflow-hidden">
+                        <div class="bg-blue-500 h-full" style="width: 19%"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="p-2 bg-green-50 rounded-lg w-fit">
+                        <span class="material-symbols-outlined text-green-600" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    </div>
+                    <div class="mt-md">
+                        <p class="text-sm font-medium text-gray-500">Completed</p>
+                        <p class="text-3xl font-bold tracking-tight text-gray-900">22</p>
+                    </div>
+                    <div class="mt-sm w-full bg-green-50 h-1 rounded-full overflow-hidden">
+                        <div class="bg-green-500 h-full" style="width: 52%"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chart Area -->
+            <section class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-xl">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-red-700 font-semibold">Complaints by Category</h3>
+                    <select class="bg-white border border-gray-200 rounded-lg py-1 px-2 text-sm focus:ring-primary focus:border-primary">
+                        <option>This Month</option>
+                        <option>Last Month</option>
+                        <option>This Year</option>
+                    </select>
+                </div>
+                
+                <div class="px-4">
+                    <div class="bar-chart-container">
+                        <div class="bar-wrapper">
+                            <span class="bar-value">14</span>
+                            <div class="bar bg-blue-500" style="height: 63%;"></div>
+                            <span class="bar-label">Electrical</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <span class="bar-value">8</span>
+                            <div class="bar bg-teal-500" style="height: 36%;"></div>
+                            <span class="bar-label">Plumbing</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <span class="bar-value">22</span>
+                            <div class="bar bg-red-500" style="height: 100%;"></div>
+                            <span class="bar-label">HVAC</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <span class="bar-value">5</span>
+                            <div class="bar bg-amber-500" style="height: 22%;"></div>
+                            <span class="bar-label">Cleaning</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <span class="bar-value">3</span>
+                            <div class="bar bg-gray-500" style="height: 13%;"></div>
+                            <span class="bar-label">Other</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav class="fixed bottom-0 w-full z-50 md:hidden border-t border-outline-variant shadow-lg flex justify-around items-center h-20 px-4 pb-safe bg-white">
+        <a href="index.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
+            <span class="material-symbols-outlined">home</span>
+            <span class="font-label-md">Home</span>
+        </a>
+        <a href="reports.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-1 transition-transform active:scale-90">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assessment</span>
+            <span class="font-label-md">Reports</span>
+        </a>
+    </nav>
+    
+    <script src="src/components/sidebar.js" type="module"></script>
+</body>
+</html>

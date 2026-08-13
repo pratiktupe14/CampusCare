@@ -7,99 +7,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-tertiary-fixed": "#121c2a",
-                    "on-surface-variant": "#5c403c",
-                    "on-background": "#281715",
-                    "tertiary": "#505a69",
-                    "primary": "#b70011",
-                    "surface-container-highest": "#fbdbd7",
-                    "on-error": "#ffffff",
-                    "outline": "#916f6b",
-                    "on-primary-fixed": "#410002",
-                    "surface": "#fff8f7",
-                    "on-secondary-container": "#fffbff",
-                    "on-tertiary-container": "#f5f7ff",
-                    "inverse-surface": "#3f2c29",
-                    "primary-fixed": "#ffdad6",
-                    "surface-container": "#ffe9e6",
-                    "secondary-container": "#da3437",
-                    "tertiary-fixed-dim": "#bdc7d9",
-                    "on-primary-container": "#fff6f5",
-                    "error-container": "#ffdad6",
-                    "secondary-fixed": "#ffdad7",
-                    "on-tertiary": "#ffffff",
-                    "surface-tint": "#bf0715",
-                    "on-primary-fixed-variant": "#93000b",
-                    "on-secondary-fixed-variant": "#930013",
-                    "error": "#ba1a1a",
-                    "secondary-fixed-dim": "#ffb3ad",
-                    "surface-container-lowest": "#ffffff",
-                    "on-error-container": "#93000a",
-                    "surface-bright": "#fff8f7",
-                    "secondary": "#b61722",
-                    "surface-container-high": "#ffe2de",
-                    "surface-variant": "#fbdbd7",
-                    "on-tertiary-fixed-variant": "#3d4756",
-                    "primary-container": "#dc2626",
-                    "outline-variant": "#e6bdb8",
-                    "inverse-primary": "#ffb4ab",
-                    "background": "#fff8f7",
-                    "tertiary-container": "#687283",
-                    "surface-container-low": "#fff0ee",
-                    "on-secondary-fixed": "#410004",
-                    "inverse-on-surface": "#ffedea",
-                    "on-surface": "#281715",
-                    "on-primary": "#ffffff",
-                    "primary-fixed-dim": "#ffb4ab",
-                    "on-secondary": "#ffffff",
-                    "tertiary-fixed": "#d9e3f6",
-                    "surface-dim": "#f3d3cf"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "lg": "24px",
-                    "container-max": "1440px",
-                    "base": "8px",
-                    "sm": "12px",
-                    "xs": "4px",
-                    "gutter": "24px",
-                    "margin-mobile": "16px",
-                    "xl": "32px",
-                    "md": "16px"
-            },
-            "fontFamily": {
-                    "title-md": ["Inter"],
-                    "headline-lg": ["Inter"],
-                    "body-md": ["Inter"],
-                    "display-lg": ["Inter"],
-                    "body-lg": ["Inter"],
-                    "label-md": ["Inter"],
-                    "headline-lg-mobile": ["Inter"]
-            },
-            "fontSize": {
-                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
-            }
-          },
-        },
-      }
-    </script>
+<script src="shared-tailwind-config.js"></script>
 <style>
         body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
         .material-symbols-outlined {
@@ -126,7 +34,7 @@
 </head>
 <body class="bg-background text-on-background">
 <!-- TopNavBar (Shared Component Reference) -->
-<header class="bg-surface border-b border-outline-variant shadow-sm flex justify-between items-center px-lg py-sm sticky top-0 z-40 w-full">
+<header class="h-16 bg-surface border-b border-outline-variant shadow-sm flex justify-between items-center px-lg py-sm sticky top-0 z-40 w-full">
 <div class="flex items-center gap-md">
 <a href="dashboard-faculty.html" class="font-display-lg text-display-lg font-bold text-primary">CampusCare</a>
 <div class="hidden md:flex ml-xl gap-lg">
@@ -137,7 +45,7 @@
 <div class="flex items-center gap-md">
 <div class="relative hidden lg:block">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-md w-64 focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Search facilities..." type="text">
+<input class="pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-full text-body-md w-64 focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Search facilities..." type="text">
 </div>
 <button class="p-2 hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-150">
 <span class="material-symbols-outlined text-primary">notifications</span>
@@ -149,7 +57,7 @@
 </header>
 <div class="flex min-h-[calc(100vh-72px)]">
 <!-- SideNavBar (Shared Component Reference) -->
-<aside class="hidden md:flex flex-col p-md gap-base h-full border-r border-outline-variant w-[280px] shrink-0 bg-white sticky top-[72px]">
+<aside class="hidden md:flex flex-col p-md gap-base h-full border-r border-outline-variant w-[220px] shrink-0 bg-white sticky top-[72px]">
 <div class="mb-lg">
 <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest px-md">Navigation</p>
 </div>
@@ -224,12 +132,12 @@
 <div class="space-y-lg">
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Complaint Title</label>
-<input class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md" placeholder="e.g., Broken AC in Lecture Hall A" type="text">
+<input class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md" placeholder="e.g., Broken AC in Lecture Hall A" type="text">
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Category</label>
-<select class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md appearance-none">
+<select class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md appearance-none">
 <option>Electrical</option>
 <option>Plumbing</option>
 <option>HVAC / Cooling</option>
@@ -249,7 +157,7 @@
 </div>
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Description</label>
-<textarea class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md resize-none" placeholder="Describe the issue in detail. What happened? How long has it been occurring?" rows="5"></textarea>
+<textarea class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md resize-none" placeholder="Describe the issue in detail. What happened? How long has it been occurring?" rows="5"></textarea>
 </div>
 </div>
 </section>
@@ -292,7 +200,7 @@
 <div class="space-y-md">
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Building</label>
-<select class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md appearance-none">
+<select class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md appearance-none">
 <option>Academic Block A</option>
 <option>Engineering Wing</option>
 <option>Main Library</option>
@@ -303,7 +211,7 @@
 <div class="grid grid-cols-2 gap-md">
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Floor</label>
-<select class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md">
+<select class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md">
 <option>Basement</option>
 <option>Ground Floor</option>
 <option selected="">1st Floor</option>
@@ -313,7 +221,7 @@
 </div>
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Room Number</label>
-<input class="w-full px-md py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md" placeholder="e.g., 102B" type="text">
+<input class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md" placeholder="e.g., 102B" type="text">
 </div>
 </div>
 </div>

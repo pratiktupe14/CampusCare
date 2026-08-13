@@ -1,96 +1,4 @@
-<!DOCTYPE html><html lang="en" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface-dim": "#f3d3cf",
-                        "primary-container": "#dc2626",
-                        "on-tertiary-container": "#f5f7ff",
-                        "tertiary-fixed-dim": "#bdc7d9",
-                        "on-primary-fixed": "#410002",
-                        "secondary-fixed-dim": "#ffb3ad",
-                        "on-background": "#281715",
-                        "on-surface-variant": "#5c403c",
-                        "on-error-container": "#93000a",
-                        "on-tertiary": "#ffffff",
-                        "on-primary-fixed-variant": "#93000b",
-                        "outline-variant": "#e6bdb8",
-                        "error": "#ba1a1a",
-                        "surface": "#fff8f7",
-                        "on-tertiary-fixed": "#121c2a",
-                        "on-secondary-fixed-variant": "#930013",
-                        "on-primary-container": "#fff6f5",
-                        "on-secondary": "#ffffff",
-                        "primary": "#b70011",
-                        "on-secondary-container": "#fffbff",
-                        "outline": "#916f6b",
-                        "inverse-surface": "#3f2c29",
-                        "surface-container-low": "#fff0ee",
-                        "tertiary-fixed": "#d9e3f6",
-                        "surface-container-lowest": "#ffffff",
-                        "background": "#fff8f7",
-                        "error-container": "#ffdad6",
-                        "surface-variant": "#fbdbd7",
-                        "secondary-container": "#da3437",
-                        "inverse-primary": "#ffb4ab",
-                        "surface-bright": "#fff8f7",
-                        "on-secondary-fixed": "#410004",
-                        "tertiary": "#505a69",
-                        "on-primary": "#ffffff",
-                        "tertiary-container": "#687283",
-                        "secondary-fixed": "#ffdad7",
-                        "surface-container-high": "#ffe2de",
-                        "surface-container": "#ffe9e6",
-                        "surface-tint": "#bf0715",
-                        "surface-container-highest": "#fbdbd7",
-                        "secondary": "#b61722",
-                        "inverse-on-surface": "#ffedea",
-                        "primary-fixed-dim": "#ffb4ab",
-                        "primary-fixed": "#ffdad6",
-                        "on-tertiary-fixed-variant": "#3d4756",
-                        "on-error": "#ffffff",
-                        "on-surface": "#281715"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "base": "8px",
-                        "xs": "4px",
-                        "margin-mobile": "16px",
-                        "container-max": "1440px",
-                        "sm": "12px",
-                        "md": "16px",
-                        "xl": "32px",
-                        "gutter": "24px",
-                        "lg": "24px"
-                    },
-                    "fontFamily": {
-                        "headline-lg-mobile": ["Inter"],
-                        "headline-lg": ["Inter"],
-                        "body-md": ["Inter"],
-                        "title-md": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "label-md": ["Inter"],
-                        "display-lg": ["Inter"]
-                    },
-                    "fontSize": {
-                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
-                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
-                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
-                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
-                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
-                    }
-                },
-            },
-        }
-    }catch(_e){}</script><meta charset="utf-8"></head><body class="min-h-screen flex items-stretch">
+<!DOCTYPE html><html lang="en" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script src="shared-tailwind-config.js"></script><meta charset="utf-8"></head><body class="min-h-screen flex items-stretch">
 <!-- Left Column: Branding -->
 <div class="hidden lg:flex flex-col w-1/2 relative overflow-hidden bg-surface-container-lowest border-r border-outline-variant">
 <!-- Subtle Geometric Accents -->
@@ -138,19 +46,19 @@
 </div>
 </div>
 <!-- Form -->
-<form class="space-y-lg" onsubmit="return false;">
+<form class="space-y-lg" onsubmit="handleLogin(event)">
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="email">Email Address</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">mail</span>
-<input class="w-full pl-12 pr-4 py-3 rounded-xl border border-outline-variant bg-white text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" id="email" placeholder="name@university.edu" type="email">
+<input class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" id="email" placeholder="name@university.edu" type="email">
 </div>
 </div>
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="password">Password</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">lock</span>
-<input class="w-full pl-12 pr-12 py-3 rounded-xl border border-outline-variant bg-white text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" id="password" placeholder="••••••••" type="password">
+<input class="w-full pl-12 pr-12 py-3 rounded-xl border border-gray-200 bg-white text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" id="password" placeholder="••••••••" type="password">
 <button class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors" onclick="togglePassword()" type="button">
 <span class="material-symbols-outlined" id="password-toggle-icon">visibility</span>
 </button>
@@ -158,7 +66,7 @@
 </div>
 <div class="flex items-center justify-between">
 <div class="flex items-center gap-xs">
-<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" id="remember" type="checkbox">
+<input class="w-4 h-4 rounded border-gray-200 text-primary focus:ring-primary" id="remember" type="checkbox">
 <label class="font-body-md text-body-md text-on-surface-variant select-none" for="remember">Remember Me</label>
 </div>
 <a class="font-label-md text-label-md text-primary font-semibold hover:underline" href="#">Forgot Password?</a>
@@ -192,7 +100,10 @@
 </div>
 </div>
 <script>
+        let currentRole = 'Student';
+
         function selectRole(element) {
+            currentRole = element.querySelector('.font-label-md').innerText.trim();
             // Remove active classes from all cards
             document.querySelectorAll('.role-card').forEach(card => {
                 card.classList.remove('border-primary', 'bg-primary/5', 'ring-1', 'ring-primary');
@@ -202,6 +113,21 @@
             // Add active classes to selected
             element.classList.add('border-primary', 'bg-primary/5', 'ring-1', 'ring-primary');
             element.querySelector('.material-symbols-outlined').classList.replace('text-on-surface-variant', 'text-primary');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            localStorage.setItem('userRole', currentRole);
+            
+            if (currentRole === 'Student') {
+                window.location.href = 'index.html';
+            } else if (currentRole === 'Faculty') {
+                window.location.href = 'dashboard-faculty.html';
+            } else if (currentRole === 'Staff') {
+                window.location.href = 'staff-dashboard.html';
+            } else if (currentRole === 'Admin') {
+                window.location.href = 'admin-dashboard.html';
+            }
         }
 
         function togglePassword() {

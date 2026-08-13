@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" class="light" style="font-size: 14px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | CampusCare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="shared-tailwind-config.js"></script>
+</head>
+<body class="text-on-background min-h-screen bg-white">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 w-full z-50 bg-white border-b border-outline-variant shadow-sm flex justify-between items-center h-16 px-gutter">
+        <div class="flex items-center gap-md">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDyW5wPzazAdUFRXV_630mmlGNqDj6pyB3Rku9lJT_0n1D7RvoQ0kYJd-XBGe28fs-2wixy5Gk7NEI6CI6MBa-4F-qTnh55DamSaTpfLb6xZRUeCV3brDr6ehta4Z60ghue0uW1PBvU28SExI6sQFrG9CFWLWDncwA-NT8p3AzTzdwIvaR8MxzWa0upY7DcZN5iifjZ7wnOcZuSkrvA8hxbuRqWgW8aXmThUECRXcILx7rxZnsLZvmw" class="h-8 w-8 object-contain" alt="CampusCare Logo">
+            <h1 class="font-display-lg text-title-md font-bold text-primary">CampusCare</h1>
+        </div>
+        <div class="flex-1 max-w-xl mx-xl hidden md:block">
+            <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+                <input type="text" placeholder="Search complaints or info..." class="w-full bg-white border border-gray-200 rounded-xl py-2 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-primary">
+            </div>
+        </div>
+        <div class="flex items-center gap-sm">
+            <button class="p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer active:scale-95">
+                <span class="material-symbols-outlined text-primary">notifications</span>
+            </button>
+            <button class="p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer active:scale-95">
+                <span class="material-symbols-outlined text-primary">help</span>
+            </button>
+            <div class="h-8 w-8 rounded-full bg-primary-fixed overflow-hidden ml-2 cursor-pointer border border-outline-variant">
+                <img class="h-full w-full object-cover" data-alt="A professional studio portrait of a university student with a friendly expression, wearing a neutral colored sweater. The background is a clean, softly blurred academic hallway with warm sunlight filtering through windows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX16q4n1KvkPaf9esUQ4fNXcwYwcv-_fKANCQ_w7WSm0aO_BeSn34uTlAw3hKK3PNjrkxg4UaIonXPFdggOlJFOHRA_pO4xbYBOVT0pgxqqH8bekSpxlEyR7RvTm71U-K9quscABubVME84su2-tIWhHkJoVyxnwQ23A3To0LcFqqphwmCM-eBbKnNN2ZVOVrMrzR_DhDJmvTGBv9fmmRdlLe1qecKLpe8Z3_q-KAz_NOE23lNyJdVIA">
+            </div>
+        </div>
+    </header>
+    
+    <app-sidebar active="profile"></app-sidebar>
+
+    <!-- Main Content -->
+    <main class="md:ml-[220px] pt-16 pb-24 md:pb-lg px-margin-mobile md:px-gutter bg-white">
+        <div class="max-w-7xl mx-auto w-full mt-lg">
+            
+            <div class="mb-xl">
+                <h2 class="text-2xl font-bold text-on-surface">Profile</h2>
+                <p class="text-sm text-gray-500 mt-1">Manage your personal information and contact details.</p>
+            </div>
+
+            <!-- Welcome Section (User Banner) -->
+            <section class="mb-xl">
+                <div class="bg-white border border-gray-200 rounded-xl p-6 relative overflow-hidden flex items-center gap-6 shadow-sm">
+                    <div class="absolute -right-12 -top-12 w-64 h-64 bg-primary opacity-5 rounded-full blur-3xl"></div>
+                    <div class="relative z-10 w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
+                        <img class="h-full w-full object-cover" alt="Alex Rivera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX16q4n1KvkPaf9esUQ4fNXcwYwcv-_fKANCQ_w7WSm0aO_BeSn34uTlAw3hKK3PNjrkxg4UaIonXPFdggOlJFOHRA_pO4xbYBOVT0pgxqqH8bekSpxlEyR7RvTm71U-K9quscABubVME84su2-tIWhHkJoVyxnwQ23A3To0LcFqqphwmCM-eBbKnNN2ZVOVrMrzR_DhDJmvTGBv9fmmRdlLe1qecKLpe8Z3_q-KAz_NOE23lNyJdVIA">
+                    </div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-1">Alex Rivera</h2>
+                        <div class="flex flex-wrap gap-md items-center text-gray-600 font-body-md">
+                            <span class="flex items-center gap-xs text-sm"><span class="material-symbols-outlined text-[16px]">school</span> Computer Science</span>
+                            <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                            <span class="flex items-center gap-xs text-sm"><span class="material-symbols-outlined text-[16px]">calendar_month</span> 3rd Year</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Edit Form -->
+            <section class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                <h3 class="text-red-700 font-semibold mb-6 text-lg">Personal Information</h3>
+                
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input type="text" value="Alex Rivera" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Student ID</label>
+                            <input type="text" value="STD-88492" disabled class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-500 outline-none cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" value="alex.rivera@university.edu" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" value="+1 (555) 123-4567" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Department / Major</label>
+                            <select class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all appearance-none">
+                                <option>Computer Science</option>
+                                <option>Engineering</option>
+                                <option>Business Administration</option>
+                                <option>Arts & Sciences</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4 flex justify-end">
+                        <button type="button" class="bg-red-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-800 transition-colors shadow-sm">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav class="fixed bottom-0 w-full z-50 md:hidden border-t border-outline-variant shadow-lg flex justify-around items-center h-20 px-4 pb-safe bg-white">
+        <a href="index.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
+            <span class="material-symbols-outlined">home</span>
+            <span class="font-label-md">Home</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-1 transition-transform active:scale-90">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+            <span class="font-label-md">Profile</span>
+        </a>
+    </nav>
+    
+    <script src="src/components/sidebar.js" type="module"></script>
+</body>
+</html>
