@@ -47,7 +47,13 @@ document.addEventListener('click', async (e) => {
                 'notifications-faculty.html': 'notifications',
                 'reports-faculty.html': 'reports',
                 'profile-settings-faculty.html': 'profile',
-                'settings-faculty.html': 'settings'
+                'settings-faculty.html': 'settings',
+                'dashboard-staff.html': 'dashboard',
+                'task-management-staff.html': 'task-management',
+                'work-progress-staff.html': 'work-progress',
+                'notifications-staff.html': 'notifications',
+                'reports-staff.html': 'reports',
+                'profile-settings-staff.html': 'profile'
             };
             const activeId = mapping[href] || 'dashboard';
             

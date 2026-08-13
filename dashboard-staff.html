@@ -39,51 +39,7 @@
 </head>
 <body class="flex min-h-screen bg-white">
 <!-- SideNavBar (Fixed Shell) -->
-<aside class="fixed left-0 top-0 h-full w-[220px] bg-white border-r border-outline-variant flex flex-col py-lg z-50">
-<div class="px-lg mb-xl flex items-center gap-md">
-<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">apartment</span>
-</div>
-<span class="font-display-lg text-title-md font-bold text-primary">CampusCare</span>
-</div>
-<nav class="flex-1 flex flex-col gap-xs">
-<!-- Active State: Dashboard -->
-<a class="flex items-center gap-md px-lg py-md text-primary font-bold border-r-4 border-primary bg-surface-container-low transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="font-title-md text-body-lg">Dashboard</span>
-</a>
-<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
-<span class="font-body-md text-body-lg">Task Management</span>
-</a>
-<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
-<span class="font-body-md text-body-lg">Assign Work</span>
-</a>
-<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-<span class="font-body-md text-body-lg">Notifications</span>
-</a>
-<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-<span class="font-body-md text-body-lg">Reports</span>
-</a>
-</nav>
-<div class="mt-auto px-lg flex flex-col gap-xs pt-lg border-t border-outline-variant">
-<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined" data-icon="person">person</span>
-<span class="font-body-md text-body-lg">Profile</span>
-</a>
-<a class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span class="font-body-md text-body-lg">Settings</span>
-</a>
-<a class="flex items-center gap-md px-lg py-md text-primary hover:bg-red-50 transition-colors rounded-lg mt-md" href="#">
-<span class="material-symbols-outlined" data-icon="logout">logout</span>
-<span class="font-body-md text-body-lg">Logout</span>
-</a>
-</div>
-</aside>
+<app-sidebar active="dashboard" role="staff"></app-sidebar>
 <!-- Main Content Canvas -->
 <main class="ml-[220px] flex-1 flex flex-col">
 <!-- TopNavBar -->
@@ -329,4 +285,6 @@
             animateValue(document.getElementById('stat-today'), 0, 65, 2000);
         };
     </script>
+<script src="src/components/sidebar.js" type="module"></script>
+<script src="src/router.js" type="module"></script>
 </body></html>
