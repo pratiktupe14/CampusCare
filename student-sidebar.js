@@ -17,7 +17,7 @@ class StudentSidebar extends HTMLElement {
         let navHTML = '';
         navItems.forEach(item => {
             if (item.divider) {
-                navHTML += `<div class="my-md mx-gutter border-t border-outline-variant"></div>`;
+                navHTML += `<div class="my-md mx-gutter border-t border-gray-200"></div>`;
             } else {
                 const isActive = item.id === currentPage;
                 const activeClasses = isActive 
@@ -26,7 +26,7 @@ class StudentSidebar extends HTMLElement {
                 const fillStyle = (isActive || item.fill) ? `style="font-variation-settings: 'FILL' 1;"` : '';
                 
                 navHTML += `
-                <a class="flex items-center gap-md px-gutter py-3 rounded-r-full transition-all duration-200 ${activeClasses}" href="${item.href}">
+                <a class="flex items-center gap-md px-gutter py-3 rounded-r-sm transition-all duration-200 ${activeClasses}" href="${item.href}">
                     <span class="material-symbols-outlined" ${fillStyle}>${item.icon}</span>
                     <span class="font-label-md">${item.text}</span>
                 </a>`;
@@ -34,12 +34,12 @@ class StudentSidebar extends HTMLElement {
         });
 
         this.innerHTML = `
-        <aside class="fixed left-0 top-16 h-[calc(100vh-56px)] w-[220px] hidden md:flex flex-col border-r border-outline-variant py-md pr-md flex-shrink-0 z-40 bg-white">
+        <aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-[220px] hidden md:flex flex-col border-r border-gray-200 py-md pr-md flex-shrink-0 z-40 bg-paper">
             <div class="px-gutter mb-lg">
-                <div class="flex items-center gap-sm p-sm bg-surface-container-low rounded-xl">
+                <div class="flex items-center gap-sm p-sm bg-white border border-gray-200 rounded-sm">
                     <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">school</span>
                     <div>
-                        <p class="font-title-md text-label-md font-bold text-primary">Maintenance Portal</p>
+                        <p class="text-base font-bold text-primary font-serif">Maintenance Portal</p>
                         <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Student Access</p>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ class StudentSidebar extends HTMLElement {
                 ${navHTML}
             </nav>
             <div class="mt-auto px-gutter py-md">
-                <a href="report-complaint.html" class="w-full bg-primary-container text-on-primary-container py-3 rounded-xl font-bold flex items-center justify-center gap-sm hover:opacity-90 transition-opacity active:scale-95 shadow-md">
+                <a href="report-complaint.html" class="w-full bg-primary-container text-on-primary-container py-3 rounded-sm font-bold flex items-center justify-center gap-sm hover:opacity-90 transition-opacity active:scale-95">
                     <span class="material-symbols-outlined">add</span>
                     <span class="">New Request</span>
                 </a>

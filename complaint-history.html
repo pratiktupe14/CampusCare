@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complaint History - CampusCare</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="shared-tailwind-config.js"></script>
     <style>
         .modal-overlay { background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); }
     </style>
 </head>
-<body class="text-on-background min-h-screen bg-white">
+<body class="bg-paper text-on-background min-h-screen flex flex-col">
 <!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-white border-b border-outline-variant shadow-sm flex justify-between items-center h-16 px-gutter">
+<header class="fixed top-0 w-full z-50 bg-white border-b border-gray-200 shadow-none flex justify-between items-center h-16 px-6">
 <div class="flex items-center gap-md">
 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDyW5wPzazAdUFRXV_630mmlGNqDj6pyB3Rku9lJT_0n1D7RvoQ0kYJd-XBGe28fs-2wixy5Gk7NEI6CI6MBa-4F-qTnh55DamSaTpfLb6xZRUeCV3brDr6ehta4Z60ghue0uW1PBvU28SExI6sQFrG9CFWLWDncwA-NT8p3AzTzdwIvaR8MxzWa0upY7DcZN5iifjZ7wnOcZuSkrvA8hxbuRqWgW8aXmThUECRXcILx7rxZnsLZvmw" class="h-8 w-8 object-contain" alt="CampusCare Logo">
-<h1 class="font-display-lg text-title-md font-bold text-primary">CampusCare</h1>
+<h1 class="font-serif text-xl font-bold text-primary">CampusCare</h1>
 </div>
 <div class="flex-1 max-w-xl mx-xl hidden md:block">
 <div class="relative flex items-center">
@@ -40,64 +40,58 @@
 <!-- SideNavBar -->
 <app-sidebar active="complaint-history"></app-sidebar>
 <!-- Main Content Canvas -->
-<main class="md:ml-[220px] pt-16 pb-24 md:pb-lg px-margin-mobile md:px-gutter bg-white">
+<main class="md:ml-[220px] pt-24 pb-24 md:pb-8 px-6 bg-paper flex-1">
 <div class="max-w-7xl mx-auto w-full">
 <!-- Page Header & Actions -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
 <div>
-<h1 class="text-2xl font-bold text-on-surface">Complaint History</h1>
+<h1 class="text-2xl font-bold text-on-surface tracking-tight font-serif">Complaint History</h1>
 <p class="text-sm text-on-surface-variant">View and manage all previous maintenance requests.</p>
 </div>
 <div class="flex gap-2">
-<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-xl text-on-surface-variant text-sm font-medium hover:bg-surface-container-low transition-colors">
+<button class="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-sm text-on-surface-variant text-sm font-semibold hover:bg-surface-container-low transition-colors bg-white">
 <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
-<span class="text-sm font-medium">Export PDF</span>
+<span>Export PDF</span>
 </button>
-<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-xl text-on-surface-variant text-sm font-medium hover:bg-surface-container-low transition-colors">
+<button class="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-sm text-on-surface-variant text-sm font-semibold hover:bg-surface-container-low transition-colors bg-white">
 <span class="material-symbols-outlined text-[18px]">table_chart</span>
-<span class="text-sm font-medium">Export Excel</span>
+<span>Export Excel</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-sm text-on-surface-variant text-sm font-semibold hover:bg-surface-container-low transition-colors bg-white">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span>Print View</span>
 </button>
 </div>
 </div>
 <!-- Summary Bento Grid -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-lg mb-8">
-<div class="bg-white p-5 rounded-[16px] border border-gray-200 shadow-[0px_1px_3px_rgba(0,0,0,0.05),0px_10px_15px_-5px_rgba(0,0,0,0.05)]">
-<p class="text-sm font-medium text-on-surface-variant mb-2">Total Requests</p>
-<div class="flex items-end justify-between">
-<h3 class="text-3xl font-bold tracking-tight text-on-surface">124</h3>
-<span class="material-symbols-outlined text-primary/40 text-[24px]">folder</span>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-white p-4 rounded-sm border border-gray-200 shadow-none flex flex-col justify-between">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Total Requests</h3>
+<h2 class="text-4xl font-bold text-on-surface tracking-tight font-serif">124</h2>
+</div>
+<div class="bg-white p-4 rounded-sm border border-gray-200 shadow-none flex flex-col justify-between">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Pending</h3>
+<h2 class="text-4xl font-bold text-amber-600 tracking-tight font-serif">08</h2>
+</div>
+<div class="bg-white p-4 rounded-sm border border-gray-200 shadow-none flex flex-col justify-between">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">In Progress</h3>
+<h2 class="text-4xl font-bold text-blue-600 tracking-tight font-serif">12</h2>
+</div>
+<div class="bg-white p-4 rounded-sm border border-gray-200 shadow-none flex flex-col justify-between">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Completed</h3>
+<h2 class="text-4xl font-bold text-emerald-600 tracking-tight font-serif">104</h2>
 </div>
 </div>
-<div class="bg-white p-5 rounded-[16px] border border-gray-200 shadow-[0px_1px_3px_rgba(0,0,0,0.05),0px_10px_15px_-5px_rgba(0,0,0,0.05)]">
-<p class="text-sm font-medium text-on-surface-variant mb-2">Pending</p>
-<div class="flex items-end justify-between">
-<h3 class="text-3xl font-bold tracking-tight text-amber-600">08</h3>
-<div class="bg-amber-50 p-2 rounded-lg">
-<span class="material-symbols-outlined text-amber-600 text-[20px]">pending</span>
+<!-- Saved Filter Presets -->
+<div class="flex items-center gap-2 mb-4 overflow-x-auto pb-2 scrollbar-hide">
+<button class="shrink-0 border border-primary text-primary bg-primary/5 rounded-full px-3 py-1 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-primary transition-colors">All Records</button>
+<button class="shrink-0 border border-gray-200 text-gray-600 bg-white rounded-full px-3 py-1 text-xs font-semibold hover:border-primary hover:text-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors">My Building</button>
+<button class="shrink-0 border border-gray-200 text-gray-600 bg-white rounded-full px-3 py-1 text-xs font-semibold hover:border-primary hover:text-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors">Urgent Only</button>
+<button class="shrink-0 border border-gray-200 text-gray-600 bg-white rounded-full px-3 py-1 text-xs font-semibold hover:border-primary hover:text-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors">This Week</button>
 </div>
-</div>
-</div>
-<div class="bg-white p-5 rounded-[16px] border border-gray-200 shadow-[0px_1px_3px_rgba(0,0,0,0.05),0px_10px_15px_-5px_rgba(0,0,0,0.05)]">
-<p class="text-sm font-medium text-on-surface-variant mb-2">In Progress</p>
-<div class="flex items-end justify-between">
-<h3 class="text-3xl font-bold tracking-tight text-blue-600">12</h3>
-<div class="bg-blue-50 p-2 rounded-lg">
-<span class="material-symbols-outlined text-blue-600 text-[20px]">engineering</span>
-</div>
-</div>
-</div>
-<div class="bg-white p-5 rounded-[16px] border border-gray-200 shadow-[0px_1px_3px_rgba(0,0,0,0.05),0px_10px_15px_-5px_rgba(0,0,0,0.05)]">
-<p class="text-sm font-medium text-on-surface-variant mb-2">Completed</p>
-<div class="flex items-end justify-between">
-<h3 class="text-3xl font-bold tracking-tight text-emerald-600">104</h3>
-<div class="bg-emerald-50 p-2 rounded-lg">
-<span class="material-symbols-outlined text-emerald-600 text-[20px]">check_circle</span>
-</div>
-</div>
-</div>
-</div>
+
 <!-- Filters Section -->
-<div class="bg-white rounded-[16px] border border-gray-200 shadow-sm p-5 mb-lg">
+<div class="bg-white rounded-sm border border-gray-200 shadow-none p-4 mb-8">
 <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-md items-end">
 <div class="col-span-1 md:col-span-2">
 <label class="block text-sm font-medium text-on-surface-variant mb-1">Search ID or Issue</label>
@@ -143,28 +137,47 @@
 </div>
 <!-- Table Section -->
 <div class="bg-white rounded-[16px] border border-gray-200 shadow-sm overflow-hidden">
+<!-- Bulk Actions Bar -->
+<div id="bulk-actions-bar" class="hidden absolute top-0 left-0 w-full bg-surface-container-low border-b border-gray-200 px-4 py-2 flex items-center justify-between z-10">
+    <div class="flex items-center gap-2">
+        <span class="text-sm font-semibold text-primary"><span id="selected-count">0</span> selected</span>
+    </div>
+    <div class="flex items-center gap-2">
+        <button class="px-3 py-1.5 bg-white border border-gray-200 rounded-sm text-xs font-semibold text-gray-700 hover:text-primary transition-colors focus:ring-1 outline-none">Export Selected</button>
+        <button class="px-3 py-1.5 bg-white border border-gray-200 rounded-sm text-xs font-semibold text-gray-700 hover:text-primary transition-colors focus:ring-1 outline-none">Update Status</button>
+    </div>
+</div>
+
 <div class="overflow-x-auto">
 <table class="w-full text-left border-collapse">
-<thead class="bg-surface-container-low border-b border-outline-variant">
+<thead class="bg-gray-50 border-b border-gray-200">
 <tr>
+<th class="px-5 py-4 w-12"><input type="checkbox" id="select-all" class="rounded-sm border-gray-300 text-primary focus:ring-primary"></th>
 <th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Complaint ID</th>
 <th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Image</th>
 <th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Issue</th>
 <th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Category</th>
-<th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Date</th>
-<th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Priority</th>
-<th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Status</th>
-<th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Action</th>
+<th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors focus:outline-none focus:ring-1 focus:ring-inset focus:ring-primary" tabindex="0">
+    <div class="flex items-center gap-1">Date <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span></div>
+</th>
+<th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors focus:outline-none focus:ring-1 focus:ring-inset focus:ring-primary" tabindex="0">
+    <div class="flex items-center gap-1">Priority <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span></div>
+</th>
+<th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors focus:outline-none focus:ring-1 focus:ring-inset focus:ring-primary" tabindex="0">
+    <div class="flex items-center gap-1">Status <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span></div>
+</th>
+<th class="px-5 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider text-right">Action</th>
 </tr>
 </thead>
 <tbody class="divide-y divide-gray-100">
 <!-- Row 1 -->
-<tr class="hover:bg-[#F8FAFC] transition-colors group cursor-pointer" onclick="toggleModal('detail-modal')">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-5 py-4"><input type="checkbox" class="row-checkbox rounded-sm border-gray-300 text-primary focus:ring-primary"></td>
 <td class="px-5 py-4 text-sm text-primary font-semibold">#COMP-204</td>
 <td class="px-5 py-4">
-<div class="h-10 w-12 rounded-lg bg-gray-100 overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A small detailed thumbnail showing a broken faucet leaking water in a modern campus restroom. The lighting is bright and industrial. The photo looks like it was taken by a student reporting an issue, showing clear signs of wear and a small puddle of water." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALo7yToc8oihrm9B1PE2an1XRF9ouniig_tOLpYSWiH2o0F62hsnsj-r1-v67hSsu7mvzCgPQPyRrDbBO4IF_k2XJTNY-KdDWPt3CipcejhE7NI-U_SVnG5jnSTt6A37zhE4tb3ds4YQo-0v9Ghbx265poAaVRnsyJPde9TJ1QenbAaCfbTcZC6jb4Q17fLovwf8neybGOAhRASZJPeFeCUFhr8--bFrTOOxQ-u7fAoE_7YF-KPv5iqw">
-</div>
+<button class="h-10 w-12 rounded-sm bg-gray-100 overflow-hidden border border-gray-200 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary cursor-zoom-in" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuALo7yToc8oihrm9B1PE2an1XRF9ouniig_tOLpYSWiH2o0F62hsnsj-r1-v67hSsu7mvzCgPQPyRrDbBO4IF_k2XJTNY-KdDWPt3CipcejhE7NI-U_SVnG5jnSTt6A37zhE4tb3ds4YQo-0v9Ghbx265poAaVRnsyJPde9TJ1QenbAaCfbTcZC6jb4Q17fLovwf8neybGOAhRASZJPeFeCUFhr8--bFrTOOxQ-u7fAoE_7YF-KPv5iqw')">
+<img class="w-full h-full object-cover" data-alt="Leaking Pipe in Washroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALo7yToc8oihrm9B1PE2an1XRF9ouniig_tOLpYSWiH2o0F62hsnsj-r1-v67hSsu7mvzCgPQPyRrDbBO4IF_k2XJTNY-KdDWPt3CipcejhE7NI-U_SVnG5jnSTt6A37zhE4tb3ds4YQo-0v9Ghbx265poAaVRnsyJPde9TJ1QenbAaCfbTcZC6jb4Q17fLovwf8neybGOAhRASZJPeFeCUFhr8--bFrTOOxQ-u7fAoE_7YF-KPv5iqw">
+</button>
 </td>
 <td class="px-5 py-4">
 <p class="text-sm font-medium text-on-surface">Leaking Pipe in Washroom</p>
@@ -182,19 +195,18 @@
 <td class="px-5 py-4">
 <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold">In Progress</span>
 </td>
-<td class="px-5 py-4">
-<button class="text-primary hover:underline font-medium text-sm flex items-center gap-1">
-                                        View Details
-                                    </button>
+<td class="px-5 py-4 text-right">
+<button class="text-primary hover:underline font-medium text-sm focus:outline-none focus:ring-1 focus:ring-primary rounded-sm" onclick="toggleModal('detail-modal')">View Details</button>
 </td>
 </tr>
 <!-- Row 2 -->
-<tr class="hover:bg-[#F8FAFC] transition-colors group cursor-pointer" onclick="toggleModal('detail-modal')">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-5 py-4"><input type="checkbox" class="row-checkbox rounded-sm border-gray-300 text-primary focus:ring-primary"></td>
 <td class="px-5 py-4 text-sm text-primary font-semibold">#COMP-198</td>
 <td class="px-5 py-4">
-<div class="h-10 w-12 rounded-lg bg-gray-100 overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A wide-angle photo of a dim campus hallway where several overhead fluorescent light fixtures are dark. The setting is a modern academic building with white walls and grey tiled floors, captured in a documentary style during evening hours to emphasize the lighting failure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlx1YQ41Bk3ZGIQ6lIlU4WQ-ngBPmMeFSjJ7QITH6CpxCTlTkc6WXk7reVcKtmKwMFY1yO5w1h8kwnAKByetCvzDJi0h3sE9HG6XVBTpb5ITb5Q6MufgeLOmJzEJ3-hdjHTMgTqRjkjtjfyzXZ-lk6wgLPUpYMwbHe_iYYoBMb8Av6q2kGgT6HSdKTn-8CVao8FCMmdvTaE9Vb7H1YN88kBI6BKvFLpwaG4Gd0zsVhh5xLIqssHoR0lw">
-</div>
+<button class="h-10 w-12 rounded-sm bg-gray-100 overflow-hidden border border-gray-200 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary cursor-zoom-in" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDlx1YQ41Bk3ZGIQ6lIlU4WQ-ngBPmMeFSjJ7QITH6CpxCTlTkc6WXk7reVcKtmKwMFY1yO5w1h8kwnAKByetCvzDJi0h3sE9HG6XVBTpb5ITb5Q6MufgeLOmJzEJ3-hdjHTMgTqRjkjtjfyzXZ-lk6wgLPUpYMwbHe_iYYoBMb8Av6q2kGgT6HSdKTn-8CVao8FCMmdvTaE9Vb7H1YN88kBI6BKvFLpwaG4Gd0zsVhh5xLIqssHoR0lw')">
+<img class="w-full h-full object-cover" data-alt="Main Hallway Lights Flickering" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlx1YQ41Bk3ZGIQ6lIlU4WQ-ngBPmMeFSjJ7QITH6CpxCTlTkc6WXk7reVcKtmKwMFY1yO5w1h8kwnAKByetCvzDJi0h3sE9HG6XVBTpb5ITb5Q6MufgeLOmJzEJ3-hdjHTMgTqRjkjtjfyzXZ-lk6wgLPUpYMwbHe_iYYoBMb8Av6q2kGgT6HSdKTn-8CVao8FCMmdvTaE9Vb7H1YN88kBI6BKvFLpwaG4Gd0zsVhh5xLIqssHoR0lw">
+</button>
 </td>
 <td class="px-5 py-4">
 <p class="text-sm font-medium text-on-surface">Main Hallway Lights Flickering</p>
@@ -212,182 +224,190 @@
 <td class="px-5 py-4">
 <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold">Completed</span>
 </td>
-<td class="px-5 py-4">
-<button class="text-primary hover:underline font-medium text-sm">View Details</button>
+<td class="px-5 py-4 text-right">
+<button class="text-primary hover:underline font-medium text-sm focus:outline-none focus:ring-1 focus:ring-primary rounded-sm" onclick="toggleModal('detail-modal')">View Details</button>
 </td>
-</tr>
-<!-- Skeleton Loading State -->
-<tr class="animate-pulse">
-<td class="px-lg py-4"><div class="h-4 bg-gray-200 rounded w-20"></div></td>
-<td class="px-lg py-4"><div class="h-10 w-12 bg-gray-200 rounded-lg"></div></td>
-<td class="px-lg py-4"><div class="h-4 bg-gray-200 rounded w-32 mb-2"></div><div class="h-3 bg-gray-100 rounded w-20"></div></td>
-<td class="px-lg py-4"><div class="h-4 bg-gray-100 rounded w-16"></div></td>
-<td class="px-lg py-4"><div class="h-4 bg-gray-100 rounded w-20"></div></td>
-<td class="px-lg py-4"><div class="h-6 bg-gray-100 rounded-full w-14"></div></td>
-<td class="px-lg py-4"><div class="h-6 bg-gray-100 rounded-full w-20"></div></td>
-<td class="px-lg py-4"><div class="h-4 bg-gray-200 rounded w-16"></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <!-- Pagination -->
-<div class="px-5 py-4 bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+<div class="px-5 py-4 bg-white border-t border-gray-200 flex items-center justify-between">
 <p class="text-sm font-medium text-on-surface-variant">Showing 1 to 2 of 124 results</p>
 <div class="flex gap-1">
-<button class="p-2 border border-outline-variant rounded-lg hover:bg-white disabled:opacity-50" disabled="">
+<button class="p-2 border border-gray-200 rounded-sm hover:bg-surface-container-low disabled:opacity-50" disabled="">
 <span class="material-symbols-outlined text-[18px]">chevron_left</span>
 </button>
-<button class="px-3 py-1 bg-primary text-white rounded-lg font-medium">1</button>
-<button class="px-3 py-1 border border-outline-variant rounded-lg hover:bg-white font-medium text-on-surface-variant">2</button>
-<button class="px-3 py-1 border border-outline-variant rounded-lg hover:bg-white font-medium text-on-surface-variant">3</button>
-<button class="p-2 border border-outline-variant rounded-lg hover:bg-white">
+<button class="px-3 py-1 bg-primary text-white rounded-sm font-medium">1</button>
+<button class="px-3 py-1 border border-gray-200 rounded-sm hover:bg-surface-container-low font-medium text-on-surface-variant">2</button>
+<button class="px-3 py-1 border border-gray-200 rounded-sm hover:bg-surface-container-low font-medium text-on-surface-variant">3</button>
+<button class="p-2 border border-gray-200 rounded-sm hover:bg-surface-container-low">
 <span class="material-symbols-outlined text-[18px]">chevron_right</span>
 </button>
 </div>
 </div>
 </div>
 </div>
+
+<!-- Unified Footer -->
+<footer class="w-full bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-on-surface-variant font-medium">© 2026 CampusCare. All rights reserved.</p>
+        <div class="flex gap-6">
+            <a href="#" class="text-xs text-on-surface-variant hover:text-primary transition-colors font-medium">Privacy Policy</a>
+            <a href="#" class="text-xs text-on-surface-variant hover:text-primary transition-colors font-medium">Terms of Service</a>
+            <a href="#" class="text-xs text-on-surface-variant hover:text-primary transition-colors font-medium">Support Center</a>
+        </div>
+    </div>
+</footer>
+
 </main>
 <!-- BottomNavBar (Mobile Only) -->
-<nav class="fixed bottom-0 w-full z-50 md:hidden border-t border-outline-variant shadow-lg flex justify-around items-center h-20 px-4 pb-safe bg-white">
+<nav class="fixed bottom-0 w-full z-50 md:hidden border-t border-gray-200 flex justify-around items-center h-16 px-4 pb-safe bg-white">
 <a href="index.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
 <span class="material-symbols-outlined">home</span>
-<span class="font-label-md">Home</span>
+<span class="text-[10px] font-semibold mt-1">Home</span>
 </a>
 <a href="report-complaint.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
 <span class="material-symbols-outlined">add_box</span>
-<span class="font-label-md">Request</span>
+<span class="text-[10px] font-semibold mt-1">Request</span>
 </a>
 <a href="my-complaints.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
 <span class="material-symbols-outlined">list_alt</span>
-<span class="font-label-md">My Complaints</span>
+<span class="text-[10px] font-semibold mt-1">My Complaints</span>
 </a>
-<a href="complaint-history.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-1 transition-transform active:scale-90">
+<a href="complaint-history.html" class="flex flex-col items-center justify-center text-primary transition-transform active:scale-90">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
-<span class="font-label-md">History</span>
+<span class="text-[10px] font-semibold mt-1">History</span>
 </a>
 </nav>
+
+<!-- Image Lightbox Modal -->
+<div class="fixed inset-0 z-[110] hidden flex-col items-center justify-center" id="lightbox-modal">
+    <div class="modal-overlay absolute inset-0 cursor-pointer" onclick="closeLightbox()"></div>
+    <div class="relative bg-white p-2 rounded-sm border border-gray-200 shadow-xl max-w-4xl max-h-[90vh] flex flex-col z-10 mx-4">
+        <button class="absolute -top-3 -right-3 bg-white border border-gray-200 text-gray-700 hover:text-primary rounded-full p-1 shadow-sm focus:outline-none" onclick="closeLightbox()">
+            <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+        <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] object-contain rounded-sm border border-gray-100">
+    </div>
+</div>
+
 <!-- View Details Modal -->
 <div class="fixed inset-0 z-[100] hidden" id="detail-modal">
 <div class="modal-overlay absolute inset-0" onclick="toggleModal('detail-modal')"></div>
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] max-h-[90vh] overflow-hidden bg-white rounded-[24px] shadow-2xl flex flex-col z-10">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] max-h-[90vh] overflow-hidden bg-white rounded-sm border border-gray-200 shadow-xl flex flex-col z-10">
 <!-- Modal Header -->
-<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<div class="p-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
 <div class="flex items-center gap-4">
-<div class="h-12 w-12 rounded-xl bg-primary flex items-center justify-center text-white">
-<span class="material-symbols-outlined text-[28px]">description</span>
-</div>
 <div>
-<h2 class="font-title-md text-title-md font-bold text-on-surface">Complaint Detail: #COMP-204</h2>
+<h2 class="text-xl font-bold text-on-surface tracking-tight font-serif">Complaint Detail: #COMP-204</h2>
 <div class="flex items-center gap-2 mt-1">
-<span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold uppercase">In Progress</span>
+<span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-sm text-[10px] font-bold uppercase">In Progress</span>
 <span class="text-xs text-on-surface-variant">• Reported on 24 Oct, 2023 10:45 AM</span>
 </div>
 </div>
 </div>
-<button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors cursor-pointer" onclick="toggleModal('detail-modal')">
+<button class="p-2 hover:bg-gray-200 rounded-sm transition-colors cursor-pointer" onclick="toggleModal('detail-modal')">
 <span class="material-symbols-outlined">close</span>
 </button>
 </div>
 <!-- Modal Content -->
-<div class="flex-1 overflow-y-auto p-lg custom-scrollbar">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="flex-1 overflow-y-auto p-6 custom-scrollbar">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 <!-- Left: Details & Photos -->
-<div class="md:col-span-2 space-y-lg">
+<div class="md:col-span-2 space-y-6">
 <section>
-<h3 class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider mb-4">Issue Description</h3>
-<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant">
-<p class="text-body-md text-on-surface leading-relaxed">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Issue Description</h3>
+<div class="bg-gray-50 p-4 rounded-sm border border-gray-200">
+<p class="text-sm text-on-surface leading-relaxed">
                                     A major leak has been observed in the second-floor gents' washroom in Block B. The water is pooling near the entrance, creating a slip hazard. It appears to be a pipe fracture behind the sink area.
                                 </p>
 </div>
 </section>
 <section>
-<h3 class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider mb-4">Photos</h3>
-<div class="grid grid-cols-2 gap-md">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Photos</h3>
+<div class="grid grid-cols-2 gap-4">
 <div class="space-y-2">
 <p class="text-xs font-medium text-on-surface-variant">Before (Reported)</p>
-<div class="aspect-video rounded-xl border border-outline-variant bg-gray-50 overflow-hidden group cursor-zoom-in">
-<img class="w-full h-full object-cover transition-transform group-hover:scale-105" data-alt="A clear 'Before' photo of a maintenance issue. A fractured silver pipe underneath a ceramic sink in a public restroom is spraying a small jet of water. The floor is visibly wet with reflection. The photo is high-resolution, captured in bright white fluorescent light, emphasizing the urgent need for repair." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAril0YQHu7cD-cKeD8grevM1_ZbVsX4Xe75ycE6TS4j9uFkg4XTgK_zbcmDwhVs6N9Fa9YqTFdaoY4gLRUw6upuDgeAZTs7qeYgsUXBDULMcXRTC5Z8nGoOV5K0nb9okH0YHoH1Shfx8ujTb0ehQVF9pDqCX5MtJ0UHNVnB4tcJB4JB2lUy6tO_HwKUzuDDMv_GOVY8Zo7uiCGBtPMkfwKH3dZiqbyvPqjpkA6uWofyyweCnKvvN03oQ">
-</div>
+<button class="aspect-video w-full rounded-sm border border-gray-200 bg-gray-50 overflow-hidden group cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-primary block" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAril0YQHu7cD-cKeD8grevM1_ZbVsX4Xe75ycE6TS4j9uFkg4XTgK_zbcmDwhVs6N9Fa9YqTFdaoY4gLRUw6upuDgeAZTs7qeYgsUXBDULMcXRTC5Z8nGoOV5K0nb9okH0YHoH1Shfx8ujTb0ehQVF9pDqCX5MtJ0UHNVnB4tcJB4JB2lUy6tO_HwKUzuDDMv_GOVY8Zo7uiCGBtPMkfwKH3dZiqbyvPqjpkA6uWofyyweCnKvvN03oQ')">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-105" data-alt="Before Photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAril0YQHu7cD-cKeD8grevM1_ZbVsX4Xe75ycE6TS4j9uFkg4XTgK_zbcmDwhVs6N9Fa9YqTFdaoY4gLRUw6upuDgeAZTs7qeYgsUXBDULMcXRTC5Z8nGoOV5K0nb9okH0YHoH1Shfx8ujTb0ehQVF9pDqCX5MtJ0UHNVnB4tcJB4JB2lUy6tO_HwKUzuDDMv_GOVY8Zo7uiCGBtPMkfwKH3dZiqbyvPqjpkA6uWofyyweCnKvvN03oQ">
+</button>
 </div>
 <div class="space-y-2">
 <p class="text-xs font-medium text-on-surface-variant">After (Fixed)</p>
-<div class="aspect-video rounded-xl border-2 border-dashed border-outline-variant bg-gray-50 flex flex-col items-center justify-center text-on-surface-variant">
-<span class="material-symbols-outlined text-[32px] mb-1">image_not_supported</span>
-<span class="text-xs">Pending Completion</span>
+<div class="aspect-video rounded-sm border border-dashed border-gray-300 bg-gray-50 flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[24px] mb-1 text-gray-400">image_not_supported</span>
+<span class="text-[10px] uppercase tracking-widest font-bold">Pending</span>
 </div>
 </div>
 </div>
 </section>
 <section>
-<h3 class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider mb-4">Service Staff Notes</h3>
-<div class="bg-emerald-50 p-md rounded-xl border border-emerald-100">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Service Staff Notes</h3>
+<div class="bg-gray-50 p-4 rounded-sm border border-gray-200">
 <div class="flex gap-3">
-<div class="h-8 w-8 rounded-full bg-emerald-600 flex items-center justify-center text-white shrink-0">
-<span class="material-symbols-outlined text-[16px]">engineering</span>
-</div>
 <div>
-<p class="text-xs font-bold text-emerald-800">Technician: Robert M. <span class="font-normal opacity-70 ml-2">24 Oct, 02:15 PM</span></p>
-<p class="text-body-md text-emerald-900 mt-1 italic">"Inspected the area. Main valve has been temporarily shut off. Replacement parts (copper L-joint) have been ordered from the central store. Work will resume tomorrow morning at 09:00 AM."</p>
+<p class="text-xs font-bold text-gray-800">Technician: Robert M. <span class="font-normal opacity-70 ml-2">24 Oct, 02:15 PM</span></p>
+<p class="text-sm text-gray-700 mt-1 italic">"Inspected the area. Main valve has been temporarily shut off. Replacement parts (copper L-joint) have been ordered from the central store. Work will resume tomorrow morning at 09:00 AM."</p>
 </div>
 </div>
 </div>
 </section>
 </div>
 <!-- Right: Timeline & Info -->
-<div class="space-y-lg">
-<section class="bg-white border border-outline-variant rounded-xl p-md">
-<h3 class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider mb-4">Complaint Info</h3>
+<div class="space-y-6">
+<section class="bg-gray-50 border border-gray-200 rounded-sm p-4">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Complaint Info</h3>
 <div class="space-y-3">
-<div class="flex justify-between text-body-md">
+<div class="flex justify-between text-sm">
 <span class="text-on-surface-variant">Category:</span>
 <span class="font-medium text-on-surface">Plumbing</span>
 </div>
-<div class="flex justify-between text-body-md">
+<div class="flex justify-between text-sm">
 <span class="text-on-surface-variant">Building:</span>
 <span class="font-medium text-on-surface">Block B</span>
 </div>
-<div class="flex justify-between text-body-md">
+<div class="flex justify-between text-sm">
 <span class="text-on-surface-variant">Floor/Room:</span>
 <span class="font-medium text-on-surface">2nd / Washroom</span>
 </div>
-<div class="flex justify-between text-body-md">
+<div class="flex justify-between text-sm">
 <span class="text-on-surface-variant">Priority:</span>
 <span class="font-medium text-red-600">High</span>
 </div>
 </div>
 </section>
 <section>
-<h3 class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider mb-4">Repair Timeline</h3>
-<div class="relative pl-6 space-y-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Repair Timeline</h3>
+<div class="relative pl-6 space-y-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[1px] before:bg-gray-300">
 <!-- Timeline Item 1 -->
 <div class="relative">
-<div class="absolute -left-6 h-4 w-4 rounded-full border-2 border-primary bg-white z-10"></div>
-<p class="text-xs font-bold text-on-surface">Technician Assigned</p>
-<p class="text-xs text-on-surface-variant">24 Oct, 2023 • 01:20 PM</p>
-<p class="text-[11px] text-on-surface-variant mt-1">Request moved to 'In Progress' state.</p>
+<div class="absolute -left-6 h-3 w-3 rounded-full border-2 border-primary bg-white z-10"></div>
+<p class="text-xs font-bold text-on-surface uppercase tracking-widest">Technician Assigned</p>
+<p class="text-[10px] text-on-surface-variant">24 Oct, 2023 • 01:20 PM</p>
+<p class="text-xs text-on-surface-variant mt-1">Request moved to 'In Progress' state.</p>
 </div>
 <!-- Timeline Item 2 -->
 <div class="relative">
-<div class="absolute -left-6 h-4 w-4 rounded-full border-2 border-outline-variant bg-white z-10"></div>
-<p class="text-xs font-bold text-on-surface">Reported</p>
-<p class="text-xs text-on-surface-variant">24 Oct, 2023 • 10:45 AM</p>
-<p class="text-[11px] text-on-surface-variant mt-1">Ticket successfully created by Student.</p>
+<div class="absolute -left-6 h-3 w-3 rounded-full border-2 border-gray-300 bg-white z-10"></div>
+<p class="text-xs font-bold text-on-surface uppercase tracking-widest">Reported</p>
+<p class="text-[10px] text-on-surface-variant">24 Oct, 2023 • 10:45 AM</p>
+<p class="text-xs text-on-surface-variant mt-1">Ticket successfully created by Student.</p>
 </div>
 </div>
 </section>
-<section class="pt-4 border-t border-outline-variant">
-<h3 class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider mb-4">Feedback</h3>
+<section class="pt-4 border-t border-gray-200">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Feedback</h3>
 <p class="text-xs text-on-surface-variant italic">Feedback will be available once the request is marked as 'Completed'.</p>
 </section>
 </div>
 </div>
 </div>
 <!-- Modal Footer -->
-<div class="p-md border-t border-outline-variant bg-surface-container-low flex justify-end gap-md">
-<button class="px-6 py-2 border border-outline-variant rounded-xl font-medium text-on-surface-variant hover:bg-white transition-colors cursor-pointer" onclick="toggleModal('detail-modal')">Close</button>
-<button class="px-6 py-2 bg-primary text-white rounded-xl font-medium shadow-md hover:bg-[#93000b] active:scale-95 transition-all">Print Record</button>
+<div class="p-4 border-t border-gray-200 bg-gray-50 flex justify-end gap-2">
+<button class="px-4 py-2 border border-gray-200 bg-white rounded-sm text-xs font-semibold text-gray-700 hover:text-primary transition-colors cursor-pointer" onclick="toggleModal('detail-modal')">Close</button>
+<button class="px-4 py-2 bg-primary text-white border border-primary rounded-sm text-xs font-semibold shadow-sm hover:bg-[#93000b] active:scale-95 transition-all">Print Record</button>
 </div>
 </div>
 </div>
@@ -402,6 +422,79 @@
             document.body.style.overflow = 'auto';
         }
     }
+
+    // Lightbox Logic
+    function openLightbox(src) {
+        const lightbox = document.getElementById('lightbox-modal');
+        const img = document.getElementById('lightbox-img');
+        img.src = src;
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox-modal');
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Escape key to close modals
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            const lightbox = document.getElementById('lightbox-modal');
+            if (!lightbox.classList.contains('hidden')) {
+                closeLightbox();
+            }
+            const detailModal = document.getElementById('detail-modal');
+            if (!detailModal.classList.contains('hidden')) {
+                toggleModal('detail-modal');
+            }
+        }
+    });
+
+    // Checkbox and Bulk Actions Logic
+    const selectAllCheckbox = document.getElementById('select-all');
+    const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+    const bulkActionsBar = document.getElementById('bulk-actions-bar');
+    const selectedCountDisplay = document.getElementById('selected-count');
+
+    function updateBulkActions() {
+        const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+        selectedCountDisplay.textContent = checkedCount;
+        
+        if (checkedCount > 0) {
+            bulkActionsBar.classList.remove('hidden');
+        } else {
+            bulkActionsBar.classList.add('hidden');
+        }
+
+        if (checkedCount === rowCheckboxes.length) {
+            selectAllCheckbox.checked = true;
+            selectAllCheckbox.indeterminate = false;
+        } else if (checkedCount > 0) {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = true;
+        } else {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = false;
+        }
+    }
+
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', (e) => {
+            const isChecked = e.target.checked;
+            rowCheckboxes.forEach(cb => {
+                cb.checked = isChecked;
+            });
+            updateBulkActions();
+        });
+    }
+
+    rowCheckboxes.forEach(cb => {
+        cb.addEventListener('change', updateBulkActions);
+    });
 
     // Search bar micro-interaction
     const searchInput = document.querySelector('input[type="text"]');

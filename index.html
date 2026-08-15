@@ -1,263 +1,260 @@
-<!DOCTYPE html><html lang="en" class="light" style="font-size: 14px;"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script src="shared-tailwind-config.js"></script><meta charset="utf-8"></head><body class="text-on-background min-h-screen bg-white">
-<!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-white border-b border-outline-variant shadow-sm flex justify-between items-center h-16 px-gutter">
-<div class="flex items-center gap-md">
-<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDyW5wPzazAdUFRXV_630mmlGNqDj6pyB3Rku9lJT_0n1D7RvoQ0kYJd-XBGe28fs-2wixy5Gk7NEI6CI6MBa-4F-qTnh55DamSaTpfLb6xZRUeCV3brDr6ehta4Z60ghue0uW1PBvU28SExI6sQFrG9CFWLWDncwA-NT8p3AzTzdwIvaR8MxzWa0upY7DcZN5iifjZ7wnOcZuSkrvA8hxbuRqWgW8aXmThUECRXcILx7rxZnsLZvmw" class="h-8 w-8 object-contain" alt="CampusCare Logo">
-<h1 class="font-display-lg text-title-md font-bold text-primary">CampusCare</h1>
-</div>
-<div class="flex-1 max-w-xl mx-xl hidden md:block">
-<div class="relative flex items-center">
-<span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
-<input type="text" placeholder="Search complaints or info..." class="w-full bg-white border border-gray-200 rounded-xl py-2 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-primary">
-</div>
-</div>
-<div class="flex items-center gap-sm">
-<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95">
-<span class="material-symbols-outlined text-primary">notifications</span>
-</button>
-<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95">
-<span class="material-symbols-outlined text-primary">help</span>
-</button>
-<div class="h-8 w-8 rounded-full bg-primary-fixed overflow-hidden ml-2 cursor-pointer border border-outline-variant">
-<img class="h-full w-full object-cover" data-alt="A professional studio portrait of a university student with a friendly expression, wearing a neutral colored sweater. The background is a clean, softly blurred academic hallway with warm sunlight filtering through windows. High-quality photography style with professional lighting and a modern, clean light-mode aesthetic consistent with Material Design 3." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX16q4n1KvkPaf9esUQ4fNXcwYwcv-_fKANCQ_w7WSm0aO_BeSn34uTlAw3hKK3PNjrkxg4UaIonXPFdggOlJFOHRA_pO4xbYBOVT0pgxqqH8bekSpxlEyR7RvTm71U-K9quscABubVME84su2-tIWhHkJoVyxnwQ23A3To0LcFqqphwmCM-eBbKnNN2ZVOVrMrzR_DhDJmvTGBv9fmmRdlLe1qecKLpe8Z3_q-KAz_NOE23lNyJdVIA">
-</div>
-</div>
-</header>
-<app-sidebar active="dashboard"></app-sidebar>
-<!-- Main Content -->
-<main class="md:ml-[220px] pt-16 pb-24 md:pb-lg px-margin-mobile md:px-gutter bg-white">
-<div class="max-w-7xl mx-auto w-full">
-<!-- Welcome Section -->
-<section class="mt-lg mb-xl">
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg relative overflow-hidden">
-<div class="absolute -right-12 -top-12 w-64 h-64 bg-primary opacity-5 rounded-full blur-3xl"></div>
-<div class="relative z-10">
-<h2 class="text-2xl font-bold text-on-surface mb-xs">Welcome, Alex Rivera 👋</h2>
-<div class="flex flex-wrap gap-md items-center text-on-surface-variant font-body-md">
-<span class="flex items-center gap-xs text-sm"><span class="material-symbols-outlined text-[16px]">school</span> Computer Science</span>
-<span class="w-1 h-1 bg-outline rounded-full"></span>
-<span class="flex items-center gap-xs text-sm"><span class="material-symbols-outlined text-[16px]">calendar_month</span> 3rd Year</span>
-<span class="w-1 h-1 bg-outline rounded-full"></span>
-<span class="flex items-center gap-xs text-sm"><span class="material-symbols-outlined text-[16px]">event</span> Monday, Oct 23, 2023</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Stats Grid (Bento Style) -->
-<section class="grid grid-cols-2 lg:grid-cols-6 gap-md mb-xl">
-<div class="col-span-2 lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
-<div class="flex justify-between items-start">
-<div class="p-2 bg-secondary-fixed rounded-lg">
-<span class="material-symbols-outlined text-secondary">analytics</span>
-</div>
-<span class="text-xs font-semibold text-secondary bg-secondary-fixed/30 px-2 py-0.5 rounded-full">+12%</span>
-</div>
-<div class="mt-lg">
-<p class="text-sm font-medium text-on-surface-variant">Total Complaints</p>
-<p class="text-3xl font-bold tracking-tight text-on-surface">24</p>
-</div>
-<div class="mt-sm w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
-<div class="bg-secondary h-full" style="width: 100%"></div>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
-<div class="p-2 bg-amber-100 rounded-lg w-fit">
-<span class="material-symbols-outlined text-amber-700" style="font-variation-settings: 'FILL' 1;">pending</span>
-</div>
-<div class="mt-md">
-<p class="text-sm font-medium text-on-surface-variant">Open</p>
-<p class="text-3xl font-bold tracking-tight text-on-surface">08</p>
-</div>
-<div class="mt-sm w-full bg-amber-50 h-1 rounded-full overflow-hidden">
-<div class="bg-amber-500 h-full" style="width: 33%"></div>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
-<div class="p-2 bg-blue-100 rounded-lg w-fit">
-<span class="material-symbols-outlined text-blue-700" style="font-variation-settings: 'FILL' 1;">sync</span>
-</div>
-<div class="mt-md">
-<p class="text-sm font-medium text-on-surface-variant">In Progress</p>
-<p class="text-3xl font-bold tracking-tight text-on-surface">05</p>
-</div>
-<div class="mt-sm w-full bg-blue-50 h-1 rounded-full overflow-hidden">
-<div class="bg-blue-500 h-full" style="width: 20%"></div>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
-<div class="p-2 bg-green-100 rounded-lg w-fit">
-<span class="material-symbols-outlined text-green-700" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</div>
-<div class="mt-md">
-<p class="text-sm font-medium text-on-surface-variant">Completed</p>
-<p class="text-3xl font-bold tracking-tight text-on-surface">11</p>
-</div>
-<div class="mt-sm w-full bg-green-50 h-1 rounded-full overflow-hidden">
-<div class="bg-green-500 h-full" style="width: 47%"></div>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
-<div class="p-2 bg-purple-100 rounded-lg w-fit">
-<span class="material-symbols-outlined text-purple-700" style="font-variation-settings: 'FILL' 1;">timer</span>
-</div>
-<div class="mt-md">
-<p class="text-sm font-medium text-on-surface-variant">Avg Resolution</p>
-<p class="text-3xl font-bold tracking-tight text-on-surface">2.4d</p>
-</div>
-<div class="mt-sm w-full bg-purple-50 h-1 rounded-full overflow-hidden">
-<div class="bg-purple-500 h-full" style="width: 60%"></div>
-</div>
-</div>
-</section>
-<!-- Quick Actions -->
-<section class="mb-xl">
-<h3 class="text-lg font-semibold text-on-surface mb-md">Quick Actions</h3>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
-<button class="flex flex-col items-center justify-center gap-sm p-4 bg-primary text-on-primary rounded-xl transition-all hover:brightness-110 active:scale-95 shadow-sm group">
-<div class="p-4 bg-white/20 rounded-full group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-3xl">add_box</span>
-</div>
-<span class="text-sm font-medium">Report Complaint</span>
-</button>
-<button class="flex flex-col items-center justify-center gap-sm p-4 bg-surface-container-lowest border border-outline-variant rounded-xl transition-all hover:bg-surface-container-low active:scale-95 shadow-sm group">
-<div class="p-4 bg-secondary-fixed rounded-full group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-3xl text-secondary">mic</span>
-</div>
-<span class="text-sm font-medium text-on-surface">Voice Complaint</span>
-</button>
-<button class="flex flex-col items-center justify-center gap-sm p-4 bg-surface-container-lowest border border-outline-variant rounded-xl transition-all hover:bg-surface-container-low active:scale-95 shadow-sm group">
-<div class="p-4 bg-tertiary-fixed rounded-full group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-3xl text-tertiary">photo_camera</span>
-</div>
-<span class="text-sm font-medium text-on-surface">Upload Photo</span>
-</button>
-<button class="flex flex-col items-center justify-center gap-sm p-4 bg-surface-container-lowest border border-outline-variant rounded-xl transition-all hover:bg-surface-container-low active:scale-95 shadow-sm group">
-<div class="p-4 bg-surface-variant rounded-full group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-3xl text-on-surface-variant">qr_code_scanner</span>
-</div>
-<span class="text-sm font-medium text-on-surface">Scan QR Code</span>
-</button>
-</div>
-</section>
-<!-- Recent Activity / My Complaints -->
-<section>
-<div class="flex justify-between items-center mb-md">
-<h3 class="text-lg font-semibold text-on-surface">Recent Activity</h3>
-<button class="text-primary font-label-md hover:underline">View All</button>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
-<table class="w-full text-left border-collapse">
-<thead class="bg-surface-container-low border-b border-outline-variant">
-<tr>
-<th class="px-gutter py-3 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Complaint ID</th>
-<th class="px-gutter py-3 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Issue Type</th>
-<th class="px-gutter py-3 text-xs font-semibold text-on-surface-variant uppercase tracking-wider hidden sm:table-cell">Date</th>
-<th class="px-gutter py-3 text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Status</th>
-<th class="px-gutter py-3 text-xs font-semibold text-on-surface-variant uppercase tracking-wider text-right">Action</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-outline-variant">
-<tr class="hover:bg-surface-container-low transition-colors group">
-<td class="px-gutter py-md font-body-md font-bold text-on-surface">#CC-8291</td>
-<td class="px-gutter py-md">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-on-surface-variant text-md">electrical_services</span>
-<span class="font-body-md text-on-surface">Broken light in Hall B</span>
-</div>
-</td>
-<td class="px-gutter py-md font-body-md text-on-surface-variant hidden sm:table-cell">Oct 21, 2023</td>
-<td class="px-gutter py-md">
-<span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-tighter">In Progress</span>
-</td>
-<td class="px-gutter py-md text-right">
-<button class="p-1 rounded-full hover:bg-surface-container-highest transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
-</button>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors group">
-<td class="px-gutter py-md font-body-md font-bold text-on-surface">#CC-8288</td>
-<td class="px-gutter py-md">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-on-surface-variant text-md">water_drop</span>
-<span class="font-body-md text-on-surface">Leaking faucet (C-Dorm)</span>
-</div>
-</td>
-<td class="px-gutter py-md font-body-md text-on-surface-variant hidden sm:table-cell">Oct 19, 2023</td>
-<td class="px-gutter py-md">
-<span class="bg-green-100 text-green-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-tighter">Completed</span>
-</td>
-<td class="px-gutter py-md text-right">
-<button class="p-1 rounded-full hover:bg-surface-container-highest transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
-</button>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors group">
-<td class="px-gutter py-md font-body-md font-bold text-on-surface">#CC-8275</td>
-<td class="px-gutter py-md">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-on-surface-variant text-md">wifi_off</span>
-<span class="font-body-md text-on-surface">Network Outage - Library</span>
-</div>
-</td>
-<td class="px-gutter py-md font-body-md text-on-surface-variant hidden sm:table-cell">Oct 18, 2023</td>
-<td class="px-gutter py-md">
-<span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-tighter">Pending</span>
-</td>
-<td class="px-gutter py-md text-right">
-<button class="p-1 rounded-full hover:bg-surface-container-highest transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
-</button>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors group">
-<td class="px-gutter py-md font-body-md font-bold text-on-surface">#CC-8270</td>
-<td class="px-gutter py-md">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-on-surface-variant text-md">ac_unit</span>
-<span class="font-body-md text-on-surface">A/C Repair - Lab 402</span>
-</div>
-</td>
-<td class="px-gutter py-md font-body-md text-on-surface-variant hidden sm:table-cell">Oct 15, 2023</td>
-<td class="px-gutter py-md">
-<span class="bg-green-100 text-green-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-tighter">Completed</span>
-</td>
-<td class="px-gutter py-md text-right">
-<button class="p-1 rounded-full hover:bg-surface-container-highest transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</main>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="fixed bottom-0 w-full z-50 md:hidden border-t border-outline-variant shadow-lg flex justify-around items-center h-20 px-4 pb-safe bg-white">
-<a href="index.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-1 transition-transform active:scale-90">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
-<span class="font-label-md">Home</span>
-</a>
-<a href="report-complaint.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
-<span class="material-symbols-outlined">add_box</span>
-<span class="font-label-md">Request</span>
-</a>
-<a href="my-complaints.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
-<span class="material-symbols-outlined">list_alt</span>
-<span class="font-label-md">My Complaints</span>
-</a>
-<a href="complaint-history.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
-<span class="material-symbols-outlined">history</span>
-<span class="font-label-md">History</span>
-</a>
-</nav>
-<!-- Contextual FAB (Only on Mobile Dashboard) -->
-<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center md:hidden z-40 active:scale-90 transition-transform">
-<span class="material-symbols-outlined text-2xl">add</span>
-<script src="src/components/sidebar.js" type="module"></script>
-<script src="src/router.js" type="module"></script>
+<!DOCTYPE html>
+<html lang="en" class="light" style="font-size: 14px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="shared-tailwind-config.js"></script>
+</head>
+<body class="text-on-background min-h-screen bg-paper flex flex-col">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 w-full z-50 bg-paper border-b border-gray-200 flex justify-between items-center h-16 px-gutter">
+        <div class="flex items-center gap-md">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDyW5wPzazAdUFRXV_630mmlGNqDj6pyB3Rku9lJT_0n1D7RvoQ0kYJd-XBGe28fs-2wixy5Gk7NEI6CI6MBa-4F-qTnh55DamSaTpfLb6xZRUeCV3brDr6ehta4Z60ghue0uW1PBvU28SExI6sQFrG9CFWLWDncwA-NT8p3AzTzdwIvaR8MxzWa0upY7DcZN5iifjZ7wnOcZuSkrvA8hxbuRqWgW8aXmThUECRXcILx7rxZnsLZvmw" class="h-8 w-8 object-contain" alt="CampusCare Logo">
+            <h1 class="font-display-lg text-title-md font-bold text-primary font-serif">CampusCare</h1>
+        </div>
+        
+        <div class="flex-1 max-w-xl mx-xl hidden md:block">
+            <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+                <input type="text" placeholder="Search complaints or info..." class="w-full bg-white border border-gray-200 rounded-sm py-2 pl-10 pr-4 text-body-md focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none">
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-sm">
+            <button class="p-2 rounded-sm hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95">
+                <span class="material-symbols-outlined text-primary">notifications</span>
+            </button>
+            <button class="p-2 rounded-sm hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95">
+                <span class="material-symbols-outlined text-primary">help</span>
+            </button>
+            <div class="h-8 w-8 rounded-sm bg-primary-fixed overflow-hidden ml-2 cursor-pointer border border-gray-200">
+                <img class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX16q4n1KvkPaf9esUQ4fNXcwYwcv-_fKANCQ_w7WSm0aO_BeSn34uTlAw3hKK3PNjrkxg4UaIonXPFdggOlJFOHRA_pO4xbYBOVT0pgxqqH8bekSpxlEyR7RvTm71U-K9quscABubVME84su2-tIWhHkJoVyxnwQ23A3To0LcFqqphwmCM-eBbKnNN2ZVOVrMrzR_DhDJmvTGBv9fmmRdlLe1qecKLpe8Z3_q-KAz_NOE23lNyJdVIA" alt="Student Profile">
+            </div>
+        </div>
+    </header>
+    
+    <app-sidebar active="dashboard"></app-sidebar>
+    
+    <!-- Main Content -->
+    <main class="md:ml-[220px] pt-16 pb-12 px-margin-mobile md:px-gutter flex-grow flex flex-col">
+        <div class="max-w-7xl mx-auto w-full flex-grow flex flex-col">
+            <!-- Welcome / Overview Header -->
+            <section class="mt-lg mb-xl flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">Overview</h3>
+                    <h2 class="text-3xl font-bold text-on-surface tracking-tight leading-none mb-1 font-serif">Welcome back, Alex</h2>
+                    <p class="text-sm font-medium text-on-surface-variant">Computer Science &middot; 3rd Year</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="report-complaint.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-on-primary text-sm font-semibold rounded-sm hover:brightness-110 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-[20px]">add</span>
+                        Report Complaint
+                    </a>
+                    <button class="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 text-on-surface text-sm font-semibold rounded-sm hover:bg-surface-container-low active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-[20px] text-on-surface-variant">more_horiz</span>
+                        More
+                    </button>
+                </div>
+            </section>
 
+            <!-- Stats Hierarchy -->
+            <section class="mb-xl">
+                <div class="flex flex-col lg:flex-row gap-4 items-stretch">
+                    <!-- Featured Metric Card -->
+                    <div class="lg:w-1/3 bg-primary text-on-primary rounded-sm p-6 flex flex-col justify-between border border-primary">
+                        <div>
+                            <h3 class="text-xs font-bold uppercase tracking-widest mb-2 opacity-90">Needs Attention</h3>
+                            <p class="text-7xl font-bold tracking-tighter leading-none font-serif">08</p>
+                        </div>
+                        <div class="mt-8 flex items-center justify-between border-t border-on-primary/20 pt-4">
+                            <span class="text-sm font-bold">Open Complaints</span>
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Secondary Stats Strip -->
+                    <div class="lg:w-2/3 flex flex-col">
+                        <div class="flex-1 grid grid-cols-3 bg-white border border-gray-200 rounded-sm items-center divide-x divide-gray-200">
+                            <div class="p-6 flex flex-col justify-center">
+                                <p class="text-4xl font-bold text-on-surface tracking-tighter mb-1 font-serif">24</p>
+                                <p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Total</p>
+                            </div>
+                            <div class="p-6 flex flex-col justify-center">
+                                <p class="text-4xl font-bold text-on-surface tracking-tighter mb-1 font-serif">11</p>
+                                <p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Completed</p>
+                            </div>
+                            <div class="p-6 flex flex-col justify-center">
+                                <p class="text-4xl font-bold text-on-surface tracking-tighter mb-1 font-serif">2.4<span class="text-xl font-semibold text-on-surface-variant tracking-normal font-sans">d</span></p>
+                                <p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Avg Time</p>
+                            </div>
+                        </div>
+                        <!-- Category breakdown -->
+                        <div class="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-on-surface-variant">
+                            <span class="font-bold uppercase tracking-widest text-xs">Categories:</span>
+                            <span>Electrical: 3</span>
+                            <span>Plumbing: 2</span>
+                            <span>Network: 2</span>
+                            <span>HVAC: 1</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>
+            <!-- Recent Activity / My Complaints -->
+            <section class="flex-grow">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-4 border-b border-gray-200 pb-2">
+                    <div>
+                        <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">Activity</h3>
+                        <h2 class="text-xl font-bold text-on-surface tracking-tight font-serif">Recent Complaints</h2>
+                    </div>
+                    <div class="flex gap-4 text-sm font-semibold mt-3 sm:mt-0">
+                        <button class="text-primary border-b-2 border-primary pb-1 uppercase tracking-widest text-xs">All</button>
+                        <button class="text-on-surface-variant hover:text-on-surface pb-1 uppercase tracking-widest text-xs">Open</button>
+                        <button class="text-on-surface-variant hover:text-on-surface pb-1 uppercase tracking-widest text-xs">In Progress</button>
+                        <button class="text-on-surface-variant hover:text-on-surface pb-1 uppercase tracking-widest text-xs">Completed</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white border border-gray-200 rounded-sm overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-paper border-b border-gray-200">
+                                <th class="py-3 px-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest w-32">ID</th>
+                                <th class="py-3 px-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Issue</th>
+                                <th class="py-3 px-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest w-24">Priority</th>
+                                <th class="py-3 px-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest hidden sm:table-cell w-40">Date</th>
+                                <th class="py-3 px-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest w-32">Status</th>
+                                <th class="py-3 pr-4"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="hover:bg-surface-container-low transition-colors group cursor-pointer border-b border-gray-100 last:border-0">
+                                <td class="py-4 px-4 font-bold text-on-surface-variant">#CC-8291</td>
+                                <td class="py-4 px-4">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-on-surface text-base font-serif">Broken light in Hall B</span>
+                                        <span class="text-xs text-primary font-bold mt-1">Tech arriving Thu 10 AM</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 bg-orange-500"></div>
+                                        <span class="font-bold text-on-surface uppercase tracking-widest text-[10px]">Medium</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-on-surface-variant hidden sm:table-cell">
+                                    Oct 21 <span class="text-[10px] uppercase tracking-widest text-primary font-bold block mt-1">6 days open</span>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <span class="font-bold text-on-surface-variant uppercase tracking-widest text-[10px]">In Progress</span>
+                                </td>
+                                <td class="py-4 pr-4 text-right">
+                                    <span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="hover:bg-surface-container-low transition-colors group cursor-pointer border-b border-gray-100 last:border-0">
+                                <td class="py-4 px-4 font-bold text-on-surface-variant">#CC-8288</td>
+                                <td class="py-4 px-4">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-on-surface text-base font-serif">Leaking faucet (C-Dorm)</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 bg-red-600"></div>
+                                        <span class="font-bold text-on-surface uppercase tracking-widest text-[10px]">Urgent</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-on-surface-variant hidden sm:table-cell">
+                                    Oct 19
+                                </td>
+                                <td class="py-4 px-4">
+                                    <span class="font-bold text-on-surface-variant uppercase tracking-widest text-[10px]">Completed</span>
+                                </td>
+                                <td class="py-4 pr-4 text-right">
+                                    <span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                                </td>
+                            </tr>
+
+                            <tr class="hover:bg-surface-container-low transition-colors group cursor-pointer border-b border-gray-100 last:border-0">
+                                <td class="py-4 px-4 font-bold text-on-surface-variant">#CC-8275</td>
+                                <td class="py-4 px-4">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-on-surface text-base font-serif">Network Outage - Library</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 bg-gray-400"></div>
+                                        <span class="font-bold text-on-surface uppercase tracking-widest text-[10px]">Low</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-on-surface-variant hidden sm:table-cell">
+                                    Oct 18 <span class="text-[10px] uppercase tracking-widest text-primary font-bold block mt-1">9 days open</span>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <span class="font-bold text-on-surface-variant uppercase tracking-widest text-[10px]">Pending</span>
+                                </td>
+                                <td class="py-4 pr-4 text-right">
+                                    <span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="md:ml-[220px] mt-auto border-t border-gray-200 bg-paper py-6 px-margin-mobile md:px-gutter z-40">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <span class="font-serif font-bold text-on-surface-variant text-lg">CampusCare</span>
+                <p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">© 2026 CampusCare &middot; State University</p>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
+                <a href="#" class="hover:text-primary transition-colors">Help Center</a>
+                <span class="text-gray-300 hidden sm:inline">|</span>
+                <a href="#" class="hover:text-primary transition-colors">Report an Issue</a>
+                <span class="text-gray-300 hidden sm:inline">|</span>
+                <a href="#" class="hover:text-primary transition-colors">Contact Facilities</a>
+                <span class="text-gray-300 hidden sm:inline">|</span>
+                <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-4 text-center md:text-left">
+            <p class="text-[10px] font-bold text-primary uppercase tracking-widest">Emergency? Contact Campus Security: (555) 019-9111</p>
+        </div>
+    </footer>
+
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav class="fixed bottom-0 w-full z-50 md:hidden border-t border-gray-200 bg-paper flex justify-around items-center h-20 px-4 pb-safe">
+        <a href="index.html" class="flex flex-col items-center justify-center text-primary rounded-sm px-4 py-1 transition-transform active:scale-90">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest mt-1">Home</span>
+        </a>
+        <a href="report-complaint.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
+            <span class="material-symbols-outlined">add_box</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest mt-1">Request</span>
+        </a>
+        <a href="my-complaints.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
+            <span class="material-symbols-outlined">list_alt</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest mt-1">Complaints</span>
+        </a>
+        <a href="complaint-history.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
+            <span class="material-symbols-outlined">history</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest mt-1">History</span>
+        </a>
+    </nav>
+    
+    <script src="src/components/sidebar.js" type="module"></script>
+    <script src="src/router.js" type="module"></script>
+</body>
+</html>

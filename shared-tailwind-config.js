@@ -50,7 +50,8 @@ try {
                     "on-primary": "#ffffff",
                     "surface-container-highest": "#fbdbd7",
                     "on-secondary-fixed": "#410004",
-                    "on-secondary-fixed-variant": "#930013"
+                    "on-secondary-fixed-variant": "#930013",
+                    "paper": "#FAF9F6"
                 },
                 "borderRadius": {
                     "DEFAULT": "0.25rem",
@@ -70,13 +71,15 @@ try {
                     "margin-mobile": "12px"
                 },
                 "fontFamily": {
-                    "title-md": ["Inter"],
-                    "headline-lg-mobile": ["Inter"],
-                    "body-lg": ["Inter"],
-                    "headline-lg": ["Inter"],
-                    "body-md": ["Inter"],
-                    "display-lg": ["Inter"],
-                    "label-md": ["Inter"]
+                    "sans": ["Roboto", "sans-serif"],
+                    "serif": ["'Roboto Slab'", "serif"],
+                    "title-md": ["Roboto", "sans-serif"],
+                    "headline-lg-mobile": ["Roboto", "sans-serif"],
+                    "body-lg": ["Roboto", "sans-serif"],
+                    "headline-lg": ["'Roboto Slab'", "serif"],
+                    "body-md": ["Roboto", "sans-serif"],
+                    "display-lg": ["'Roboto Slab'", "serif"],
+                    "label-md": ["Roboto", "sans-serif"]
                 },
                 "fontSize": {
                     "title-md": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],

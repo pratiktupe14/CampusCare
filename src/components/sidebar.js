@@ -51,7 +51,7 @@ class AppSidebar extends HTMLElement {
                 
                 // Added whitespace-nowrap to prevent label wrapping causing layout shifts
                 navHTML += `
-                <a class="flex items-center gap-3 px-3 py-2 rounded-r-full transition-all duration-200 ${activeClasses}" href="${item.href}">
+                <a class="flex items-center gap-3 px-3 py-2 rounded-r-sm transition-all duration-200 ${activeClasses}" href="${item.href}">
                     <span class="material-symbols-outlined text-[18px]" ${fillStyle}>${item.icon}</span>
                     <span class="text-sm font-medium whitespace-nowrap">${item.text}</span>
                 </a>`;
@@ -59,13 +59,13 @@ class AppSidebar extends HTMLElement {
         });
 
         this.innerHTML = `
-        <aside class="fixed left-0 top-16 h-[calc(100vh-56px)] w-[220px] hidden md:flex flex-col border-r border-outline-variant py-md pr-md flex-shrink-0 z-40 bg-white">
+        <aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-[220px] hidden md:flex flex-col border-r border-gray-200 py-md pr-md flex-shrink-0 z-40 bg-paper">
             <div class="px-gutter mb-lg">
-                <div class="flex items-center gap-sm p-sm bg-white border border-gray-200 rounded-xl">
+                <div class="flex items-center gap-sm p-sm bg-white border border-gray-200 rounded-sm">
                     <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">school</span>
                     <div>
-                        <p class="text-base font-bold text-primary">Maintenance Portal</p>
-                        <p class="text-xs text-on-surface-variant uppercase tracking-wider">${subtitle}</p>
+                        <p class="text-base font-bold text-primary font-serif">Maintenance Portal</p>
+                        <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">${subtitle}</p>
                     </div>
                 </div>
             </div>
@@ -74,23 +74,23 @@ class AppSidebar extends HTMLElement {
             </nav>
             <div class="mt-auto px-4 py-4 w-full flex flex-col">
                 ${isStaff ? `
-                <div class="p-3 bg-surface-container-low rounded-2xl flex items-center gap-3 mb-4 border border-outline-variant">
-                    <div class="w-10 h-10 rounded-full overflow-hidden bg-outline-variant flex-shrink-0">
+                <div class="p-3 bg-surface-container-low rounded-sm flex items-center gap-3 mb-4 border border-gray-200">
+                    <div class="w-10 h-10 rounded-sm overflow-hidden bg-gray-200 flex-shrink-0">
                         <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD7sL2MBNHL1zGJ-lsss2BDno6GAsbpWMyxI8BfCUK96IJKDlrS8kRz2eVV1UPUICqqpDxCVdDGJoldgUwHMV8wA9vIaB_27AgkbH7GE_UVYdAksSGC5nDciMQmZXS10kkZJKSycsRcuArRmBkC-w4FmIzcQYpY9u5LNJWM8e3FIgwlCYOjgn7_83K4N4pmZXstMed87M_GbHo76H_xDPEohekUZt20a8v9Kh3fwVDL4p1lwTfaQ40UA" alt="Alex Rivera">
                     </div>
                     <div class="overflow-hidden">
-                        <p class="text-sm font-bold text-on-surface truncate">Alex Rivera</p>
+                        <p class="text-sm font-bold text-on-surface truncate font-serif">Alex Rivera</p>
                         <p class="text-[10px] text-on-surface-variant uppercase tracking-wider truncate">ID: #ST-99283</p>
                     </div>
                 </div>
                 ` : `
-                <a href="${newRequestHref}" class="w-full bg-primary-container text-on-primary-container py-2 px-4 text-sm rounded-xl font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-95 shadow-md mb-4">
+                <a href="${newRequestHref}" class="w-full bg-primary-container text-on-primary-container py-2 px-4 text-sm rounded-sm font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-95 mb-4">
                     <span class="material-symbols-outlined text-[18px]">add</span>
                     <span class="">New Request</span>
                 </a>
                 `}
-                <div class="border-t border-outline-variant mb-2"></div>
-                <button id="logout-btn" class="flex items-center gap-3 px-3 py-2 w-full text-left text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 rounded-lg">
+                <div class="border-t border-gray-200 mb-2"></div>
+                <button id="logout-btn" class="flex items-center gap-3 px-3 py-2 w-full text-left text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 rounded-sm">
                     <span class="material-symbols-outlined text-[18px]">logout</span>
                     <span class="text-sm font-medium whitespace-nowrap">Logout</span>
                 </button>
