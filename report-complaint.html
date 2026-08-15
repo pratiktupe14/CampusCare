@@ -3,209 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report Complaint - CampusCare</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+    <title>Submit New Complaint - CampusCare</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="shared-tailwind-config.js"></script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+    </style>
 </head>
-<body class="text-on-background min-h-screen bg-white">
-<!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-white border-b border-outline-variant shadow-sm flex justify-between items-center h-16 px-gutter">
-<div class="flex items-center gap-md">
-<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDyW5wPzazAdUFRXV_630mmlGNqDj6pyB3Rku9lJT_0n1D7RvoQ0kYJd-XBGe28fs-2wixy5Gk7NEI6CI6MBa-4F-qTnh55DamSaTpfLb6xZRUeCV3brDr6ehta4Z60ghue0uW1PBvU28SExI6sQFrG9CFWLWDncwA-NT8p3AzTzdwIvaR8MxzWa0upY7DcZN5iifjZ7wnOcZuSkrvA8hxbuRqWgW8aXmThUECRXcILx7rxZnsLZvmw" class="h-8 w-8 object-contain" alt="CampusCare Logo">
-<h1 class="font-display-lg text-title-md font-bold text-primary">CampusCare</h1>
-</div>
-<div class="flex-1 max-w-xl mx-xl hidden md:block">
-<div class="relative flex items-center">
-<span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
-<input type="text" placeholder="Search complaints or info..." class="w-full bg-white border border-gray-200 rounded-xl py-2 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-primary">
-</div>
-</div>
-<div class="flex items-center gap-sm">
-<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95">
-<span class="material-symbols-outlined text-primary">notifications</span>
-</button>
-<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95">
-<span class="material-symbols-outlined text-primary">help</span>
-</button>
-<div class="h-8 w-8 rounded-full bg-primary-fixed overflow-hidden ml-2 cursor-pointer border border-outline-variant">
-<img class="h-full w-full object-cover" data-alt="A professional studio portrait of a university student with a friendly expression, wearing a neutral colored sweater. The background is a clean, softly blurred academic hallway with warm sunlight filtering through windows. High-quality photography style with professional lighting and a modern, clean light-mode aesthetic consistent with Material Design 3." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX16q4n1KvkPaf9esUQ4fNXcwYwcv-_fKANCQ_w7WSm0aO_BeSn34uTlAw3hKK3PNjrkxg4UaIonXPFdggOlJFOHRA_pO4xbYBOVT0pgxqqH8bekSpxlEyR7RvTm71U-K9quscABubVME84su2-tIWhHkJoVyxnwQ23A3To0LcFqqphwmCM-eBbKnNN2ZVOVrMrzR_DhDJmvTGBv9fmmRdlLe1qecKLpe8Z3_q-KAz_NOE23lNyJdVIA">
-</div>
-</div>
-</header>
-
-<app-sidebar active="report-complaint"></app-sidebar>
+<body class="bg-paper text-on-background min-h-screen flex flex-col">
+<div class="flex min-h-screen w-full">
+<!-- Side Navigation Shell -->
+<app-sidebar active="report-complaint" role="student"></app-sidebar>
 
 <!-- Main Content Area -->
-<main class="md:ml-[220px] pt-16 pb-24 md:pb-lg px-margin-mobile md:px-gutter bg-white">
-            <div class="max-w-7xl mx-auto w-full">
-                <div class="mb-lg">
-                    <h2 class="text-2xl font-bold text-on-surface">Report a Maintenance Issue</h2>
-                    <p class="text-sm text-on-surface-variant">Submit details about facilities requiring repair or attention.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
-                    <!-- Form Section -->
-                    <div class="lg:col-span-2 space-y-lg">
-                        <section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 shadow-sm">
-                            <h3 class="text-lg font-semibold text-primary mb-md">Complaint Details</h3>
-                            
-                            <div class="space-y-md">
-                                <div>
-                                    <label class="text-sm font-medium text-on-surface-variant mb-1 block">Complaint Title</label>
-                                    <input type="text" placeholder="e.g., Leaking Ceiling in Library" class="w-full rounded-lg border border-gray-200 bg-white p-3 text-on-surface focus:border-primary transition-all">
-                                </div>
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-                                    <div>
-                                        <label class="text-sm font-medium text-on-surface-variant mb-1 block">Category</label>
-                                        <select class="w-full rounded-lg border border-gray-200 bg-white p-3 text-on-surface focus:border-primary transition-all appearance-none">
-                                            <option>Plumbing</option>
-                                            <option>Electrical</option>
-                                            <option>Carpentry</option>
-                                            <option>HVAC</option>
-                                            <option>Cleaning</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label class="text-sm font-medium text-on-surface-variant mb-1 block">Priority Level</label>
-                                        <div class="flex gap-2">
-                                            <button class="flex-grow py-2 rounded-lg border border-outline-variant text-sm font-semibold hover:bg-surface-container-high transition-all">Low</button>
-                                            <button class="flex-grow py-2 rounded-lg border-2 border-secondary bg-secondary-container text-on-secondary-container text-sm font-bold">Medium</button>
-                                            <button class="flex-grow py-2 rounded-lg border border-outline-variant text-sm font-semibold hover:bg-surface-container-high transition-all">High</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label class="text-sm font-medium text-on-surface-variant mb-1 block">Description</label>
-                                    <textarea rows="4" placeholder="Describe the issue in detail..." class="w-full rounded-lg border border-gray-200 bg-white p-3 text-on-surface focus:border-primary transition-all"></textarea>
-                                </div>
-                            </div>
-                        </section>
-
-                        <section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 shadow-sm">
-                            <div class="flex justify-between items-center mb-md">
-                                <h3 class="text-lg font-semibold text-primary">Location</h3>
-                                <button class="flex items-center gap-1 text-primary font-bold text-sm">
-                                    <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
-                                    Scan QR Code
-                                </button>
-                            </div>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-                                <div>
-                                    <label class="text-sm font-medium text-on-surface-variant mb-1 block">Building</label>
-                                    <input type="text" placeholder="e.g., West Wing" class="w-full rounded-lg border border-gray-200 bg-white p-3 text-on-surface">
-                                </div>
-                                <div>
-                                    <label class="text-sm font-medium text-on-surface-variant mb-1 block">Floor</label>
-                                    <input type="text" placeholder="2nd Floor" class="w-full rounded-lg border border-gray-200 bg-white p-3 text-on-surface">
-                                </div>
-                                <div>
-                                    <label class="text-sm font-medium text-on-surface-variant mb-1 block">Room</label>
-                                    <input type="text" placeholder="Lab 204" class="w-full rounded-lg border border-gray-200 bg-white p-3 text-on-surface">
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-
-                    <!-- Media & Actions Sidebar -->
-                    <div class="space-y-lg">
-                        <section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 shadow-sm">
-                            <h3 class="text-lg font-semibold text-primary mb-md">Media Evidence</h3>
-                            
-                            <div class="space-y-md">
-                                <!-- Drag & Drop -->
-                                <div class="border-2 border-dashed border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center hover:bg-surface-container-low transition-all cursor-pointer group">
-                                    <span class="material-symbols-outlined text-4xl text-outline mb-2 group-hover:scale-110 transition-transform">cloud_upload</span>
-                                    <p class="text-sm font-medium text-on-surface-variant">Drag photos here or <span class="text-primary font-bold">Browse</span></p>
-                                    <p class="text-[10px] text-outline mt-1">Supports JPG, PNG up to 10MB</p>
-                                </div>
-
-                                <!-- Voice Recording -->
-                                <div class="bg-white border border-gray-200 rounded-xl p-md flex items-center justify-between">
-                                    <div class="flex items-center gap-md">
-                                        <button id="voiceBtn" class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-on-primary shadow-md hover:scale-105 active:scale-95 transition-all">
-                                            <span class="material-symbols-outlined">mic</span>
-                                        </button>
-                                        <div>
-                                            <p class="text-sm font-bold">Voice Description</p>
-                                            <p class="text-xs text-on-surface-variant">Click to start recording</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-[2px]">
-                                        <!-- Placeholder Animation for Audio Waves -->
-                                        <div class="w-1 h-3 bg-primary/30 rounded-full"></div>
-                                        <div class="w-1 h-5 bg-primary/30 rounded-full"></div>
-                                        <div class="w-1 h-2 bg-primary/30 rounded-full"></div>
-                                        <div class="w-1 h-6 bg-primary/30 rounded-full"></div>
-                                        <div class="w-1 h-4 bg-primary/30 rounded-full"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Action Cards -->
-                        <div class="flex flex-col gap-md">
-                            <button class="w-full bg-primary text-on-primary px-4 py-3 text-sm rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all">
-                                <span class="material-symbols-outlined text-[18px]">send</span>
-                                Submit Complaint
-                            </button>
-                            <button class="w-full bg-surface border border-outline text-on-surface px-4 py-3 text-sm rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low active:scale-95 transition-all">
-                                <span class="material-symbols-outlined text-[18px]">drafts</span>
-                                Save Draft
-                            </button>
-                        </div>
-
-                        <!-- Status Alert/Help -->
-                        <div class="bg-tertiary-fixed text-on-tertiary-fixed p-md rounded-xl flex gap-md">
-                            <span class="material-symbols-outlined">info</span>
-                            <p class="text-xs leading-tight">Average response time for <b>Medium Priority</b> plumbing issues is 4-6 hours.</p>
-                        </div>
-                    </div>
-                </div>
+<main class="flex-1 md:ml-[220px] bg-paper min-h-screen pb-24 md:pb-8 flex flex-col w-full">
+    <!-- Top Bar -->
+    <header class="h-16 flex justify-between items-center px-6 py-2 sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-none backdrop-blur-md bg-opacity-90">
+        <div class="flex items-center gap-4">
+            <button class="md:hidden p-2">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <div class="hidden md:flex bg-white items-center px-4 py-1.5 rounded-sm border border-gray-200 w-96">
+                <span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]">search</span>
+                <input class="bg-transparent border-none focus:ring-0 text-sm w-full outline-none" placeholder="Search complaints, rooms, or faculty..." type="text">
             </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="w-10 h-10 flex items-center justify-center rounded-sm hover:bg-surface-container-low transition-colors relative">
+                <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+            </button>
+            <button class="w-10 h-10 flex items-center justify-center rounded-sm hover:bg-surface-container-low transition-colors">
+                <span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="p-6 max-w-7xl mx-auto w-full flex-1">
+        <div class="mb-8">
+            <h2 class="font-serif text-3xl font-bold text-on-background tracking-tight">Submit New Complaint</h2>
+            <p class="text-sm text-on-surface-variant font-medium mt-1">Submit details about facilities requiring repair or attention.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Form Section -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- Duplicate Notice -->
+                <div class="bg-white border border-gray-200 text-gray-700 px-4 py-3 rounded-sm flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-[20px]">error</span>
+                    <p class="text-sm font-medium">A similar report was submitted for this room 2 days ago — <a href="#" class="text-primary font-bold hover:underline">view it</a></p>
+                </div>
+
+                <section class="bg-white border border-gray-200 rounded-sm p-6">
+                    <h3 class="font-serif text-xl font-bold text-on-background mb-6">Problem Details</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Complaint Title</label>
+                            <input type="text" placeholder="e.g., Leaking Ceiling in Library" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none">
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Category</label>
+                                <select class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none">
+                                    <option>Plumbing</option>
+                                    <option>Electrical</option>
+                                    <option>Carpentry</option>
+                                    <option>HVAC</option>
+                                    <option>Cleaning</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Priority Level</label>
+                                <div class="flex gap-2">
+                                    <button class="flex-grow py-2 rounded-sm border border-gray-200 text-sm font-semibold hover:bg-gray-50 transition-all text-gray-600">Low</button>
+                                    <button class="flex-grow py-2 rounded-sm border-2 border-primary bg-primary/5 text-primary text-sm font-bold">Medium</button>
+                                    <button class="flex-grow py-2 rounded-sm border border-gray-200 text-sm font-semibold hover:bg-gray-50 transition-all text-gray-600">High</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Description</label>
+                            <textarea rows="4" placeholder="Describe the issue in detail..." class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none"></textarea>
+                            <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-right mt-1">0 / 500 characters</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white border border-gray-200 rounded-sm p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-serif text-xl font-bold text-on-background">Location Panel</h3>
+                        <button class="flex items-center gap-1 text-primary font-bold text-xs uppercase tracking-widest hover:underline">
+                            <span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
+                            Scan QR Code
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Building</label>
+                            <input type="text" placeholder="e.g., West Wing" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Floor</label>
+                            <input type="text" placeholder="2nd Floor" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Room</label>
+                            <input type="text" placeholder="Lab 204" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Media & Actions Sidebar -->
+            <div class="space-y-8">
+                <section class="bg-white border border-gray-200 rounded-sm p-6">
+                    <h3 class="font-serif text-xl font-bold text-on-background mb-6">Evidence Section</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Drag & Drop -->
+                        <div class="border-2 border-dashed border-gray-200 rounded-sm p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-all cursor-pointer group">
+                            <span class="material-symbols-outlined text-4xl text-gray-300 mb-2 group-hover:scale-110 transition-transform">cloud_upload</span>
+                            <p class="text-sm font-medium text-gray-600">Drag photos here or <span class="text-primary font-bold">Browse</span></p>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-2">JPG, PNG, or HEIC · up to 10MB</p>
+                        </div>
+                        
+                        <!-- Thumbnail Preview placeholder -->
+                        <div class="flex gap-2 overflow-x-auto py-2">
+                             <div class="w-16 h-16 rounded-sm border border-gray-200 overflow-hidden relative group cursor-pointer">
+                                 <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=200&h=200" class="w-full h-full object-cover">
+                                 <button class="absolute top-1 right-1 bg-white/80 rounded-full w-4 h-4 flex items-center justify-center text-gray-600 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[12px]">close</span></button>
+                             </div>
+                        </div>
+
+                        <!-- Voice Recording -->
+                        <div class="bg-white border border-gray-200 rounded-sm p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <button id="voiceBtn" class="w-10 h-10 bg-primary rounded-sm flex items-center justify-center text-white hover:bg-red-700 transition-colors">
+                                    <span class="material-symbols-outlined">mic</span>
+                                </button>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-700 uppercase tracking-widest">Voice Memo</p>
+                                    <p class="text-xs text-gray-500 font-medium">Click to start recording</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-[2px]">
+                                <!-- Placeholder Animation for Audio Waves -->
+                                <div class="w-1 h-3 bg-gray-200 rounded-sm"></div>
+                                <div class="w-1 h-5 bg-gray-200 rounded-sm"></div>
+                                <div class="w-1 h-2 bg-gray-200 rounded-sm"></div>
+                                <div class="w-1 h-6 bg-gray-200 rounded-sm"></div>
+                                <div class="w-1 h-4 bg-gray-200 rounded-sm"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Status Alert/Help -->
+                <div class="bg-white border border-gray-200 text-gray-700 p-4 rounded-sm flex gap-3">
+                    <span class="material-symbols-outlined text-primary">info</span>
+                    <p class="text-xs leading-tight font-medium">Average response time for <b class="font-bold text-gray-900">Medium Priority</b> plumbing issues is 4-6 hours.</p>
+                </div>
+                
+                <!-- Action Cards -->
+                <div class="flex flex-col gap-3 pt-4 border-t border-gray-200">
+                    <button class="w-full bg-primary text-white px-4 py-3 text-xs uppercase tracking-widest rounded-sm font-bold flex items-center justify-center gap-2 hover:bg-red-700 transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">send</span>
+                        Submit Complaint
+                    </button>
+                    <button class="w-full bg-transparent border border-primary text-primary px-4 py-3 text-xs uppercase tracking-widest rounded-sm font-bold flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">drafts</span>
+                        Save as Draft
+                    </button>
+                    <button class="w-full bg-transparent text-gray-500 hover:text-red-600 px-4 py-2 text-xs uppercase tracking-widest rounded-sm font-bold flex items-center justify-center transition-colors">
+                        Cancel & Discard
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <!-- Unified Footer -->
+    <footer class="mt-auto w-full border-t border-gray-200 bg-[#FAF9F6] py-8">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <p class="font-serif text-lg font-bold text-gray-400">CampusCare</p>
+                <p class="text-xs text-gray-500 mt-1">&copy; 2026 CampusCare &middot; University Name</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-xs font-bold uppercase tracking-widest text-gray-500">
+                <a href="#" class="hover:text-primary transition-colors">Help Center</a>
+                <a href="#" class="hover:text-primary transition-colors">Report an Issue</a>
+                <a href="#" class="hover:text-primary transition-colors">Contact Facilities</a>
+                <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+            </div>
+            <div class="text-xs font-bold uppercase tracking-widest text-primary text-center md:text-right mt-4 md:mt-0">
+                Emergency? Contact Security: <br class="md:hidden">555-0199
+            </div>
+        </div>
+    </footer>
 </main>
 
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="fixed bottom-0 w-full z-50 md:hidden border-t border-outline-variant shadow-lg flex justify-around items-center h-20 px-4 pb-safe bg-white">
-<a href="index.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
-<span class="material-symbols-outlined">home</span>
-<span class="font-label-md">Home</span>
-</a>
-<a href="report-complaint.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-1 transition-transform active:scale-90">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_box</span>
-<span class="font-label-md">Request</span>
-</a>
-<a href="my-complaints.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
-<span class="material-symbols-outlined">list_alt</span>
-<span class="font-label-md">My Complaints</span>
-</a>
-<a href="complaint-history.html" class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90">
-<span class="material-symbols-outlined">history</span>
-<span class="font-label-md">History</span>
-</a>
+<!-- Bottom Navigation Mobile Only -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-gray-200 shadow-lg">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="index.html">
+        <span class="material-symbols-outlined">home</span>
+        <span class="text-[10px] font-medium">Home</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-primary px-4 py-1" href="report-complaint.html">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+        <span class="text-[10px] font-bold">Report</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="#">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="text-[10px] font-medium">Alerts</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="#">
+        <span class="material-symbols-outlined">person</span>
+        <span class="text-[10px] font-medium">Profile</span>
+    </a>
 </nav>
 
-    <script>
-        // Simple micro-interaction for Voice button
-        const voiceBtn = document.getElementById('voiceBtn');
-        let isRecording = false;
-        
-        voiceBtn.addEventListener('click', () => {
-            isRecording = !isRecording;
-            if (isRecording) {
-                voiceBtn.classList.add('animate-pulse', 'bg-red-500');
-                voiceBtn.innerHTML = '<span class="material-symbols-outlined">stop</span>';
-            } else {
-                voiceBtn.classList.remove('animate-pulse', 'bg-red-500');
-                voiceBtn.innerHTML = '<span class="material-symbols-outlined">mic</span>';
-            }
-        });
-    </script>
-    <script src="src/components/sidebar.js" type="module"></script>
-    <script src="src/router.js" type="module"></script>
+</div>
+<script>
+    // Simple micro-interaction for Voice button
+    const voiceBtn = document.getElementById('voiceBtn');
+    let isRecording = false;
+    
+    voiceBtn.addEventListener('click', () => {
+        isRecording = !isRecording;
+        if (isRecording) {
+            voiceBtn.classList.add('animate-pulse', 'bg-red-500');
+            voiceBtn.innerHTML = '<span class="material-symbols-outlined">stop</span>';
+        } else {
+            voiceBtn.classList.remove('animate-pulse', 'bg-red-500');
+            voiceBtn.innerHTML = '<span class="material-symbols-outlined">mic</span>';
+        }
+    });
+</script>
+<script src="src/components/sidebar.js" type="module"></script>
+<script src="src/router.js" type="module"></script>
 </body>
 </html>
