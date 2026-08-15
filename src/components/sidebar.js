@@ -51,7 +51,7 @@ class AppSidebar extends HTMLElement {
                 
                 // Added whitespace-nowrap to prevent label wrapping causing layout shifts
                 navHTML += `
-                <a class="flex items-center gap-3 px-3 py-2 rounded-r-sm transition-all duration-200 ${activeClasses}" href="${item.href}">
+                <a class="flex items-center gap-4 px-6 py-3 rounded-r-sm transition-all duration-200 ${activeClasses}" href="${item.href}">
                     <span class="material-symbols-outlined text-[18px]" ${fillStyle}>${item.icon}</span>
                     <span class="text-sm font-medium whitespace-nowrap">${item.text}</span>
                 </a>`;
@@ -59,7 +59,7 @@ class AppSidebar extends HTMLElement {
         });
 
         this.innerHTML = `
-        <aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-[220px] hidden md:flex flex-col border-r border-gray-200 py-md pr-md flex-shrink-0 z-40 bg-paper">
+        <aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-[260px] hidden md:flex flex-col border-r border-gray-200 py-md pr-md flex-shrink-0 z-40 bg-paper">
             <div class="px-gutter mb-lg">
                 <div class="flex items-center gap-sm p-sm bg-white border border-gray-200 rounded-sm">
                     <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">school</span>
