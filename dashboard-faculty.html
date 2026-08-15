@@ -6,214 +6,192 @@
 <title>Faculty Dashboard - CampusCare</title>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts: Inter -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
 <script src="shared-tailwind-config.js"></script>
 <style>
-        body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .card-shadow {
-            box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05);
-        }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
-    </style>
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+</style>
 </head>
-<body class="text-on-surface">
+<body class="bg-paper text-on-background min-h-screen flex flex-col">
 <div class="flex min-h-screen">
 <!-- Side Navigation Shell -->
 <app-sidebar active="dashboard" role="faculty"></app-sidebar>
 <!-- Main Content Area -->
-<main class="flex-1 md:ml-[220px] bg-white min-h-screen pb-24 md:pb-8">
+<main class="flex-1 md:ml-[220px] bg-paper min-h-screen pb-24 md:pb-8 flex flex-col">
 <!-- Top Bar -->
-<header class="h-16 flex justify-between items-center px-lg py-sm sticky top-0 z-40 w-full bg-white border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-90">
-<div class="flex items-center gap-md">
-<button class="md:hidden p-base">
+<header class="h-16 flex justify-between items-center px-6 py-2 sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-none backdrop-blur-md bg-opacity-90">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2">
 <span class="material-symbols-outlined">menu</span>
 </button>
-<div class="hidden md:flex bg-white items-center px-md py-2 rounded-full border border-gray-200 w-96">
-<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-body-md w-full outline-none" placeholder="Search complaints, rooms, or faculty..." type="text">
+<div class="hidden md:flex bg-white items-center px-4 py-1.5 rounded-sm border border-gray-200 w-96">
+<span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full outline-none" placeholder="Search complaints, rooms, or faculty..." type="text">
 </div>
 </div>
-<div class="flex items-center gap-md">
-<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors relative">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-sm hover:bg-surface-container-low transition-colors relative">
 <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
 <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
 </button>
-<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+<button class="w-10 h-10 flex items-center justify-center rounded-sm hover:bg-surface-container-low transition-colors">
 <span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
 </button>
 </div>
 </header>
 <!-- Dashboard Body -->
-<div class="p-lg max-w-7xl mx-auto space-y-lg">
+<div class="p-6 max-w-7xl mx-auto space-y-8 w-full flex-1">
 <!-- Welcome Header -->
-<section class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-4">
 <div>
-<p class="text-label-md font-bold text-primary uppercase tracking-wider mb-xs">Welcome, Professor 👋</p>
-<h2 class="font-headline-lg text-headline-lg text-on-background">Dr. Pratik Tupe</h2>
-<p class="text-body-md text-on-surface-variant font-medium">Department of Computer Science</p>
+<p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Welcome, Professor 👋</p>
+<h2 class="font-serif text-3xl font-bold text-on-background tracking-tight">Dr. Pratik Tupe</h2>
+<p class="text-sm text-on-surface-variant font-medium mt-1">Department of Computer Science</p>
 </div>
 <div class="text-left md:text-right">
-<p class="text-title-md font-title-md text-on-background" id="current-time">Loading time...</p>
-<p class="text-label-md text-on-surface-variant">System Status: <span class="text-green-600 font-bold">Online</span></p>
+<p class="text-lg font-bold text-on-background" id="current-time">Loading time...</p>
+<p class="text-sm text-on-surface-variant">System Status: <span class="text-green-600 font-bold">Online</span></p>
 </div>
 </section>
+
 <!-- Statistics Grid -->
-<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-md">
-<!-- Stat Card 1 -->
-<div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow group hover:border-primary transition-all">
-<div class="flex justify-between items-start mb-base">
-<span class="material-symbols-outlined p-2 bg-surface-variant text-primary rounded-xl">inbox</span>
-<span class="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">+12%</span>
-</div>
-<p class="text-label-md text-on-surface-variant font-medium">Total Complaints</p>
-<p class="text-title-md font-bold mt-xs">128</p>
-</div>
-<!-- Stat Card 2 -->
-<div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow hover:border-primary transition-all">
-<div class="flex justify-between items-start mb-base">
-<span class="material-symbols-outlined p-2 bg-red-50 text-red-600 rounded-xl">emergency_home</span>
-</div>
-<p class="text-label-md text-on-surface-variant font-medium">Open</p>
-<p class="text-title-md font-bold mt-xs">12</p>
-</div>
-<!-- Stat Card 3 -->
-<div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow hover:border-primary transition-all">
-<div class="flex justify-between items-start mb-base">
-<span class="material-symbols-outlined p-2 bg-blue-50 text-blue-600 rounded-xl">engineering</span>
-</div>
-<p class="text-label-md text-on-surface-variant font-medium">In Progress</p>
-<p class="text-title-md font-bold mt-xs">24</p>
-</div>
-<!-- Stat Card 4 -->
-<div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow hover:border-primary transition-all">
-<div class="flex justify-between items-start mb-base">
-<span class="material-symbols-outlined p-2 bg-green-50 text-green-600 rounded-xl">check_circle</span>
-</div>
-<p class="text-label-md text-on-surface-variant font-medium">Completed</p>
-<p class="text-title-md font-bold mt-xs">85</p>
-</div>
-<!-- Stat Card 5 -->
-<div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow hover:border-primary transition-all">
-<div class="flex justify-between items-start mb-base">
-<span class="material-symbols-outlined p-2 bg-amber-50 text-amber-600 rounded-xl">pending_actions</span>
-</div>
-<p class="text-label-md text-on-surface-variant font-medium">Pending Verif.</p>
-<p class="text-title-md font-bold mt-xs">7</p>
-</div>
-<!-- Stat Card 6 -->
-<div class="bg-white border border-outline-variant p-md rounded-2xl card-shadow hover:border-primary transition-all">
-<div class="flex justify-between items-start mb-base">
-<span class="material-symbols-outlined p-2 bg-purple-50 text-purple-600 rounded-xl">avg_time</span>
-</div>
-<p class="text-label-md text-on-surface-variant font-medium">Avg. Resolution</p>
-<p class="text-title-md font-bold mt-xs">2.4 Days</p>
-</div>
+<section class="flex flex-col lg:flex-row gap-4">
+    <!-- Dominant Card -->
+    <div class="bg-white border border-gray-200 p-6 rounded-sm flex-shrink-0 w-full lg:w-64 flex flex-col justify-between relative">
+        <span class="absolute top-4 right-4 bg-gray-100 text-gray-600 text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-sm">Dept-Wide</span>
+        <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Action Needed (Open)</h3>
+        <div>
+            <h2 class="text-5xl font-bold text-primary tracking-tight font-serif">12</h2>
+            <p class="text-sm font-medium text-red-600 mt-2 flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">priority_high</span> High Priority
+            </p>
+        </div>
+    </div>
+    
+    <!-- Secondary Metrics Row -->
+    <div class="flex-1 flex flex-col gap-4">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div class="bg-white border border-gray-200 p-4 rounded-sm flex flex-col justify-between">
+                <h3 class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-2">Total</h3>
+                <h2 class="text-2xl font-bold text-on-surface tracking-tight font-serif">128</h2>
+            </div>
+            <div class="bg-white border border-gray-200 p-4 rounded-sm flex flex-col justify-between">
+                <h3 class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-2">In Progress</h3>
+                <h2 class="text-2xl font-bold text-blue-600 tracking-tight font-serif">24</h2>
+            </div>
+            <div class="bg-white border border-gray-200 p-4 rounded-sm flex flex-col justify-between">
+                <h3 class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-2">Pending Admin</h3>
+                <h2 class="text-2xl font-bold text-amber-600 tracking-tight font-serif">7</h2>
+            </div>
+            <div class="bg-white border border-gray-200 p-4 rounded-sm flex flex-col justify-between">
+                <h3 class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-2">Completed</h3>
+                <h2 class="text-2xl font-bold text-emerald-600 tracking-tight font-serif">85</h2>
+            </div>
+            <div class="bg-white border border-gray-200 p-4 rounded-sm flex flex-col justify-between">
+                <h3 class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-2">Avg Res.</h3>
+                <h2 class="text-2xl font-bold text-purple-600 tracking-tight font-serif">2.4<span class="text-sm">d</span></h2>
+            </div>
+        </div>
+        <div class="text-right">
+            <p class="text-xs text-gray-500 font-medium">Complaints down <span class="font-bold text-green-600">8%</span> from last month</p>
+        </div>
+    </div>
 </section>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 <!-- Main Left Column -->
-<div class="lg:col-span-8 space-y-lg">
-<!-- Quick Actions Bento -->
-<section>
-<h3 class="text-title-md font-title-md mb-md flex items-center gap-base">
-<span class="material-symbols-outlined">bolt</span> Quick Actions
-                            </h3>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
-<a href="report-complaint.html" class="group flex flex-col items-center justify-center gap-sm p-lg bg-primary rounded-2xl text-white transition-all hover:scale-[1.02] active:scale-95 text-center">
-<span class="material-symbols-outlined text-[32px]">add_circle</span>
-<span class="text-label-md font-bold">Report Complaint</span>
-</a>
-<a href="report-complaint.html" class="group flex flex-col items-center justify-center gap-sm p-lg bg-surface-container-low border border-outline-variant rounded-2xl text-on-surface transition-all hover:border-primary hover:bg-surface text-center">
-<span class="material-symbols-outlined text-[32px] text-primary">mic</span>
-<span class="text-label-md font-bold">Voice Complaint</span>
-</a>
-<a href="report-complaint.html" class="group flex flex-col items-center justify-center gap-sm p-lg bg-surface-container-low border border-outline-variant rounded-2xl text-on-surface transition-all hover:border-primary hover:bg-surface text-center">
-<span class="material-symbols-outlined text-[32px] text-primary">add_a_photo</span>
-<span class="text-label-md font-bold">Upload Photo</span>
-</a>
-<a href="report-complaint.html" class="group flex flex-col items-center justify-center gap-sm p-lg bg-surface-container-low border border-outline-variant rounded-2xl text-on-surface transition-all hover:border-primary hover:bg-surface text-center">
-<span class="material-symbols-outlined text-[32px] text-primary">qr_code_scanner</span>
-<span class="text-label-md font-bold">Scan QR Code</span>
-</a>
-</div>
+<div class="lg:col-span-8 space-y-8">
+
+<!-- Quick Actions Toolbar -->
+<section class="bg-white border border-gray-200 rounded-sm p-2 flex flex-wrap items-center gap-2">
+    <div class="flex items-center gap-2 px-2 border-r border-gray-200 pr-4 mr-2">
+        <span class="material-symbols-outlined text-gray-400 text-[20px]">bolt</span>
+        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Quick Actions</span>
+    </div>
+    <a href="report-complaint.html" class="flex items-center gap-2 px-3 py-1.5 hover:bg-gray-50 rounded-sm transition-colors text-xs font-semibold text-gray-700 hover:text-primary">
+        <span class="material-symbols-outlined text-[16px]">add_circle</span> Report Complaint
+    </a>
+    <a href="#" class="flex items-center gap-2 px-3 py-1.5 hover:bg-gray-50 rounded-sm transition-colors text-xs font-semibold text-gray-700 hover:text-primary">
+        <span class="material-symbols-outlined text-[16px]">campaign</span> Escalate to Facilities
+    </a>
+    <a href="admin-reports.html" class="flex items-center gap-2 px-3 py-1.5 hover:bg-gray-50 rounded-sm transition-colors text-xs font-semibold text-primary ml-auto">
+        <span class="material-symbols-outlined text-[16px]">bar_chart</span> View Department Report
+    </a>
 </section>
-<!-- Recent Submissions Table -->
-<section class="bg-white border border-outline-variant rounded-2xl card-shadow overflow-hidden">
-<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
-<h3 class="text-title-md font-title-md">Recent Submissions</h3>
-<a href="my-complaints.html" class="text-primary text-label-md font-bold hover:underline">View All</a>
+
+<!-- Department Activity Table -->
+<section class="bg-white border border-gray-200 rounded-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+<h3 class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Department Activity</h3>
+<a href="complaint-history.html" class="text-primary text-[10px] font-bold hover:underline uppercase tracking-widest">View All</a>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full text-left border-collapse">
 <thead>
-<tr class="bg-surface-container-low text-on-surface-variant">
-<th class="px-lg py-3 text-label-md font-bold uppercase tracking-wider">Complaint ID</th>
-<th class="px-lg py-3 text-label-md font-bold uppercase tracking-wider">Category</th>
-<th class="px-lg py-3 text-label-md font-bold uppercase tracking-wider">Status</th>
-<th class="px-lg py-3 text-label-md font-bold uppercase tracking-wider">Date</th>
-<th class="px-lg py-3 text-label-md font-bold uppercase tracking-wider">Action</th>
+<tr class="bg-gray-50 border-b border-gray-200 text-on-surface-variant">
+<th class="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Complaint ID</th>
+<th class="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Category</th>
+<th class="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Submitted By</th>
+<th class="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Status</th>
+<th class="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Date</th>
+<th class="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Action</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-outline-variant">
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="px-lg py-4 font-mono text-body-md">#CMP-7281</td>
-<td class="px-lg py-4">
-<div class="flex items-center gap-sm text-body-md font-medium">
-<span class="material-symbols-outlined text-on-surface-variant text-body-lg">ac_unit</span>
-                                                    HVAC Malfunction
-                                                </div>
+<tbody class="divide-y divide-gray-100">
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-gray-600">#CMP-7281</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-sm font-medium text-gray-800">
+<span class="material-symbols-outlined text-gray-400 text-[18px]">ac_unit</span>
+HVAC Malfunction
+</div>
 </td>
-<td class="px-lg py-4">
-<span class="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-[11px] font-bold uppercase tracking-tighter">In Progress</span>
+<td class="px-6 py-4 text-xs text-gray-600">Prof. John Doe</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-widest">In Progress</span>
 </td>
-<td class="px-lg py-4 text-body-md text-on-surface-variant">Jul 19, 2026</td>
-<td class="px-lg py-4">
-<a href="my-complaints.html" class="p-1 hover:bg-surface-container-highest rounded-full transition-colors inline-block">
-<span class="material-symbols-outlined text-primary">visibility</span>
-</a>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="px-lg py-4 font-mono text-body-md">#CMP-7275</td>
-<td class="px-lg py-4">
-<div class="flex items-center gap-sm text-body-md font-medium">
-<span class="material-symbols-outlined text-on-surface-variant text-body-lg">lightbulb</span>
-                                                    Lighting Replacement
-                                                </div>
-</td>
-<td class="px-lg py-4">
-<span class="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-800 text-[11px] font-bold uppercase tracking-tighter">Completed</span>
-</td>
-<td class="px-lg py-4 text-body-md text-on-surface-variant">Jul 18, 2026</td>
-<td class="px-lg py-4">
-<a href="my-complaints.html" class="p-1 hover:bg-surface-container-highest rounded-full transition-colors inline-block">
-<span class="material-symbols-outlined text-primary">visibility</span>
-</a>
+<td class="px-6 py-4 text-xs font-medium text-gray-500">Jul 19, 2026</td>
+<td class="px-6 py-4">
+<a href="complaint-history.html" class="text-primary font-medium text-xs hover:underline">View</a>
 </td>
 </tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="px-lg py-4 font-mono text-body-md">#CMP-7269</td>
-<td class="px-lg py-4">
-<div class="flex items-center gap-sm text-body-md font-medium">
-<span class="material-symbols-outlined text-on-surface-variant text-body-lg">door_front</span>
-                                                    Broken Smart Lock
-                                                </div>
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-gray-600">#CMP-7275</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-sm font-medium text-gray-800">
+<span class="material-symbols-outlined text-gray-400 text-[18px]">videocam</span>
+Projector Replacement
+</div>
 </td>
-<td class="px-lg py-4">
-<span class="inline-flex items-center px-3 py-1 rounded-full bg-red-100 text-red-800 text-[11px] font-bold uppercase tracking-tighter">Pending</span>
+<td class="px-6 py-4 text-xs text-gray-600">Sarah Jenkins (Student)</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-red-100 text-red-800 text-[10px] font-bold uppercase tracking-widest">Pending Admin Review</span>
 </td>
-<td class="px-lg py-4 text-body-md text-on-surface-variant">Jul 18, 2026</td>
-<td class="px-lg py-4">
-<a href="my-complaints.html" class="p-1 hover:bg-surface-container-highest rounded-full transition-colors inline-block">
-<span class="material-symbols-outlined text-primary">visibility</span>
-</a>
+<td class="px-6 py-4 text-xs font-medium text-gray-500">Jul 18, 2026</td>
+<td class="px-6 py-4">
+<a href="complaint-history.html" class="text-primary font-medium text-xs hover:underline">View</a>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-gray-600">#CMP-7269</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-sm font-medium text-gray-800">
+<span class="material-symbols-outlined text-gray-400 text-[18px]">door_front</span>
+Broken Smart Lock
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-gray-600">Dr. Pratik Tupe</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-green-100 text-green-800 text-[10px] font-bold uppercase tracking-widest">Completed</span>
+</td>
+<td class="px-6 py-4 text-xs font-medium text-gray-500">Jul 18, 2026</td>
+<td class="px-6 py-4">
+<a href="complaint-history.html" class="text-primary font-medium text-xs hover:underline">View</a>
 </td>
 </tr>
 </tbody>
@@ -221,104 +199,112 @@
 </div>
 </section>
 </div>
+
 <!-- Side Panels Column -->
-<div class="lg:col-span-4 space-y-lg">
+<div class="lg:col-span-4 space-y-8">
 <!-- Department Health Card -->
-<section class="bg-white border border-outline-variant rounded-2xl card-shadow p-lg">
-<h3 class="text-title-md font-title-md mb-md">Department Health</h3>
-<div class="space-y-md">
-<div class="p-md bg-green-50 border border-green-100 rounded-xl flex items-center gap-md">
-<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-green-600 font-bold border border-green-200">
-                                        94%
-                                    </div>
-<div>
-<p class="text-label-md font-bold text-green-800">Operational Excellence</p>
-<p class="text-[11px] text-green-700">All systems in CS lab functioning</p>
-</div>
-</div>
-<div class="space-y-sm">
-<div class="flex justify-between text-label-md">
-<span class="text-on-surface-variant">Asset Availability</span>
-<span class="font-bold">88%</span>
-</div>
-<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
-<div class="bg-primary h-full rounded-full" style="width: 88%"></div>
-</div>
-</div>
-<div class="space-y-sm">
-<div class="flex justify-between text-label-md">
-<span class="text-on-surface-variant">Resolution Speed</span>
-<span class="font-bold">Fast</span>
-</div>
-<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
-<div class="bg-primary h-full rounded-full" style="width: 72%"></div>
-</div>
-</div>
+<section class="bg-white border border-gray-200 rounded-sm p-6">
+<h3 class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-4">Department Health</h3>
+<div class="space-y-6">
+    <div class="p-4 border border-green-200 bg-green-50 rounded-sm">
+        <p class="text-sm font-bold text-green-800">CS Lab systems: All operational</p>
+        <p class="text-[10px] text-green-700 mt-1 uppercase tracking-widest">No active critical outages</p>
+    </div>
+    
+    <div class="pt-2 border-t border-gray-100">
+        <p class="text-xs text-gray-600">Department open complaints are <span class="font-bold text-gray-900">15% below</span> the campus average.</p>
+    </div>
+
+    <div class="space-y-2">
+        <div class="flex justify-between items-center text-xs">
+            <span class="font-bold text-gray-600 uppercase tracking-widest text-[10px]">Asset Availability</span>
+            <span class="font-bold text-gray-900">88%</span>
+        </div>
+        <div class="w-full bg-gray-100 h-1 rounded-sm overflow-hidden border border-gray-200">
+            <div class="bg-gray-400 h-full" style="width: 88%"></div>
+        </div>
+    </div>
+    
+    <div class="space-y-2">
+        <div class="flex justify-between items-center text-xs">
+            <span class="font-bold text-gray-600 uppercase tracking-widest text-[10px]">Resolution Speed</span>
+            <span class="font-bold text-gray-900">2.4 Days</span>
+        </div>
+        <p class="text-[10px] text-green-600 font-bold uppercase tracking-widest">↓ 12% vs last month</p>
+    </div>
 </div>
 </section>
+
 <!-- Campus Incident Map -->
-<section class="bg-white border border-outline-variant rounded-2xl card-shadow overflow-hidden">
-<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
-<h3 class="text-title-md font-title-md">Incident Hotspots</h3>
-<span class="material-symbols-outlined text-primary">map</span>
+<section class="bg-white border border-gray-200 rounded-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+<h3 class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Incident Hotspots</h3>
+<span class="material-symbols-outlined text-gray-400">map</span>
+</div>
+<div class="p-6 text-center">
+<button class="w-full py-2 bg-transparent hover:bg-primary/5 text-primary border border-primary font-bold text-xs uppercase tracking-widest rounded-sm transition-colors">
+Open Interactive Map
+</button>
+</div>
+</section>
+</div>
+</div>
 </div>
 
-<div class="p-md text-center">
-<button class="w-full py-2 bg-surface-container-high hover:bg-surface-container-highest text-primary font-bold text-label-md rounded-xl transition-colors">
-                                    Open Interactive Map
-                                </button>
-</div>
-</section>
-</div>
-</div>
-</div>
+<!-- Unified Footer -->
+<footer class="mt-auto w-full border-t border-gray-200 bg-[#FAF9F6] py-8">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+            <p class="font-serif text-lg font-bold text-gray-400">CampusCare</p>
+            <p class="text-xs text-gray-500 mt-1">&copy; 2026 CampusCare &middot; University Name</p>
+        </div>
+        <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-xs font-bold uppercase tracking-widest text-gray-500">
+            <a href="#" class="hover:text-primary transition-colors">Help Center</a>
+            <a href="#" class="hover:text-primary transition-colors">Report an Issue</a>
+            <a href="#" class="hover:text-primary transition-colors">Contact Facilities</a>
+            <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+        </div>
+        <div class="text-xs font-bold uppercase tracking-widest text-primary text-center md:text-right mt-4 md:mt-0">
+            Emergency? Contact Security: <br class="md:hidden">555-0199
+        </div>
+    </div>
+</footer>
+
 </main>
+
 <!-- Bottom Navigation Mobile Only -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-outline-variant shadow-lg">
-<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1" href="dashboard-faculty.html">
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-gray-200 shadow-lg">
+<a class="flex flex-col items-center justify-center text-primary px-4 py-1" href="dashboard-faculty.html">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
 <span class="text-[10px] font-bold">Home</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="report-complaint.html">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="report-complaint.html">
 <span class="material-symbols-outlined">add_circle</span>
 <span class="text-[10px] font-medium">Report</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="#">
 <span class="material-symbols-outlined">notifications</span>
 <span class="text-[10px] font-medium">Alerts</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="#">
 <span class="material-symbols-outlined">person</span>
 <span class="text-[10px] font-medium">Profile</span>
 </a>
 </nav>
 </div>
 <script>
-        // Update Time Logic
-        function updateTime() {
-            const now = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-            const timeEl = document.getElementById('current-time');
-            if (timeEl) {
-                timeEl.textContent = now.toLocaleDateString('en-US', options);
-            }
+    // Update Time Logic
+    function updateTime() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        const timeEl = document.getElementById('current-time');
+        if (timeEl) {
+            timeEl.textContent = now.toLocaleDateString('en-US', options);
         }
-        setInterval(updateTime, 1000);
-        updateTime();
-
-        // Micro-interactions
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('mousedown', () => {
-                button.classList.add('scale-95');
-            });
-            button.addEventListener('mouseup', () => {
-                button.classList.remove('scale-95');
-            });
-            button.addEventListener('mouseleave', () => {
-                button.classList.remove('scale-95');
-            });
-        });
-    </script>
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+</script>
 
 <script src="src/components/sidebar.js" type="module"></script>
 <script src="src/router.js" type="module"></script>
