@@ -51,8 +51,9 @@
 </head>
 
 <body class="text-on-surface font-body-md overflow-x-hidden bg-surface">
-    <!-- Sidebar Navigation -->
-    <aside
+    <div class="flex min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside
         class="w-[220px] h-screen sticky left-0 top-0 bg-surface flex flex-col py-lg border-r border-outline-variant z-40">
         <div class="px-lg mb-xl">
             <h1 class="font-headline-lg text-headline-lg font-bold text-primary">CampusCare</h1>
@@ -134,7 +135,7 @@
                 <div
                     class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-low p-1 rounded-full transition-all">
                     <img class="w-8 h-8 rounded-full border border-outline-variant"
-                        data-alt="A professional headshot of a middle-aged academic administrator with a warm smile, wearing a dark navy blazer and white shirt. The background is a blurred university campus courtyard with red brick buildings and lush greenery, maintaining a high-key, professional light-mode aesthetic with crisp focus and soft daylighting."
+                        alt="A professional headshot of Admin. Miller"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDccDlGFRfIF8rMdrMeNZN3dlDCrM-taCZn9Jke32tmCH9C0xjFQUouKtXEeCSyIyy3WL_7Wvp2qfgDf1am_qC9jpVxFspKgtDAZmC8gsb7H9DlQ5EoijCXAWXLXsvPnJSgzc8tyDSoVUDAVzfI3PjNZZTreLk-unQKl3wfXiLgJl8nrsYBA5l8vOe3pfZF7I08mC4NUjJmdX8yeROrr8gzVGJHuOARAzwp3NHMGB1KJnvhM5O4DL_Kgw">
                     <span class="hidden md:block font-label-md text-on-surface font-semibold">Admin. Miller</span>
                 </div>
@@ -559,18 +560,25 @@
         </footer>
     </main>
     </div>
-    <!-- Micro-interaction Scripts -->
-    <script>
+    <!-- Micro-interaction & Security Scripts -->
+    <script type="module">
+        import { installGlobalErrorHandler } from './src/security/error-handler.js';
+        installGlobalErrorHandler();
+
         document.addEventListener('DOMContentLoaded', () => {
             // Hover effect for table rows
             const rows = document.querySelectorAll('tbody tr');
             rows.forEach(row => {
-                row.addEventListener('mouseenter', () => {
-                    row.querySelector('.material-symbols-outlined').style.transform = 'scale(1.2)';
-                });
-                row.addEventListener('mouseleave', () => {
-                    row.querySelector('.material-symbols-outlined').style.transform = 'scale(1)';
-                });
+                const icon = row.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    row.addEventListener('mouseenter', () => {
+                        icon.style.transform = 'scale(1.2)';
+                        icon.style.transition = 'transform 0.2s ease';
+                    });
+                    row.addEventListener('mouseleave', () => {
+                        icon.style.transform = 'scale(1)';
+                    });
+                }
             });
 
             // Smooth entrance animation for stats cards
@@ -587,8 +595,9 @@
         });
     </script>
 
-
-
+    <script src="src/components/lightbox.js" type="module"></script>
+    <script src="src/components/sidebar.js" type="module"></script>
+    <script src="src/router.js" type="module"></script>
 </body>
 
 </html>
