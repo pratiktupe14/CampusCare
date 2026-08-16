@@ -1,3 +1,5 @@
+import { showUserError } from './security/error-handler.js';
+
 document.addEventListener('click', async (e) => {
     const link = e.target.closest('a');
     if (!link) return;
@@ -10,7 +12,11 @@ document.addEventListener('click', async (e) => {
 
     try {
         const response = await fetch(href);
-        if (!response.ok) throw new Error('Failed to fetch page');
+        if (!response.ok) {
+            showUserError('Unable to load the requested page. Redirecting...');
+            setTimeout(() => { window.location.href = href; }, 1000);
+            return;
+        }
 
         const html = await response.text();
         const parser = new DOMParser();
@@ -89,8 +95,8 @@ document.addEventListener('click', async (e) => {
         // Scroll to top
         window.scrollTo(0, 0);
 
-    } catch (err) {
-        // Fallback to normal navigation if fetch fails
+    } catch (_err) {
+        // Fallback to normal navigation — never expose error details to the user
         window.location.href = href;
     }
 });

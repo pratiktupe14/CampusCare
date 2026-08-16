@@ -100,11 +100,24 @@
 </footer>
 </div>
 </div>
-<script>
+<script type="module">
+        import { checkAuthRateLimit, recordAuthAttempt, formatRetryTime } from './src/security/rate-limiter.js';
+        import { validateForm, showFieldError, clearAllErrors, LOGIN_SCHEMA } from './src/security/input-validator.js';
+        import { installGlobalErrorHandler, showUserError } from './src/security/error-handler.js';
+
+        installGlobalErrorHandler();
+
         let currentRole = 'Student';
+        let countdownInterval = null;
 
         function selectRole(element) {
             currentRole = element.querySelector('.font-label-md').innerText.trim();
+            // Validate role is an allowed value
+            const allowedRoles = ['Student', 'Faculty', 'Staff', 'Admin'];
+            if (!allowedRoles.includes(currentRole)) {
+                currentRole = 'Student';
+                return;
+            }
             // Remove active classes from all cards
             document.querySelectorAll('.role-card').forEach(card => {
                 card.classList.remove('border-primary', 'bg-primary/5', 'ring-1', 'ring-primary');
@@ -116,19 +129,79 @@
             element.querySelector('.material-symbols-outlined').classList.replace('text-on-surface-variant', 'text-primary');
         }
 
+        function showRateLimitFeedback(retryAfterMs) {
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const originalText = 'Sign In';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+
+            function updateCountdown() {
+                const remaining = retryAfterMs - (Date.now() - startTime);
+                if (remaining <= 0) {
+                    clearInterval(countdownInterval);
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+                    submitBtn.textContent = originalText;
+                    return;
+                }
+                submitBtn.textContent = `Try again in ${formatRetryTime(remaining)}`;
+            }
+
+            const startTime = Date.now();
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(updateCountdown, 500);
+            updateCountdown();
+        }
+
         function handleLogin(event) {
             event.preventDefault();
+
+            const form = event.target;
+            const emailEl = document.getElementById('email');
+            const passwordEl = document.getElementById('password');
+
+            // Clear previous errors
+            clearAllErrors(form);
+
+            // Strict schema-based validation — reject, don't sanitize
+            const formData = {
+                email: emailEl.value,
+                password: passwordEl.value,
+                role: currentRole,
+            };
+
+            const validation = validateForm(formData, LOGIN_SCHEMA);
+            if (!validation.valid) {
+                if (validation.errors.email) showFieldError(emailEl, validation.errors.email);
+                if (validation.errors.password) showFieldError(passwordEl, validation.errors.password);
+                if (validation.errors.role) showUserError('Invalid role selection. Please select a valid role.');
+                return;
+            }
+
+            // Rate limiting check (per-IP via general key + per-email)
+            const emailKey = formData.email.toLowerCase();
+            const rateLimitResult = checkAuthRateLimit(emailKey);
+
+            if (!rateLimitResult.allowed) {
+                showRateLimitFeedback(rateLimitResult.retryAfterMs);
+                showUserError(`Too many login attempts. Please wait ${formatRetryTime(rateLimitResult.retryAfterMs)} before trying again.`);
+                return;
+            }
+
+            // Record the attempt (in a real app, success/failure comes from the server)
+            // For this frontend-only demo, we treat all logins as successful
+            recordAuthAttempt(emailKey, true);
+
             localStorage.setItem('userRole', currentRole);
             
-            if (currentRole === 'Student') {
-                window.location.href = 'index.html';
-            } else if (currentRole === 'Faculty') {
-                window.location.href = 'dashboard-faculty.html';
-            } else if (currentRole === 'Staff') {
-                window.location.href = 'dashboard-staff.html';
-            } else if (currentRole === 'Admin') {
-                window.location.href = 'admin-dashboard.html';
-            }
+            const roleRoutes = {
+                'Student': 'index.html',
+                'Faculty': 'dashboard-faculty.html',
+                'Staff': 'dashboard-staff.html',
+                'Admin': 'admin-dashboard.html',
+            };
+            
+            window.location.href = roleRoutes[currentRole] || 'index.html';
         }
 
         function togglePassword() {
@@ -143,10 +216,15 @@
             }
         }
 
+        // Expose functions to HTML onclick handlers
+        window.selectRole = selectRole;
+        window.handleLogin = handleLogin;
+        window.togglePassword = togglePassword;
+
         // Initialize first role as default
-        window.onload = () => {
+        window.addEventListener('DOMContentLoaded', () => {
             selectRole(document.querySelector('.role-card'));
-        };
+        });
     </script>
 
 </body></html>

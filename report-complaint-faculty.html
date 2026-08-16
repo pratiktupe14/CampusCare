@@ -1,245 +1,381 @@
 <!DOCTYPE html>
 <html class="light" lang="en">
+
 <head>
     <meta charset="UTF-8">
 
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Report Complaint (Faculty) - CampusCare</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script src="shared-tailwind-config.js"></script>
-<style>
-        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Report Complaint (Faculty) - CampusCare</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script src="shared-tailwind-config.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC;
+        }
+
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
         .form-card {
             background: #FFFFFF;
             border: 1px solid #E5E7EB;
             border-radius: 16px;
-            box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05);
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05), 0px 10px 15px -5px rgba(0, 0, 0, 0.05);
         }
+
         .segmented-btn {
             transition: all 0.2s ease;
         }
+
         .segmented-btn.active {
             background-color: #DC2626;
             color: white;
             border-color: #DC2626;
         }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 10px;
+        }
     </style>
 </head>
+
 <body class="bg-background text-on-background">
-<!-- TopNavBar (Shared Component Reference) -->
-<header class="h-16 bg-surface border-b border-outline-variant shadow-sm flex justify-between items-center px-lg py-sm sticky top-0 z-40 w-full">
-<div class="flex items-center gap-md">
-<a href="dashboard-faculty.html" class="font-display-lg text-display-lg font-bold text-primary">CampusCare</a>
-<div class="hidden md:flex ml-xl gap-lg">
-<a class="text-on-surface-variant hover:bg-surface-container-low transition-colors px-3 py-1 rounded-md font-title-md text-title-md" href="dashboard-faculty.html">Dashboard</a>
-<a class="text-primary font-bold border-b-2 border-primary px-3 py-1 font-title-md text-title-md" href="report-complaint-faculty.html">Report</a>
-</div>
-</div>
-<div class="flex items-center gap-md">
-<div class="relative hidden lg:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-full text-body-md w-64 focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Search facilities..." type="text">
-</div>
-<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-150">
-<span class="material-symbols-outlined text-primary">notifications</span>
-</button>
-<button class="p-1 hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-150">
-<span class="material-symbols-outlined text-primary text-[32px]">account_circle</span>
-</button>
-</div>
-</header>
-<div class="flex min-h-[calc(100vh-72px)]">
-<app-sidebar active="report-complaint" role="faculty"></app-sidebar>
-<!-- Main Content Canvas -->
-<main class="flex-1 bg-[#F8FAFC] p-lg pb-24 md:pb-8 min-w-0">
-<div class="max-w-5xl mx-auto">
-<div class="flex items-center justify-between mb-xl">
-<div>
-<h2 class="font-headline-lg text-headline-lg text-on-background">Submit New Complaint</h2>
-<p class="text-on-surface-variant font-body-md text-body-md mt-1">Please provide detailed information about the facility issue.</p>
-</div>
-<div class="flex items-center gap-sm">
-<span class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
-<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+    <!-- TopNavBar (Shared Component Reference) -->
+    <header
+        class="h-16 bg-surface border-b border-outline-variant shadow-sm flex justify-between items-center px-lg py-sm sticky top-0 z-40 w-full">
+        <div class="flex items-center gap-md">
+            <a href="dashboard-faculty.html"
+                class="font-display-lg text-display-lg font-bold text-primary">CampusCare</a>
+            <div class="hidden md:flex ml-xl gap-lg">
+                <a class="text-on-surface-variant hover:bg-surface-container-low transition-colors px-3 py-1 rounded-md font-title-md text-title-md"
+                    href="dashboard-faculty.html">Dashboard</a>
+                <a class="text-primary font-bold border-b-2 border-primary px-3 py-1 font-title-md text-title-md"
+                    href="report-complaint-faculty.html">Report</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-md">
+            <div class="relative hidden lg:block">
+                <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+                <input
+                    class="pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-full text-body-md w-64 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    placeholder="Search facilities..." type="text">
+            </div>
+            <button
+                class="p-2 hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-150">
+                <span class="material-symbols-outlined text-primary">notifications</span>
+            </button>
+            <button
+                class="p-1 hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-150">
+                <span class="material-symbols-outlined text-primary text-[32px]">account_circle</span>
+            </button>
+        </div>
+    </header>
+    <div class="flex min-h-[calc(100vh-72px)]">
+        <app-sidebar active="report-complaint" role="faculty"></app-sidebar>
+        <!-- Main Content Canvas -->
+        <main class="flex-1 bg-[#F8FAFC] p-lg pb-24 md:pb-8 min-w-0">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center justify-between mb-xl">
+                    <div>
+                        <h2 class="font-headline-lg text-headline-lg text-on-background">Submit New Complaint</h2>
+                        <p class="text-on-surface-variant font-body-md text-body-md mt-1">Please provide detailed
+                            information about the facility issue.</p>
+                    </div>
+                    <div class="flex items-center gap-sm">
+                        <span class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+                            <span class="material-symbols-outlined text-[18px]">calendar_today</span>
                             Oct 24, 2023
                         </span>
-<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
-<span class="text-on-surface-variant font-label-md text-label-md">Ref: #CC-TEMP-882</span>
-</div>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
-<!-- Left Column: Main Form -->
-<div class="lg:col-span-7 flex flex-col gap-lg">
-<section class="form-card p-lg">
-<h3 class="font-title-md text-title-md mb-lg flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">description</span>
+                        <div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+                        <span class="text-on-surface-variant font-label-md text-label-md">Ref: #CC-TEMP-882</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+                    <!-- Left Column: Main Form -->
+                    <div class="lg:col-span-7 flex flex-col gap-lg">
+                        <section class="form-card p-lg">
+                            <h3 class="font-title-md text-title-md mb-lg flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">description</span>
                                 Problem Details
                             </h3>
-<div class="space-y-lg">
-<div>
-<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Complaint Title</label>
-<input class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md" placeholder="e.g., Broken AC in Lecture Hall A" type="text">
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-<div>
-<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Category</label>
-<select class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md appearance-none">
-<option>Electrical</option>
-<option>Plumbing</option>
-<option>HVAC / Cooling</option>
-<option>Carpentry</option>
-<option>Janitorial</option>
-<option>Others</option>
-</select>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Priority Level</label>
-<div class="flex p-1 bg-surface-container-low border border-outline-variant rounded-xl">
-<button class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg text-on-surface-variant hover:bg-surface" onclick="setPriority(this)">Low</button>
-<button class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg bg-primary text-white shadow-sm" onclick="setPriority(this)">Med</button>
-<button class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg text-on-surface-variant hover:bg-surface" onclick="setPriority(this)">High</button>
-</div>
-</div>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Description</label>
-<textarea class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md resize-none" placeholder="Describe the issue in detail. What happened? How long has it been occurring?" rows="5"></textarea>
-</div>
-</div>
-</section>
-<section class="form-card p-lg">
-<h3 class="font-title-md text-title-md mb-lg flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">attachment</span>
+                            <div class="space-y-lg">
+                                <div>
+                                    <label
+                                        class="block font-label-md text-label-md text-on-surface-variant mb-xs">Complaint
+                                        Title</label>
+                                    <input
+                                        class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md"
+                                        placeholder="e.g., Broken AC in Lecture Hall A" type="text">
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                                    <div>
+                                        <label
+                                            class="block font-label-md text-label-md text-on-surface-variant mb-xs">Category</label>
+                                        <select
+                                            class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md appearance-none">
+                                            <option>Electrical</option>
+                                            <option>Plumbing</option>
+                                            <option>HVAC / Cooling</option>
+                                            <option>Carpentry</option>
+                                            <option>Janitorial</option>
+                                            <option>Others</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="block font-label-md text-label-md text-on-surface-variant mb-xs">Priority
+                                            Level</label>
+                                        <div
+                                            class="flex p-1 bg-surface-container-low border border-outline-variant rounded-xl">
+                                            <button
+                                                class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg text-on-surface-variant hover:bg-surface"
+                                                onclick="setPriority(this)">Low</button>
+                                            <button
+                                                class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg bg-primary text-white shadow-sm"
+                                                onclick="setPriority(this)">Med</button>
+                                            <button
+                                                class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg text-on-surface-variant hover:bg-surface"
+                                                onclick="setPriority(this)">High</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block font-label-md text-label-md text-on-surface-variant mb-xs">Description</label>
+                                    <textarea
+                                        class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md resize-none"
+                                        placeholder="Describe the issue in detail. What happened? How long has it been occurring?"
+                                        rows="5"></textarea>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="form-card p-lg">
+                            <h3 class="font-title-md text-title-md mb-lg flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">attachment</span>
                                 Evidence Section
                             </h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-<div class="border-2 border-dashed border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center group cursor-pointer hover:border-primary hover:bg-primary/5 transition-all">
-<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[40px] mb-sm">photo_camera</span>
-<p class="font-label-md text-label-md text-on-surface-variant font-bold">Upload Photo</p>
-<p class="text-[10px] text-on-surface-variant mt-1">Capture or browse from gallery</p>
-</div>
-<div class="border-2 border-dashed border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center group cursor-pointer hover:border-primary hover:bg-primary/5 transition-all">
-<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[40px] mb-sm">mic</span>
-<p class="font-label-md text-label-md text-on-surface-variant font-bold">Voice Note</p>
-<p class="text-[10px] text-on-surface-variant mt-1">Record a short audio description</p>
-</div>
-</div>
-</section>
-</div>
-<!-- Right Column: Location & Summary -->
-<div class="lg:col-span-5 flex flex-col gap-lg">
-<section class="form-card p-lg relative overflow-hidden">
-<!-- Visual Flair: Subtle map background pattern at bottom -->
-<div class="absolute bottom-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
-<span class="material-symbols-outlined text-[128px]">map</span>
-</div>
-<div class="flex items-center justify-between mb-lg">
-<h3 class="font-title-md text-title-md flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">location_on</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                                <div
+                                    class="border-2 border-dashed border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center group cursor-pointer hover:border-primary hover:bg-primary/5 transition-all">
+                                    <span
+                                        class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[40px] mb-sm">photo_camera</span>
+                                    <p class="font-label-md text-label-md text-on-surface-variant font-bold">Upload
+                                        Photo</p>
+                                    <p class="text-[10px] text-on-surface-variant mt-1">Capture or browse from gallery
+                                    </p>
+                                </div>
+                                <div
+                                    class="border-2 border-dashed border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center group cursor-pointer hover:border-primary hover:bg-primary/5 transition-all">
+                                    <span
+                                        class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[40px] mb-sm">mic</span>
+                                    <p class="font-label-md text-label-md text-on-surface-variant font-bold">Voice Note
+                                    </p>
+                                    <p class="text-[10px] text-on-surface-variant mt-1">Record a short audio description
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- Right Column: Location & Summary -->
+                    <div class="lg:col-span-5 flex flex-col gap-lg">
+                        <section class="form-card p-lg relative overflow-hidden">
+                            <!-- Visual Flair: Subtle map background pattern at bottom -->
+                            <div class="absolute bottom-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
+                                <span class="material-symbols-outlined text-[128px]">map</span>
+                            </div>
+                            <div class="flex items-center justify-between mb-lg">
+                                <h3 class="font-title-md text-title-md flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">location_on</span>
                                     Location Panel
                                 </h3>
-<button class="flex items-center gap-1 px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-lg hover:bg-primary hover:text-white transition-all text-[11px] font-bold">
-<span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
+                                <button
+                                    class="flex items-center gap-1 px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-lg hover:bg-primary hover:text-white transition-all text-[11px] font-bold">
+                                    <span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
                                     Scan Room QR
                                 </button>
-</div>
-<div class="space-y-md">
-<div>
-<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Building</label>
-<select class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md appearance-none">
-<option>Academic Block A</option>
-<option>Engineering Wing</option>
-<option>Main Library</option>
-<option>Student Union Hub</option>
-<option>Science Complex</option>
-</select>
-</div>
-<div class="grid grid-cols-2 gap-md">
-<div>
-<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Floor</label>
-<select class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md">
-<option>Basement</option>
-<option>Ground Floor</option>
-<option selected="">1st Floor</option>
-<option>2nd Floor</option>
-<option>Roof</option>
-</select>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Room Number</label>
-<input class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md" placeholder="e.g., 102B" type="text">
-</div>
-</div>
-</div>
+                            </div>
+                            <div class="space-y-md">
+                                <div>
+                                    <label
+                                        class="block font-label-md text-label-md text-on-surface-variant mb-xs">Building</label>
+                                    <select
+                                        class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md appearance-none">
+                                        <option>Academic Block A</option>
+                                        <option>Engineering Wing</option>
+                                        <option>Main Library</option>
+                                        <option>Student Union Hub</option>
+                                        <option>Science Complex</option>
+                                    </select>
+                                </div>
+                                <div class="grid grid-cols-2 gap-md">
+                                    <div>
+                                        <label
+                                            class="block font-label-md text-label-md text-on-surface-variant mb-xs">Floor</label>
+                                        <select
+                                            class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md">
+                                            <option>Basement</option>
+                                            <option>Ground Floor</option>
+                                            <option selected="">1st Floor</option>
+                                            <option>2nd Floor</option>
+                                            <option>Roof</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="block font-label-md text-label-md text-on-surface-variant mb-xs">Room
+                                            Number</label>
+                                        <input
+                                            class="w-full px-md py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md"
+                                            placeholder="e.g., 102B" type="text">
+                                    </div>
+                                </div>
+                            </div>
 
-</section>
-<section class="form-card p-lg bg-primary-fixed text-on-primary-fixed border-none">
-<h3 class="font-title-md text-title-md mb-sm flex items-center gap-2">
-<span class="material-symbols-outlined">info</span>
+                        </section>
+                        <section class="form-card p-lg bg-primary-fixed text-on-primary-fixed border-none">
+                            <h3 class="font-title-md text-title-md mb-sm flex items-center gap-2">
+                                <span class="material-symbols-outlined">info</span>
                                 Institutional Policy
                             </h3>
-<p class="text-on-primary-fixed-variant text-body-md leading-relaxed">
-                                CampusCare ensures all maintenance requests are logged and assigned to appropriate personnel within 4 working hours. Please ensure your report is accurate to avoid processing delays.
+                            <p class="text-on-primary-fixed-variant text-body-md leading-relaxed">
+                                CampusCare ensures all maintenance requests are logged and assigned to appropriate
+                                personnel within 4 working hours. Please ensure your report is accurate to avoid
+                                processing delays.
                             </p>
-</section>
-<div class="mt-auto flex flex-col gap-sm pt-xl">
-<button id="submitBtn" class="w-full py-4 bg-primary text-white rounded-xl font-title-md text-title-md font-bold shadow-lg shadow-primary/20 hover:bg-secondary transition-all active:scale-[0.98]">
+                        </section>
+                        <div class="mt-auto flex flex-col gap-sm pt-xl">
+                            <button id="submitBtn"
+                                class="w-full py-4 bg-primary text-white rounded-xl font-title-md text-title-md font-bold shadow-lg shadow-primary/20 hover:bg-secondary transition-all active:scale-[0.98]">
                                 Submit Complaint
                             </button>
-<a href="dashboard-faculty.html" class="w-full py-3 bg-white text-on-surface-variant border border-outline-variant rounded-xl font-label-md text-label-md font-bold hover:bg-surface-container-low transition-all text-center block">
+                            <a href="dashboard-faculty.html"
+                                class="w-full py-3 bg-white text-on-surface-variant border border-outline-variant rounded-xl font-label-md text-label-md font-bold hover:bg-surface-container-low transition-all text-center block">
                                 Cancel &amp; Discard
                             </a>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div>
-<!-- Mobile Bottom Nav (Shared Component Reference) -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface border-t border-outline-variant shadow-[0_-2px_10px_rgba(0,0,0,0.05)] rounded-t-xl">
-<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="dashboard-faculty.html">
-<span class="material-symbols-outlined">home</span>
-<span class="font-label-md text-[10px]">Home</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-2 scale-110 -translate-y-2 shadow-lg" href="report-complaint-faculty.html">
-<span class="material-symbols-outlined">add_circle</span>
-<span class="font-label-md text-[10px]">Report</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
-<span class="material-symbols-outlined">notifications</span>
-<span class="font-label-md text-[10px]">Alerts</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
-<span class="material-symbols-outlined">person</span>
-<span class="font-label-md text-[10px]">Profile</span>
-</a>
-</nav>
-<script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Mobile Bottom Nav (Shared Component Reference) -->
+    <nav
+        class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface border-t border-outline-variant shadow-[0_-2px_10px_rgba(0,0,0,0.05)] rounded-t-xl">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="dashboard-faculty.html">
+            <span class="material-symbols-outlined">home</span>
+            <span class="font-label-md text-[10px]">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-2 scale-110 -translate-y-2 shadow-lg"
+            href="report-complaint-faculty.html">
+            <span class="material-symbols-outlined">add_circle</span>
+            <span class="font-label-md text-[10px]">Report</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="font-label-md text-[10px]">Alerts</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+            <span class="material-symbols-outlined">person</span>
+            <span class="font-label-md text-[10px]">Profile</span>
+        </a>
+    </nav>
+    <script type="module">
+        import { validateField, showFieldError, clearFieldError } from './src/security/input-validator.js';
+        import { checkRateLimit } from './src/security/rate-limiter.js';
+        import { installGlobalErrorHandler, showUserError } from './src/security/error-handler.js';
+
+        installGlobalErrorHandler();
+
+        // Track selected priority
+        let currentPriority = 'Med';
+
         function setPriority(btn) {
             const container = btn.closest('div');
             const buttons = container.querySelectorAll('.segmented-btn');
-            
+
             buttons.forEach(b => {
                 b.classList.remove('bg-primary', 'text-white', 'shadow-sm');
                 b.classList.add('text-on-surface-variant', 'hover:bg-surface');
             });
-            
+
             btn.classList.remove('text-on-surface-variant', 'hover:bg-surface');
             btn.classList.add('bg-primary', 'text-white', 'shadow-sm');
+            currentPriority = btn.textContent.trim();
         }
+        window.setPriority = setPriority;
 
-        // Success toast simulator
+        // Success toast with validation
         const submitBtn = document.getElementById('submitBtn');
         if (submitBtn) {
             submitBtn.addEventListener('click', () => {
+                // Rate limiting check
+                const rateCheck = checkRateLimit('faculty_complaint_submit', 'authenticated');
+                if (!rateCheck.allowed) {
+                    showUserError('You are submitting complaints too quickly. Please wait a moment.');
+                    return;
+                }
+
+                // Validate fields
+                const titleEl = document.querySelector('input[placeholder*="Broken AC"]');
+                const descEl = document.querySelector('textarea');
+                const roomEl = document.querySelector('input[placeholder*="102B"]');
+
+                let hasErrors = false;
+
+                // Title validation
+                if (titleEl) {
+                    const titleResult = validateField(titleEl.value, {
+                        type: 'string', required: true, minLength: 5, maxLength: 200,
+                        pattern: /^[^<>{}]*$/, patternMessage: 'Title must not contain HTML characters.',
+                        label: 'Complaint Title'
+                    });
+                    if (!titleResult.valid) { showFieldError(titleEl, titleResult.errors); hasErrors = true; }
+                    else { clearFieldError(titleEl); }
+                }
+
+                // Description validation
+                if (descEl) {
+                    const descResult = validateField(descEl.value, {
+                        type: 'string', required: true, minLength: 10, maxLength: 500, label: 'Description'
+                    });
+                    if (!descResult.valid) { showFieldError(descEl, descResult.errors); hasErrors = true; }
+                    else { clearFieldError(descEl); }
+                }
+
+                // Room validation
+                if (roomEl) {
+                    const roomResult = validateField(roomEl.value, {
+                        type: 'string', required: false, maxLength: 50,
+                        pattern: /^[a-zA-Z0-9\s\-.']*$/,
+                        patternMessage: 'Room may only contain letters, numbers, spaces, and hyphens.',
+                        label: 'Room Number'
+                    });
+                    if (!roomResult.valid) { showFieldError(roomEl, roomResult.errors); hasErrors = true; }
+                    else { clearFieldError(roomEl); }
+                }
+
+                if (hasErrors) {
+                    showUserError('Please fix the highlighted fields before submitting.');
+                    return;
+                }
+
                 const toast = document.createElement('div');
                 toast.className = 'fixed top-10 left-1/2 -translate-x-1/2 bg-surface text-on-surface border border-primary px-lg py-md rounded-xl shadow-2xl z-[100] flex items-center gap-md animate-bounce';
                 toast.innerHTML = `
@@ -252,9 +388,9 @@
         }
     </script>
 
-<script src="src/components/lightbox.js" type="module"></script>
-<script src="src/components/sidebar.js" type="module"></script>
-<script src="src/router.js" type="module"></script>
+    <script src="src/components/lightbox.js" type="module"></script>
+    <script src="src/components/sidebar.js" type="module"></script>
+    <script src="src/router.js" type="module"></script>
 </body>
-</html>
 
+</html>

@@ -489,26 +489,73 @@
         }
     }
 
-    // Dynamic After Photo Upload Simulation
-    function handleAfterPhotoUpload(e) {
+    // Dynamic After Photo Upload with validation
+    async function handleAfterPhotoUpload(e) {
         const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(evt) {
-                const afterImg = document.getElementById('afterImg');
-                const toggleImg = document.getElementById('toggleActiveImg');
-                afterImg.src = evt.target.result;
-                if (toggleImg) toggleImg.src = evt.target.result;
-                
-                // Update lightbox attribute
-                afterImg.closest('[data-lightbox-src]').setAttribute('data-lightbox-src', evt.target.result);
-                if (window.CampusCareLightboxInstance) {
-                    window.CampusCareLightboxInstance.bindTriggers();
-                }
-                alert('After photo uploaded and updated in Before/After comparison.');
-            };
-            reader.readAsDataURL(file);
+        if (!file) return;
+
+        // --- File Upload Safety: validate type, size, and magic bytes ---
+        const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.heic', '.webp'];
+        const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+        const MAGIC_SIGS = {
+            jpeg: [0xFF, 0xD8, 0xFF],
+            png: [0x89, 0x50, 0x4E, 0x47],
+            webp_riff: [0x52, 0x49, 0x46, 0x46],
+            webp_marker: [0x57, 0x45, 0x42, 0x50],
+        };
+
+        const ext = '.' + file.name.toLowerCase().split('.').pop();
+        if (!ALLOWED_EXTENSIONS.includes(ext)) {
+            alert(`File type "${ext}" is not allowed. Accepted: ${ALLOWED_EXTENSIONS.join(', ')}`);
+            e.target.value = '';
+            return;
         }
+        if (file.size > MAX_SIZE) {
+            alert(`File is too large (${(file.size / (1024*1024)).toFixed(1)} MB). Max: 10 MB.`);
+            e.target.value = '';
+            return;
+        }
+        if (file.size === 0) {
+            alert('File is empty.');
+            e.target.value = '';
+            return;
+        }
+
+        // Magic byte check
+        try {
+            const header = new Uint8Array(await file.slice(0, 12).arrayBuffer());
+            const isJpeg = header[0] === 0xFF && header[1] === 0xD8 && header[2] === 0xFF;
+            const isPng = header[0] === 0x89 && header[1] === 0x50 && header[2] === 0x4E && header[3] === 0x47;
+            const isWebp = header[0] === 0x52 && header[1] === 0x49 && header[8] === 0x57 && header[9] === 0x45;
+            const isHeic = header[4] === 0x66 && header[5] === 0x74 && header[6] === 0x79 && header[7] === 0x70;
+
+            if (!isJpeg && !isPng && !isWebp && !isHeic) {
+                alert('File content does not match any allowed image format. It may be corrupted or disguised.');
+                e.target.value = '';
+                return;
+            }
+        } catch {
+            alert('Unable to verify file content. Please try a different file.');
+            e.target.value = '';
+            return;
+        }
+
+        // File passed all checks — proceed with preview
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+            const afterImg = document.getElementById('afterImg');
+            const toggleImg = document.getElementById('toggleActiveImg');
+            afterImg.src = evt.target.result;
+            if (toggleImg) toggleImg.src = evt.target.result;
+            
+            // Update lightbox attribute
+            afterImg.closest('[data-lightbox-src]').setAttribute('data-lightbox-src', evt.target.result);
+            if (window.CampusCareLightboxInstance) {
+                window.CampusCareLightboxInstance.bindTriggers();
+            }
+            alert('After photo uploaded and updated in Before/After comparison.');
+        };
+        reader.readAsDataURL(file);
     }
 
     // Stepper & Workflow Management
@@ -573,22 +620,52 @@
 
     function addInventoryItemPrompt() {
         const item = prompt('Enter Part Name / Part # (e.g. Copper Elbow 1/2" #CU-12):');
-        if (item) {
-            const list = document.getElementById('inventoryList');
-            const li = document.createElement('li');
-            li.className = 'flex items-center justify-between p-2 bg-gray-50 rounded-sm';
-            li.innerHTML = `
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[16px] text-gray-500">build</span>
-                    <div>
-                        <span class="font-bold text-gray-900">${item}</span>
-                        <span class="text-[10px] text-gray-500 block font-mono">Deducted from Van Inventory</span>
-                    </div>
-                </div>
-                <span class="font-mono font-bold text-gray-800 bg-white border border-gray-200 px-2 py-0.5 rounded-sm">1 unit</span>
-            `;
-            list.appendChild(li);
+        if (!item) return;
+
+        // Input validation — reject invalid input, don't sanitize
+        const trimmed = item.trim();
+        if (trimmed.length === 0 || trimmed.length > 200) {
+            alert('Part name must be between 1 and 200 characters.');
+            return;
         }
+        if (/[<>{}]/.test(trimmed)) {
+            alert('Part name contains invalid characters (< > { }).');
+            return;
+        }
+
+        const list = document.getElementById('inventoryList');
+        const li = document.createElement('li');
+        li.className = 'flex items-center justify-between p-2 bg-gray-50 rounded-sm';
+
+        // XSS FIX: Use DOM methods with textContent instead of innerHTML with user input
+        const leftDiv = document.createElement('div');
+        leftDiv.className = 'flex items-center gap-2';
+
+        const iconSpan = document.createElement('span');
+        iconSpan.className = 'material-symbols-outlined text-[16px] text-gray-500';
+        iconSpan.textContent = 'build';
+
+        const textDiv = document.createElement('div');
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'font-bold text-gray-900';
+        nameSpan.textContent = trimmed; // Safe: textContent, not innerHTML
+
+        const subSpan = document.createElement('span');
+        subSpan.className = 'text-[10px] text-gray-500 block font-mono';
+        subSpan.textContent = 'Deducted from Van Inventory';
+
+        textDiv.appendChild(nameSpan);
+        textDiv.appendChild(subSpan);
+        leftDiv.appendChild(iconSpan);
+        leftDiv.appendChild(textDiv);
+
+        const unitSpan = document.createElement('span');
+        unitSpan.className = 'font-mono font-bold text-gray-800 bg-white border border-gray-200 px-2 py-0.5 rounded-sm';
+        unitSpan.textContent = '1 unit';
+
+        li.appendChild(leftDiv);
+        li.appendChild(unitSpan);
+        list.appendChild(li);
     }
 </script>
 </body>

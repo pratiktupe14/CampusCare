@@ -156,4 +156,9 @@ try {
             }
         ]
     }
-} catch(_e) {}
+} catch(_e) {
+    // Tailwind config error — log only in development to aid debugging
+    if (typeof console !== 'undefined' && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+        console.warn('[CampusCare] Tailwind config failed to load:', _e);
+    }
+}

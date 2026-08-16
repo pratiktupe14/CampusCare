@@ -313,7 +313,7 @@
     const selects = document.querySelectorAll('select');
     selects.forEach(select => {
         select.addEventListener('change', (e) => {
-            console.log(`Filtering by: ${e.target.value}`);
+            // Filter logic — no console.log in production
             e.target.classList.add('border-primary');
             setTimeout(() => e.target.classList.remove('border-primary'), 500);
         });

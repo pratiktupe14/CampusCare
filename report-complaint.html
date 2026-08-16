@@ -238,7 +238,17 @@
     </a>
 </nav>
 
-<script>
+<script type="module">
+    import { validateForm, validateField, showFieldError, clearFieldError, clearAllErrors, COMPLAINT_SCHEMA } from './src/security/input-validator.js';
+    import { validateFileUpload, showFileErrors, clearFileErrors } from './src/security/file-upload-validator.js';
+    import { checkRateLimit } from './src/security/rate-limiter.js';
+    import { installGlobalErrorHandler, showUserError } from './src/security/error-handler.js';
+
+    installGlobalErrorHandler();
+
+    // Current priority state
+    let currentPriority = 'Medium';
+
     // Simple micro-interaction for Voice button
     const voiceBtn = document.getElementById('voiceBtn');
     let isRecording = false;
@@ -257,11 +267,13 @@
     // Priority Segmented Control Sliding Animation
     const priorityBtns = document.querySelectorAll('.priority-btn');
     const prioritySlider = document.getElementById('priority-slider');
+    const priorityValues = ['Low', 'Medium', 'High'];
     
     priorityBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             const index = parseInt(btn.getAttribute('data-index'));
+            currentPriority = priorityValues[index] || 'Medium';
             
             // Move slider
             prioritySlider.style.transform = `translateX(calc(${index * 100}% + ${index * 4}px))`;
@@ -279,14 +291,87 @@
         });
     });
 
-    // Submit micro-feedback
+    // --- File Upload Validation ---
+    // Add a real file input to the drag-and-drop area
+    const dropzone = document.querySelector('.border-dashed');
+    if (dropzone) {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = '.jpg,.jpeg,.png,.heic,.webp';
+        fileInput.multiple = true;
+        fileInput.className = 'hidden';
+        fileInput.id = 'complaint-file-input';
+        dropzone.appendChild(fileInput);
+
+        dropzone.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', async (e) => {
+            for (const file of e.target.files) {
+                const result = await validateFileUpload(file);
+                if (!result.valid) {
+                    showFileErrors(dropzone, result.errors);
+                    fileInput.value = '';
+                    return;
+                }
+                clearFileErrors(dropzone);
+            }
+        });
+    }
+
+    // Submit with validation
     const submitBtn = document.getElementById('submitBtn');
     const submitIcon = document.getElementById('submitIcon');
     const submitText = document.getElementById('submitText');
     
-    if(submitBtn) {
+    if (submitBtn) {
         submitBtn.addEventListener('click', (e) => {
             e.preventDefault();
+
+            // Rate limiting check
+            const rateCheck = checkRateLimit('complaint_submit', 'authenticated');
+            if (!rateCheck.allowed) {
+                showUserError('You are submitting complaints too quickly. Please wait a moment.');
+                return;
+            }
+
+            // Gather form data
+            const titleEl = document.querySelector('input[placeholder*="Leaking Ceiling"]');
+            const categoryEl = document.querySelector('select');
+            const descriptionEl = document.querySelector('textarea');
+            const buildingEl = document.querySelector('input[placeholder*="West Wing"]');
+            const floorEl = document.querySelector('input[placeholder*="2nd Floor"]');
+            const roomEl = document.querySelector('input[placeholder*="Lab 204"]');
+
+            const formData = {
+                title: titleEl?.value || '',
+                category: categoryEl?.value || '',
+                priority: currentPriority,
+                description: descriptionEl?.value || '',
+                building: buildingEl?.value || '',
+                floor: floorEl?.value || '',
+                room: roomEl?.value || '',
+            };
+
+            // Validate against strict schema
+            const validation = validateForm(formData, COMPLAINT_SCHEMA);
+
+            if (!validation.valid) {
+                // Show errors on individual fields
+                if (validation.errors.title && titleEl) showFieldError(titleEl, validation.errors.title);
+                if (validation.errors.category && categoryEl) showFieldError(categoryEl, validation.errors.category);
+                if (validation.errors.description && descriptionEl) showFieldError(descriptionEl, validation.errors.description);
+                if (validation.errors.building && buildingEl) showFieldError(buildingEl, validation.errors.building);
+                if (validation.errors.floor && floorEl) showFieldError(floorEl, validation.errors.floor);
+                if (validation.errors.room && roomEl) showFieldError(roomEl, validation.errors.room);
+                showUserError('Please fix the highlighted fields before submitting.');
+                return;
+            }
+
+            // Clear any previous errors
+            [titleEl, categoryEl, descriptionEl, buildingEl, floorEl, roomEl].forEach(el => {
+                if (el) clearFieldError(el);
+            });
+
             // Start success state
             submitBtn.classList.add('bg-green-600', 'hover:bg-green-600');
             submitBtn.classList.remove('bg-primary', 'hover:bg-red-700');
@@ -296,7 +381,6 @@
             submitText.innerText = 'Submitted!';
             
             setTimeout(() => {
-                // Redirect or reset (simulating a redirect here)
                 window.location.href = 'my-complaints.html';
             }, 500);
         });
