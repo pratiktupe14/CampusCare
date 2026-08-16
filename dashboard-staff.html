@@ -1,291 +1,927 @@
-<!DOCTYPE html><html class="light" lang="en" style="font-size: 14px;"><head>
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
     <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Service Staff Dashboard - CampusCare</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <script src="shared-tailwind-config.js"></script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
 
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>CampusCare | Service Staff Dashboard</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script src="shared-tailwind-config.js"></script>
-<style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FFFFFF;
-            color: #281715;
-            -webkit-font-smoothing: antialiased;
+        /* Purposeful, Restrained Animations */
+        .fade-slide-up-init {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        @keyframes fadeSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .card-shadow {
-            box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05);
+
+        /* Critical Priority Card Entrance & Single Pulse */
+        .critical-card-init {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: criticalEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
         }
-        .active-nav-border {
-            border-right: 4px solid #DC2626;
+        @keyframes criticalEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(10px) scale(1);
+            }
+            45% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            75% {
+                opacity: 1;
+                transform: translateY(0) scale(1.015);
+                box-shadow: 0 4px 12px rgba(185, 28, 28, 0.12);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                box-shadow: none;
+            }
         }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+
+        .task-row-fade {
+            opacity: 0;
+            transform: translateY(6px);
+            animation: fadeSlideUp 0.35s ease-out forwards;
         }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
+
+        .route-stop-fade {
+            opacity: 0;
+            transform: translateY(6px);
+            animation: fadeSlideUp 0.35s ease-out forwards;
         }
-        .stat-card:hover {
-            transform: translateY(-4px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* Action Flash confirmation */
+        .row-action-flash {
+            animation: flashAction 0.4s ease-out forwards;
+        }
+        @keyframes flashAction {
+            0% { background-color: rgba(254, 226, 226, 0.8); }
+            100% { background-color: transparent; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-slide-up-init, .critical-card-pulse, .task-row-fade, .route-stop-fade, .row-action-flash {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
         }
     </style>
 </head>
-<body class="flex min-h-screen bg-white">
-<!-- SideNavBar (Fixed Shell) -->
-<app-sidebar active="dashboard" role="staff"></app-sidebar>
-<!-- Main Content Canvas -->
-<main class="ml-[220px] flex-1 flex flex-col min-w-0">
-<!-- TopNavBar -->
-<header class="fixed top-0 right-0 w-[calc(100%-220px)] z-40 bg-white/80 backdrop-blur-md border-b border-outline-variant h-16 px-xl flex justify-between items-center">
-<div class="flex items-center gap-xl w-full">
-<h1 class="font-title-md text-title-md font-black text-primary uppercase tracking-tight">Dashboard</h1>
-<div class="relative w-full max-w-md">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-md" data-icon="search">search</span>
-<input class="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-body-md" placeholder="Search tasks, building IDs, or equipment..." type="text">
-</div>
-</div>
-<div class="flex items-center gap-lg ml-xl shrink-0">
-<div class="text-right hidden xl:block">
-<p class="font-label-md text-on-surface-variant" id="current-date">Monday, Jul 20, 2026</p>
-<p class="font-title-md text-sm font-bold text-primary" id="current-time">07:08 PM</p>
-</div>
-<button class="relative p-2 hover:bg-surface-container-high rounded-full transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
-<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-primary border-2 border-white rounded-full"></span>
-</button>
-<div class="flex items-center gap-md pl-md border-l border-outline-variant">
-<div class="text-right">
-<p class="font-body-md font-bold text-on-surface leading-none">Alex Rivera</p>
-<p class="font-label-md text-on-surface-variant">#ST-99283</p>
-</div>
-<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged service technician named Marcus Chen wearing a clean grey CampusCare uniform. He is standing against a soft, bright architectural background with warm lighting. The image conveys institutional trust, reliability, and professional excellence in a modern university facility setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWM7O4p8mLqPJRRyVURE64HB4Ex-2fNpRqKYEHfatFY_bo3PSfFwShI8K6rcBTtS3nTkTPL0XU_1hlCb1mT31ywevq44Fs4rl9CncJa4P7yC1cw5Nvs3AGC77DfRViXxaNwYMVtqAVhBZpjOjIa6bLj6spk9yYqWefbJt7urLTNkZrYffFkYQ-_eMZDn8DrmOdKIgN1wVXiPH1QvQTbxZcukN6UtaWUI20oA4oDyAW--Effkx2kBoLQA">
-</div>
-</div>
-</div>
-</header>
-<!-- Canvas Content Area -->
-<div class="pt-24 pb-8 px-6 max-w-7xl mx-auto flex flex-col gap-6">
-<!-- Welcome Banner -->
-<section class="relative bg-white rounded-xl card-shadow border border-outline-variant overflow-hidden flex flex-col md:flex-row p-6 gap-6 items-center min-h-[160px]">
-<div class="flex-1 relative z-10">
-<div class="flex items-center gap-sm mb-xs">
-<span class="px-sm py-xs bg-red-50 text-primary font-label-md rounded-full border border-primary/20">Morning Shift</span>
-<span class="font-label-md text-on-surface-variant">Facilities Maintenance Dept</span>
-</div>
-<h2 class="text-2xl font-bold text-on-surface mb-xs">Welcome, Service Staff!</h2>
-<p class="font-title-md text-primary font-semibold mb-md">Alex Rivera • Staff ID: #ST-99283</p>
-<p class="font-body-md text-on-surface-variant max-w-xl italic">
-                        "Precision in service ensures excellence in education. Your attention to detail keeps our campus thriving. Have a productive shift today!"
-                    </p>
-</div>
-<div class="w-full md:w-48 h-32 relative flex items-center justify-center">
-<div class="absolute inset-0 bg-red-50 rounded-full scale-75 opacity-50 blur-2xl"></div>
-<div class="animate-float">
-<span class="material-symbols-outlined text-[80px] text-primary/10 select-none" data-icon="construction" style="font-variation-settings: 'wght' 200">construction</span>
-</div>
-<div class="absolute bottom-4 right-4 bg-white p-sm rounded-lg card-shadow border border-outline-variant flex items-center gap-xs">
-<span class="material-symbols-outlined text-primary" data-icon="event_note">event_note</span>
-<span class="font-label-md font-bold">Oct 23, 2023</span>
-</div>
-</div>
-</section>
-<!-- Stats Grid -->
-<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 animate-fade-slide-up stagger-1 opacity-0">
-<!-- Total Assigned -->
-<div class="stat-card bg-white p-5 rounded-xl card-shadow border border-outline-variant flex flex-col gap-3 transition-transform duration-300">
-<div class="flex justify-between items-start">
-<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface">
-<span class="material-symbols-outlined" data-icon="clipboard">assignment</span>
-</div>
-<span class="font-label-md bg-surface-container text-on-surface-variant px-sm py-xs rounded-full">+4 Today</span>
-</div>
-<div>
-<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Total Assigned</p>
-<h3 class="text-3xl font-black text-on-surface" id="stat-total">142</h3>
-</div>
-</div>
-<!-- Pending -->
-<div class="stat-card bg-white p-5 rounded-xl card-shadow border border-outline-variant flex flex-col gap-3 transition-transform duration-300">
-<div class="flex justify-between items-start">
-<div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600">
-<span class="material-symbols-outlined" data-icon="clock">schedule</span>
-</div>
-<span class="w-3 h-3 bg-amber-500 rounded-full animate-pulse"></span>
-</div>
-<div>
-<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Pending Review</p>
-<h3 class="text-3xl font-black text-amber-600" id="stat-pending">12</h3>
-</div>
-</div>
-<!-- In Progress -->
-<div class="stat-card bg-white p-5 rounded-xl card-shadow border border-outline-variant flex flex-col gap-3 transition-transform duration-300">
-<div class="flex justify-between items-start">
-<div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
-<span class="material-symbols-outlined" data-icon="wrench">build</span>
-</div>
-<div class="flex -space-x-2">
-<div class="w-6 h-6 rounded-full border-2 border-white bg-blue-100"></div>
-<div class="w-6 h-6 rounded-full border-2 border-white bg-blue-200"></div>
-</div>
-</div>
-<div>
-<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">In Progress</p>
-<h3 class="text-3xl font-black text-blue-600" id="stat-progress">8</h3>
-</div>
-</div>
-<!-- Completed -->
-<div class="stat-card bg-white p-5 rounded-xl card-shadow border border-outline-variant flex flex-col gap-3 transition-transform duration-300">
-<div class="flex justify-between items-start">
-<div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
-<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
-</div>
-<span class="font-label-md text-emerald-600 font-bold">92% Rate</span>
-</div>
-<div>
-<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Completed Tasks</p>
-<h3 class="text-3xl font-black text-emerald-600" id="stat-completed">114</h3>
-</div>
-</div>
-<!-- Overdue -->
-<div class="stat-card bg-white p-5 rounded-xl card-shadow border border-outline-variant flex flex-col gap-3 transition-transform duration-300">
-<div class="flex justify-between items-start">
-<div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-red-600">
-<span class="material-symbols-outlined" data-icon="warning">warning</span>
-</div>
-<span class="font-label-md text-red-600 font-bold bg-red-50 px-2 rounded">Urgent</span>
-</div>
-<div>
-<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Overdue Alert</p>
-<h3 class="text-3xl font-black text-red-600" id="stat-overdue">3</h3>
-</div>
-</div>
-<!-- Today's Progress -->
-<div class="stat-card bg-white p-5 rounded-xl card-shadow border border-outline-variant flex flex-col gap-3 transition-transform duration-300">
-<div class="flex justify-between items-start">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface">
-<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
-</div>
-<span class="font-label-md text-on-surface-variant">Daily Goal</span>
-</div>
-<div>
-<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Today's Progress</p>
-<div class="flex items-center gap-md">
-<h3 class="text-3xl font-black text-on-surface" id="stat-today">65%</h3>
-<div class="flex-1 h-3 bg-surface-container rounded-full overflow-hidden">
-<div class="h-full bg-primary w-[65%] rounded-full transition-all duration-1000 ease-out"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Today's Task List (Secondary Section) -->
-<section class="bg-white rounded-xl card-shadow border border-outline-variant overflow-hidden">
-<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-low/30">
-<div>
-<h3 class="font-title-md text-title-md text-on-surface">Active Task Queue</h3>
-<p class="font-body-md text-on-surface-variant">Prioritized maintenance for Science Block &amp; Housing</p>
-</div>
-<button class="bg-primary text-white px-lg py-md rounded-lg font-label-md font-bold hover:bg-secondary transition-transform active:scale-95 flex items-center gap-xs">
-<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
-                        New Request
-                    </button>
-</div>
-<div class="divide-y divide-outline-variant">
-<!-- Task Item 1 -->
-<div class="p-lg flex items-center gap-lg hover:bg-surface-container-low transition-colors duration-150 ease-out group animate-fade-in row-stagger-1 opacity-0">
-<div class="w-12 h-12 shrink-0 rounded-full bg-red-50 flex items-center justify-center text-primary border border-primary/10">
-<span class="material-symbols-outlined" data-icon="plumbing">plumbing</span>
-</div>
-<div class="flex-1">
-<div class="flex items-center gap-sm mb-xs">
-<span class="font-label-md font-bold text-on-surface">#WR-28491</span>
-<span class="px-2 py-0.5 bg-red-100 text-red-800 rounded-full font-label-md text-[10px] font-black uppercase">High Priority</span>
-</div>
-<h4 class="font-title-md text-body-lg font-bold group-hover:text-primary transition-colors">Burst pipe in Chemistry Lab 302</h4>
-<p class="font-body-md text-on-surface-variant">Science Building • Floor 3 • Wing B</p>
-</div>
-<div class="text-right shrink-0">
-<p class="font-label-md font-bold text-on-surface">Assigned 15m ago</p>
-<p class="font-label-md text-on-surface-variant">Response Due: 09:30 AM</p>
-</div>
-<button class="p-md text-on-surface-variant hover:text-primary">
-<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
-</button>
-</div>
-<!-- Task Item 2 -->
-<div class="p-lg flex items-center gap-lg hover:bg-surface-container-low transition-colors duration-150 ease-out group animate-fade-in row-stagger-2 opacity-0">
-<div class="w-12 h-12 shrink-0 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
-<span class="material-symbols-outlined" data-icon="electric_bolt">electric_bolt</span>
-</div>
-<div class="flex-1">
-<div class="flex items-center gap-sm mb-xs">
-<span class="font-label-md font-bold text-on-surface">#WR-28504</span>
-<span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full font-label-md text-[10px] font-black uppercase">Standard</span>
-</div>
-<h4 class="font-title-md text-body-lg font-bold group-hover:text-primary transition-colors">Lighting fixture replacement</h4>
-<p class="font-body-md text-on-surface-variant">North Dormitory • Main Hallway</p>
-</div>
-<div class="text-right shrink-0">
-<p class="font-label-md font-bold text-on-surface">Assigned 2h ago</p>
-<p class="font-label-md text-on-surface-variant">Status: In Progress</p>
-</div>
-<button class="p-md text-on-surface-variant hover:text-primary">
-<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
-</button>
-</div>
-</div>
-<div class="p-md text-center bg-surface-container-low/20">
-<a class="font-label-md font-bold text-primary hover:underline" href="#">View All Active Tasks</a>
-</div>
-</section>
-</div>
-</main>
-<script>
-        // Update Time and Date
-        function updateDateTime() {
-            const now = new Date();
-            const dateOptions = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
-            const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
-            
-            document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', dateOptions);
-            document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', timeOptions);
-        }
+<body class="bg-paper text-on-background min-h-screen flex flex-col font-sans">
+<div class="flex min-h-screen">
+    <!-- Side Navigation Shell -->
+    <app-sidebar active="dashboard" role="staff"></app-sidebar>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 md:ml-[220px] bg-paper min-h-screen pb-24 md:pb-8 flex flex-col min-w-0">
         
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
+        <!-- Top Bar -->
+        <header class="h-16 flex justify-between items-center px-6 py-2 sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-none backdrop-blur-md bg-opacity-90">
+            <div class="flex items-center gap-4 flex-1 max-w-md">
+                <button class="md:hidden p-2">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="hidden md:flex bg-white items-center px-4 py-1.5 rounded-sm border border-gray-200 w-full relative">
+                    <span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]">search</span>
+                    <input id="assetSearchInput" class="bg-transparent border-none focus:ring-0 text-xs w-full outline-none" placeholder="Search tasks, room IDs, or asset history..." type="text">
+                    <!-- Live Search Asset History Dropdown -->
+                    <div id="searchDropdown" class="hidden absolute left-0 top-full mt-1 w-full bg-white border border-gray-200 rounded-sm shadow-lg p-2 z-50 text-xs">
+                        <p class="font-bold text-[10px] uppercase tracking-wider text-gray-400 px-2 py-1">Recent Asset History</p>
+                        <div class="hover:bg-gray-50 p-2 rounded-sm cursor-pointer" onclick="openTaskDetail('WR-28491')">
+                            <span class="font-bold text-gray-900">Lab 302 (Science Block)</span>
+                            <p class="text-gray-500 text-[11px]">3 plumbing incidents logged in last 6 months (Valve #P-12)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4 sm:gap-6 shrink-0">
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs font-bold text-gray-900 leading-tight" id="headerLiveDate">Sunday, Aug 16, 2026</p>
+                    <p class="text-[11px] font-mono text-primary font-bold leading-tight" id="headerLiveTime">03:00 PM</p>
+                </div>
+                
+                <a href="notifications-staff.html" class="w-9 h-9 flex items-center justify-center rounded-sm hover:bg-gray-100 transition-colors relative" title="Notifications">
+                    <span class="material-symbols-outlined text-on-surface-variant text-[20px]">notifications</span>
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full"></span>
+                </a>
+                
+                <div class="flex items-center gap-3 pl-4 border-l border-gray-200">
+                    <div class="text-right hidden xl:block">
+                        <p class="text-xs font-bold text-on-surface leading-tight">Alex Rivera</p>
+                        <p class="text-[10px] text-gray-500 font-medium leading-tight">Technician #ST-99283</p>
+                    </div>
+                    <img class="w-9 h-9 rounded-full border border-gray-300 object-cover" alt="Alex Rivera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWM7O4p8mLqPJRRyVURE64HB4Ex-2fNpRqKYEHfatFY_bo3PSfFwShI8K6rcBTtS3nTkTPL0XU_1hlCb1mT31ywevq44Fs4rl9CncJa4P7yC1cw5Nvs3AGC77DfRViXxaNwYMVtqAVhBZpjOjIa6bLj6spk9yYqWefbJt7urLTNkZrYffFkYQ-_eMZDn8DrmOdKIgN1wVXiPH1QvQTbxZcukN6UtaWUI20oA4oDyAW--Effkx2kBoLQA">
+                </div>
+            </div>
+        </header>
 
-        // Animate counter effect for stats
-        function animateValue(obj, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                obj.innerHTML = Math.floor(progress * (end - start) + start) + (obj.id === 'stat-today' ? '%' : '');
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
+        <!-- Dashboard Body -->
+        <div class="p-6 max-w-7xl mx-auto space-y-6 w-full flex-1">
+            
+            <!-- 1. Welcome & Shift Status Banner (Synced Date & Handoff Action) -->
+            <section class="bg-white border border-gray-200 rounded-sm p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div class="space-y-1.5 flex-1">
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <span class="px-2 py-0.5 bg-red-50 text-primary border border-primary/20 text-[10px] font-bold uppercase tracking-wider rounded-sm">Morning Shift &middot; 07:00 – 15:30</span>
+                        <span class="text-xs text-gray-500 font-medium">Facilities Maintenance Dept &middot; Zone B Lead</span>
+                    </div>
+                    <h1 class="font-serif text-2xl sm:text-3xl font-bold text-on-background tracking-tight">Welcome, Alex Rivera</h1>
+                    <p class="text-xs text-gray-600 font-mono">Technician ID: #ST-99283 &middot; Truck Assigned: Service Van #4</p>
+                    <p class="text-xs text-gray-500 italic pt-1 max-w-2xl">
+                        "Precision in service ensures excellence in education. Your attention to detail keeps campus infrastructure running smoothly."
+                    </p>
+                </div>
 
-        window.onload = () => {
-            animateValue(document.getElementById('stat-total'), 0, 142, 1500);
-            animateValue(document.getElementById('stat-pending'), 0, 12, 1200);
-            animateValue(document.getElementById('stat-progress'), 0, 8, 1000);
-            animateValue(document.getElementById('stat-completed'), 0, 114, 1800);
-            animateValue(document.getElementById('stat-overdue'), 0, 3, 800);
-            animateValue(document.getElementById('stat-today'), 0, 65, 2000);
-        };
-    </script>
+                <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row items-stretch gap-2.5 shrink-0 w-full md:w-auto">
+                    <button id="endShiftBtn" class="px-4 py-2.5 bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 text-xs font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-2 transition-colors">
+                        <span class="material-symbols-outlined text-[16px] text-gray-500">assignment_turned_in</span>
+                        End-Shift Handoff
+                    </button>
+                    <a href="report-complaint.html" class="px-4 py-2.5 bg-primary hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-2 transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">add_circle</span>
+                        Log New Issue
+                    </a>
+                </div>
+            </section>
+
+            <!-- 2. Stat Summary Section (Critical Priority Dominance on Left + 5 Supporting Cards) -->
+            <section class="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
+                
+                <!-- Dominant Urgent Card: Critical Priority / Overdue Alert (3) -->
+                <div class="md:col-span-4 bg-white border-2 border-primary p-5 rounded-sm flex flex-col justify-between relative critical-card-init shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary">Critical Priority</span>
+                        <span class="px-2 py-0.5 bg-red-50 text-red-700 border border-red-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">SLA Overdue</span>
+                    </div>
+                    <div class="my-3">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-serif font-bold text-primary tracking-tight">03</span>
+                            <span class="text-xs font-bold text-gray-900 uppercase tracking-wider">Overdue Work Orders</span>
+                        </div>
+                        <p class="text-xs text-gray-600 mt-2 font-medium">2 tickets exceeded 4-hour SLA in Science Block &middot; Immediate isolation needed</p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                        <span class="text-gray-500 font-mono text-[11px]">Oldest: 4.8h active</span>
+                        <a href="#active-queue" class="text-primary font-bold hover:underline flex items-center gap-0.5">
+                            Resolve Overdue &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Slimmer Supporting Stats: 5 Cards (md:col-span-8) -->
+                <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                    
+                    <!-- Total Assigned -->
+                    <div class="bg-white border border-gray-200 p-3.5 rounded-sm flex flex-col justify-between fade-slide-up-init shadow-none" style="animation-delay: 120ms;">
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Total Assigned</span>
+                        <div>
+                            <span class="text-2xl font-serif font-bold text-gray-900">142</span>
+                            <p class="text-[11px] text-gray-500 font-medium mt-1">+4 assigned today</p>
+                        </div>
+                    </div>
+
+                    <!-- Pending Review -->
+                    <div class="bg-white border border-gray-200 p-3.5 rounded-sm flex flex-col justify-between fade-slide-up-init shadow-none" style="animation-delay: 200ms;">
+                        <span class="text-[10px] font-bold text-amber-700 uppercase tracking-widest">Pending Review</span>
+                        <div>
+                            <span class="text-2xl font-serif font-bold text-amber-600">12</span>
+                            <p class="text-[11px] text-gray-500 font-medium mt-1">Awaiting assessment</p>
+                        </div>
+                    </div>
+
+                    <!-- In Progress -->
+                    <div class="bg-white border border-gray-200 p-3.5 rounded-sm flex flex-col justify-between fade-slide-up-init shadow-none" style="animation-delay: 280ms;">
+                        <span class="text-[10px] font-bold text-blue-700 uppercase tracking-widest">In Progress</span>
+                        <div>
+                            <span class="text-2xl font-serif font-bold text-blue-700">08</span>
+                            <p class="text-[11px] text-gray-500 font-medium mt-1">Active on campus</p>
+                        </div>
+                    </div>
+
+                    <!-- Completed -->
+                    <div class="bg-white border border-gray-200 p-3.5 rounded-sm flex flex-col justify-between fade-slide-up-init shadow-none" style="animation-delay: 360ms;">
+                        <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest">Completed</span>
+                        <div>
+                            <span class="text-2xl font-serif font-bold text-emerald-700">114</span>
+                            <p class="text-[11px] text-emerald-800 font-bold mt-1">92% on-time rate</p>
+                        </div>
+                    </div>
+
+                    <!-- Today's Daily Goal Progress -->
+                    <div class="bg-white border border-gray-200 p-3.5 rounded-sm flex flex-col justify-between col-span-2 sm:col-span-1 fade-slide-up-init shadow-none" style="animation-delay: 440ms;">
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Shift Goal</span>
+                        <div>
+                            <div class="flex justify-between items-baseline mb-1">
+                                <span class="text-2xl font-serif font-bold text-gray-900">65%</span>
+                                <span class="text-[10px] font-mono text-gray-500">13/20</span>
+                            </div>
+                            <div class="w-full bg-gray-100 h-2 rounded-sm overflow-hidden">
+                                <div class="bg-primary h-full transition-all duration-700" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Active Task Queue + Route & Inventory Panel -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                
+                <!-- Main Task Queue (8 cols) -->
+                <section class="lg:col-span-8 bg-white border border-gray-200 rounded-sm p-6 space-y-5" id="active-queue">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-100">
+                        <div>
+                            <h2 class="font-serif text-lg font-bold text-on-background">Active Task Queue</h2>
+                            <p class="text-xs text-gray-500">Prioritized work orders &middot; Sorted by SLA urgency</p>
+                        </div>
+                        
+                        <!-- Quick Filter Tabs (Smooth Transition) -->
+                        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0" id="queueFilterTabs">
+                            <button class="filter-tab px-2.5 py-1 bg-primary text-white text-xs font-bold uppercase tracking-wider rounded-sm transition-colors duration-200" data-filter="all">All (<span id="count-all">4</span>)</button>
+                            <button class="filter-tab px-2.5 py-1 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 text-xs font-semibold uppercase tracking-wider rounded-sm transition-colors duration-200" data-filter="high">High (2)</button>
+                            <button class="filter-tab px-2.5 py-1 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 text-xs font-semibold uppercase tracking-wider rounded-sm transition-colors duration-200" data-filter="overdue">Overdue (2)</button>
+                            <button class="filter-tab px-2.5 py-1 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 text-xs font-semibold uppercase tracking-wider rounded-sm transition-colors duration-200" data-filter="in-progress">In Progress (1)</button>
+                        </div>
+                    </div>
+
+                    <!-- Task List Items (Staggered Load) -->
+                    <div class="divide-y divide-gray-100 transition-opacity duration-150" id="taskItemsContainer">
+                        
+                        <!-- Task 1: Burst Pipe (Overdue / High Priority) -->
+                        <div class="task-row task-row-fade py-4 space-y-3 hover:bg-gray-50/80 transition-colors duration-150 p-2 rounded-sm" style="animation-delay: 500ms;" data-priority="high" data-status="overdue" data-id="WR-28491">
+                            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                                <div class="flex items-start gap-3">
+                                    <!-- Photo Thumbnail with Interactive Lightbox -->
+                                    <button class="w-12 h-12 rounded-sm overflow-hidden border border-gray-200 hover:border-primary shrink-0 cursor-zoom-in transition-transform duration-150 hover:scale-[1.04]"
+                                            data-lightbox-src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200&h=1200"
+                                            data-lightbox-caption="Burst Pipe in Chemistry Lab 302 &middot; #WR-28491 (Science Block Wing B)"
+                                            data-lightbox-group="staff-queue"
+                                            title="Click to expand inspection photo">
+                                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=200&h=200" class="w-full h-full object-cover" alt="Burst Pipe">
+                                    </button>
+                                    <div>
+                                        <div class="flex flex-wrap items-center gap-2 mb-1">
+                                            <span class="font-mono font-bold text-xs text-gray-900">#WR-28491</span>
+                                            <span class="status-badge px-2 py-0.5 bg-red-100 text-red-800 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-all duration-200">High Priority</span>
+                                            <span class="overdue-badge px-2 py-0.5 bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider rounded-sm transition-all duration-200">Overdue by 45m</span>
+                                        </div>
+                                        <h3 class="text-sm font-bold text-gray-900 hover:text-primary cursor-pointer transition-colors" onclick="openTaskDetail('WR-28491')">Burst Pipe in Chemistry Lab 302</h3>
+                                        <p class="text-xs text-gray-500">Science Building &middot; Floor 3 &middot; Wing B (Room 302)</p>
+                                    </div>
+                                </div>
+
+                                <div class="text-right sm:shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-2">
+                                    <span class="text-[11px] font-bold text-red-700 bg-red-50 px-2 py-0.5 rounded-sm">Due: 09:30 AM</span>
+                                    <span class="text-[10px] text-gray-500 font-mono">Parts: Pipe Clamp #P-12 (In Van)</span>
+                                </div>
+                            </div>
+
+                            <!-- Inline Task Quick Actions -->
+                            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-gray-100 text-xs">
+                                <div class="flex items-center gap-2">
+                                    <button class="complete-btn px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-sm text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 transition-colors duration-150 active:scale-95" onclick="quickCompleteTask(this, 'WR-28491')">
+                                        <span class="material-symbols-outlined text-[14px]">check</span> Complete
+                                    </button>
+                                    <button class="px-2.5 py-1 bg-white border border-gray-200 hover:bg-gray-100 text-gray-700 rounded-sm text-[11px] font-semibold flex items-center gap-1 transition-colors duration-150" onclick="toggleInlineNotes('notes-WR-28491')">
+                                        <span class="material-symbols-outlined text-[14px]">edit_note</span> Log Time / Notes
+                                    </button>
+                                </div>
+                                <button class="text-gray-600 hover:text-primary hover:underline underline-offset-2 font-bold text-xs flex items-center gap-0.5 transition-colors duration-150" onclick="openTaskDetail('WR-28491')">
+                                    Full Details <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                                </button>
+                            </div>
+
+                            <!-- Collapsible Inline Notes Panel -->
+                            <div id="notes-WR-28491" class="hidden pt-2 space-y-2 text-xs">
+                                <div class="flex gap-2">
+                                    <input type="text" placeholder="Resolution notes (e.g. replaced rubber seal, tested 40 PSI)..." class="flex-1 bg-white border border-gray-200 rounded-sm p-2 text-xs outline-none focus:ring-1 focus:ring-primary">
+                                    <input type="text" placeholder="Time: 45m" class="w-24 bg-white border border-gray-200 rounded-sm p-2 text-xs outline-none focus:ring-1 focus:ring-primary text-center">
+                                    <button class="px-3 py-1 bg-gray-900 text-white font-bold rounded-sm text-xs hover:bg-black" onclick="saveInlineNotes('notes-WR-28491')">Save</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Task 2: Lighting Fixture (In Progress) -->
+                        <div class="task-row task-row-fade py-4 space-y-3 hover:bg-gray-50/80 transition-colors duration-150 p-2 rounded-sm" style="animation-delay: 540ms;" data-priority="standard" data-status="in-progress" data-id="WR-28504">
+                            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                                <div class="flex items-start gap-3">
+                                    <button class="w-12 h-12 rounded-sm overflow-hidden border border-gray-200 hover:border-primary shrink-0 cursor-zoom-in transition-transform duration-150 hover:scale-[1.04]"
+                                            data-lightbox-src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200&h=1200"
+                                            data-lightbox-caption="Corridor Fluorescent Tube Replacement &middot; #WR-28504 (North Dormitory)"
+                                            data-lightbox-group="staff-queue"
+                                            title="Click to expand inspection photo">
+                                        <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=200&h=200" class="w-full h-full object-cover" alt="Lighting Fixture">
+                                    </button>
+                                    <div>
+                                        <div class="flex flex-wrap items-center gap-2 mb-1">
+                                            <span class="font-mono font-bold text-xs text-gray-900">#WR-28504</span>
+                                            <span class="status-badge px-2 py-0.5 bg-blue-50 text-blue-800 border border-blue-200 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-all duration-200">Standard</span>
+                                            <span class="status-state-badge px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-all duration-200">In Progress</span>
+                                        </div>
+                                        <h3 class="text-sm font-bold text-gray-900 hover:text-primary cursor-pointer transition-colors" onclick="openTaskDetail('WR-28504')">Lighting fixture replacement (Corridor B)</h3>
+                                        <p class="text-xs text-gray-500">North Dormitory &middot; 2nd Floor Main Hallway</p>
+                                    </div>
+                                </div>
+
+                                <div class="text-right sm:shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-2">
+                                    <span class="text-[11px] font-bold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-sm">SLA: 1h 20m left</span>
+                                    <span class="text-[10px] text-emerald-700 font-mono font-semibold">Parts: 4ft LED Tube (In Store)</span>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-gray-100 text-xs">
+                                <div class="flex items-center gap-2">
+                                    <button class="complete-btn px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-sm text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 transition-colors duration-150 active:scale-95" onclick="quickCompleteTask(this, 'WR-28504')">
+                                        <span class="material-symbols-outlined text-[14px]">check</span> Complete
+                                    </button>
+                                    <button class="px-2.5 py-1 bg-white border border-gray-200 hover:bg-gray-100 text-gray-700 rounded-sm text-[11px] font-semibold flex items-center gap-1 transition-colors duration-150" onclick="toggleInlineNotes('notes-WR-28504')">
+                                        <span class="material-symbols-outlined text-[14px]">edit_note</span> Log Time / Notes
+                                    </button>
+                                </div>
+                                <button class="text-gray-600 hover:text-primary hover:underline underline-offset-2 font-bold text-xs flex items-center gap-0.5 transition-colors duration-150" onclick="openTaskDetail('WR-28504')">
+                                    Full Details <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                                </button>
+                            </div>
+
+                            <div id="notes-WR-28504" class="hidden pt-2 space-y-2 text-xs">
+                                <div class="flex gap-2">
+                                    <input type="text" placeholder="Resolution notes..." class="flex-1 bg-white border border-gray-200 rounded-sm p-2 text-xs outline-none focus:ring-1 focus:ring-primary">
+                                    <input type="text" placeholder="Time: 20m" class="w-24 bg-white border border-gray-200 rounded-sm p-2 text-xs outline-none focus:ring-1 focus:ring-primary text-center">
+                                    <button class="px-3 py-1 bg-gray-900 text-white font-bold rounded-sm text-xs hover:bg-black" onclick="saveInlineNotes('notes-WR-28504')">Save</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Task 3: HVAC Calibration (Overdue / High Priority) -->
+                        <div class="task-row task-row-fade py-4 space-y-3 hover:bg-gray-50/80 transition-colors duration-150 p-2 rounded-sm" style="animation-delay: 580ms;" data-priority="high" data-status="overdue" data-id="WR-28519">
+                            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-12 h-12 rounded-sm bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 shrink-0" title="No photo attached">
+                                        <span class="material-symbols-outlined text-[20px]">ac_unit</span>
+                                    </div>
+                                    <div>
+                                        <div class="flex flex-wrap items-center gap-2 mb-1">
+                                            <span class="font-mono font-bold text-xs text-gray-900">#WR-28519</span>
+                                            <span class="status-badge px-2 py-0.5 bg-red-100 text-red-800 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-all duration-200">High Priority</span>
+                                            <span class="overdue-badge px-2 py-0.5 bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider rounded-sm transition-all duration-200">Overdue by 2h</span>
+                                        </div>
+                                        <h3 class="text-sm font-bold text-gray-900 hover:text-primary cursor-pointer transition-colors" onclick="openTaskDetail('WR-28519')">Server Lab HVAC Thermostat Overheating</h3>
+                                        <p class="text-xs text-gray-500">Science Block &middot; Room 402 (CS Server Room)</p>
+                                    </div>
+                                </div>
+
+                                <div class="text-right sm:shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-2">
+                                    <span class="text-[11px] font-bold text-red-700 bg-red-50 px-2 py-0.5 rounded-sm">Critical Temp (82°F)</span>
+                                    <span class="text-[10px] text-amber-700 font-mono font-semibold">Parts: Valve #HV-40 (Low Stock)</span>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-gray-100 text-xs">
+                                <div class="flex items-center gap-2">
+                                    <button class="start-btn px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-sm text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 transition-colors duration-150 active:scale-95" onclick="quickStartTask(this, 'WR-28519')">
+                                        <span class="material-symbols-outlined text-[14px]">play_arrow</span> Mark Started
+                                    </button>
+                                    <button class="px-2.5 py-1 bg-white border border-gray-200 hover:bg-gray-100 text-gray-700 rounded-sm text-[11px] font-semibold flex items-center gap-1 transition-colors duration-150" onclick="toggleInlineNotes('notes-WR-28519')">
+                                        <span class="material-symbols-outlined text-[14px]">edit_note</span> Log Time / Notes
+                                    </button>
+                                </div>
+                                <button class="text-gray-600 hover:text-primary hover:underline underline-offset-2 font-bold text-xs flex items-center gap-0.5 transition-colors duration-150" onclick="openTaskDetail('WR-28519')">
+                                    Full Details <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                                </button>
+                            </div>
+
+                            <div id="notes-WR-28519" class="hidden pt-2 space-y-2 text-xs">
+                                <div class="flex gap-2">
+                                    <input type="text" placeholder="Resolution notes..." class="flex-1 bg-white border border-gray-200 rounded-sm p-2 text-xs outline-none focus:ring-1 focus:ring-primary">
+                                    <input type="text" placeholder="Time: 30m" class="w-24 bg-white border border-gray-200 rounded-sm p-2 text-xs outline-none focus:ring-1 focus:ring-primary text-center">
+                                    <button class="px-3 py-1 bg-gray-900 text-white font-bold rounded-sm text-xs hover:bg-black" onclick="saveInlineNotes('notes-WR-28519')">Save</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Task 4: Door Lock (Standard) -->
+                        <div class="task-row task-row-fade py-4 space-y-3 hover:bg-gray-50/80 transition-colors duration-150 p-2 rounded-sm" style="animation-delay: 620ms;" data-priority="standard" data-status="pending" data-id="WR-28522">
+                            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-12 h-12 rounded-sm bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 shrink-0">
+                                        <span class="material-symbols-outlined text-[20px]">door_front</span>
+                                    </div>
+                                    <div>
+                                        <div class="flex flex-wrap items-center gap-2 mb-1">
+                                            <span class="font-mono font-bold text-xs text-gray-900">#WR-28522</span>
+                                            <span class="status-badge px-2 py-0.5 bg-gray-100 text-gray-700 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-all duration-200">Standard</span>
+                                            <span class="status-state-badge px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-all duration-200">Pending</span>
+                                        </div>
+                                        <h3 class="text-sm font-bold text-gray-900 hover:text-primary cursor-pointer transition-colors" onclick="openTaskDetail('WR-28522')">Classroom 104 Electronic Lock Malfunction</h3>
+                                        <p class="text-xs text-gray-500">Main Academic Hall &middot; 1st Floor</p>
+                                    </div>
+                                </div>
+
+                                <div class="text-right sm:shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-2">
+                                    <span class="text-[11px] font-bold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-sm">SLA: 3h 40m left</span>
+                                    <span class="text-[10px] text-emerald-700 font-mono font-semibold">Parts: Battery Pack (In Truck)</span>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-gray-100 text-xs">
+                                <div class="flex items-center gap-2">
+                                    <button class="start-btn px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-sm text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 transition-colors duration-150 active:scale-95" onclick="quickStartTask(this, 'WR-28522')">
+                                        <span class="material-symbols-outlined text-[14px]">play_arrow</span> Mark Started
+                                    </button>
+                                    <button class="px-2.5 py-1 bg-white border border-gray-200 hover:bg-gray-100 text-gray-700 rounded-sm text-[11px] font-semibold flex items-center gap-1 transition-colors duration-150" onclick="toggleInlineNotes('notes-WR-28522')">
+                                        <span class="material-symbols-outlined text-[14px]">edit_note</span> Log Time / Notes
+                                    </button>
+                                </div>
+                                <button class="text-gray-600 hover:text-primary hover:underline underline-offset-2 font-bold text-xs flex items-center gap-0.5 transition-colors duration-150" onclick="openTaskDetail('WR-28522')">
+                                    Full Details <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                                </button>
+                            </div>
+
+                            <div id="notes-WR-28522" class="hidden pt-2 space-y-2 text-xs">
+                                <div class="flex gap-2">
+                                    <input type="text" placeholder="Resolution notes..." class="flex-1 bg-white border border-gray-200 rounded-sm p-2 text-xs outline-none focus:ring-1 focus:ring-primary">
+                                    <input type="text" placeholder="Time: 15m" class="w-24 bg-white border border-gray-200 rounded-sm p-2 text-xs outline-none focus:ring-1 focus:ring-primary text-center">
+                                    <button class="px-3 py-1 bg-gray-900 text-white font-bold rounded-sm text-xs hover:bg-black" onclick="saveInlineNotes('notes-WR-28522')">Save</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Sidebar Columns (4 cols): Route Optimization & Parts Inventory -->
+                <div class="lg:col-span-4 space-y-6">
+                    
+                    <!-- 1. "My Route Today" (Numbered stops fade in sequentially ~60ms) -->
+                    <section class="bg-white border border-gray-200 rounded-sm p-5 space-y-4">
+                        <div class="flex justify-between items-center pb-2 border-b border-gray-100">
+                            <div>
+                                <h2 class="font-serif text-sm font-bold text-gray-900">My Route Today</h2>
+                                <p class="text-[11px] text-gray-500">Proximity-optimized building sequence</p>
+                            </div>
+                            <span class="text-[10px] font-bold text-primary uppercase tracking-widest bg-red-50 px-2 py-0.5 rounded-sm">4 Stops</span>
+                        </div>
+
+                        <div class="space-y-3 relative before:absolute before:left-3 before:top-3 before:bottom-3 before:w-0.5 before:bg-gray-200">
+                            <!-- Stop 1 -->
+                            <div class="route-stop-fade flex items-start gap-3 relative z-10 p-1.5 rounded-sm hover:bg-gray-50/80 transition-colors duration-150" style="animation-delay: 500ms;">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900">Science Block (Room 302)</p>
+                                    <p class="text-[11px] text-red-600 font-medium">Burst Pipe &middot; ETA 09:15 AM</p>
+                                </div>
+                            </div>
+
+                            <!-- Stop 2 -->
+                            <div class="route-stop-fade flex items-start gap-3 relative z-10 p-1.5 rounded-sm hover:bg-gray-50/80 transition-colors duration-150" style="animation-delay: 560ms;">
+                                <span class="w-6 h-6 rounded-full bg-gray-800 text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900">Science Block (Room 402)</p>
+                                    <p class="text-[11px] text-gray-500 font-medium">Server Room HVAC &middot; Same building</p>
+                                </div>
+                            </div>
+
+                            <!-- Stop 3 -->
+                            <div class="route-stop-fade flex items-start gap-3 relative z-10 p-1.5 rounded-sm hover:bg-gray-50/80 transition-colors duration-150" style="animation-delay: 620ms;">
+                                <span class="w-6 h-6 rounded-full bg-gray-800 text-white text-xs font-bold flex items-center justify-center shrink-0">3</span>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900">Main Academic (Room 104)</p>
+                                    <p class="text-[11px] text-gray-500 font-medium">Lock Malfunction &middot; 350m walk</p>
+                                </div>
+                            </div>
+
+                            <!-- Stop 4 -->
+                            <div class="route-stop-fade flex items-start gap-3 relative z-10 p-1.5 rounded-sm hover:bg-gray-50/80 transition-colors duration-150" style="animation-delay: 680ms;">
+                                <span class="w-6 h-6 rounded-full bg-gray-400 text-white text-xs font-bold flex items-center justify-center shrink-0">4</span>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900">North Dormitory (Floor 2)</p>
+                                    <p class="text-[11px] text-gray-500 font-medium">Lighting &middot; Scheduled 02:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t border-gray-100 text-[11px] text-gray-500 flex justify-between items-center">
+                            <span>Estimated transit time: 18 mins</span>
+                            <span class="text-primary font-bold">1.2 km total</span>
+                        </div>
+                    </section>
+
+                    <!-- 2. Parts & Inventory Quick-Check (Smooth 200ms transitions) -->
+                    <section class="bg-white border border-gray-200 rounded-sm p-5 space-y-4">
+                        <div class="flex justify-between items-center pb-2 border-b border-gray-100">
+                            <div>
+                                <h2 class="font-serif text-sm font-bold text-gray-900">Parts Quick-Check</h2>
+                                <p class="text-[11px] text-gray-500">Required hardware for today's queue</p>
+                            </div>
+                            <span class="material-symbols-outlined text-gray-400 text-[18px]">inventory_2</span>
+                        </div>
+
+                        <div class="space-y-2.5 text-xs">
+                            <div class="flex justify-between items-center p-2 bg-gray-50 rounded-sm hover:bg-gray-100/70 transition-colors duration-150">
+                                <div>
+                                    <p class="font-bold text-gray-900">Pipe Clamp #P-12 (2")</p>
+                                    <p class="text-[10px] text-gray-500">Required for #WR-28491</p>
+                                </div>
+                                <span class="stock-label px-2 py-0.5 bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-colors duration-200">In Van</span>
+                            </div>
+
+                            <div class="flex justify-between items-center p-2 bg-gray-50 rounded-sm hover:bg-gray-100/70 transition-colors duration-150">
+                                <div>
+                                    <p class="font-bold text-gray-900">4ft LED T8 Tube #L-08</p>
+                                    <p class="text-[10px] text-gray-500">Required for #WR-28504</p>
+                                </div>
+                                <span class="stock-label px-2 py-0.5 bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-colors duration-200">In Store</span>
+                            </div>
+
+                            <div class="flex justify-between items-center p-2 bg-gray-50 rounded-sm hover:bg-gray-100/70 transition-colors duration-150">
+                                <div>
+                                    <p class="font-bold text-gray-900">Compressor Valve #HV-40</p>
+                                    <p class="text-[10px] text-gray-500">Required for #WR-28519</p>
+                                </div>
+                                <span class="stock-label px-2 py-0.5 bg-amber-50 text-amber-800 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-colors duration-200">Low (2 Left)</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t border-gray-100">
+                            <a href="#" class="text-xs text-gray-600 hover:text-primary font-bold hover:underline underline-offset-2 flex items-center justify-between transition-colors duration-150">
+                                <span>Open Central Inventory Store</span>
+                                <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                            </a>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Unified Footer -->
+        <footer class="mt-auto w-full border-t border-gray-200 bg-[#FAF9F6] py-8">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-lg font-bold text-gray-400">CampusCare</p>
+                    <p class="text-xs text-gray-500 mt-1">&copy; 2026 CampusCare &middot; University Name</p>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-xs font-bold uppercase tracking-widest text-gray-500">
+                    <a href="#" class="hover:text-primary transition-colors">Help Center</a>
+                    <a href="#" class="hover:text-primary transition-colors">Report an Issue</a>
+                    <a href="#" class="hover:text-primary transition-colors">Contact Facilities</a>
+                    <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+                </div>
+                <div class="text-xs font-bold uppercase tracking-widest text-primary text-center md:text-right mt-4 md:mt-0">
+                    Emergency? Contact Dispatch: <br class="md:hidden">555-0199 (Ext. 400)
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Bottom Navigation Mobile Only -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-gray-200 shadow-lg">
+        <a class="flex flex-col items-center justify-center text-primary px-4 py-1" href="dashboard-staff.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+            <span class="text-[10px] font-bold">Dashboard</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="task-management-staff.html">
+            <span class="material-symbols-outlined">assignment</span>
+            <span class="text-[10px] font-medium">Tasks</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="notifications-staff.html">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="text-[10px] font-medium">Alerts</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="profile-settings-staff.html">
+            <span class="material-symbols-outlined">person</span>
+            <span class="text-[10px] font-medium">Profile</span>
+        </a>
+    </nav>
+</div>
+
+<!-- Task Detail Modal Structure -->
+<div id="taskDetailModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="bg-white border border-gray-200 rounded-sm max-w-2xl w-full p-6 space-y-5 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-start pb-3 border-b border-gray-200">
+            <div>
+                <span class="font-mono text-xs font-bold text-primary" id="modalTaskId">#WR-28491</span>
+                <h3 class="font-serif text-xl font-bold text-gray-900" id="modalTaskTitle">Burst Pipe in Chemistry Lab 302</h3>
+            </div>
+            <button class="p-1 text-gray-400 hover:text-gray-900 rounded-sm" onclick="closeTaskDetail()">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <!-- Task Metadata Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+            <div class="p-2.5 bg-gray-50 rounded-sm">
+                <span class="text-gray-500 block text-[10px] uppercase font-bold tracking-wider">Location</span>
+                <span class="font-bold text-gray-900">Science Block 302</span>
+            </div>
+            <div class="p-2.5 bg-gray-50 rounded-sm">
+                <span class="text-gray-500 block text-[10px] uppercase font-bold tracking-wider">Priority</span>
+                <span class="font-bold text-red-600">High (Overdue)</span>
+            </div>
+            <div class="p-2.5 bg-gray-50 rounded-sm">
+                <span class="text-gray-500 block text-[10px] uppercase font-bold tracking-wider">Reporter</span>
+                <span class="font-bold text-gray-900">Dr. Tupe (Ext 402)</span>
+            </div>
+            <div class="p-2.5 bg-gray-50 rounded-sm">
+                <span class="text-gray-500 block text-[10px] uppercase font-bold tracking-wider">SLA Deadline</span>
+                <span class="font-bold text-red-600">09:30 AM</span>
+            </div>
+        </div>
+
+        <!-- Photos & Diagnostic Context -->
+        <div>
+            <h4 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Reporter Photo &amp; Diagnostic Note</h4>
+            <div class="flex items-start gap-4">
+                <div class="w-24 h-24 rounded-sm border border-gray-200 overflow-hidden cursor-zoom-in group shrink-0"
+                     data-lightbox-src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200&h=1200"
+                     data-lightbox-caption="Evidence: Water spraying from elbow joint beneath sink #3">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=300&h=300" class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Pipe Leak">
+                </div>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                    "Cold water supply pipe connection failed beneath sink 3. Pressure buildup caused fitting to pop. Water shutoff valve in hallway isolated temporarily, but lab floor is flooded."
+                </p>
+            </div>
+        </div>
+
+        <!-- Completion Checklist & Notes -->
+        <div class="space-y-3 pt-2 border-t border-gray-100">
+            <h4 class="text-xs font-bold uppercase tracking-widest text-gray-500">Technician Resolution Entry</h4>
+            <textarea id="modalResolutionNotes" rows="3" placeholder="Enter parts replaced, pressure test verification, and safety sign-off..." class="w-full bg-white border border-gray-200 rounded-sm p-2.5 text-xs text-gray-800 outline-none focus:ring-1 focus:ring-primary"></textarea>
+            <div class="flex items-center justify-between">
+                <button class="px-3 py-1.5 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 rounded-sm text-xs font-bold flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">add_a_photo</span>
+                    Upload 'After' Photo
+                </button>
+                <div class="flex gap-2">
+                    <button class="px-4 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-sm text-xs font-bold uppercase tracking-wider" onclick="closeTaskDetail()">Cancel</button>
+                    <button class="px-4 py-1.5 bg-primary text-white hover:bg-red-700 rounded-sm text-xs font-bold uppercase tracking-wider" onclick="submitTaskResolution()">Submit &amp; Close Ticket</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Shift Handoff Modal Structure -->
+<div id="endShiftModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="bg-white border border-gray-200 rounded-sm max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+        <div class="flex justify-between items-start pb-2 border-b border-gray-200">
+            <div>
+                <h3 class="font-serif text-lg font-bold text-gray-900">Shift Handoff Summary</h3>
+                <p class="text-xs text-gray-500">Compiles completed tasks &amp; pending items for Evening Shift</p>
+            </div>
+            <button class="p-1 text-gray-400 hover:text-gray-900 rounded-sm" onclick="document.getElementById('endShiftModal').classList.add('hidden'); document.getElementById('endShiftModal').classList.remove('flex');">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <div class="space-y-3 text-xs">
+            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-sm">
+                <span class="font-bold text-emerald-800">✅ 13 Tasks Completed</span>
+                <p class="text-emerald-700 mt-0.5">Average resolution time: 42 minutes per ticket.</p>
+            </div>
+            <div class="p-3 bg-amber-50 border border-amber-200 rounded-sm">
+                <span class="font-bold text-amber-800">⚠️ 2 Pending Handoff</span>
+                <p class="text-amber-700 mt-0.5">#WR-28519 (Science Block 402 HVAC) awaiting compressor valve delivery.</p>
+            </div>
+            <div>
+                <label class="font-bold text-gray-700 block mb-1">Shift Notes for Incoming Lead:</label>
+                <textarea rows="2" class="w-full border border-gray-200 p-2 rounded-sm text-xs outline-none focus:ring-1 focus:ring-primary" placeholder="e.g. Zone B key returned to locker 4, van restocked with standard plumbing fittings."></textarea>
+            </div>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-2 border-t border-gray-100">
+            <button class="px-4 py-1.5 bg-gray-100 text-gray-700 rounded-sm text-xs font-bold uppercase tracking-wider" onclick="document.getElementById('endShiftModal').classList.add('hidden'); document.getElementById('endShiftModal').classList.remove('flex');">Cancel</button>
+            <button class="px-4 py-1.5 bg-primary text-white hover:bg-red-700 rounded-sm text-xs font-bold uppercase tracking-wider" onclick="alert('Shift summary logged and dispatched to Facilities Lead.'); document.getElementById('endShiftModal').classList.add('hidden'); document.getElementById('endShiftModal').classList.remove('flex');">Sign Off Shift</button>
+        </div>
+    </div>
+</div>
+
+<!-- Interactive Modules -->
+<script src="src/components/lightbox.js" type="module"></script>
 <script src="src/components/sidebar.js" type="module"></script>
 <script src="src/router.js" type="module"></script>
-</body></html>
+
+<script>
+    // Live Synchronized Date & Time Engine
+    function updateLiveDateTime() {
+        const now = new Date();
+        const dateOptions = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        
+        const dateString = now.toLocaleDateString('en-US', dateOptions);
+        const timeString = now.toLocaleTimeString('en-US', timeOptions);
+
+        const dateEl = document.getElementById('headerLiveDate');
+        const timeEl = document.getElementById('headerLiveTime');
+        if (dateEl) dateEl.textContent = dateString;
+        if (timeEl) timeEl.textContent = timeString;
+    }
+    setInterval(updateLiveDateTime, 1000);
+    updateLiveDateTime();
+
+    // Quick Task Filter Tabs with smooth list cross-fade
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const taskContainer = document.getElementById('taskItemsContainer');
+
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const filter = tab.getAttribute('data-filter');
+            
+            filterTabs.forEach(t => {
+                t.classList.remove('bg-primary', 'text-white');
+                t.classList.add('bg-white', 'border', 'border-gray-200', 'text-gray-700');
+            });
+            tab.classList.remove('bg-white', 'border', 'border-gray-200', 'text-gray-700');
+            tab.classList.add('bg-primary', 'text-white');
+
+            // Brief cross-fade of task list
+            if (taskContainer) {
+                taskContainer.style.opacity = '0.3';
+                setTimeout(() => {
+                    const rows = document.querySelectorAll('.task-row');
+                    rows.forEach(row => {
+                        const priority = row.getAttribute('data-priority');
+                        const status = row.getAttribute('data-status');
+
+                        if (filter === 'all') {
+                            row.style.display = '';
+                        } else if (filter === 'high' && priority === 'high') {
+                            row.style.display = '';
+                        } else if (filter === 'overdue' && status === 'overdue') {
+                            row.style.display = '';
+                        } else if (filter === 'in-progress' && status === 'in-progress') {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                    taskContainer.style.opacity = '1';
+                }, 150);
+            }
+        });
+    });
+
+    // Quick Task Actions with feedback flash & animated removal
+    function quickCompleteTask(btn, taskId) {
+        const row = btn.closest('.task-row');
+        if (!row) return;
+
+        // Immediate confirmation animation (flash background + button update)
+        row.classList.add('row-action-flash');
+        btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+        btn.classList.add('bg-emerald-800', 'cursor-default');
+        btn.innerHTML = '<span class="material-symbols-outlined text-[14px]">done_all</span> Completed';
+        btn.disabled = true;
+
+        const statusBadges = row.querySelectorAll('.status-badge, .overdue-badge, .status-state-badge');
+        statusBadges.forEach(b => {
+            b.style.opacity = '0.3';
+            setTimeout(() => {
+                b.className = 'px-2 py-0.5 bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-all duration-200';
+                b.textContent = 'Resolved';
+                b.style.opacity = '1';
+            }, 100);
+        });
+
+        // Animate removal out of active queue after brief confirmation
+        setTimeout(() => {
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReduced) {
+                row.remove();
+                updateTaskCount();
+                return;
+            }
+
+            row.style.transition = 'opacity 300ms ease-in, transform 300ms ease-in, max-height 300ms ease-in, padding 300ms ease-in, margin 300ms ease-in';
+            row.style.opacity = '0';
+            row.style.transform = 'translateX(20px)';
+            row.style.maxHeight = row.scrollHeight + 'px';
+            
+            setTimeout(() => {
+                row.style.maxHeight = '0px';
+                row.style.paddingTop = '0px';
+                row.style.paddingBottom = '0px';
+                row.style.marginTop = '0px';
+                row.style.marginBottom = '0px';
+                row.style.overflow = 'hidden';
+                setTimeout(() => {
+                    row.remove();
+                    updateTaskCount();
+                }, 300);
+            }, 50);
+        }, 450);
+    }
+
+    function quickStartTask(btn, taskId) {
+        const row = btn.closest('.task-row');
+        if (!row) return;
+
+        // Flash background confirmation
+        row.classList.add('row-action-flash');
+        setTimeout(() => row.classList.remove('row-action-flash'), 450);
+
+        btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+        btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+        btn.innerHTML = '<span class="material-symbols-outlined text-[14px]">check</span> Complete';
+        btn.setAttribute('onclick', `quickCompleteTask(this, '${taskId}')`);
+        
+        row.setAttribute('data-status', 'in-progress');
+        const stateBadge = row.querySelector('.status-state-badge, .overdue-badge');
+        if (stateBadge) {
+            stateBadge.style.opacity = '0.3';
+            setTimeout(() => {
+                stateBadge.className = 'status-state-badge px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-all duration-200';
+                stateBadge.textContent = 'In Progress';
+                stateBadge.style.opacity = '1';
+            }, 100);
+        }
+    }
+
+    function updateTaskCount() {
+        const count = document.querySelectorAll('#taskItemsContainer .task-row').length;
+        const countEl = document.getElementById('count-all');
+        if (countEl) countEl.textContent = count;
+    }
+
+    function toggleInlineNotes(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('hidden');
+    }
+
+    function saveInlineNotes(id) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.classList.add('hidden');
+            const row = el.closest('.task-row');
+            if (row) {
+                row.classList.add('row-action-flash');
+                setTimeout(() => row.classList.remove('row-action-flash'), 450);
+            }
+        }
+    }
+
+    // Task Detail Modal
+    function openTaskDetail(taskId) {
+        const modal = document.getElementById('taskDetailModal');
+        const modalId = document.getElementById('modalTaskId');
+        if (modalId) modalId.textContent = `#${taskId}`;
+        if (modal) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+    }
+
+    function closeTaskDetail() {
+        const modal = document.getElementById('taskDetailModal');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    }
+
+    function submitTaskResolution() {
+        closeTaskDetail();
+    }
+
+    // End-Shift Modal
+    const endShiftBtn = document.getElementById('endShiftBtn');
+    if (endShiftBtn) {
+        endShiftBtn.addEventListener('click', () => {
+            const modal = document.getElementById('endShiftModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        });
+    }
+
+    // Live Search Asset History Dropdown
+    const assetSearch = document.getElementById('assetSearchInput');
+    const searchDropdown = document.getElementById('searchDropdown');
+    if (assetSearch && searchDropdown) {
+        assetSearch.addEventListener('focus', () => searchDropdown.classList.remove('hidden'));
+        assetSearch.addEventListener('blur', () => setTimeout(() => searchDropdown.classList.add('hidden'), 200));
+    }
+</script>
+</body>
+</html>
