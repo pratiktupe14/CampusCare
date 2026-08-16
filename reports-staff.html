@@ -2,232 +2,496 @@
 <html class="light" lang="en">
 <head>
     <meta charset="UTF-8">
-
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Reports - CampusCare</title>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts: Inter -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script src="shared-tailwind-config.js"></script>
-<style>
-        body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .soft-elevation { box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05); }
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Staff Reports &amp; Performance - CampusCare</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <script src="shared-tailwind-config.js"></script>
+    <style>
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
-        
-        /* Bar Chart Styles */
-        .bar-chart-container {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-around;
-            height: 250px;
-            padding-top: 20px;
-            border-bottom: 1px solid #e5e7eb;
-            border-left: 1px solid #e5e7eb;
-        }
-        .bar-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            height: 100%;
-            width: 40px;
-            position: relative;
-        }
-        .bar {
-            width: 100%;
-            border-radius: 4px 4px 0 0;
-            transition: height 0.5s ease-out;
-        }
-        .bar-label {
-            margin-top: 10px;
-            font-size: 12px;
-            color: #6b7280;
-            text-align: center;
-        }
-        .bar-value {
-            position: absolute;
-            top: -25px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #374151;
-        }
     </style>
 </head>
-<body class="text-on-surface min-h-screen flex">
-    
+<body class="bg-paper text-on-background min-h-screen flex flex-col font-sans">
+<div class="flex min-h-screen">
+    <!-- Side Navigation Shell -->
     <app-sidebar active="reports" role="staff"></app-sidebar>
 
     <!-- Main Content Area -->
-    <main class="flex-1 md:ml-[220px] bg-[#F8FAFC] min-h-screen pb-24 md:pb-8 min-w-0">
+    <main class="flex-1 md:ml-[220px] bg-paper min-h-screen pb-24 md:pb-8 flex flex-col min-w-0">
+        
         <!-- Top Bar -->
-        <header class="h-16 flex justify-between items-center px-6 py-3 sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-sm">
+        <header class="h-16 flex justify-between items-center px-6 py-2 sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-none backdrop-blur-md bg-opacity-90">
             <div class="flex items-center gap-4">
-                <button class="md:hidden p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors">
+                <button class="md:hidden p-2">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
-                <h2 class="text-xl font-bold text-primary">Reports</h2>
+                <div class="hidden md:flex bg-white items-center px-4 py-1.5 rounded-sm border border-gray-200 w-96">
+                    <span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]">search</span>
+                    <input class="bg-transparent border-none focus:ring-0 text-xs w-full outline-none" placeholder="Search report metrics, technician logs, or building analytics..." type="text">
+                </div>
             </div>
-            <div class="flex items-center gap-4">
-                <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors relative">
-                    <span class="material-symbols-outlined text-gray-600">notifications</span>
-                    <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border border-white"></span>
-                </button>
-                <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
-                    <span class="material-symbols-outlined text-gray-600">settings</span>
-                </button>
-                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs">AR</div>
+            
+            <div class="flex items-center gap-4 sm:gap-6 shrink-0">
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs font-bold text-gray-900 leading-tight" id="headerLiveDate">Sunday, Aug 16, 2026</p>
+                    <p class="text-[11px] font-mono text-primary font-bold leading-tight" id="headerLiveTime">03:20 PM</p>
+                </div>
+                
+                <a href="notifications-staff.html" class="w-9 h-9 flex items-center justify-center rounded-sm hover:bg-gray-100 transition-colors relative" title="Notifications">
+                    <span class="material-symbols-outlined text-on-surface-variant text-[20px]">notifications</span>
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full"></span>
+                </a>
+                
+                <div class="flex items-center gap-3 pl-4 border-l border-gray-200">
+                    <div class="text-right hidden xl:block">
+                        <p class="text-xs font-bold text-on-surface leading-tight">Alex Rivera</p>
+                        <p class="text-[10px] text-gray-500 font-medium leading-tight">Technician #ST-99283</p>
+                    </div>
+                    <img class="w-9 h-9 rounded-full border border-gray-300 object-cover" alt="Alex Rivera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWM7O4p8mLqPJRRyVURE64HB4Ex-2fNpRqKYEHfatFY_bo3PSfFwShI8K6rcBTtS3nTkTPL0XU_1hlCb1mT31ywevq44Fs4rl9CncJa4P7yC1cw5Nvs3AGC77DfRViXxaNwYMVtqAVhBZpjOjIa6bLj6spk9yYqWefbJt7urLTNkZrYffFkYQ-_eMZDn8DrmOdKIgN1wVXiPH1QvQTbxZcukN6UtaWUI20oA4oDyAW--Effkx2kBoLQA">
+                </div>
             </div>
         </header>
 
         <!-- Dashboard Body -->
-        <div class="p-6 max-w-7xl mx-auto space-y-6">
+        <div class="p-6 max-w-7xl mx-auto space-y-6 w-full flex-1">
             
-            <div class="flex flex-wrap items-center justify-between gap-4 mb-2">
+            <!-- Page Header & Action Bar -->
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-gray-200">
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900">Performance Overview</h3>
-                    <p class="text-sm text-gray-500">Analytics and summary of your maintenance tasks.</p>
+                    <span class="text-[10px] font-bold text-primary uppercase tracking-widest block mb-0.5">Staff Operations</span>
+                    <h1 class="font-serif text-3xl font-bold text-on-background tracking-tight">Performance Overview</h1>
+                    <p class="text-xs text-on-surface-variant font-medium mt-1">Analytics, turnaround speed, and volume metrics for work orders assigned to Service Van #4.</p>
                 </div>
-                <div class="flex gap-2">
-                    <button class="px-4 py-2 border border-gray-300 bg-white text-gray-700 text-sm font-bold rounded-xl hover:bg-gray-50 transition-colors flex items-center gap-2 soft-elevation">
-                        <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                
+                <div class="flex items-center gap-2.5 shrink-0">
+                    <button class="px-3.5 py-2 bg-white border border-gray-200 hover:bg-gray-50 rounded-sm text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-1.5 transition-colors" onclick="window.print()">
+                        <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
                         Export PDF
                     </button>
-                    <button class="px-4 py-2 border border-gray-300 bg-white text-gray-700 text-sm font-bold rounded-xl hover:bg-gray-50 transition-colors flex items-center gap-2 soft-elevation">
-                        <span class="material-symbols-outlined text-[18px]">table_chart</span>
+                    <button class="px-3.5 py-2 bg-white border border-gray-200 hover:bg-gray-50 rounded-sm text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-1.5 transition-colors" onclick="alert('Exporting CSV records...')">
+                        <span class="material-symbols-outlined text-[16px]">table_chart</span>
                         Export Excel
                     </button>
                 </div>
             </div>
 
-            <!-- Filter Bar -->
-            <div class="flex flex-wrap gap-4 items-center bg-white p-4 rounded-xl border border-gray-200 soft-elevation">
-                <div class="flex-1 min-w-[150px]">
-                    <select class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none">
-                        <option>Last 30 Days</option>
-                        <option>Last 7 Days</option>
-                        <option>This Year</option>
+            <!-- Filter Controls Bar (Outlined Hairline Dropdowns) -->
+            <div class="bg-white border border-gray-200 rounded-sm p-4 flex flex-wrap gap-3 items-center">
+                <div class="flex-1 min-w-[140px]">
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1">Time Period</label>
+                    <select id="timeRangeSelect" class="w-full bg-white border border-gray-200 rounded-sm py-1.5 px-2.5 text-xs text-gray-800 focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+                        <option value="month">This Month (August 2026)</option>
+                        <option value="last-month">Last Month (July 2026)</option>
+                        <option value="semester">This Semester</option>
+                        <option value="year">Full Academic Year</option>
                     </select>
                 </div>
-                <div class="flex-1 min-w-[150px]">
-                    <select class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none">
-                        <option>All Buildings</option>
-                        <option>Building A</option>
-                        <option>Building B</option>
-                        <option>Building C</option>
+
+                <div class="flex-1 min-w-[140px]">
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1">Building Zone</label>
+                    <select class="w-full bg-white border border-gray-200 rounded-sm py-1.5 px-2.5 text-xs text-gray-800 focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+                        <option>All Assigned Campus Zones</option>
+                        <option>Science Block (Wing A &amp; B)</option>
+                        <option>Main Academic Hall</option>
+                        <option>Library Complex</option>
+                        <option>North Dormitories</option>
                     </select>
                 </div>
-                <div class="flex-1 min-w-[150px]">
-                    <select class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none">
-                        <option>All Categories</option>
-                        <option>HVAC</option>
-                        <option>Plumbing</option>
-                        <option>Electrical</option>
+
+                <div class="flex-1 min-w-[140px]">
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1">Category</label>
+                    <select class="w-full bg-white border border-gray-200 rounded-sm py-1.5 px-2.5 text-xs text-gray-800 focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+                        <option>All Maintenance Disciplines</option>
+                        <option>HVAC &amp; Climate Control</option>
+                        <option>Plumbing &amp; Water</option>
+                        <option>Electrical &amp; Lighting</option>
+                        <option>Lock &amp; Carpentry</option>
                     </select>
                 </div>
-                <button class="bg-primary text-white hover:bg-red-800 font-bold py-2 px-6 rounded-lg transition-colors flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[18px]">filter_list</span>
-                    Apply
-                </button>
+
+                <div class="self-end pt-1">
+                    <button class="bg-primary text-white hover:bg-red-700 font-bold text-xs uppercase tracking-wider py-2 px-5 rounded-sm transition-colors flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-[16px]">filter_alt</span>
+                        Apply
+                    </button>
+                </div>
             </div>
 
-            <!-- Statistics Grid -->
-            <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Stat Card 1 -->
-                <div class="bg-white border border-gray-200 p-4 rounded-xl soft-elevation hover:border-primary transition-all">
-                    <div class="flex justify-between items-start mb-2">
-                        <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[20px]">task_alt</span>
-                        </div>
+            <!-- Asymmetric Stat Cards (Pending Review / Active Repairs Dominant, No Chips) -->
+            <section class="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
+                
+                <!-- Dominant Urgent Card: Pending Triage & In Progress Action -->
+                <div class="md:col-span-4 bg-white border-2 border-primary p-5 rounded-sm flex flex-col justify-between relative shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary">Pending Sign-off &amp; Review</span>
+                        <span class="px-2 py-0.5 bg-red-50 text-red-700 border border-red-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">Action Needed</span>
                     </div>
-                    <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Total Tasks Completed</p>
-                    <p class="text-2xl font-bold text-gray-900 mt-1">142</p>
+                    <div class="my-3">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-serif font-bold text-primary tracking-tight">11</span>
+                            <span class="text-xs font-bold text-gray-900 uppercase tracking-wider">Awaiting Verification</span>
+                        </div>
+                        <p class="text-xs text-gray-600 mt-2 font-medium">4 jobs currently in-progress &middot; 7 submitted reports awaiting supervisor sign-off</p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                        <span class="text-gray-500">Active Queue: 4 tasks</span>
+                        <a href="work-progress-staff.html" class="text-primary font-bold hover:underline flex items-center gap-0.5">
+                            Open Kanban Board <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                        </a>
+                    </div>
                 </div>
-                <!-- Stat Card 2 -->
-                <div class="bg-white border border-gray-200 p-4 rounded-xl soft-elevation hover:border-primary transition-all">
-                    <div class="flex justify-between items-start mb-2">
-                        <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[20px]">timer</span>
+
+                <!-- Slimmer Supporting Stats Grid (8 cols) -->
+                <div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    
+                    <!-- Total Tasks Completed -->
+                    <div class="bg-white border border-gray-200 p-4 rounded-sm flex flex-col justify-between">
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Total Completed</span>
+                        <div>
+                            <span class="text-2xl font-serif font-bold text-gray-900">142</span>
+                            <p class="text-[11px] text-emerald-700 font-semibold mt-1 flex items-center gap-0.5">
+                                <span class="material-symbols-outlined text-[13px]">trending_up</span> +14% vs last month
+                            </p>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Avg Resolution Time</p>
-                    <p class="text-2xl font-bold text-gray-900 mt-1">1.8 Days</p>
-                </div>
-                <!-- Stat Card 3 -->
-                <div class="bg-white border border-gray-200 p-4 rounded-xl soft-elevation hover:border-primary transition-all">
-                    <div class="flex justify-between items-start mb-2">
-                        <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[20px]">build</span>
+
+                    <!-- Avg Resolution Time -->
+                    <div class="bg-white border border-gray-200 p-4 rounded-sm flex flex-col justify-between">
+                        <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest">Avg. Resolution Speed</span>
+                        <div>
+                            <span class="text-2xl font-serif font-bold text-emerald-700">1.8 <span class="text-sm font-sans font-normal text-gray-600">Days</span></span>
+                            <p class="text-[11px] text-emerald-800 font-medium mt-1">Beating SLA Target (&le; 2.0d)</p>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Tasks In Progress</p>
-                    <p class="text-2xl font-bold text-gray-900 mt-1">4</p>
-                </div>
-                <!-- Stat Card 4 -->
-                <div class="bg-white border border-gray-200 p-4 rounded-xl soft-elevation hover:border-primary transition-all">
-                    <div class="flex justify-between items-start mb-2">
-                        <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[20px]">fact_check</span>
+
+                    <!-- Tasks In Progress -->
+                    <div class="bg-white border border-gray-200 p-4 rounded-sm flex flex-col justify-between">
+                        <span class="text-[10px] font-bold text-blue-700 uppercase tracking-widest">Active Repairs</span>
+                        <div>
+                            <span class="text-2xl font-serif font-bold text-blue-700">04</span>
+                            <p class="text-[11px] text-gray-500 font-medium mt-1">Technician on-site</p>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Pending Review</p>
-                    <p class="text-2xl font-bold text-gray-900 mt-1">11</p>
+
                 </div>
             </section>
 
-            <!-- Chart Area -->
-            <section class="bg-white border border-gray-200 rounded-xl p-6 soft-elevation">
-                <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
-                    <h3 class="text-lg font-bold text-gray-900">Tasks Completed by Category</h3>
-                    <select class="bg-white border border-gray-200 rounded-lg py-1 px-3 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none text-gray-700">
-                        <option>This Month</option>
-                        <option>Last Month</option>
-                        <option>This Year</option>
-                    </select>
-                </div>
+            <!-- Main Analytical Data: Horizontal Bar Charts & Volume Trends -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 
-                <div class="px-4">
-                    <div class="bar-chart-container">
-                        <div class="bar-wrapper">
-                            <span class="bar-value">42</span>
-                            <div class="bar bg-blue-500" style="height: 42%;"></div>
-                            <span class="bar-label">Electrical</span>
+                <!-- 1. Tasks Completed by Category (Descending Horizontal Bar Chart) -->
+                <section class="lg:col-span-7 bg-white border border-gray-200 rounded-sm p-6 space-y-5">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-100">
+                        <div>
+                            <h2 class="font-serif text-lg font-bold text-on-background">Tasks Completed by Category</h2>
+                            <p class="text-xs text-gray-500">Ranked by volume &middot; Single muted brand theme</p>
                         </div>
-                        <div class="bar-wrapper">
-                            <span class="bar-value">35</span>
-                            <div class="bar bg-teal-500" style="height: 35%;"></div>
-                            <span class="bar-label">Plumbing</span>
+                        <select id="categoryPeriodSelect" class="bg-white border border-gray-200 rounded-sm py-1 px-2.5 text-xs text-gray-700 focus:ring-1 focus:ring-primary focus:border-primary outline-none font-medium">
+                            <option>This Month</option>
+                            <option>Last Month</option>
+                            <option>This Semester</option>
+                            <option>Full Academic Year</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-4 pt-1" id="categoryBars">
+                        <!-- HVAC: 85 (100% relative width) -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center text-xs">
+                                <div class="flex items-center gap-2 font-semibold text-gray-900">
+                                    <span class="material-symbols-outlined text-[16px] text-gray-400">ac_unit</span>
+                                    <span>HVAC &amp; Climate Control</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="font-bold text-gray-900 font-mono">85</span>
+                                    <span class="text-gray-500 text-[11px] ml-1">(43.4%)</span>
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-100 h-2.5 rounded-sm overflow-hidden flex">
+                                <div class="bg-primary h-full transition-all duration-700" style="width: 100%;"></div>
+                            </div>
                         </div>
-                        <div class="bar-wrapper">
-                            <span class="bar-value">85</span>
-                            <div class="bar bg-primary" style="height: 85%;"></div>
-                            <span class="bar-label">HVAC</span>
+
+                        <!-- Electrical: 42 (49.4%) -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center text-xs">
+                                <div class="flex items-center gap-2 font-semibold text-gray-900">
+                                    <span class="material-symbols-outlined text-[16px] text-gray-400">electric_bolt</span>
+                                    <span>Electrical &amp; Lighting</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="font-bold text-gray-900 font-mono">42</span>
+                                    <span class="text-gray-500 text-[11px] ml-1">(21.4%)</span>
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-100 h-2.5 rounded-sm overflow-hidden flex">
+                                <div class="bg-primary/80 h-full transition-all duration-700" style="width: 49.4%;"></div>
+                            </div>
                         </div>
-                        <div class="bar-wrapper">
-                            <span class="bar-value">22</span>
-                            <div class="bar bg-amber-500" style="height: 22%;"></div>
-                            <span class="bar-label">Carpentry</span>
+
+                        <!-- Plumbing: 35 (41.2%) -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center text-xs">
+                                <div class="flex items-center gap-2 font-semibold text-gray-900">
+                                    <span class="material-symbols-outlined text-[16px] text-gray-400">plumbing</span>
+                                    <span>Plumbing &amp; Water Systems</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="font-bold text-gray-900 font-mono">35</span>
+                                    <span class="text-gray-500 text-[11px] ml-1">(17.9%)</span>
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-100 h-2.5 rounded-sm overflow-hidden flex">
+                                <div class="bg-primary/65 h-full transition-all duration-700" style="width: 41.2%;"></div>
+                            </div>
                         </div>
-                        <div class="bar-wrapper">
-                            <span class="bar-value">12</span>
-                            <div class="bar bg-gray-500" style="height: 12%;"></div>
-                            <span class="bar-label">Other</span>
+
+                        <!-- Carpentry: 22 (25.9%) -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center text-xs">
+                                <div class="flex items-center gap-2 font-semibold text-gray-900">
+                                    <span class="material-symbols-outlined text-[16px] text-gray-400">door_front</span>
+                                    <span>Lock &amp; Carpentry</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="font-bold text-gray-900 font-mono">22</span>
+                                    <span class="text-gray-500 text-[11px] ml-1">(11.2%)</span>
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-100 h-2.5 rounded-sm overflow-hidden flex">
+                                <div class="bg-primary/45 h-full transition-all duration-700" style="width: 25.9%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Other: 12 (14.1%) -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center text-xs">
+                                <div class="flex items-center gap-2 font-semibold text-gray-900">
+                                    <span class="material-symbols-outlined text-[16px] text-gray-400">construction</span>
+                                    <span>General Facilities / Other</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="font-bold text-gray-900 font-mono">12</span>
+                                    <span class="text-gray-500 text-[11px] ml-1">(6.1%)</span>
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-100 h-2.5 rounded-sm overflow-hidden flex">
+                                <div class="bg-primary/30 h-full transition-all duration-700" style="width: 14.1%;"></div>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Contextual Insight Highlight -->
+                    <div class="p-3 bg-red-50/60 border border-red-100 rounded-sm flex items-start gap-2.5 text-xs text-gray-700">
+                        <span class="material-symbols-outlined text-primary text-[16px] mt-0.5">insights</span>
+                        <div>
+                            <span class="font-bold text-gray-900">Key Finding:</span>
+                            <span class="text-gray-600 ml-1">HVAC accounts for 43.4% of all completed service tickets this month, primarily driven by lecture hall filter replacements and seasonal thermostat calibrations.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. Average Resolution Time by Category & Volume Trend -->
+                <div class="lg:col-span-5 space-y-6">
+                    
+                    <!-- Average Resolution Time by Category Panel -->
+                    <section class="bg-white border border-gray-200 rounded-sm p-6 space-y-4">
+                        <div class="flex justify-between items-center pb-2 border-b border-gray-100">
+                            <div>
+                                <h2 class="font-serif text-base font-bold text-on-background">Avg. Resolution Speed</h2>
+                                <p class="text-xs text-gray-500">Turnaround time vs. &le; 2.0d Target</p>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-primary">1.8d Overall</span>
+                        </div>
+
+                        <div class="space-y-3.5 pt-1 text-xs">
+                            <div class="space-y-1">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-semibold text-gray-900">HVAC &amp; Climate</span>
+                                    <span class="font-mono font-bold text-amber-700">2.4 Days</span>
+                                </div>
+                                <div class="w-full bg-gray-100 h-2 rounded-sm overflow-hidden">
+                                    <div class="bg-amber-600 h-full" style="width: 80%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-semibold text-gray-900">Plumbing &amp; Water</span>
+                                    <span class="font-mono font-bold text-emerald-700">1.6 Days</span>
+                                </div>
+                                <div class="w-full bg-gray-100 h-2 rounded-sm overflow-hidden">
+                                    <div class="bg-emerald-600 h-full" style="width: 53.3%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-semibold text-gray-900">Electrical &amp; Lighting</span>
+                                    <span class="font-mono font-bold text-emerald-700">1.2 Days</span>
+                                </div>
+                                <div class="w-full bg-gray-100 h-2 rounded-sm overflow-hidden">
+                                    <div class="bg-emerald-600 h-full" style="width: 40%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-semibold text-gray-900">Lock &amp; Carpentry</span>
+                                    <span class="font-mono font-bold text-emerald-700">1.1 Days</span>
+                                </div>
+                                <div class="w-full bg-gray-100 h-2 rounded-sm overflow-hidden">
+                                    <div class="bg-emerald-600 h-full" style="width: 36.7%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-semibold text-gray-900">General Facilities</span>
+                                    <span class="font-mono font-bold text-emerald-700">0.6 Days</span>
+                                </div>
+                                <div class="w-full bg-gray-100 h-2 rounded-sm overflow-hidden">
+                                    <div class="bg-emerald-600 h-full" style="width: 20%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Trend Over Time SVG Panel -->
+                    <section class="bg-white border border-gray-200 rounded-sm p-6 space-y-3">
+                        <div class="flex justify-between items-center pb-2 border-b border-gray-100">
+                            <div>
+                                <h2 class="font-serif text-base font-bold text-on-background">Weekly Volume Trend</h2>
+                                <p class="text-xs text-gray-500">Current Month vs. Prior Month</p>
+                            </div>
+                            <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-sm">+14% Growth</span>
+                        </div>
+
+                        <!-- Minimalist SVG Line Chart -->
+                        <div class="pt-2">
+                            <svg class="w-full h-24 overflow-visible" viewBox="0 0 300 80">
+                                <!-- Grid Lines -->
+                                <line x1="0" y1="20" x2="300" y2="20" stroke="#f1f5f9" stroke-width="1" />
+                                <line x1="0" y1="50" x2="300" y2="50" stroke="#f1f5f9" stroke-width="1" />
+                                <line x1="0" y1="75" x2="300" y2="75" stroke="#e2e8f0" stroke-width="1" />
+
+                                <!-- Prior Month Trend (Dashed Gray Line: 28 -> 32 -> 30 -> 34) -->
+                                <polyline fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3,3"
+                                          points="20,55 100,45 180,48 260,40" />
+
+                                <!-- Current Month Trend (Solid Brand Red Line: 32 -> 38 -> 35 -> 37) -->
+                                <polyline fill="none" stroke="#b70011" stroke-width="2"
+                                          points="20,45 100,25 180,32 260,28" />
+
+                                <!-- Data Point Circles -->
+                                <circle cx="20" cy="45" r="3.5" fill="#b70011" />
+                                <circle cx="100" cy="25" r="3.5" fill="#b70011" />
+                                <circle cx="180" cy="32" r="3.5" fill="#b70011" />
+                                <circle cx="260" cy="28" r="3.5" fill="#b70011" />
+
+                                <!-- Value Labels -->
+                                <text x="20" y="38" font-size="9" font-family="Roboto" font-weight="bold" fill="#1e293b" text-anchor="middle">32</text>
+                                <text x="100" y="18" font-size="9" font-family="Roboto" font-weight="bold" fill="#1e293b" text-anchor="middle">38</text>
+                                <text x="180" y="25" font-size="9" font-family="Roboto" font-weight="bold" fill="#1e293b" text-anchor="middle">35</text>
+                                <text x="260" y="21" font-size="9" font-family="Roboto" font-weight="bold" fill="#1e293b" text-anchor="middle">37</text>
+
+                                <!-- X-Axis Labels -->
+                                <text x="20" y="78" font-size="9" font-family="Roboto" fill="#94a3b8" text-anchor="middle">W1</text>
+                                <text x="100" y="78" font-size="9" font-family="Roboto" fill="#94a3b8" text-anchor="middle">W2</text>
+                                <text x="180" y="78" font-size="9" font-family="Roboto" fill="#94a3b8" text-anchor="middle">W3</text>
+                                <text x="260" y="78" font-size="9" font-family="Roboto" fill="#94a3b8" text-anchor="middle">W4</text>
+                            </svg>
+                        </div>
+                    </section>
+
                 </div>
-            </section>
+
+            </div>
 
         </div>
+
+        <!-- Unified Classic Footer -->
+        <footer class="mt-auto w-full border-t border-gray-200 bg-[#FAF9F6] py-8">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-lg font-bold text-gray-400">CampusCare</p>
+                    <p class="text-xs text-gray-500 mt-1">&copy; 2026 CampusCare &middot; University Name</p>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-xs font-bold uppercase tracking-widest text-gray-500">
+                    <a href="#" class="hover:text-primary transition-colors">Help Center</a>
+                    <a href="#" class="hover:text-primary transition-colors">Report an Issue</a>
+                    <a href="#" class="hover:text-primary transition-colors">Contact Facilities</a>
+                    <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+                </div>
+                <div class="text-xs font-bold uppercase tracking-widest text-primary text-center md:text-right mt-4 md:mt-0">
+                    Emergency? Contact Dispatch: <br class="md:hidden">555-0199 (Ext. 400)
+                </div>
+            </div>
+        </footer>
     </main>
 
-    <script src="src/components/sidebar.js" type="module"></script>
-    <script src="src/router.js" type="module"></script>
+    <!-- Bottom Navigation Mobile Only -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-gray-200 shadow-lg">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="dashboard-staff.html">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-[10px] font-medium">Dashboard</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="task-management-staff.html">
+            <span class="material-symbols-outlined">assignment</span>
+            <span class="text-[10px] font-medium">Tasks</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="work-progress-staff.html">
+            <span class="material-symbols-outlined">view_kanban</span>
+            <span class="text-[10px] font-medium">Progress</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary px-4 py-1" href="reports-staff.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assessment</span>
+            <span class="text-[10px] font-bold">Reports</span>
+        </a>
+    </nav>
+</div>
+
+<script src="src/components/sidebar.js" type="module"></script>
+<script src="src/router.js" type="module"></script>
+
+<script>
+    // Live Synchronized Date & Time Engine
+    function updateLiveDateTime() {
+        const now = new Date();
+        const dateOptions = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        
+        const dateString = now.toLocaleDateString('en-US', dateOptions);
+        const timeString = now.toLocaleTimeString('en-US', timeOptions);
+
+        const dateEl = document.getElementById('headerLiveDate');
+        const timeEl = document.getElementById('headerLiveTime');
+        if (dateEl) dateEl.textContent = dateString;
+        if (timeEl) timeEl.textContent = timeString;
+    }
+    setInterval(updateLiveDateTime, 1000);
+    updateLiveDateTime();
+
+    // Dynamic Category Bar Timeframe Update Simulation
+    const categorySelect = document.getElementById('categoryPeriodSelect');
+    if (categorySelect) {
+        categorySelect.addEventListener('change', () => {
+            const bars = document.querySelectorAll('#categoryBars .bg-primary, #categoryBars [class*="bg-primary/"]');
+            bars.forEach(b => {
+                const currentWidth = b.style.width;
+                b.style.width = '0%';
+                setTimeout(() => {
+                    b.style.width = currentWidth;
+                }, 100);
+            });
+        });
+    }
+</script>
 </body>
 </html>

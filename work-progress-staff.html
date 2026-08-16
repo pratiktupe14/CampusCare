@@ -2,214 +2,400 @@
 <html class="light" lang="en">
 <head>
     <meta charset="UTF-8">
-
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Work Progress - CampusCare</title>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts: Inter -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script src="shared-tailwind-config.js"></script>
-<style>
-        body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .soft-elevation { box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05); }
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Work Progress Kanban - CampusCare</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <script src="shared-tailwind-config.js"></script>
+    <style>
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
         
-        .kanban-col {
-            min-height: calc(100vh - 250px);
+        .kanban-card {
+            transition: transform 0.15s ease-out, border-color 0.15s ease-out;
+        }
+        .kanban-card:hover {
+            transform: translateY(-2px);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .kanban-card:hover {
+                transform: none !important;
+            }
         }
     </style>
 </head>
-<body class="text-on-surface min-h-screen flex">
-    
+<body class="bg-paper text-on-background min-h-screen flex flex-col font-sans">
+<div class="flex min-h-screen">
+    <!-- Side Navigation Shell -->
     <app-sidebar active="work-progress" role="staff"></app-sidebar>
 
     <!-- Main Content Area -->
-    <main class="flex-1 md:ml-[220px] bg-[#F8FAFC] min-h-screen pb-24 md:pb-8 min-w-0">
+    <main class="flex-1 md:ml-[220px] bg-paper min-h-screen pb-24 md:pb-8 flex flex-col min-w-0">
+        
         <!-- Top Bar -->
-        <header class="h-16 flex justify-between items-center px-6 py-3 sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-sm">
+        <header class="h-16 flex justify-between items-center px-6 py-2 sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-none backdrop-blur-md bg-opacity-90">
             <div class="flex items-center gap-4">
-                <button class="md:hidden p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors">
+                <button class="md:hidden p-2">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
-                <h2 class="text-xl font-bold text-primary">Work Progress</h2>
+                <div class="hidden md:flex bg-white items-center px-4 py-1.5 rounded-sm border border-gray-200 w-96">
+                    <span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]">search</span>
+                    <input id="kanbanSearch" class="bg-transparent border-none focus:ring-0 text-xs w-full outline-none" placeholder="Search work order ID, room, or issue..." type="text">
+                </div>
             </div>
-            <div class="flex items-center gap-4">
-                <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors relative">
-                    <span class="material-symbols-outlined text-gray-600">notifications</span>
-                    <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border border-white"></span>
-                </button>
-                <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
-                    <span class="material-symbols-outlined text-gray-600">settings</span>
-                </button>
-                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs">AR</div>
+            
+            <div class="flex items-center gap-4 sm:gap-6 shrink-0">
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs font-bold text-gray-900 leading-tight" id="headerLiveDate">Sunday, Aug 16, 2026</p>
+                    <p class="text-[11px] font-mono text-primary font-bold leading-tight" id="headerLiveTime">03:15 PM</p>
+                </div>
+                
+                <a href="notifications-staff.html" class="w-9 h-9 flex items-center justify-center rounded-sm hover:bg-gray-100 transition-colors relative" title="Notifications">
+                    <span class="material-symbols-outlined text-on-surface-variant text-[20px]">notifications</span>
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full"></span>
+                </a>
+                
+                <div class="flex items-center gap-3 pl-4 border-l border-gray-200">
+                    <div class="text-right hidden xl:block">
+                        <p class="text-xs font-bold text-on-surface leading-tight">Alex Rivera</p>
+                        <p class="text-[10px] text-gray-500 font-medium leading-tight">Technician #ST-99283</p>
+                    </div>
+                    <img class="w-9 h-9 rounded-full border border-gray-300 object-cover" alt="Alex Rivera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWM7O4p8mLqPJRRyVURE64HB4Ex-2fNpRqKYEHfatFY_bo3PSfFwShI8K6rcBTtS3nTkTPL0XU_1hlCb1mT31ywevq44Fs4rl9CncJa4P7yC1cw5Nvs3AGC77DfRViXxaNwYMVtqAVhBZpjOjIa6bLj6spk9yYqWefbJt7urLTNkZrYffFkYQ-_eMZDn8DrmOdKIgN1wVXiPH1QvQTbxZcukN6UtaWUI20oA4oDyAW--Effkx2kBoLQA">
+                </div>
             </div>
         </header>
 
         <!-- Dashboard Body -->
-        <div class="p-6 max-w-7xl mx-auto space-y-6">
+        <div class="p-6 max-w-7xl mx-auto space-y-6 w-full flex-1">
             
-            <!-- Breadcrumbs & Filters -->
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div class="flex items-center gap-2 text-sm text-gray-500">
-                    <span>Dashboard</span>
-                    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
-                    <span class="text-primary font-bold">Work Progress</span>
+            <!-- Breadcrumbs & Filter Bar Header -->
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-gray-200">
+                <div>
+                    <span class="text-[10px] font-bold text-primary uppercase tracking-widest block mb-0.5">Task Board</span>
+                    <h1 class="font-serif text-3xl font-bold text-on-background tracking-tight">Work Progress</h1>
+                    <p class="text-xs text-on-surface-variant font-medium mt-1">Real-time status of work orders assigned to Service Van #4 across campus zones.</p>
                 </div>
-                
-                <div class="flex flex-wrap items-center gap-3">
-                    <select class="bg-white border border-gray-300 text-gray-700 rounded-xl py-2 px-3 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none">
-                        <option>All Priorities</option>
-                        <option>High Priority</option>
-                        <option>Medium</option>
-                        <option>Low</option>
+
+                <!-- Outlined Hairline Filter Dropdowns -->
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <select id="filterPriority" class="bg-white border border-gray-200 text-gray-700 rounded-sm py-1.5 px-3 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none font-medium">
+                        <option value="all">All Priorities</option>
+                        <option value="high">High Priority</option>
+                        <option value="medium">Medium Priority</option>
+                        <option value="low">Low Priority</option>
                     </select>
-                    <select class="bg-white border border-gray-300 text-gray-700 rounded-xl py-2 px-3 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none">
-                        <option>All Buildings</option>
-                        <option>Building A</option>
-                        <option>Building B</option>
-                        <option>Building C</option>
+
+                    <select id="filterBuilding" class="bg-white border border-gray-200 text-gray-700 rounded-sm py-1.5 px-3 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none font-medium">
+                        <option value="all">All Buildings</option>
+                        <option value="science">Science Block</option>
+                        <option value="main">Main Academic Hall</option>
+                        <option value="library">Library Complex</option>
+                        <option value="dorm">North Dormitory</option>
                     </select>
-                    <select class="bg-white border border-gray-300 text-gray-700 rounded-xl py-2 px-3 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none">
-                        <option>All Categories</option>
-                        <option>HVAC</option>
-                        <option>Plumbing</option>
-                        <option>Electrical</option>
+
+                    <select id="filterCategory" class="bg-white border border-gray-200 text-gray-700 rounded-sm py-1.5 px-3 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none font-medium">
+                        <option value="all">All Categories</option>
+                        <option value="hvac">HVAC &amp; Climate</option>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="carpentry">Lock &amp; Carpentry</option>
                     </select>
                 </div>
             </div>
 
-            <!-- Kanban Board -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- 3-Column Kanban Board -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
                 
-                <!-- Pending Column -->
-                <div class="bg-white rounded-2xl border border-gray-200 p-4 soft-elevation kanban-col flex flex-col gap-4">
-                    <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
-                        <div class="w-5 h-5 rounded-full bg-red-100 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[14px]">pending</span>
+                <!-- Column 1: Pending (3 Tasks) -->
+                <div class="bg-white rounded-sm border border-gray-200 p-4 flex flex-col gap-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-amber-600 text-[18px]">pending</span>
+                            <h2 class="font-serif text-base font-bold text-gray-900">Pending</h2>
                         </div>
-                        <h3 class="font-bold text-gray-900">Pending</h3>
-                        <span class="ml-auto bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs font-bold">3</span>
-                    </div>
-                    
-                    <!-- Task Card -->
-                    <div class="bg-white border border-gray-200 hover:border-red-200 rounded-xl p-4 transition-colors cursor-pointer group">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold text-gray-500">#CP-8845</span>
-                            <span class="px-2 py-0.5 bg-yellow-50 text-yellow-700 text-[10px] font-bold rounded-full border border-yellow-100">Medium</span>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">Leaking Sink</h4>
-                        
-                        <div class="flex items-center gap-2 text-xs text-gray-600 mb-4">
-                            <div class="p-1.5 bg-red-50 text-primary rounded-md flex-shrink-0">
-                                <span class="material-symbols-outlined text-[16px]">apartment</span>
-                            </div>
-                            <span class="truncate">Building A, Restroom 2</span>
-                        </div>
-                        <div class="flex justify-between items-center mt-auto pt-3 border-t border-gray-50">
-                            <span class="text-[10px] text-gray-400">Assigned: Today, 8:00 AM</span>
-                            <a href="task-management-staff.html" class="text-xs font-bold text-primary hover:underline">View Task</a>
-                        </div>
+                        <span class="bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-sm text-xs font-mono font-bold" id="pendingCount">3</span>
                     </div>
 
-                    <!-- Task Card -->
-                    <div class="bg-white border border-gray-200 hover:border-red-200 rounded-xl p-4 transition-colors cursor-pointer group">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold text-gray-500">#CP-8846</span>
-                            <span class="px-2 py-0.5 bg-gray-50 text-gray-700 text-[10px] font-bold rounded-full border border-gray-200">Low</span>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">Replace Lightbulb</h4>
+                    <div class="space-y-3.5" id="pendingColumn">
                         
-                        <div class="flex items-center gap-2 text-xs text-gray-600 mb-4">
-                            <div class="p-1.5 bg-red-50 text-primary rounded-md flex-shrink-0">
-                                <span class="material-symbols-outlined text-[16px]">apartment</span>
+                        <!-- Task 1 -->
+                        <div class="kanban-card bg-white border border-gray-200 rounded-sm p-4 space-y-2.5 hover:border-primary/50 cursor-pointer" onclick="window.location.href='task-management-staff.html'" data-priority="medium" data-building="main" data-category="plumbing">
+                            <div class="flex justify-between items-start">
+                                <span class="font-mono text-xs font-bold text-gray-900">#WR-28495</span>
+                                <span class="px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">Medium</span>
                             </div>
-                            <span class="truncate">Library, Floor 2</span>
+                            <h3 class="font-serif text-sm font-bold text-gray-900 hover:text-primary transition-colors">Washroom Faucet Leakage</h3>
+                            
+                            <div class="flex items-center gap-1.5 text-xs text-gray-600">
+                                <span class="material-symbols-outlined text-gray-500 text-[16px]">apartment</span>
+                                <span>Main Academic &middot; Restroom 2 (Floor 1)</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center pt-2.5 border-t border-gray-100 text-[10px]">
+                                <span class="text-gray-500 font-mono">Assigned: Today, 08:00 AM</span>
+                                <span class="text-primary font-bold hover:underline">View Task &rarr;</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center mt-auto pt-3 border-t border-gray-50">
-                            <span class="text-[10px] text-gray-400">Assigned: Yesterday, 4:30 PM</span>
-                            <a href="task-management-staff.html" class="text-xs font-bold text-primary hover:underline">View Task</a>
+
+                        <!-- Task 2 -->
+                        <div class="kanban-card bg-white border border-gray-200 rounded-sm p-4 space-y-2.5 hover:border-primary/50 cursor-pointer" onclick="window.location.href='task-management-staff.html'" data-priority="low" data-building="library" data-category="electrical">
+                            <div class="flex justify-between items-start">
+                                <span class="font-mono text-xs font-bold text-gray-900">#WR-28496</span>
+                                <span class="px-2 py-0.5 bg-gray-100 text-gray-700 border border-gray-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">Low</span>
+                            </div>
+                            <h3 class="font-serif text-sm font-bold text-gray-900 hover:text-primary transition-colors">Study Desk Fluorescent Tube</h3>
+                            
+                            <div class="flex items-center gap-1.5 text-xs text-gray-600">
+                                <span class="material-symbols-outlined text-gray-500 text-[16px]">apartment</span>
+                                <span>Library Complex &middot; Floor 2 (Row 4)</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center pt-2.5 border-t border-gray-100 text-[10px]">
+                                <span class="text-gray-500 font-mono">Assigned: Yesterday, 04:30 PM</span>
+                                <span class="text-primary font-bold hover:underline">View Task &rarr;</span>
+                            </div>
                         </div>
+
+                        <!-- Task 3 (Restored 3rd card for count consistency) -->
+                        <div class="kanban-card bg-white border border-gray-200 rounded-sm p-4 space-y-2.5 hover:border-primary/50 cursor-pointer" onclick="window.location.href='task-management-staff.html'" data-priority="medium" data-building="main" data-category="carpentry">
+                            <div class="flex justify-between items-start">
+                                <span class="font-mono text-xs font-bold text-gray-900">#WR-28522</span>
+                                <span class="px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">Medium</span>
+                            </div>
+                            <h3 class="font-serif text-sm font-bold text-gray-900 hover:text-primary transition-colors">Classroom 104 Electronic Lock</h3>
+                            
+                            <div class="flex items-center gap-1.5 text-xs text-gray-600">
+                                <span class="material-symbols-outlined text-gray-500 text-[16px]">apartment</span>
+                                <span>Main Academic Hall &middot; 1st Floor</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center pt-2.5 border-t border-gray-100 text-[10px]">
+                                <span class="text-gray-500 font-mono">Assigned: Today, 08:45 AM</span>
+                                <span class="text-primary font-bold hover:underline">View Task &rarr;</span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- In Progress Column -->
-                <div class="bg-white rounded-2xl border border-gray-200 p-4 soft-elevation kanban-col flex flex-col gap-4">
-                    <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
-                        <div class="w-5 h-5 rounded-full bg-red-100 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                <!-- Column 2: In Progress (2 Tasks) -->
+                <div class="bg-white rounded-sm border border-gray-200 p-4 flex flex-col gap-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-blue-600 text-[18px]">engineering</span>
+                            <h2 class="font-serif text-base font-bold text-gray-900">In Progress</h2>
                         </div>
-                        <h3 class="font-bold text-gray-900">In Progress</h3>
-                        <span class="ml-auto bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs font-bold">1</span>
+                        <span class="bg-blue-50 text-blue-800 border border-blue-200 px-2 py-0.5 rounded-sm text-xs font-mono font-bold" id="inProgressCount">2</span>
                     </div>
-                    
-                    <!-- Task Card -->
-                    <div class="bg-white border border-primary/40 rounded-xl p-4 shadow-[0_0_10px_rgba(185,28,46,0.05)] cursor-pointer group">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold text-primary">#CP-8842</span>
-                            <span class="px-2 py-0.5 bg-red-50 text-red-700 text-[10px] font-bold rounded-full border border-red-100 flex items-center gap-1">
-                                <span class="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse"></span>High Priority
-                            </span>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">Broken AC Unit</h4>
+
+                    <div class="space-y-3.5" id="inProgressColumn">
                         
-                        <div class="flex items-center gap-2 text-xs text-gray-600 mb-4">
-                            <div class="p-1.5 bg-red-50 text-primary rounded-md flex-shrink-0">
-                                <span class="material-symbols-outlined text-[16px]">apartment</span>
+                        <!-- Task 1 -->
+                        <div class="kanban-card bg-white border-2 border-primary/40 rounded-sm p-4 space-y-2.5 hover:border-primary cursor-pointer shadow-xs" onclick="window.location.href='task-management-staff.html'" data-priority="high" data-building="science" data-category="hvac">
+                            <div class="flex justify-between items-start">
+                                <span class="font-mono text-xs font-bold text-primary">#WR-28491</span>
+                                <span class="px-2 py-0.5 bg-red-100 text-red-800 text-[10px] font-bold uppercase tracking-wider rounded-sm flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> High Priority
+                                </span>
                             </div>
-                            <span class="truncate">Building C, Room 402</span>
+                            <h3 class="font-serif text-sm font-bold text-gray-900 hover:text-primary transition-colors">Broken AC Unit / Grinding Noise</h3>
+                            
+                            <div class="flex items-center gap-1.5 text-xs text-gray-600">
+                                <span class="material-symbols-outlined text-gray-500 text-[16px]">apartment</span>
+                                <span>Science Block (Wing B) &middot; Room 302</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center pt-2.5 border-t border-gray-100 text-[10px]">
+                                <span class="text-gray-500 font-mono">Assigned: Oct 24, 09:15 AM</span>
+                                <span class="text-primary font-bold hover:underline">View Task &rarr;</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center mt-auto pt-3 border-t border-gray-50">
-                            <span class="text-[10px] text-gray-400">Assigned: Oct 24, 09:15 AM</span>
-                            <a href="task-management-staff.html" class="text-xs font-bold text-primary hover:underline">View Task</a>
+
+                        <!-- Task 2 -->
+                        <div class="kanban-card bg-white border border-gray-200 rounded-sm p-4 space-y-2.5 hover:border-primary/50 cursor-pointer" onclick="window.location.href='task-management-staff.html'" data-priority="medium" data-building="dorm" data-category="electrical">
+                            <div class="flex justify-between items-start">
+                                <span class="font-mono text-xs font-bold text-gray-900">#WR-28504</span>
+                                <span class="px-2 py-0.5 bg-blue-50 text-blue-800 border border-blue-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">Standard</span>
+                            </div>
+                            <h3 class="font-serif text-sm font-bold text-gray-900 hover:text-primary transition-colors">Corridor Lighting Fixture</h3>
+                            
+                            <div class="flex items-center gap-1.5 text-xs text-gray-600">
+                                <span class="material-symbols-outlined text-gray-500 text-[16px]">apartment</span>
+                                <span>North Dormitory &middot; 2nd Floor</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center pt-2.5 border-t border-gray-100 text-[10px]">
+                                <span class="text-gray-500 font-mono">Assigned: Today, 10:15 AM</span>
+                                <span class="text-primary font-bold hover:underline">View Task &rarr;</span>
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
-                <!-- Completed Column -->
-                <div class="bg-white rounded-2xl border border-gray-200 p-4 soft-elevation kanban-col flex flex-col gap-4 opacity-75 hover:opacity-100 transition-opacity">
-                    <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
-                        <div class="w-5 h-5 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                <!-- Column 3: Completed (Strong Accessible Contrast) -->
+                <div class="bg-white rounded-sm border border-gray-200 p-4 flex flex-col gap-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-emerald-700 text-[18px]">check_circle</span>
+                            <h2 class="font-serif text-base font-bold text-gray-900">Completed</h2>
                         </div>
-                        <h3 class="font-bold text-gray-500">Completed</h3>
-                        <span class="ml-auto bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full text-xs font-bold">12</span>
+                        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-sm text-xs font-mono font-bold" id="completedCount">2</span>
                     </div>
-                    
-                    <!-- Task Card -->
-                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 cursor-pointer group">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold text-gray-400">#CP-8830</span>
-                            <span class="px-2 py-0.5 bg-gray-100 text-gray-500 text-[10px] font-bold rounded-full border border-gray-200">Medium</span>
-                        </div>
-                        <h4 class="font-bold text-gray-600 mb-3 line-through">Projector not working</h4>
+
+                    <div class="space-y-3.5" id="completedColumn">
                         
-                        <div class="flex items-center gap-2 text-xs text-gray-500 mb-4">
-                            <div class="p-1.5 bg-gray-200 text-gray-600 rounded-md flex-shrink-0">
-                                <span class="material-symbols-outlined text-[16px]">apartment</span>
+                        <!-- Task 1 -->
+                        <div class="kanban-card bg-gray-50/70 border border-gray-200 rounded-sm p-4 space-y-2.5 hover:border-primary/50 cursor-pointer" onclick="window.location.href='task-management-staff.html'" data-priority="medium" data-building="main" data-category="hvac">
+                            <div class="flex justify-between items-start">
+                                <span class="font-mono text-xs font-bold text-gray-700">#WR-28430</span>
+                                <span class="px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">Resolved</span>
                             </div>
-                            <span class="truncate">Lecture Hall A</span>
+                            <h3 class="font-serif text-sm font-bold text-gray-900 hover:text-primary transition-colors flex items-center gap-1.5">
+                                <span>Lecture Hall A Projector Mount</span>
+                            </h3>
+                            
+                            <div class="flex items-center gap-1.5 text-xs text-gray-700">
+                                <span class="material-symbols-outlined text-gray-500 text-[16px]">apartment</span>
+                                <span>Main Academic &middot; Lecture Hall A</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center pt-2.5 border-t border-gray-200 text-[10px]">
+                                <span class="text-gray-600 font-mono">Completed: Today, 01:15 PM</span>
+                                <span class="text-gray-700 font-bold hover:text-primary hover:underline">View Report &rarr;</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center mt-auto pt-3 border-t border-gray-200">
-                            <span class="text-[10px] text-gray-400">Completed: Oct 23, 2:15 PM</span>
-                            <a href="task-management-staff.html" class="text-xs font-bold text-gray-500 hover:text-primary">View Report</a>
+
+                        <!-- Task 2 -->
+                        <div class="kanban-card bg-gray-50/70 border border-gray-200 rounded-sm p-4 space-y-2.5 hover:border-primary/50 cursor-pointer" onclick="window.location.href='task-management-staff.html'" data-priority="high" data-building="science" data-category="plumbing">
+                            <div class="flex justify-between items-start">
+                                <span class="font-mono text-xs font-bold text-gray-700">#WR-28412</span>
+                                <span class="px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">Resolved</span>
+                            </div>
+                            <h3 class="font-serif text-sm font-bold text-gray-900 hover:text-primary transition-colors flex items-center gap-1.5">
+                                <span>Chemistry Lab Sink Drainage</span>
+                            </h3>
+                            
+                            <div class="flex items-center gap-1.5 text-xs text-gray-700">
+                                <span class="material-symbols-outlined text-gray-500 text-[16px]">apartment</span>
+                                <span>Science Block &middot; Lab 204</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center pt-2.5 border-t border-gray-200 text-[10px]">
+                                <span class="text-gray-600 font-mono">Completed: Today, 11:30 AM</span>
+                                <span class="text-gray-700 font-bold hover:text-primary hover:underline">View Report &rarr;</span>
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
             </div>
-            
+
         </div>
+
+        <!-- Unified Classic Footer -->
+        <footer class="mt-auto w-full border-t border-gray-200 bg-[#FAF9F6] py-8">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-lg font-bold text-gray-400">CampusCare</p>
+                    <p class="text-xs text-gray-500 mt-1">&copy; 2026 CampusCare &middot; University Name</p>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-xs font-bold uppercase tracking-widest text-gray-500">
+                    <a href="#" class="hover:text-primary transition-colors">Help Center</a>
+                    <a href="#" class="hover:text-primary transition-colors">Report an Issue</a>
+                    <a href="#" class="hover:text-primary transition-colors">Contact Facilities</a>
+                    <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+                </div>
+                <div class="text-xs font-bold uppercase tracking-widest text-primary text-center md:text-right mt-4 md:mt-0">
+                    Emergency? Contact Dispatch: <br class="md:hidden">555-0199 (Ext. 400)
+                </div>
+            </div>
+        </footer>
     </main>
 
-    <script src="src/components/sidebar.js" type="module"></script>
-    <script src="src/router.js" type="module"></script>
+    <!-- Bottom Navigation Mobile Only -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-gray-200 shadow-lg">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="dashboard-staff.html">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-[10px] font-medium">Dashboard</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="task-management-staff.html">
+            <span class="material-symbols-outlined">assignment</span>
+            <span class="text-[10px] font-medium">Tasks</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary px-4 py-1" href="work-progress-staff.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">view_kanban</span>
+            <span class="text-[10px] font-bold">Progress</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="profile-settings-staff.html">
+            <span class="material-symbols-outlined">person</span>
+            <span class="text-[10px] font-medium">Profile</span>
+        </a>
+    </nav>
+</div>
+
+<script src="src/components/sidebar.js" type="module"></script>
+<script src="src/router.js" type="module"></script>
+
+<script>
+    // Live Synchronized Date & Time Engine
+    function updateLiveDateTime() {
+        const now = new Date();
+        const dateOptions = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        
+        const dateString = now.toLocaleDateString('en-US', dateOptions);
+        const timeString = now.toLocaleTimeString('en-US', timeOptions);
+
+        const dateEl = document.getElementById('headerLiveDate');
+        const timeEl = document.getElementById('headerLiveTime');
+        if (dateEl) dateEl.textContent = dateString;
+        if (timeEl) timeEl.textContent = timeString;
+    }
+    setInterval(updateLiveDateTime, 1000);
+    updateLiveDateTime();
+
+    // Client-side Kanban Filtering Engine
+    const filterPriority = document.getElementById('filterPriority');
+    const filterBuilding = document.getElementById('filterBuilding');
+    const filterCategory = document.getElementById('filterCategory');
+    const kanbanSearch = document.getElementById('kanbanSearch');
+
+    function applyKanbanFilters() {
+        const pVal = filterPriority.value.toLowerCase();
+        const bVal = filterBuilding.value.toLowerCase();
+        const cVal = filterCategory.value.toLowerCase();
+        const query = (kanbanSearch ? kanbanSearch.value : '').toLowerCase();
+
+        const cards = document.querySelectorAll('.kanban-card');
+        cards.forEach(card => {
+            const cardPriority = (card.getAttribute('data-priority') || '').toLowerCase();
+            const cardBuilding = (card.getAttribute('data-building') || '').toLowerCase();
+            const cardCategory = (card.getAttribute('data-category') || '').toLowerCase();
+            const text = card.innerText.toLowerCase();
+
+            const matchP = pVal === 'all' || cardPriority.includes(pVal);
+            const matchB = bVal === 'all' || cardBuilding.includes(bVal);
+            const matchC = cVal === 'all' || cardCategory.includes(cVal);
+            const matchQ = !query || text.includes(query);
+
+            if (matchP && matchB && matchC && matchQ) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    [filterPriority, filterBuilding, filterCategory, kanbanSearch].forEach(el => {
+        if (el) el.addEventListener('input', applyKanbanFilters);
+    });
+</script>
 </body>
 </html>
