@@ -29,37 +29,12 @@
     </style>
 <script src="shared-tailwind-config.js"></script>
 </head>
-<body class="flex min-h-screen">
-<!-- SideNavBar Component -->
-<aside class="w-[220px] h-screen sticky top-0 left-0 bg-surface-container-lowest flex flex-col py-xl border-r border-outline-variant transition-all duration-200 ease-in-out shrink-0">
-<div class="px-lg mb-xl">
-<h1 class="font-title-md text-title-md font-black text-primary mb-1">CampusCare</h1>
-<p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">Facilities Admin</p>
-<p class="text-on-surface-variant/70 font-label-md text-[10px]">North Campus Division</p>
-</div>
-<nav class="flex-1 space-y-1 overflow-y-auto px-md">
-<!-- Nav Item: Dashboard -->
-
-<!-- Nav Item: Assign Work (ACTIVE) -->
-<div class="flex items-center gap-3 px-lg py-3 rounded-xl cursor-pointer text-primary font-bold bg-primary-container/10 border-r-4 border-primary transition-all">
-<span class="material-symbols-outlined" data-icon="assignment_add">assignment_add</span>
-<span class="font-label-md text-label-md">Assign Work</span>
-</div>
-<!-- Nav Item: Work Progress -->
-
-<!-- Nav Item: Notifications -->
-
-<!-- Nav Item: Reports -->
-
-<div class="pt-xl mt-xl border-t border-outline-variant/30 space-y-1">
-
-
-
-</div>
-</nav>
-</aside>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<div class="flex min-h-screen w-full">
+<!-- Reusable Admin Sidebar Navigation -->
+<app-sidebar active="assign-work" role="admin"></app-sidebar>
 <!-- Main Content Canvas -->
-<main class="flex-1 bg-white min-h-screen overflow-x-hidden min-w-0">
+<main class="flex-1 md:ml-[220px] bg-white min-h-screen overflow-x-hidden min-w-0 pb-20 md:pb-0">
 <!-- Header -->
 <header class="h-16 w-full bg-white px-xl  sticky top-0 z-30 flex items-center justify-between border-b border-outline-variant">
 <div>
@@ -351,8 +326,6 @@
             });
         });
     </script>
-
-
-
-
+    <script src="src/components/sidebar.js" type="module"></script>
+    <script src="src/router.js" type="module"></script>
 </body></html>

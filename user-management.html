@@ -24,54 +24,12 @@
     </style>
 <script src="shared-tailwind-config.js"></script>
 </head>
-<body class="bg-surface text-on-surface flex min-h-screen">
-<!-- SideNavBar (Execution from JSON) -->
-<aside class="w-[220px] h-screen sticky left-0 top-0 border-r border-outline-variant bg-surface-container-lowest flex flex-col py-lg z-40">
-<div class="px-lg mb-xl">
-<h1 class="font-headline-lg text-headline-lg font-bold text-primary">CampusCare</h1>
-<p class="font-label-md text-label-md text-on-surface-variant tracking-wider uppercase">Admin Console</p>
-</div>
-<nav class="flex-1 space-y-1 pr-md">
-<!-- Navigation Items Mapping -->
-<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-low rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95 group" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="font-body-md text-body-md">Dashboard Overview</span>
-</a>
-<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-low rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95 group" href="#">
-<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
-<span class="font-body-md text-body-md">Complaint Management</span>
-</a>
-<!-- ACTIVE: User Management -->
-<a class="flex items-center gap-md px-lg py-sm bg-secondary-fixed text-on-secondary-fixed font-bold rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95" href="#">
-<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
-<span class="font-body-md text-body-md">User Management</span>
-</a>
-<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-low rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95 group" href="#">
-<span class="material-symbols-outlined" data-icon="domain">domain</span>
-<span class="font-body-md text-body-md">Campus Management</span>
-</a>
-<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-low rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95 group" href="#">
-<span class="material-symbols-outlined" data-icon="payments">payments</span>
-<span class="font-body-md text-body-md">Budget &amp; Finance</span>
-</a>
-<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-low rounded-r-full transition-colors duration-200 cursor-pointer active:scale-95 group" href="#">
-<span class="material-symbols-outlined" data-icon="build">build</span>
-<span class="font-body-md text-body-md">Maintenance Management</span>
-</a>
-</nav>
-<div class="mt-auto px-lg pt-lg border-t border-outline-variant space-y-1">
-<a class="flex items-center gap-md py-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md py-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="help">help</span>
-<span class="font-label-md text-label-md">Support</span>
-</a>
-</div>
-</aside>
-<!-- Main Content Canvas -->
-<main class="flex-1 flex flex-col min-w-0 bg-surface">
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<div class="flex min-h-screen w-full">
+    <!-- Reusable Admin Sidebar Navigation -->
+    <app-sidebar active="user-management" role="admin"></app-sidebar>
+    <!-- Main Content Canvas -->
+    <main class="flex-1 md:ml-[220px] flex flex-col min-w-0 bg-surface pb-20 md:pb-0">
 <!-- TopNavBar (Execution from JSON) -->
 <header class="w-full h-16 sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-lg">
 <div class="flex items-center flex-1 max-w-xl">
@@ -337,17 +295,17 @@
 <div class="px-lg py-md border-t border-outline-variant flex items-center justify-between bg-white">
 <p class="font-label-md text-label-md text-on-surface-variant">Showing 1-10 of 12,482 students</p>
 <div class="flex items-center gap-base">
-<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-all disabled:opacity-50" disabled="">
+<button class="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-all disabled:opacity-50" disabled="">
 <span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
 </button>
 <div class="flex items-center gap-xs">
-<button class="w-8 h-8 rounded-lg bg-primary text-white font-label-md text-label-md elevated-clarity">1</button>
-<button class="w-8 h-8 rounded-lg hover:bg-surface-container-low font-label-md text-label-md transition-all">2</button>
-<button class="w-8 h-8 rounded-lg hover:bg-surface-container-low font-label-md text-label-md transition-all">3</button>
+<button class="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg bg-primary text-white font-label-md text-label-md elevated-clarity">1</button>
+<button class="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-surface-container-low font-label-md text-label-md transition-all">2</button>
+<button class="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-surface-container-low font-label-md text-label-md transition-all">3</button>
 <span class="text-on-surface-variant px-1">...</span>
-<button class="w-8 h-8 rounded-lg hover:bg-surface-container-low font-label-md text-label-md transition-all">1248</button>
+<button class="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-surface-container-low font-label-md text-label-md transition-all">1248</button>
 </div>
-<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-all">
+<button class="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-all">
 <span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
 </button>
 </div>
@@ -416,4 +374,6 @@
             searchContainer.classList.remove('ring-2', 'ring-primary');
         });
     </script>
+    <script src="src/components/sidebar.js" type="module"></script>
+    <script src="src/router.js" type="module"></script>
 </body></html>

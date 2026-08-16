@@ -140,17 +140,27 @@
                                     </div>
                                     <div>
                                         <label
-                                            class="block font-label-md text-label-md text-on-surface-variant mb-xs">Priority
+                                            class="block font-label-md text-label-md text-on-surface-variant mb-xs" id="faculty-priority-label">Priority
                                             Level</label>
                                         <div
-                                            class="flex p-1 bg-surface-container-low border border-outline-variant rounded-xl">
+                                            class="flex p-1 bg-surface-container-low border border-outline-variant rounded-xl" role="radiogroup" aria-labelledby="faculty-priority-label" aria-label="Select complaint priority">
+                                            <input type="hidden" name="priority" id="faculty-priority-input" value="Med">
                                             <button
+                                                type="button"
+                                                role="radio"
+                                                aria-checked="false"
                                                 class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg text-on-surface-variant hover:bg-surface"
                                                 onclick="setPriority(this)">Low</button>
                                             <button
+                                                type="button"
+                                                role="radio"
+                                                aria-checked="true"
                                                 class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg bg-primary text-white shadow-sm"
                                                 onclick="setPriority(this)">Med</button>
                                             <button
+                                                type="button"
+                                                role="radio"
+                                                aria-checked="false"
                                                 class="segmented-btn flex-1 py-2 text-label-md font-semibold rounded-lg text-on-surface-variant hover:bg-surface"
                                                 onclick="setPriority(this)">High</button>
                                         </div>
@@ -313,11 +323,15 @@
             buttons.forEach(b => {
                 b.classList.remove('bg-primary', 'text-white', 'shadow-sm');
                 b.classList.add('text-on-surface-variant', 'hover:bg-surface');
+                b.setAttribute('aria-checked', 'false');
             });
 
             btn.classList.remove('text-on-surface-variant', 'hover:bg-surface');
             btn.classList.add('bg-primary', 'text-white', 'shadow-sm');
+            btn.setAttribute('aria-checked', 'true');
             currentPriority = btn.textContent.trim();
+            const hiddenInput = document.getElementById('faculty-priority-input');
+            if (hiddenInput) hiddenInput.value = currentPriority;
         }
         window.setPriority = setPriority;
 

@@ -81,12 +81,13 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Priority Level</label>
-                                <div class="flex gap-1 relative bg-gray-50 p-1 rounded-sm border border-gray-200" id="priority-container">
+                                <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block" id="priority-label">Priority Level</label>
+                                <div class="flex gap-1 relative bg-gray-50 p-1 rounded-sm border border-gray-200" id="priority-container" role="radiogroup" aria-labelledby="priority-label" aria-label="Select complaint priority">
+                                    <input type="hidden" name="priority" id="priority-input" value="Medium">
                                     <div id="priority-slider" class="absolute top-1 left-1 bottom-1 w-[calc(33.333%-4px)] bg-primary/10 border-2 border-primary rounded-sm transition-all duration-200 ease-out z-0 pointer-events-none transform translate-x-full"></div>
-                                    <button class="flex-grow py-2 relative z-10 text-sm font-semibold transition-colors duration-200 text-gray-600 focus:outline-none priority-btn" data-index="0">Low</button>
-                                    <button class="flex-grow py-2 relative z-10 text-sm font-bold transition-colors duration-200 text-primary focus:outline-none priority-btn" data-index="1">Medium</button>
-                                    <button class="flex-grow py-2 relative z-10 text-sm font-semibold transition-colors duration-200 text-gray-600 focus:outline-none priority-btn" data-index="2">High</button>
+                                    <button type="button" role="radio" aria-checked="false" class="flex-grow py-2 relative z-10 text-sm font-semibold transition-colors duration-200 text-gray-600 focus:outline-none priority-btn" data-index="0">Low</button>
+                                    <button type="button" role="radio" aria-checked="true" class="flex-grow py-2 relative z-10 text-sm font-bold transition-colors duration-200 text-primary focus:outline-none priority-btn" data-index="1">Medium</button>
+                                    <button type="button" role="radio" aria-checked="false" class="flex-grow py-2 relative z-10 text-sm font-semibold transition-colors duration-200 text-gray-600 focus:outline-none priority-btn" data-index="2">High</button>
                                 </div>
                             </div>
                         </div>
@@ -274,18 +275,22 @@
             e.preventDefault();
             const index = parseInt(btn.getAttribute('data-index'));
             currentPriority = priorityValues[index] || 'Medium';
+            const hiddenInput = document.getElementById('priority-input');
+            if (hiddenInput) hiddenInput.value = currentPriority;
             
             // Move slider
             prioritySlider.style.transform = `translateX(calc(${index * 100}% + ${index * 4}px))`;
             
-            // Update classes
+            // Update classes & ARIA
             priorityBtns.forEach((b, i) => {
                 if (i === index) {
                     b.classList.remove('text-gray-600', 'font-semibold');
                     b.classList.add('text-primary', 'font-bold');
+                    b.setAttribute('aria-checked', 'true');
                 } else {
                     b.classList.remove('text-primary', 'font-bold');
                     b.classList.add('text-gray-600', 'font-semibold');
+                    b.setAttribute('aria-checked', 'false');
                 }
             });
         });

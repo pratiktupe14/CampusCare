@@ -1,53 +1,12 @@
 <!DOCTYPE html><html lang="en" class="light" style=""><head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script src="shared-tailwind-config.js"></script></head><body class="text-on-surface bg-white">
-<!-- Side Navigation Shell -->
-<aside class="fixed left-0 top-0 h-full w-[220px] dark:bg-surface-container border-r border-outline-variant flex flex-col py-lg z-50 shadow-sm bg-white">
-<div class="px-lg mb-xl">
-<h1 class="font-headline-lg text-headline-lg font-bold text-primary">CampusCare</h1>
-<p class="text-label-md font-label-md text-on-surface-variant">Admin Console</p>
-</div>
-<nav class="flex-1 space-y-1">
-<a href="#" class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100 font-label-md text-label-md">
-<span class="material-symbols-outlined">dashboard</span>
-                Dashboard Overview
-            </a>
-<a href="#" class="flex items-center gap-md px-lg py-md text-primary bg-primary-fixed-dim/10 rounded-r-full font-bold transition-colors font-label-md text-label-md">
-<span class="material-symbols-outlined">assignment</span>
-                Complaint Management
-            </a>
-<a href="#" class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100 font-label-md text-label-md">
-<span class="material-symbols-outlined">group</span>
-                User Management
-            </a>
-<a href="#" class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100 font-label-md text-label-md">
-<span class="material-symbols-outlined">domain</span>
-                Campus Management
-            </a>
-<a href="#" class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100 font-label-md text-label-md">
-<span class="material-symbols-outlined">payments</span>
-                Budget &amp; Finance
-            </a>
-<a href="#" class="flex items-center gap-md px-lg py-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100 font-label-md text-label-md">
-<span class="material-symbols-outlined">engineering</span>
-                Maintenance Management
-            </a>
-</nav>
-<div class="px-lg pt-lg border-t border-outline-variant">
-<div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
-<span class="material-symbols-outlined text-primary">person</span>
-</div>
-<div>
-<p class="text-label-md font-bold text-on-surface">Admin User</p>
-<p class="text-[10px] text-on-surface-variant">System Administrator</p>
-</div>
-</div>
-</div>
-</aside>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script src="shared-tailwind-config.js"></script></head><body class="text-on-surface bg-white min-h-screen flex flex-col">
+<div class="flex min-h-screen w-full">
+<!-- Reusable Admin Sidebar Navigation -->
+<app-sidebar active="complaint-management" role="admin"></app-sidebar>
 <!-- Main Content Area -->
-<main class="md:ml-[220px] min-h-screen bg-white min-w-0">
+<main class="flex-1 md:ml-[220px] min-h-screen bg-white min-w-0 pb-20 md:pb-0">
 <!-- Top App Bar Shell -->
-<header class="fixed top-0 right-0 w-[calc(100%-220px)] h-16 backdrop-blur-md flex items-center justify-between px-lg z-40 border-b border-outline-variant bg-white">
+<header class="sticky top-0 z-40 w-full h-16 backdrop-blur-md flex items-center justify-between px-lg border-b border-outline-variant bg-white">
 <div class="flex items-center flex-1 max-w-xl">
 <div class="relative w-full">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
@@ -241,7 +200,7 @@
 </td>
 <td class="px-lg py-md">
 <div class="flex items-center gap-md">
-<img class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-outline-variant" data-alt="A maintenance photo of a dripping bathroom faucet in a public restroom. Water drops are captured in sharp focus against a chrome finish. The surrounding area features white tiling and a bright, sterile light, conveying a typical campus facility environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1YQTp3R-3XlnHBZqG2iKjUwA_YTvTidjdoeIGKxRzkjBVhR0XBKBVBSz6UqJOiyVSCvdbmxzribH-2Dq9FYoQiiZCANUHC7VwoJ3m2j1Lf8Fgf5afPgw7o1Hy3cMiSxCWBl68sIdLyEB6okjeajxZqweBaTNx7J4wj3fMOzKNAHSn7rN8tUM1iFe3pXadw0gyJjGVb0rBYkKZ5wtd4EH3VjTRqLo5qTSDGcpq1xwVreX9uHdEWwh1Eg">
+<img class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-outline-variant cursor-zoom-in" data-lightbox-src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1YQTp3R-3XlnHBZqG2iKjUwA_YTvTidjdoeIGKxRzkjBVhR0XBKBVBSz6UqJOiyVSCvdbmxzribH-2Dq9FYoQiiZCANUHC7VwoJ3m2j1Lf8Fgf5afPgw7o1Hy3cMiSxCWBl68sIdLyEB6okjeajxZqweBaTNx7J4wj3fMOzKNAHSn7rN8tUM1iFe3pXadw0gyJjGVb0rBYkKZ5wtd4EH3VjTRqLo5qTSDGcpq1xwVreX9uHdEWwh1Eg" data-lightbox-caption="Evidence: Leaking Faucet (Dining Hall)" data-lightbox-group="admin-evidence" data-alt="A maintenance photo of a dripping bathroom faucet in a public restroom." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1YQTp3R-3XlnHBZqG2iKjUwA_YTvTidjdoeIGKxRzkjBVhR0XBKBVBSz6UqJOiyVSCvdbmxzribH-2Dq9FYoQiiZCANUHC7VwoJ3m2j1Lf8Fgf5afPgw7o1Hy3cMiSxCWBl68sIdLyEB6okjeajxZqweBaTNx7J4wj3fMOzKNAHSn7rN8tUM1iFe3pXadw0gyJjGVb0rBYkKZ5wtd4EH3VjTRqLo5qTSDGcpq1xwVreX9uHdEWwh1Eg">
 <div>
 <p class="font-medium text-body-md leading-tight">Leaking Faucet</p>
 <p class="text-[11px] text-on-surface-variant">Reported 4h ago</p>
@@ -265,18 +224,18 @@
 </div>
 </td>
 <td class="px-lg py-md">
-<span class="px-sm py-1 bg-blue-100 text-blue-700 rounded-full text-[11px] font-bold border border-blue-200">MEDIUM</span>
+<span class="px-sm py-1 bg-amber-100 text-amber-800 rounded-full text-[11px] font-bold border border-amber-200">MEDIUM</span>
 </td>
 <td class="px-lg py-md">
 <div class="flex items-center gap-xs">
-<span class="w-2 h-2 rounded-full bg-blue-500"></span>
-<span class="text-body-md font-medium text-blue-700">Assigned</span>
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">In Progress</span>
 </div>
 </td>
 <td class="px-lg py-md text-right">
 <div class="flex justify-end gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
-<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+<button class="w-11 h-11 p-2.5 inline-flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="w-11 h-11 p-2.5 inline-flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
 </div>
 </td>
 </tr>
@@ -287,7 +246,7 @@
 </td>
 <td class="px-lg py-md">
 <div class="flex items-center gap-md">
-<img class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-outline-variant" data-alt="A close-up image of a broken electrical wall outlet. The faceplate is cracked and slightly hanging off the wall, with wires visible inside. The wall has a neutral, light-colored paint. The lighting is direct and clear, emphasizing the safety concern and the need for electrical repair." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrbhb9MMBA5qBOkI31YyJLjcFWgoKgR_7xZU7pDselplj_ElheEtj5AzLgI4Uy7mNg4wAqx640TexBJIDwcBOxUJZQDahA0PXx1nG8ja13SecDvcffLlf7nbDYVRmYW3zguP-d2EsBegsSswCH6Z4HsKnxu8k5UQGwYTDPvlZ193QNk2bgj6tDj4ZmWsD8ELJBQM4LrSuEiwN4x8Xw-xCCoH9SHTI2UJTjOqZFIEmCfRMjhkvCtLqztQ">
+<img class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-outline-variant cursor-zoom-in" data-lightbox-src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrbhb9MMBA5qBOkI31YyJLjcFWgoKgR_7xZU7pDselplj_ElheEtj5AzLgI4Uy7mNg4wAqx640TexBJIDwcBOxUJZQDahA0PXx1nG8ja13SecDvcffLlf7nbDYVRmYW3zguP-d2EsBegsSswCH6Z4HsKnxu8k5UQGwYTDPvlZ193QNk2bgj6tDj4ZmWsD8ELJBQM4LrSuEiwN4x8Xw-xCCoH9SHTI2UJTjOqZFIEmCfRMjhkvCtLqztQ" data-lightbox-caption="Evidence: Broken Power Outlet" data-lightbox-group="admin-evidence" data-alt="A close-up image of a broken electrical wall outlet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrbhb9MMBA5qBOkI31YyJLjcFWgoKgR_7xZU7pDselplj_ElheEtj5AzLgI4Uy7mNg4wAqx640TexBJIDwcBOxUJZQDahA0PXx1nG8ja13SecDvcffLlf7nbDYVRmYW3zguP-d2EsBegsSswCH6Z4HsKnxu8k5UQGwYTDPvlZ193QNk2bgj6tDj4ZmWsD8ELJBQM4LrSuEiwN4x8Xw-xCCoH9SHTI2UJTjOqZFIEmCfRMjhkvCtLqztQ">
 <div>
 <p class="font-medium text-body-md leading-tight">Broken Power Outlet</p>
 <p class="text-[11px] text-on-surface-variant">Reported 1d ago</p>
@@ -376,5 +335,6 @@
             });
         });
     </script>
-
+    <script src="src/components/sidebar.js" type="module"></script>
+    <script src="src/router.js" type="module"></script>
 </body></html>

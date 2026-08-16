@@ -5,15 +5,27 @@ class AppSidebar extends HTMLElement {
         const role = this.getAttribute('role') || 'student';
         const isFaculty = role === 'faculty';
         const isStaff = role === 'staff';
+        const isAdmin = role === 'admin';
 
         let subtitle = 'Student Access';
         if (isFaculty) subtitle = 'Faculty Management';
         if (isStaff) subtitle = 'Maintenance Staff';
+        if (isAdmin) subtitle = 'Admin Console';
 
         const newRequestHref = isFaculty ? 'report-complaint-faculty.html' : 'report-complaint.html';
 
         let navItems = [];
-        if (isStaff) {
+        if (isAdmin) {
+            navItems = [
+                { id: 'dashboard', href: 'admin-dashboard.html', icon: 'dashboard', text: 'Dashboard Overview', fill: true },
+                { id: 'complaint-management', href: 'complaint-management.html', icon: 'assignment', text: 'Complaint Management', fill: false },
+                { id: 'user-management', href: 'user-management.html', icon: 'group', text: 'User Management', fill: false },
+                { id: 'assign-work', href: 'assign-work.html', icon: 'build', text: 'Maintenance Management', fill: false },
+                { id: 'reports', href: 'admin-reports.html', icon: 'analytics', text: 'Reports & Analytics', fill: false },
+                { divider: true },
+                { id: 'settings', href: 'settings.html', icon: 'settings', text: 'Settings', fill: false },
+            ];
+        } else if (isStaff) {
             navItems = [
                 { id: 'dashboard', href: 'dashboard-staff.html', icon: 'dashboard', text: 'Dashboard', fill: true },
                 { id: 'task-management', href: 'task-management-staff.html', icon: 'assignment', text: 'Task Management', fill: false },
@@ -49,7 +61,6 @@ class AppSidebar extends HTMLElement {
                     : 'text-on-surface-variant hover:bg-surface-container-high';
                 const fillStyle = (isActive || item.fill) ? `style="font-variation-settings: 'FILL' 1;"` : '';
                 
-                // Added whitespace-nowrap to prevent label wrapping causing layout shifts
                 navHTML += `
                 <a class="flex items-center gap-3 px-3 py-2 rounded-r-sm transition-all duration-300 ease-out ${activeClasses}" href="${item.href}">
                     <span class="material-symbols-outlined text-[18px]" ${fillStyle}>${item.icon}</span>
@@ -58,13 +69,60 @@ class AppSidebar extends HTMLElement {
             }
         });
 
+        // Mobile Navigation Items
+        let mobileNavItems = [];
+        if (isAdmin) {
+            mobileNavItems = [
+                { id: 'dashboard', href: 'admin-dashboard.html', icon: 'dashboard', text: 'Dashboard' },
+                { id: 'complaint-management', href: 'complaint-management.html', icon: 'assignment', text: 'Complaints' },
+                { id: 'user-management', href: 'user-management.html', icon: 'group', text: 'Users' },
+                { id: 'assign-work', href: 'assign-work.html', icon: 'build', text: 'Maintenance' },
+                { id: 'reports', href: 'admin-reports.html', icon: 'analytics', text: 'Reports' },
+            ];
+        } else if (isStaff) {
+            mobileNavItems = [
+                { id: 'dashboard', href: 'dashboard-staff.html', icon: 'dashboard', text: 'Dashboard' },
+                { id: 'task-management', href: 'task-management-staff.html', icon: 'assignment', text: 'Tasks' },
+                { id: 'work-progress', href: 'work-progress-staff.html', icon: 'pending_actions', text: 'Progress' },
+                { id: 'notifications', href: 'notifications-staff.html', icon: 'notifications', text: 'Alerts' },
+                { id: 'reports', href: 'reports-staff.html', icon: 'assessment', text: 'Reports' },
+            ];
+        } else if (isFaculty) {
+            mobileNavItems = [
+                { id: 'dashboard', href: 'dashboard-faculty.html', icon: 'home', text: 'Home' },
+                { id: 'report-complaint', href: 'report-complaint-faculty.html', icon: 'add_box', text: 'Request' },
+                { id: 'my-complaints', href: 'my-complaints-faculty.html', icon: 'list_alt', text: 'Complaints' },
+                { id: 'complaint-history', href: 'complaint-history-faculty.html', icon: 'history', text: 'History' },
+            ];
+        } else {
+            mobileNavItems = [
+                { id: 'dashboard', href: 'index.html', icon: 'home', text: 'Home' },
+                { id: 'report-complaint', href: 'report-complaint.html', icon: 'add_box', text: 'Request' },
+                { id: 'my-complaints', href: 'my-complaints.html', icon: 'list_alt', text: 'Complaints' },
+                { id: 'complaint-history', href: 'complaint-history.html', icon: 'history', text: 'History' },
+            ];
+        }
+
+        let mobileNavHTML = '';
+        mobileNavItems.forEach(item => {
+            const isActive = (item.id === currentActive);
+            const activeColor = isActive ? 'text-primary font-bold' : 'text-on-surface-variant';
+            const fillStyle = isActive ? `style="font-variation-settings: 'FILL' 1;"` : '';
+            
+            mobileNavHTML += `
+            <a href="${item.href}" class="flex flex-col items-center justify-center ${activeColor} rounded-sm px-2 py-1 transition-transform active:scale-90">
+                <span class="material-symbols-outlined text-[20px]" ${fillStyle}>${item.icon}</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest mt-0.5">${item.text}</span>
+            </a>`;
+        });
+
         this.innerHTML = `
         <aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-[220px] hidden md:flex flex-col border-r border-gray-200 py-md pr-md flex-shrink-0 z-40 bg-paper">
             <div class="px-gutter mb-lg">
                 <div class="flex items-center gap-sm p-sm bg-white border border-gray-200 rounded-sm">
-                    <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">school</span>
+                    <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">${isAdmin ? 'admin_panel_settings' : 'school'}</span>
                     <div>
-                        <p class="text-base font-bold text-primary font-serif">Maintenance Portal</p>
+                        <p class="text-base font-bold text-primary font-serif">CampusCare</p>
                         <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">${subtitle}</p>
                     </div>
                 </div>
@@ -73,7 +131,17 @@ class AppSidebar extends HTMLElement {
                 ${navHTML}
             </nav>
             <div class="mt-auto px-4 py-4 w-full flex flex-col">
-                ${isStaff ? `
+                ${isAdmin ? `
+                <div class="p-3 bg-surface-container-low rounded-sm flex items-center gap-3 mb-4 border border-gray-200">
+                    <div class="w-10 h-10 rounded-full overflow-hidden bg-gray-200 flex-shrink-0 border border-outline-variant">
+                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDccDlGFRfIF8rMdrMeNZN3dlDCrM-taCZn9Jke32tmCH9C0xjFQUouKtXEeCSyIyy3WL_7Wvp2qfgDf1am_qC9jpVxFspKgtDAZmC8gsb7H9DlQ5EoijCXAWXLXsvPnJSgzc8tyDSoVUDAVzfI3PjNZZTreLk-unQKl3wfXiLgJl8nrsYBA5l8vOe3pfZF7I08mC4NUjJmdX8yeROrr8gzVGJHuOARAzwp3NHMGB1KJnvhM5O4DL_Kgw" alt="Admin. Miller">
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-bold text-on-surface truncate font-serif">Admin. Miller</p>
+                        <p class="text-[10px] text-on-surface-variant uppercase tracking-wider truncate">Administrator</p>
+                    </div>
+                </div>
+                ` : isStaff ? `
                 <div class="p-3 bg-surface-container-low rounded-sm flex items-center gap-3 mb-4 border border-gray-200">
                     <div class="w-10 h-10 rounded-sm overflow-hidden bg-gray-200 flex-shrink-0">
                         <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD7sL2MBNHL1zGJ-lsss2BDno6GAsbpWMyxI8BfCUK96IJKDlrS8kRz2eVV1UPUICqqpDxCVdDGJoldgUwHMV8wA9vIaB_27AgkbH7GE_UVYdAksSGC5nDciMQmZXS10kkZJKSycsRcuArRmBkC-w4FmIzcQYpY9u5LNJWM8e3FIgwlCYOjgn7_83K4N4pmZXstMed87M_GbHo76H_xDPEohekUZt20a8v9Kh3fwVDL4p1lwTfaQ40UA" alt="Alex Rivera">
@@ -96,6 +164,11 @@ class AppSidebar extends HTMLElement {
                 </button>
             </div>
         </aside>
+
+        <!-- Mobile Bottom Navigation Bar -->
+        <nav class="fixed bottom-0 left-0 right-0 w-full z-50 md:hidden border-t border-gray-200 bg-paper flex justify-around items-center h-16 px-2 pb-safe shadow-lg">
+            ${mobileNavHTML}
+        </nav>
         `;
 
         // Handle disabled links
@@ -121,3 +194,4 @@ class AppSidebar extends HTMLElement {
 }
 
 customElements.define('app-sidebar', AppSidebar);
+

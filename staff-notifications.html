@@ -17,48 +17,14 @@
     </style>
 <script src="shared-tailwind-config.js"></script>
 </head>
-<body class="selection:bg-primary-container selection:text-on-primary-container">
-<!-- SideNavBar (Authority: SideNavBar JSON) -->
-<aside class="h-screen w-[220px] fixed left-0 top-0 border-r border-outline-variant flex flex-col py-lg px-md gap-sm shadow-md z-50 bg-white">
-<div class="mb-lg px-md">
-<h1 class="font-title-md text-title-md font-black text-primary">Facilities Admin</h1>
-<p class="font-label-md text-label-md text-on-surface-variant">North Campus Sector</p>
-</div>
-<button class="mb-md mx-md bg-primary text-white py-sm rounded-lg font-bold shadow-sm active:scale-95 transition-transform">
-            Create Request
-        </button>
-<nav class="flex-1 space-y-1">
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
-            </a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined" data-icon="build">build</span> Work Orders
-            </a>
-<!-- ACTIVE: Notifications (Synthesized from User Intent) -->
-<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-lg font-bold font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span> Notifications
-            </a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span> Inventory
-            </a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span> Schedules
-            </a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined" data-icon="assessment">assessment</span> Reports
-            </a>
-</nav>
-<div class="pt-lg border-t border-outline-variant space-y-1">
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
-            </a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined" data-icon="logout">logout</span> Logout
-            </a>
-</div>
-</aside>
-<!-- TopNavBar (Authority: TopNavBar JSON) -->
-<header class="fixed top-0 left-[220px] right-0 flex justify-between items-center px-lg  h-16 border-b border-outline-variant shadow-sm z-40 bg-white">
+<body class="selection:bg-primary-container selection:text-on-primary-container bg-white min-h-screen flex flex-col">
+<div class="flex min-h-screen w-full">
+<!-- Reusable Staff Sidebar Navigation -->
+<app-sidebar active="notifications" role="staff"></app-sidebar>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[220px] min-h-screen bg-white min-w-0 pb-20 md:pb-xl">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-40 w-full h-16 flex justify-between items-center px-lg border-b border-outline-variant shadow-sm bg-white">
 <div class="flex items-center gap-lg flex-1">
 <span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">CampusCare Staff</span>
 <div class="relative w-full max-w-md ml-lg">
@@ -154,7 +120,7 @@
 </div>
 <div class="flex items-center gap-sm">
 <span class="font-label-md text-on-surface-variant">Last updated: 2 mins ago</span>
-<button class="text-primary font-bold px-4 py-2 hover:bg-surface-container-high transition-colors rounded-lg text-body-md">Mark all as read</button>
+<button class="min-h-[44px] min-w-[44px] px-4 py-2.5 inline-flex items-center justify-center text-primary font-bold hover:bg-surface-container-high transition-colors rounded-lg text-body-md">Mark all as read</button>
 </div>
 </div>
 <!-- Notification Feed -->
@@ -271,4 +237,6 @@
             });
         });
     </script>
+    <script src="src/components/sidebar.js" type="module"></script>
+    <script src="src/router.js" type="module"></script>
 </body></html>
