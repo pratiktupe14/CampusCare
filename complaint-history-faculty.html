@@ -1,411 +1,490 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Complaint History (Faculty) - CampusCare</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script src="shared-tailwind-config.js"></script>
-<style>
-        body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-            vertical-align: middle;
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Complaint History (Faculty) - CampusCare</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <script src="shared-tailwind-config.js"></script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+        
+        .row-fade-in {
+            animation: fadeInRow 0.35s ease-out forwards;
+            opacity: 0;
+            transform: translateY(6px);
         }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
-        .sidebar-item-active { background-color: #da3437; color: #ffffff !important; }
-        .card-shadow { box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05); }
+        @keyframes fadeInRow {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .row-fade-in {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
     </style>
 </head>
-<body class="flex overflow-hidden h-screen bg-white">
-<app-sidebar active="complaint-history" role="faculty"></app-sidebar>
-<!-- Main Content Area -->
-<main class="flex-1 md:ml-[260px] h-screen overflow-y-auto flex flex-col custom-scrollbar bg-white">
-<!-- TopNavBar (Mobile/Desktop Header) -->
-<header class="h-16 w-full top-0 sticky z-30 flex justify-between items-center px-lg  bg-white border-b border-outline-variant">
-<div class="flex flex-col">
-<h2 class="text-title-md font-title-md text-on-surface">Complaint History</h2>
-<p class="text-body-md text-on-surface-variant hidden md:block">View and track all your previously submitted maintenance complaints.</p>
-</div>
-<div class="flex items-center gap-md">
-<div class="relative hidden sm:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input id="searchInput" class="pl-10 pr-lg py-2 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary w-64 transition-all outline-none" placeholder="Search complaints..." type="text">
-</div>
-<div class="flex items-center gap-xs">
-<button class="p-sm text-on-surface-variant hover:bg-surface-container transition-colors rounded-full relative">
-<span class="material-symbols-outlined">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
-</button>
-<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center border border-outline-variant overflow-hidden cursor-pointer active:scale-95 transition-transform">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a university student with a friendly expression, set against a blurred academic background, high-key lighting, modern campus aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCopVkqir3X--NA0SrLJpyWvs113CiAMvxLHHrb81x6yk12VfbvLf-Md3qKkc8xfnLmATSVXiltQBDj_7pG32qJUtAJMks26BCpytQpi6oawvpDh8E1Lwo7r-i_Y1ByErLMAxrlPqcg0DiBFEvIbO4ViGcuiyF8rvWqwvk-y8ktboJRiO7yg2hDFPPyvDDXgbXjRl1Eb6qbTel4CJ_obpSUv2wCnvfjWS493yxcqqG5fdSS7ND1ByIFA">
-</div>
-</div>
-</div>
-</header>
-<!-- Content Canvas -->
-<div class="p-lg flex flex-col gap-lg pb-32 md:pb-lg max-w-[1440px] mx-auto w-full bg-white">
-<!-- Summary Bento Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
-<div class="bg-white p-lg rounded-xl border border-outline-variant card-shadow flex flex-col gap-xs group hover:border-primary/30 transition-all cursor-default">
-<div class="flex justify-between items-start">
-<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Total Complaints</span>
-<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">history</span>
-</div>
-<div class="flex items-baseline gap-xs">
-<span class="text-headline-lg font-headline-lg text-on-surface">142</span>
-<span class="text-body-md text-on-surface-variant">+8% vs last month</span>
-</div>
-</div>
-<div class="bg-white p-lg rounded-xl border border-outline-variant card-shadow flex flex-col gap-xs group hover:border-amber-500/30 transition-all cursor-default">
-<div class="flex justify-between items-start">
-<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Pending</span>
-<span class="material-symbols-outlined text-amber-600 bg-amber-50 p-2 rounded-lg">pending</span>
-</div>
-<div class="flex items-baseline gap-xs">
-<span class="text-headline-lg font-headline-lg text-on-surface">12</span>
-<span class="text-body-md text-amber-600">Needs attention</span>
-</div>
-</div>
-<div class="bg-white p-lg rounded-xl border border-outline-variant card-shadow flex flex-col gap-xs group hover:border-blue-500/30 transition-all cursor-default">
-<div class="flex justify-between items-start">
-<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">In Progress</span>
-<span class="material-symbols-outlined text-blue-600 bg-blue-50 p-2 rounded-lg">engineering</span>
-</div>
-<div class="flex items-baseline gap-xs">
-<span class="text-headline-lg font-headline-lg text-on-surface">24</span>
-<span class="text-body-md text-blue-600">Active repairs</span>
-</div>
-</div>
-<div class="bg-white p-lg rounded-xl border border-outline-variant card-shadow flex flex-col gap-xs group hover:border-green-500/30 transition-all cursor-default">
-<div class="flex justify-between items-start">
-<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Completed</span>
-<span class="material-symbols-outlined text-green-600 bg-green-50 p-2 rounded-lg">check_circle</span>
-</div>
-<div class="flex items-baseline gap-xs">
-<span class="text-headline-lg font-headline-lg text-on-surface">106</span>
-<span class="text-body-md text-green-600">Resolved successfully</span>
-</div>
-</div>
-</div>
-<!-- Filters & Actions -->
-<div class="flex flex-col lg:flex-row gap-md justify-between items-center p-md rounded-xl border border-outline-variant bg-white">
-<div class="flex flex-wrap gap-sm items-center w-full lg:w-auto">
-<div class="flex flex-col gap-xs min-w-[120px]">
-<span class="text-label-md font-label-md text-on-surface-variant px-1">Status</span>
-<select class="bg-white border border-gray-200 rounded-lg text-body-md py-1.5 focus:ring-primary focus:border-primary">
-<option>All Status</option>
-<option>Completed</option>
-<option>In Progress</option>
-<option>Pending</option>
-</select>
-</div>
-<div class="flex flex-col gap-xs min-w-[140px]">
-<span class="text-label-md font-label-md text-on-surface-variant px-1">Category</span>
-<select class="bg-white border border-gray-200 rounded-lg text-body-md py-1.5 focus:ring-primary focus:border-primary">
-<option>All Categories</option>
-<option>AV/IT</option>
-<option>Electrical</option>
-<option>Plumbing</option>
-<option>Carpentry</option>
-</select>
-</div>
-<div class="flex flex-col gap-xs min-w-[140px]">
-<span class="text-label-md font-label-md text-on-surface-variant px-1">Building</span>
-<select class="bg-white border border-gray-200 rounded-lg text-body-md py-1.5 focus:ring-primary focus:border-primary">
-<option>All Buildings</option>
-<option>Science Block</option>
-<option>Main Hall</option>
-<option>Admin Wing</option>
-</select>
-</div>
-<button class="mt-5 p-2 bg-white border border-gray-200 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors flex items-center justify-center" title="Clear Filters">
-<span class="material-symbols-outlined">filter_list_off</span>
-</button>
-</div>
-<div class="flex gap-sm w-full lg:w-auto self-end lg:self-center">
-<button class="flex-1 lg:flex-none flex items-center justify-center gap-sm px-lg py-2 bg-white border border-gray-200 text-on-surface hover:bg-surface-container transition-all rounded-lg font-body-md">
-<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
-<span class="">Export PDF</span>
-</button>
-<button class="flex-1 lg:flex-none flex items-center justify-center gap-sm px-lg py-2 bg-white border border-gray-200 text-on-surface hover:bg-surface-container transition-all rounded-lg font-body-md">
-<span class="material-symbols-outlined text-[20px]">table_chart</span>
-<span class="">Export Excel</span>
-</button>
-</div>
-</div>
-<!-- Complaint History Table -->
-<div class="bg-white rounded-xl border border-outline-variant card-shadow overflow-hidden">
-<div class="overflow-x-auto custom-scrollbar">
-<table class="w-full text-left border-collapse">
-<thead class="bg-gray-100 border-b border-outline-variant">
-<tr>
-<th class="px-lg py-3 text-label-md font-bold text-on-surface-variant uppercase">Complaint ID</th>
-<th class="px-lg py-3 text-label-md font-bold text-on-surface-variant uppercase">Issue</th>
-<th class="px-lg py-3 text-label-md font-bold text-on-surface-variant uppercase">Location</th>
-<th class="px-lg py-3 text-label-md font-bold text-on-surface-variant uppercase">Date</th>
-<th class="px-lg py-3 text-label-md font-bold text-on-surface-variant uppercase text-center">Priority</th>
-<th class="px-lg py-3 text-label-md font-bold text-on-surface-variant uppercase text-center">Status</th>
-<th class="px-lg py-3 text-label-md font-bold text-on-surface-variant uppercase">Assigned Staff</th>
-<th class="px-lg py-3 text-label-md font-bold text-on-surface-variant uppercase text-right">Action</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-outline-variant">
-<!-- Row 1 -->
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="px-lg py-lg">
-<span class="font-bold text-on-surface text-body-md">#CMP-7281</span>
-</td>
-<td class="px-lg py-lg">
-<div class="flex items-center gap-md">
-<div class="w-12 h-12 rounded-lg overflow-hidden border border-outline-variant bg-surface-container-low flex-shrink-0">
-<img class="w-full h-full object-cover" data-alt="A closeup detailed photograph of a high-tech ceiling projector in a university classroom, showing physical damage or a cracked lens, soft commercial lighting, high-contrast, clean professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsm1kITa7-FXZkAJhDCp-Yxynw5nmlYVnCzUNtTWWGNJ-7upSLD4e_lL6v4leEnxFYgG-uydrvnrFK1KHFwUePfB0AykzXig4utnHGqS4PyJK-X94CXcIOy0hBGZ3b7dVgmJ7haz78hj0ue-lSJslEg73xgzNWhQu23vcpyT7_wObHa5stdutJo9aicQm7tAu7qI3wHREJI8Cd_Cp254w0b-qWLLFDQrY7tf4rjRiMrEeVzH9JYmm8nw">
-</div>
-<div class="flex flex-col">
-<span class="font-semibold text-on-surface text-body-md">Broken Projector</span>
-<span class="text-label-md text-on-surface-variant">AV/IT</span>
-</div>
-</div>
-</td>
-<td class="px-lg py-lg">
-<div class="flex flex-col">
-<span class="text-on-surface text-body-md">Science Block</span>
-<span class="text-label-md text-on-surface-variant">Room 302</span>
-</div>
-</td>
-<td class="px-lg py-lg">
-<div class="flex flex-col">
-<span class="text-on-surface text-body-md">Oct 24, 2023</span>
-<span class="text-label-md text-on-surface-variant">10:30 AM</span>
-</div>
-</td>
-<td class="px-lg py-lg text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">High</span>
-</td>
-<td class="px-lg py-lg text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Completed</span>
-</td>
-<td class="px-lg py-lg">
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-[10px] text-on-primary-fixed font-bold">MT</div>
-<span class="text-body-md text-on-surface">Mark Thompson</span>
-</div>
-</td>
-<td class="px-lg py-lg text-right">
-<a href="complaint-history.html" class="px-md py-1.5 text-primary border border-primary hover:bg-primary hover:text-white transition-all rounded-lg text-label-md font-semibold active:scale-95 inline-block">
-                                        View Details
-                                    </a>
-</td>
-</tr>
-<!-- Row 2 -->
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="px-lg py-lg">
-<span class="font-bold text-on-surface text-body-md">#CMP-7255</span>
-</td>
-<td class="px-lg py-lg">
-<div class="flex items-center gap-md">
-<div class="w-12 h-12 rounded-lg overflow-hidden border border-outline-variant bg-surface-container-low flex-shrink-0">
-<img class="w-full h-full object-cover" data-alt="A photo of a leaking silver faucet in a modern campus restroom, water droplets captured in mid-air, bright lighting, pristine tiles, architectural photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeg09oPY5NITWRmGgldFS_7a5rY0X79a5jrbtwLLVS5TGE13P2wBB-RaMiJxaxvjJ5Ge7rWFTwSz8iKzX-34dwYtM1itUMfOQyeUujXgsDlXJtTGY8v8B5_J7lwBOcMXGwj7fwCXEYcHJ1ODF0KRwL4jVLvfzaJtsTbs6W-KlnXsy_owCnnV3qQoAsvRcfAkbqoz5Dlr6p70xWy_ubOWrmPHzxQE3wYHsie1wXfnpm_DYbrQJ2RcJ7Vw">
-</div>
-<div class="flex flex-col">
-<span class="font-semibold text-on-surface text-body-md">Leaking Faucet</span>
-<span class="text-label-md text-on-surface-variant">Plumbing</span>
-</div>
-</div>
-</td>
-<td class="px-lg py-lg">
-<div class="flex flex-col">
-<span class="text-on-surface text-body-md">Main Hall</span>
-<span class="text-label-md text-on-surface-variant">G Floor Washroom</span>
-</div>
-</td>
-<td class="px-lg py-lg">
-<div class="flex flex-col">
-<span class="text-on-surface text-body-md">Oct 20, 2023</span>
-<span class="text-label-md text-on-surface-variant">02:15 PM</span>
-</div>
-</td>
-<td class="px-lg py-lg text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">Medium</span>
-</td>
-<td class="px-lg py-lg text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">In Progress</span>
-</td>
-<td class="px-lg py-lg">
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-[10px] text-on-secondary-fixed font-bold">SL</div>
-<span class="text-body-md text-on-surface">Sarah Lewis</span>
-</div>
-</td>
-<td class="px-lg py-lg text-right">
-<a href="complaint-history.html" class="px-md py-1.5 text-primary border border-primary hover:bg-primary hover:text-white transition-all rounded-lg text-label-md font-semibold active:scale-95 inline-block">
-                                        View Details
-                                    </a>
-</td>
-</tr>
-<!-- Row 3 -->
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="px-lg py-lg">
-<span class="font-bold text-on-surface text-body-md">#CMP-7241</span>
-</td>
-<td class="px-lg py-lg">
-<div class="flex items-center gap-md">
-<div class="w-12 h-12 rounded-lg overflow-hidden border border-outline-variant bg-surface-container-low flex-shrink-0">
-<img class="w-full h-full object-cover" data-alt="A photograph of a flickering fluorescent tube light in a wide campus corridor, creating dramatic shadows, architectural indoor lighting, crisp high resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARAkLkme60hgHOkooD4Un3jxzasgcmIUQCYX0d4xx-cfyT1_1kqoKiS7tj4Dlc4iDX1k3-0zp9nvnFg-jIeg0zbQA2GQsZtFKpjIoDh39D9u2VaH3Cps7Jy7JGXRklvcfK5aeb5KQwrDeQVtX_LRjiAPP_bG_I2qF1LLiAELyd07xdUXpFmTD0yHJA1MBlg5w3SbMltFh3OCJXouJuUhoHusZxhHZEL4m5XUCkLxV461lrkyXysNrBcQ">
-</div>
-<div class="flex flex-col">
-<span class="font-semibold text-on-surface text-body-md">Flickering Lights</span>
-<span class="text-label-md text-on-surface-variant">Electrical</span>
-</div>
-</div>
-</td>
-<td class="px-lg py-lg">
-<div class="flex flex-col">
-<span class="text-on-surface text-body-md">Library Wing B</span>
-<span class="text-label-md text-on-surface-variant">Study Row 4</span>
-</div>
-</td>
-<td class="px-lg py-lg">
-<div class="flex flex-col">
-<span class="text-on-surface text-body-md">Oct 18, 2023</span>
-<span class="text-label-md text-on-surface-variant">09:00 AM</span>
-</div>
-</td>
-<td class="px-lg py-lg text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">Low</span>
-</td>
-<td class="px-lg py-lg text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Completed</span>
-</td>
-<td class="px-lg py-lg">
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-[10px] text-on-tertiary-fixed font-bold">DR</div>
-<span class="text-body-md text-on-surface">David Rivera</span>
-</div>
-</td>
-<td class="px-lg py-lg text-right">
-<a href="complaint-history.html" class="px-md py-1.5 text-primary border border-primary hover:bg-primary hover:text-white transition-all rounded-lg text-label-md font-semibold active:scale-95 inline-block">
-                                        View Details
-                                    </a>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Empty State logic container (Hidden by default as table is populated) -->
-<div class="hidden flex-col items-center justify-center p-xl gap-md text-center" id="emptyState">
-<div class="w-48 h-48 bg-surface-container-low rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined text-outline text-[64px]">history_toggle_off</span>
-</div>
-<div class="flex flex-col gap-xs">
-<h3 class="text-title-md font-title-md text-on-surface">No History Found</h3>
-<p class="text-body-md text-on-surface-variant max-w-sm mx-auto">We couldn't find any complaint records matching your current filter settings. Try clearing them or submit a new request.</p>
-</div>
-<button class="bg-primary text-white px-lg py-2 rounded-xl font-body-md hover:shadow-lg transition-all active:scale-95">
-                        Clear All Filters
+<body class="bg-paper text-on-background min-h-screen flex flex-col font-sans">
+<div class="flex min-h-screen">
+    <!-- Side Navigation Shell -->
+    <app-sidebar active="complaint-history" role="faculty"></app-sidebar>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 md:ml-[220px] bg-paper min-h-screen pb-24 md:pb-8 flex flex-col min-w-0">
+        <!-- Top Bar -->
+        <header class="h-16 flex justify-between items-center px-6 py-2 sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-none backdrop-blur-md bg-opacity-90">
+            <div class="flex items-center gap-4">
+                <button class="md:hidden p-2">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="hidden md:flex bg-white items-center px-4 py-1.5 rounded-sm border border-gray-200 w-96">
+                    <span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]">search</span>
+                    <input id="searchInput" class="bg-transparent border-none focus:ring-0 text-sm w-full outline-none" placeholder="Search complaint ID, room, or issue..." type="text">
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="notifications-faculty.html" class="w-10 h-10 flex items-center justify-center rounded-sm hover:bg-surface-container-low transition-colors relative">
+                    <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+                </a>
+                <div class="flex items-center gap-3 pl-3 border-l border-gray-200">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-xs font-bold text-on-surface">Dr. Pratik Tupe</p>
+                        <p class="text-[10px] text-on-surface-variant font-medium">Computer Science</p>
+                    </div>
+                    <img class="w-9 h-9 rounded-full border border-gray-300 object-cover" alt="Dr. Pratik Tupe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4LUJVGo6wFHOc6xeO9h2JvIpOWO7DzZjdzEato_839AgO7Pgt4BjFVm8vf1zGIVXpqm2aYhKiScRbObOOqxsVNCuG_R7MPSPAiSBjOehhBDDqIA94em4Ype0f-xMieAbFVrqxCv5_RbQ1FF__anch8IJ6fMisDo-gH0tcSLzksSbZnabSL78ikfWOuTB40dbd9Ao_LGfm9V0iiK0fXfhEKDbR26K9LRCBZpZrnzMlSrOqjJ1VdSzGpA">
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Body -->
+        <div class="p-6 max-w-7xl mx-auto space-y-6 w-full flex-1">
+            
+            <!-- Page Header & Action Buttons -->
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-gray-200">
+                <div>
+                    <span class="text-[10px] font-bold text-primary uppercase tracking-widest block mb-0.5">Records Archive</span>
+                    <h1 class="font-serif text-3xl font-bold text-on-background tracking-tight">Complaint History</h1>
+                    <p class="text-xs text-on-surface-variant font-medium mt-1">Review previously submitted maintenance tickets, inspection photos, and staff dispatch statuses.</p>
+                </div>
+                <div class="flex items-center gap-2.5 shrink-0">
+                    <button class="px-3.5 py-2 bg-white border border-gray-200 hover:bg-gray-50 rounded-sm text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-1.5 transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+                        Export PDF
                     </button>
-</div>
-<!-- Pagination -->
-<div class="px-lg py-md border-t border-outline-variant flex flex-col sm:flex-row justify-between items-center gap-md bg-white">
-<span class="text-body-md text-on-surface-variant">Showing <span class="font-semibold text-on-surface">1 - 10</span> of <span class="font-semibold text-on-surface">142</span> complaints</span>
-<div class="flex items-center gap-xs">
-<button class="p-2 border border-outline-variant rounded-lg bg-white text-on-surface-variant hover:bg-surface-container disabled:opacity-50 disabled:cursor-not-allowed transition-colors" disabled="">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<button class="w-10 h-10 border border-primary bg-primary text-white rounded-lg font-body-md">1</button>
-<button class="w-10 h-10 border border-outline-variant bg-white text-on-surface-variant hover:bg-surface-container rounded-lg font-body-md">2</button>
-<button class="w-10 h-10 border border-outline-variant bg-white text-on-surface-variant hover:bg-surface-container rounded-lg font-body-md">3</button>
-<span class="px-2 text-on-surface-variant">...</span>
-<button class="w-10 h-10 border border-outline-variant bg-white text-on-surface-variant hover:bg-surface-container rounded-lg font-body-md">15</button>
-<button class="p-2 border border-outline-variant rounded-lg bg-white text-on-surface-variant hover:bg-surface-container transition-colors">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-highest shadow-md rounded-t-xl border-t border-outline-variant/20">
-<a href="dashboard-faculty.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-variant transition-all active:scale-90 duration-150 rounded-xl">
-<span class="material-symbols-outlined">home</span>
-<span class="text-label-md font-label-md">Home</span>
-</a>
-<a href="report-complaint-faculty.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-variant transition-all active:scale-90 duration-150 rounded-xl">
-<span class="material-symbols-outlined">add_circle</span>
-<span class="text-label-md font-label-md">Report</span>
-</a>
-<a href="complaint-history-faculty.html" class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 shadow-sm active:scale-90 duration-150">
-<span class="material-symbols-outlined">history</span>
-<span class="text-label-md font-label-md">History</span>
-</a>
-<a href="#" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-variant transition-all active:scale-90 duration-150 rounded-xl">
-<span class="material-symbols-outlined">notifications</span>
-<span class="text-label-md font-label-md">Alerts</span>
-</a>
-<a href="#" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-variant transition-all active:scale-90 duration-150 rounded-xl">
-<span class="material-symbols-outlined">person</span>
-<span class="text-label-md font-label-md">Profile</span>
-</a>
-</nav>
-<script>
-        // Simple interactivity for demonstration
-        document.querySelectorAll('select').forEach(select => {
-            select.addEventListener('change', () => {
-                const table = document.querySelector('tbody');
-                if (table) {
-                    table.style.opacity = '0.5';
-                    setTimeout(() => {
-                        table.style.opacity = '1';
-                    }, 300);
-                }
-            });
-        });
+                    <button class="px-3.5 py-2 bg-white border border-gray-200 hover:bg-gray-50 rounded-sm text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-1.5 transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">table_chart</span>
+                        Export Excel
+                    </button>
+                </div>
+            </div>
 
-        // Search bar interaction
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase();
-                const rows = document.querySelectorAll('tbody tr');
-                let visibleCount = 0;
+            <!-- 1. Stat Summary Cards (Deliberate Hierarchy, No Chips) -->
+            <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Dominant Summary Card -->
+                <div class="bg-white border-2 border-primary/40 p-5 rounded-sm flex flex-col justify-between">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary">Total Submitted</span>
+                        <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-sm">+8% vs last mo.</span>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-serif font-bold text-gray-900 tracking-tight">142</span>
+                        <span class="text-xs text-gray-500 font-medium">all-time records</span>
+                    </div>
+                </div>
 
-                rows.forEach(row => {
-                    const text = row.innerText.toLowerCase();
-                    if (text.includes(query)) {
-                        row.style.display = '';
-                        visibleCount++;
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
+                <!-- Pending -->
+                <div class="bg-white border border-gray-200 p-5 rounded-sm flex flex-col justify-between">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-amber-700 block mb-2">Pending Triage</span>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-3xl font-serif font-bold text-amber-600 tracking-tight">12</span>
+                        <span class="text-xs text-gray-500 font-medium">needs attention</span>
+                    </div>
+                </div>
 
-                const emptyState = document.getElementById('emptyState');
-                const tableElement = document.querySelector('table');
-                if (visibleCount === 0) {
-                    if (emptyState) {
-                        emptyState.classList.remove('hidden');
-                        emptyState.classList.add('flex');
-                    }
-                    if (tableElement) tableElement.classList.add('hidden');
-                } else {
-                    if (emptyState) {
-                        emptyState.classList.add('hidden');
-                        emptyState.classList.remove('flex');
-                    }
-                    if (tableElement) tableElement.classList.remove('hidden');
-                }
-            });
-        }
-    </script>
+                <!-- In Progress -->
+                <div class="bg-white border border-gray-200 p-5 rounded-sm flex flex-col justify-between">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-blue-700 block mb-2">Active Repairs</span>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-3xl font-serif font-bold text-blue-700 tracking-tight">24</span>
+                        <span class="text-xs text-gray-500 font-medium">technician on-site</span>
+                    </div>
+                </div>
 
+                <!-- Completed -->
+                <div class="bg-white border border-gray-200 p-5 rounded-sm flex flex-col justify-between">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-700 block mb-2">Resolved</span>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-3xl font-serif font-bold text-emerald-700 tracking-tight">106</span>
+                        <span class="text-xs text-gray-500 font-medium">signed off (74.6%)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Filters & Search Bar -->
+            <div class="bg-white border border-gray-200 rounded-sm p-4 flex flex-wrap gap-3 items-center">
+                <div class="flex-1 min-w-[140px]">
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1">Status</label>
+                    <select id="filter-status" class="w-full bg-white border border-gray-200 rounded-sm py-1.5 px-2.5 text-xs text-gray-800 focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+                        <option value="all">All Statuses</option>
+                        <option value="completed">Completed</option>
+                        <option value="in progress">In Progress</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+                <div class="flex-1 min-w-[140px]">
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1">Category</label>
+                    <select id="filter-category" class="w-full bg-white border border-gray-200 rounded-sm py-1.5 px-2.5 text-xs text-gray-800 focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+                        <option value="all">All Categories</option>
+                        <option value="av/it">AV / IT Systems</option>
+                        <option value="plumbing">Plumbing &amp; Water</option>
+                        <option value="electrical">Electrical &amp; Lighting</option>
+                        <option value="hvac">HVAC &amp; Climate</option>
+                    </select>
+                </div>
+                <div class="flex-1 min-w-[140px]">
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1">Building</label>
+                    <select id="filter-building" class="w-full bg-white border border-gray-200 rounded-sm py-1.5 px-2.5 text-xs text-gray-800 focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+                        <option value="all">All Buildings</option>
+                        <option value="science block">Science Block</option>
+                        <option value="main hall">Main Academic Hall</option>
+                        <option value="library">Library Wing</option>
+                    </select>
+                </div>
+                <div class="self-end pt-1 flex gap-2">
+                    <button id="reset-filters" class="p-2 border border-gray-200 text-gray-500 hover:text-gray-900 rounded-sm hover:bg-gray-50 transition-colors" title="Reset Filters">
+                        <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. Complaint History Table (with Interactive Thumbnails) -->
+            <div class="bg-white border border-gray-200 rounded-sm shadow-none overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse" id="complaintsTable">
+                        <thead class="bg-gray-50 border-b border-gray-200 text-[10px] uppercase font-bold tracking-wider text-gray-600">
+                            <tr>
+                                <th class="px-5 py-3">Complaint ID</th>
+                                <th class="px-5 py-3">Photo Preview</th>
+                                <th class="px-5 py-3">Issue Title &amp; Category</th>
+                                <th class="px-5 py-3">Location</th>
+                                <th class="px-5 py-3">Date Submitted</th>
+                                <th class="px-5 py-3 text-center">Priority</th>
+                                <th class="px-5 py-3 text-center">Status</th>
+                                <th class="px-5 py-3">Assigned Staff</th>
+                                <th class="px-5 py-3 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 text-xs text-gray-700" id="tableBody">
+                            <!-- Row 1: Broken Projector -->
+                            <tr class="row-fade-in hover:bg-gray-50/80 transition-colors duration-150 group" style="animation-delay: 40ms;">
+                                <td class="px-5 py-3.5 font-mono font-bold text-gray-900">#CMP-7281</td>
+                                <td class="px-5 py-3.5">
+                                    <button class="w-12 h-10 rounded-sm overflow-hidden border border-gray-200 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary cursor-zoom-in group/thumb transition-transform duration-150 hover:scale-[1.04]"
+                                            data-lightbox-src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsm1kITa7-FXZkAJhDCp-Yxynw5nmlYVnCzUNtTWWGNJ-7upSLD4e_lL6v4leEnxFYgG-uydrvnrFK1KHFwUePfB0AykzXig4utnHGqS4PyJK-X94CXcIOy0hBGZ3b7dVgmJ7haz78hj0ue-lSJslEg73xgzNWhQu23vcpyT7_wObHa5stdutJo9aicQm7tAu7qI3wHREJI8Cd_Cp254w0b-qWLLFDQrY7tf4rjRiMrEeVzH9JYmm8nw"
+                                            data-lightbox-caption="Broken Projector Lens &middot; #CMP-7281 (Science Block Room 302)"
+                                            data-lightbox-group="faculty-history"
+                                            title="Click to view full photo">
+                                        <img class="w-full h-full object-cover" alt="Broken Projector" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsm1kITa7-FXZkAJhDCp-Yxynw5nmlYVnCzUNtTWWGNJ-7upSLD4e_lL6v4leEnxFYgG-uydrvnrFK1KHFwUePfB0AykzXig4utnHGqS4PyJK-X94CXcIOy0hBGZ3b7dVgmJ7haz78hj0ue-lSJslEg73xgzNWhQu23vcpyT7_wObHa5stdutJo9aicQm7tAu7qI3wHREJI8Cd_Cp254w0b-qWLLFDQrY7tf4rjRiMrEeVzH9JYmm8nw">
+                                    </button>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-bold text-gray-900">Broken Projector</p>
+                                    <p class="text-gray-500 text-[11px]">AV / IT Systems</p>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-medium text-gray-900">Science Block</p>
+                                    <p class="text-gray-500 text-[11px]">Room 302</p>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-medium text-gray-900">Oct 24, 2023</p>
+                                    <p class="text-gray-500 text-[11px]">10:30 AM</p>
+                                </td>
+                                <td class="px-5 py-3.5 text-center">
+                                    <span class="px-2 py-0.5 bg-red-50 text-red-700 border border-red-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">High</span>
+                                </td>
+                                <td class="px-5 py-3.5 text-center">
+                                    <span class="px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-colors duration-200">Completed</span>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-sm bg-slate-800 text-slate-100 flex items-center justify-center text-[10px] font-bold" title="Mark Thompson (Facilities Lead)">MT</div>
+                                        <span class="font-medium text-gray-800">Mark Thompson</span>
+                                    </div>
+                                </td>
+                                <td class="px-5 py-3.5 text-right">
+                                    <a href="my-complaints-faculty.html" class="px-2.5 py-1 bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary rounded-sm text-xs font-bold uppercase tracking-wider transition-colors inline-block">Details</a>
+                                </td>
+                            </tr>
+
+                            <!-- Row 2: Leaking Faucet -->
+                            <tr class="row-fade-in hover:bg-gray-50/80 transition-colors duration-150 group" style="animation-delay: 80ms;">
+                                <td class="px-5 py-3.5 font-mono font-bold text-gray-900">#CMP-7255</td>
+                                <td class="px-5 py-3.5">
+                                    <button class="w-12 h-10 rounded-sm overflow-hidden border border-gray-200 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary cursor-zoom-in group/thumb transition-transform duration-150 hover:scale-[1.04]"
+                                            data-lightbox-src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeg09oPY5NITWRmGgldFS_7a5rY0X79a5jrbtwLLVS5TGE13P2wBB-RaMiJxaxvjJ5Ge7rWFTwSz8iKzX-34dwYtM1itUMfOQyeUujXgsDlXJtTGY8v8B5_J7lwBOcMXGwj7fwCXEYcHJ1ODF0KRwL4jVLvfzaJtsTbs6W-KlnXsy_owCnnV3qQoAsvRcfAkbqoz5Dlr6p70xWy_ubOWrmPHzxQE3wYHsie1wXfnpm_DYbrQJ2RcJ7Vw"
+                                            data-lightbox-caption="Restroom Leaking Faucet &middot; #CMP-7255 (Main Hall G Floor)"
+                                            data-lightbox-group="faculty-history"
+                                            title="Click to view full photo">
+                                        <img class="w-full h-full object-cover" alt="Leaking Faucet" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeg09oPY5NITWRmGgldFS_7a5rY0X79a5jrbtwLLVS5TGE13P2wBB-RaMiJxaxvjJ5Ge7rWFTwSz8iKzX-34dwYtM1itUMfOQyeUujXgsDlXJtTGY8v8B5_J7lwBOcMXGwj7fwCXEYcHJ1ODF0KRwL4jVLvfzaJtsTbs6W-KlnXsy_owCnnV3qQoAsvRcfAkbqoz5Dlr6p70xWy_ubOWrmPHzxQE3wYHsie1wXfnpm_DYbrQJ2RcJ7Vw">
+                                    </button>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-bold text-gray-900">Leaking Faucet</p>
+                                    <p class="text-gray-500 text-[11px]">Plumbing &amp; Water</p>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-medium text-gray-900">Main Academic Hall</p>
+                                    <p class="text-gray-500 text-[11px]">G Floor Washroom</p>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-medium text-gray-900">Oct 20, 2023</p>
+                                    <p class="text-gray-500 text-[11px]">02:15 PM</p>
+                                </td>
+                                <td class="px-5 py-3.5 text-center">
+                                    <span class="px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">Medium</span>
+                                </td>
+                                <td class="px-5 py-3.5 text-center">
+                                    <span class="px-2 py-0.5 bg-blue-50 text-blue-800 border border-blue-200 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-colors duration-200">In Progress</span>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-sm bg-amber-800 text-amber-50 flex items-center justify-center text-[10px] font-bold" title="Sarah Lewis (Plumbing Specialist)">SL</div>
+                                        <span class="font-medium text-gray-800">Sarah Lewis</span>
+                                    </div>
+                                </td>
+                                <td class="px-5 py-3.5 text-right">
+                                    <a href="my-complaints-faculty.html" class="px-2.5 py-1 bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary rounded-sm text-xs font-bold uppercase tracking-wider transition-colors inline-block">Details</a>
+                                </td>
+                            </tr>
+
+                            <!-- Row 3: Flickering Lights -->
+                            <tr class="row-fade-in hover:bg-gray-50/80 transition-colors duration-150 group" style="animation-delay: 120ms;">
+                                <td class="px-5 py-3.5 font-mono font-bold text-gray-900">#CMP-7241</td>
+                                <td class="px-5 py-3.5">
+                                    <button class="w-12 h-10 rounded-sm overflow-hidden border border-gray-200 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary cursor-zoom-in group/thumb transition-transform duration-150 hover:scale-[1.04]"
+                                            data-lightbox-src="https://lh3.googleusercontent.com/aida-public/AB6AXuARAkLkme60hgHOkooD4Un3jxzasgcmIUQCYX0d4xx-cfyT1_1kqoKiS7tj4Dlc4iDX1k3-0zp9nvnFg-jIeg0zbQA2GQsZtFKpjIoDh39D9u2VaH3Cps7Jy7JGXRklvcfK5aeb5KQwrDeQVtX_LRjiAPP_bG_I2qF1LLiAELyd07xdUXpFmTD0yHJA1MBlg5w3SbMltFh3OCJXouJuUhoHusZxhHZEL4m5XUCkLxV461lrkyXysNrBcQ"
+                                            data-lightbox-caption="Fluorescent Light Fixture &middot; #CMP-7241 (Library Wing B Study Row 4)"
+                                            data-lightbox-group="faculty-history"
+                                            title="Click to view full photo">
+                                        <img class="w-full h-full object-cover" alt="Flickering Lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARAkLkme60hgHOkooD4Un3jxzasgcmIUQCYX0d4xx-cfyT1_1kqoKiS7tj4Dlc4iDX1k3-0zp9nvnFg-jIeg0zbQA2GQsZtFKpjIoDh39D9u2VaH3Cps7Jy7JGXRklvcfK5aeb5KQwrDeQVtX_LRjiAPP_bG_I2qF1LLiAELyd07xdUXpFmTD0yHJA1MBlg5w3SbMltFh3OCJXouJuUhoHusZxhHZEL4m5XUCkLxV461lrkyXysNrBcQ">
+                                    </button>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-bold text-gray-900">Flickering Lights</p>
+                                    <p class="text-gray-500 text-[11px]">Electrical &amp; Lighting</p>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-medium text-gray-900">Library Wing B</p>
+                                    <p class="text-gray-500 text-[11px]">Study Row 4</p>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-medium text-gray-900">Oct 18, 2023</p>
+                                    <p class="text-gray-500 text-[11px]">09:00 AM</p>
+                                </td>
+                                <td class="px-5 py-3.5 text-center">
+                                    <span class="px-2 py-0.5 bg-gray-100 text-gray-700 border border-gray-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">Low</span>
+                                </td>
+                                <td class="px-5 py-3.5 text-center">
+                                    <span class="px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-colors duration-200">Completed</span>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-sm bg-emerald-800 text-emerald-50 flex items-center justify-center text-[10px] font-bold" title="David Rivera (Electrician)">DR</div>
+                                        <span class="font-medium text-gray-800">David Rivera</span>
+                                    </div>
+                                </td>
+                                <td class="px-5 py-3.5 text-right">
+                                    <a href="my-complaints-faculty.html" class="px-2.5 py-1 bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary rounded-sm text-xs font-bold uppercase tracking-wider transition-colors inline-block">Details</a>
+                                </td>
+                            </tr>
+
+                            <!-- Row 4: Unassigned / No Photo edge case -->
+                            <tr class="row-fade-in hover:bg-gray-50/80 transition-colors duration-150 group" style="animation-delay: 160ms;">
+                                <td class="px-5 py-3.5 font-mono font-bold text-gray-900">#CMP-7210</td>
+                                <td class="px-5 py-3.5">
+                                    <div class="w-12 h-10 rounded-sm bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400" title="No photo attached">
+                                        <span class="material-symbols-outlined text-[16px]">hide_image</span>
+                                    </div>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-bold text-gray-900">HVAC Thermostat Calibration</p>
+                                    <p class="text-gray-500 text-[11px]">HVAC &amp; Climate</p>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-medium text-gray-900">Science Block</p>
+                                    <p class="text-gray-500 text-[11px]">CS Systems Lab (Room 302)</p>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <p class="font-medium text-gray-900">Oct 16, 2023</p>
+                                    <p class="text-gray-500 text-[11px]">04:45 PM</p>
+                                </td>
+                                <td class="px-5 py-3.5 text-center">
+                                    <span class="px-2 py-0.5 bg-red-50 text-red-700 border border-red-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">High</span>
+                                </td>
+                                <td class="px-5 py-3.5 text-center">
+                                    <span class="px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-colors duration-200">Pending</span>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <span class="text-gray-400 font-medium text-xs italic">Unassigned</span>
+                                </td>
+                                <td class="px-5 py-3.5 text-right">
+                                    <a href="my-complaints-faculty.html" class="px-2.5 py-1 bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary rounded-sm text-xs font-bold uppercase tracking-wider transition-colors inline-block">Details</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="px-5 py-3.5 bg-white border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <span class="text-xs text-gray-500">Showing <strong class="text-gray-900">1 - 4</strong> of <strong class="text-gray-900">142</strong> complaints</span>
+                    <div class="flex items-center gap-1">
+                        <button id="prevPageBtn" class="p-1.5 border border-gray-200 rounded-sm hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed text-gray-600 transition-colors" disabled>
+                            <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+                        </button>
+                        <button class="pagination-btn px-3 py-1 bg-primary text-white rounded-sm text-xs font-bold transition-colors duration-150">1</button>
+                        <button class="pagination-btn px-3 py-1 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 rounded-sm text-xs font-semibold transition-colors duration-150">2</button>
+                        <button class="pagination-btn px-3 py-1 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 rounded-sm text-xs font-semibold transition-colors duration-150">3</button>
+                        <span class="px-1 text-gray-400 text-xs">&hellip;</span>
+                        <button class="pagination-btn px-3 py-1 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 rounded-sm text-xs font-semibold transition-colors duration-150">15</button>
+                        <button id="nextPageBtn" class="p-1.5 border border-gray-200 rounded-sm hover:bg-gray-50 text-gray-600 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Unified Footer -->
+        <footer class="mt-auto w-full border-t border-gray-200 bg-[#FAF9F6] py-8">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-lg font-bold text-gray-400">CampusCare</p>
+                    <p class="text-xs text-gray-500 mt-1">&copy; 2026 CampusCare &middot; University Name</p>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-xs font-bold uppercase tracking-widest text-gray-500">
+                    <a href="#" class="hover:text-primary transition-colors">Help Center</a>
+                    <a href="#" class="hover:text-primary transition-colors">Report an Issue</a>
+                    <a href="#" class="hover:text-primary transition-colors">Contact Facilities</a>
+                    <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+                </div>
+                <div class="text-xs font-bold uppercase tracking-widest text-primary text-center md:text-right mt-4 md:mt-0">
+                    Emergency? Contact Security: <br class="md:hidden">555-0199
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Bottom Navigation Mobile Only -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-gray-200 shadow-lg">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="dashboard-faculty.html">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-[10px] font-medium">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="report-complaint-faculty.html">
+            <span class="material-symbols-outlined">add_circle</span>
+            <span class="text-[10px] font-medium">Report</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary px-4 py-1" href="complaint-history-faculty.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+            <span class="text-[10px] font-bold">History</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="profile-settings-faculty.html">
+            <span class="material-symbols-outlined">person</span>
+            <span class="text-[10px] font-medium">Profile</span>
+        </a>
+    </nav>
+</div>
+
+<!-- Interactive Lightbox Module -->
+<script src="src/components/lightbox.js" type="module"></script>
 <script src="src/components/sidebar.js" type="module"></script>
 <script src="src/router.js" type="module"></script>
+
+<script>
+    // Smooth pagination crossfade and active state switch
+    const paginationButtons = document.querySelectorAll('.pagination-btn');
+    const tableBody = document.getElementById('tableBody');
+
+    paginationButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            if (btn.classList.contains('bg-primary')) return;
+
+            paginationButtons.forEach(b => {
+                b.classList.remove('bg-primary', 'text-white');
+                b.classList.add('bg-white', 'border', 'border-gray-200', 'text-gray-700');
+            });
+
+            btn.classList.remove('bg-white', 'border', 'border-gray-200', 'text-gray-700');
+            btn.classList.add('bg-primary', 'text-white');
+
+            // Brief cross-fade of table content
+            if (tableBody) {
+                tableBody.style.opacity = '0.3';
+                tableBody.style.transition = 'opacity 160ms ease-out';
+                setTimeout(() => {
+                    tableBody.style.opacity = '1';
+                }, 160);
+            }
+        });
+    });
+
+    // Real-time table filter & search handling
+    const searchInput = document.getElementById('searchInput');
+    const filterStatus = document.getElementById('filter-status');
+    const filterCategory = document.getElementById('filter-category');
+    const filterBuilding = document.getElementById('filter-building');
+    const resetBtn = document.getElementById('reset-filters');
+
+    function applyFilters() {
+        const query = (searchInput ? searchInput.value : '').toLowerCase();
+        const status = (filterStatus ? filterStatus.value : 'all').toLowerCase();
+        const category = (filterCategory ? filterCategory.value : 'all').toLowerCase();
+        const building = (filterBuilding ? filterBuilding.value : 'all').toLowerCase();
+
+        const rows = document.querySelectorAll('#tableBody tr');
+        rows.forEach(row => {
+            const text = row.innerText.toLowerCase();
+            const matchesQuery = !query || text.includes(query);
+            const matchesStatus = status === 'all' || text.includes(status);
+            const matchesCategory = category === 'all' || text.includes(category);
+            const matchesBuilding = building === 'all' || text.includes(building);
+
+            if (matchesQuery && matchesStatus && matchesCategory && matchesBuilding) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    [searchInput, filterStatus, filterCategory, filterBuilding].forEach(el => {
+        if (el) el.addEventListener('input', applyFilters);
+    });
+
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            if (searchInput) searchInput.value = '';
+            if (filterStatus) filterStatus.value = 'all';
+            if (filterCategory) filterCategory.value = 'all';
+            if (filterBuilding) filterBuilding.value = 'all';
+            applyFilters();
+        });
+    }
+</script>
 </body>
 </html>
-

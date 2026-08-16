@@ -2,6 +2,7 @@
 <html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Complaints - CampusCare</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -44,7 +45,7 @@
 <!-- SideNavBar (Desktop Only) -->
 <app-sidebar active="my-complaints"></app-sidebar>
 <!-- Main Content Canvas -->
-<main class="md:ml-[220px] pt-16 pb-24 md:pb-lg px-margin-mobile md:px-gutter bg-white">
+<main class="md:ml-[220px] pt-16 pb-24 md:pb-lg px-margin-mobile md:px-gutter bg-white min-w-0">
 <div class="max-w-7xl mx-auto w-full">
 <!-- Header & Filters Section -->
 <div class="mb-lg flex flex-col gap-md">
@@ -318,6 +319,7 @@
         });
     });
 </script>
+<script src="src/components/lightbox.js" type="module"></script>
 <script src="src/components/sidebar.js" type="module"></script>
 <script src="src/router.js" type="module"></script>
 </body>

@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
-<meta charset="utf-8">
+    <meta charset="UTF-8">
+
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Report Complaint (Faculty) - CampusCare</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -58,7 +59,7 @@
 <div class="flex min-h-[calc(100vh-72px)]">
 <app-sidebar active="report-complaint" role="faculty"></app-sidebar>
 <!-- Main Content Canvas -->
-<main class="flex-1 bg-[#F8FAFC] p-lg pb-24 md:pb-8">
+<main class="flex-1 bg-[#F8FAFC] p-lg pb-24 md:pb-8 min-w-0">
 <div class="max-w-5xl mx-auto">
 <div class="flex items-center justify-between mb-xl">
 <div>
@@ -251,6 +252,7 @@
         }
     </script>
 
+<script src="src/components/lightbox.js" type="module"></script>
 <script src="src/components/sidebar.js" type="module"></script>
 <script src="src/router.js" type="module"></script>
 </body>

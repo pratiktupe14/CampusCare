@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusCare - Smart Facilities Management</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="shared-tailwind-config.js"></script>
+    <style>
+        /* Marketing specific overrides */
+        body { scroll-behavior: smooth; }
+        
+        /* Nav Underline */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px;
+            bottom: -4px; left: 0; background-color: #B91C1C; transform-origin: center;
+            transition: transform 0.15s ease-out;
+        }
+        .nav-link:hover::after { transform: scaleX(1); }
+
+        /* Observer Classes */
+        .reveal-on-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        
+        .slide-in-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .slide-in-left.is-visible { opacity: 1; transform: translateX(0); }
+        
+        .slide-in-right { opacity: 0; transform: translateX(40px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .slide-in-right.is-visible { opacity: 1; transform: translateX(0); }
+
+        .scale-up { opacity: 0; transform: scale(0.95); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+        .scale-up.is-visible { opacity: 1; transform: scale(1); }
+
+        /* Highlight Sweep Animation */
+        @keyframes highlightSweep {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .highlight-sweep-wrapper { position: relative; overflow: hidden; }
+        .highlight-sweep-wrapper::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, #B91C1C, transparent);
+            transform: translateX(-100%);
+        }
+        .highlight-sweep-wrapper.is-visible::after {
+            animation: highlightSweep 1s ease-in-out forwards 0.4s;
+        }
+
+        /* SVG Path Animation */
+        .path-line {
+            stroke-dasharray: 1000; stroke-dashoffset: 1000;
+            transition: stroke-dashoffset 1.5s ease-out;
+        }
+        .path-line.is-visible { stroke-dashoffset: 0; }
+        
+        /* Staggers for scroll reveals */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+        .delay-500 { transition-delay: 500ms; }
+
+        /* Button Press Feedback */
+        .btn-press:active { transform: scale(0.97) !important; transition: transform 0.1s ease-out !important; }
+
+        /* Respect prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-on-scroll, .slide-in-left, .slide-in-right, .scale-up {
+                opacity: 1 !important; transform: none !important; transition: none !important;
+            }
+            .highlight-sweep-wrapper::after { display: none !important; }
+            .path-line { stroke-dashoffset: 0 !important; transition: none !important; }
+            .nav-link::after { transition: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-paper text-on-background min-h-screen flex flex-col font-sans overflow-x-hidden">
+
+    <!-- Header -->
+    <header id="main-header" class="fixed top-0 w-full z-50 transition-all duration-300 ease-out py-6 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="font-serif text-2xl font-bold text-primary tracking-tight">CampusCare</a>
+            
+            <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-on-surface">
+                <a href="#features" class="nav-link hover:text-primary transition-colors">Features</a>
+                <a href="#how-it-works" class="nav-link hover:text-primary transition-colors">How it Works</a>
+                <a href="#roles" class="nav-link hover:text-primary transition-colors">Solutions</a>
+                <a href="#testimonials" class="nav-link hover:text-primary transition-colors">Testimonials</a>
+            </nav>
+
+            <a href="#" class="btn-press bg-primary text-white px-6 py-2.5 rounded-sm font-bold text-sm uppercase tracking-widest hover:-translate-y-[2px] hover:shadow-lg transition-all duration-200">
+                Request a Demo
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden flex flex-col items-center justify-center text-center px-6">
+            <div class="max-w-4xl mx-auto z-10">
+                <h1 class="font-serif text-4xl md:text-6xl font-black text-on-background tracking-tight leading-tight mb-6 animate-fade-slide-up opacity-0" style="animation-delay: 100ms;">
+                    Smart Facilities Management <br class="hidden md:block"> for Modern Campuses
+                </h1>
+                <p class="text-lg md:text-xl text-on-surface-variant mb-10 max-w-2xl mx-auto animate-fade-slide-up opacity-0 font-medium" style="animation-delay: 300ms;">
+                    Empower your students, faculty, and maintenance staff with a unified platform that resolves issues faster and keeps your institution running flawlessly.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-slide-up opacity-0" style="animation-delay: 500ms;">
+                    <a href="#" class="btn-press bg-primary text-white px-8 py-3.5 rounded-sm font-bold text-sm uppercase tracking-widest hover:-translate-y-[2px] hover:shadow-lg transition-all duration-200 w-full sm:w-auto">
+                        Get Started
+                    </a>
+                    <a href="#" class="btn-press bg-white border border-gray-200 text-on-background px-8 py-3.5 rounded-sm font-bold text-sm uppercase tracking-widest hover:-translate-y-[2px] hover:shadow-md hover:border-gray-300 transition-all duration-200 w-full sm:w-auto">
+                        View Features
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Mockup with Parallax -->
+            <div class="mt-16 md:mt-24 w-full max-w-6xl mx-auto px-4 md:px-0 relative z-10 animate-fade-in opacity-0" style="animation-delay: 700ms;">
+                <div id="hero-mockup" class="relative rounded-xl overflow-hidden shadow-2xl border border-gray-200 bg-white scale-up is-visible" style="transform-origin: top center;">
+                    <!-- Fake Browser Chrome -->
+                    <div class="h-8 bg-gray-100 border-b border-gray-200 flex items-center px-4 gap-2">
+                        <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                    </div>
+                    <!-- Mockup Image (using a placeholder that looks like a dashboard) -->
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000&h=1000" alt="CampusCare Dashboard" class="w-full h-auto block opacity-90">
+                </div>
+                <!-- Background decorative blur -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-3xl -z-10 rounded-full scale-150"></div>
+            </div>
+        </section>
+
+        <!-- Trust Strip -->
+        <section class="border-y border-gray-200 bg-white py-10">
+            <div class="max-w-7xl mx-auto px-6">
+                <p class="text-center text-xs font-bold text-gray-400 uppercase tracking-widest mb-8 reveal-on-scroll">Trusted by forward-thinking institutions</p>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale">
+                    <div class="reveal-on-scroll delay-100 font-serif text-xl font-bold">Stanford</div>
+                    <div class="reveal-on-scroll delay-200 font-serif text-xl font-bold">MIT</div>
+                    <div class="reveal-on-scroll delay-300 font-serif text-xl font-bold">Oxford</div>
+                    <div class="reveal-on-scroll delay-400 font-serif text-xl font-bold">Harvard</div>
+                    <div class="reveal-on-scroll delay-500 font-serif text-xl font-bold">Cambridge</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Role-based Value Props -->
+        <section id="roles" class="py-24 bg-paper">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-on-background mb-4 tracking-tight">Built for Every Role</h2>
+                    <p class="text-on-surface-variant max-w-2xl mx-auto font-medium">CampusCare provides tailored experiences that connect the entire campus ecosystem.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-white border border-gray-200 p-6 rounded-sm shadow-sm hover:-translate-y-1 hover:border-primary transition-all duration-200 ease-out reveal-on-scroll delay-100">
+                        <span class="material-symbols-outlined text-3xl text-primary mb-4">school</span>
+                        <h3 class="font-serif text-lg font-bold text-on-background mb-2">Students</h3>
+                        <p class="text-sm text-on-surface-variant">Report issues in seconds with QR codes and track resolution progress in real-time.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-white border border-gray-200 p-6 rounded-sm shadow-sm hover:-translate-y-1 hover:border-primary transition-all duration-200 ease-out reveal-on-scroll delay-200">
+                        <span class="material-symbols-outlined text-3xl text-primary mb-4">history_edu</span>
+                        <h3 class="font-serif text-lg font-bold text-on-background mb-2">Faculty</h3>
+                        <p class="text-sm text-on-surface-variant">Ensure your teaching spaces are always operational without spending hours on support calls.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-white border border-gray-200 p-6 rounded-sm shadow-sm hover:-translate-y-1 hover:border-primary transition-all duration-200 ease-out reveal-on-scroll delay-300">
+                        <span class="material-symbols-outlined text-3xl text-primary mb-4">handyman</span>
+                        <h3 class="font-serif text-lg font-bold text-on-background mb-2">Facilities</h3>
+                        <p class="text-sm text-on-surface-variant">Receive prioritized, detailed work orders with photos and exact locations instantly.</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="bg-white border border-gray-200 p-6 rounded-sm shadow-sm hover:-translate-y-1 hover:border-primary transition-all duration-200 ease-out reveal-on-scroll delay-400">
+                        <span class="material-symbols-outlined text-3xl text-primary mb-4">admin_panel_settings</span>
+                        <h3 class="font-serif text-lg font-bold text-on-background mb-2">Administration</h3>
+                        <p class="text-sm text-on-surface-variant">Gain campus-wide visibility, track SLAs, and optimize maintenance budgets with data.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Highlights -->
+        <section id="features" class="py-24 bg-white border-y border-gray-200 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 space-y-32">
+                <!-- Feature 1 -->
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                    <div class="w-full md:w-1/2 slide-in-left highlight-sweep-wrapper border border-gray-200 rounded-sm shadow-xl p-1 bg-white">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800&h=600" alt="Dashboard" class="w-full h-auto rounded-sm">
+                    </div>
+                    <div class="w-full md:w-1/2 reveal-on-scroll delay-300">
+                        <h2 class="font-serif text-3xl font-bold text-on-background mb-4 tracking-tight">Unified Command Center</h2>
+                        <p class="text-on-surface-variant mb-6 leading-relaxed font-medium">Get a bird's-eye view of your entire campus infrastructure. Monitor open tickets, track team performance, and spot emerging hotspots before they become critical failures.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-sm text-on-surface font-medium"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> Real-time analytics dashboard</li>
+                            <li class="flex items-center gap-3 text-sm text-on-surface font-medium"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> Predictive maintenance alerts</li>
+                            <li class="flex items-center gap-3 text-sm text-on-surface font-medium"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> Customizable reporting tools</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-20">
+                    <div class="w-full md:w-1/2 slide-in-right highlight-sweep-wrapper border border-gray-200 rounded-sm shadow-xl p-1 bg-white">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800&h=600" alt="Mobile App" class="w-full h-auto rounded-sm">
+                    </div>
+                    <div class="w-full md:w-1/2 reveal-on-scroll delay-300">
+                        <h2 class="font-serif text-3xl font-bold text-on-background mb-4 tracking-tight">Frictionless Reporting</h2>
+                        <p class="text-on-surface-variant mb-6 leading-relaxed font-medium">Students and faculty can report issues in seconds without logging in. Just scan a QR code on any door or device, snap a photo, and the ticket is automatically routed.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-sm text-on-surface font-medium"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> QR code asset tagging</li>
+                            <li class="flex items-center gap-3 text-sm text-on-surface font-medium"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> Rich media attachments (Photo/Voice)</li>
+                            <li class="flex items-center gap-3 text-sm text-on-surface font-medium"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> Automated location tagging</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- How It Works -->
+        <section id="how-it-works" class="py-24 bg-paper relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-on-background mb-4 tracking-tight">How It Works</h2>
+                    <p class="text-on-surface-variant max-w-2xl mx-auto font-medium">From identifying an issue to final resolution, CampusCare streamlines the entire process.</p>
+                </div>
+
+                <div class="relative max-w-4xl mx-auto">
+                    <!-- SVG Connecting Line -->
+                    <svg class="absolute top-1/2 left-0 w-full h-4 -translate-y-1/2 hidden md:block z-0" preserveAspectRatio="none" viewBox="0 0 1000 10">
+                        <path d="M0,5 L1000,5" stroke="#e5e7eb" stroke-width="2" fill="none" stroke-dasharray="10 10" />
+                        <path d="M0,5 L1000,5" stroke="#B91C1C" stroke-width="2" fill="none" class="path-line" />
+                    </svg>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center relative z-10">
+                        <!-- Step 1 -->
+                        <div class="bg-paper md:bg-transparent flex flex-col items-center">
+                            <div class="w-16 h-16 bg-white border-2 border-primary rounded-full flex items-center justify-center font-serif text-2xl font-black text-primary mb-6 shadow-sm scale-up delay-100">1</div>
+                            <h3 class="font-serif text-xl font-bold text-on-background mb-3 reveal-on-scroll delay-200">Report</h3>
+                            <p class="text-sm text-on-surface-variant reveal-on-scroll delay-300">Scan a QR code or tap the app to log an issue in under 30 seconds.</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="bg-paper md:bg-transparent flex flex-col items-center">
+                            <div class="w-16 h-16 bg-white border-2 border-primary rounded-full flex items-center justify-center font-serif text-2xl font-black text-primary mb-6 shadow-sm scale-up delay-300">2</div>
+                            <h3 class="font-serif text-xl font-bold text-on-background mb-3 reveal-on-scroll delay-400">Route</h3>
+                            <p class="text-sm text-on-surface-variant reveal-on-scroll delay-500">Tickets are instantly prioritized and assigned to the right team member.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="bg-paper md:bg-transparent flex flex-col items-center">
+                            <div class="w-16 h-16 bg-primary border-2 border-primary rounded-full flex items-center justify-center font-serif text-2xl font-black text-white mb-6 shadow-sm scale-up delay-500">3</div>
+                            <h3 class="font-serif text-xl font-bold text-on-background mb-3 reveal-on-scroll delay-[600ms]">Resolve</h3>
+                            <p class="text-sm text-on-surface-variant reveal-on-scroll delay-[700ms]">Fix the issue, notify stakeholders automatically, and track the data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial Section -->
+        <section id="testimonials" class="py-24 bg-white border-y border-gray-200">
+            <div class="max-w-4xl mx-auto px-6 text-center reveal-on-scroll">
+                <span class="material-symbols-outlined text-4xl text-primary/20 mb-6">format_quote</span>
+                <p class="font-serif text-2xl md:text-3xl font-bold text-on-background leading-relaxed mb-8">
+                    "CampusCare reduced our average ticket resolution time from 4 days to under 12 hours. It's completely transformed how our facilities team operates."
+                </p>
+                <div class="flex items-center justify-center gap-4">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150&h=150" alt="Dr. Robert Smith" class="w-12 h-12 rounded-full object-cover">
+                    <div class="text-left">
+                        <p class="font-bold text-sm text-on-background">Dr. Robert Smith</p>
+                        <p class="text-xs text-on-surface-variant uppercase tracking-widest mt-0.5">Director of Facilities, State University</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Band -->
+        <section class="bg-primary py-20 text-center text-white overflow-hidden">
+            <div class="max-w-3xl mx-auto px-6 reveal-on-scroll">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6 tracking-tight">Ready to upgrade your campus?</h2>
+                <p class="text-primary-fixed mb-10 font-medium">Join dozens of leading universities streamlining their operations today.</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#" id="cta-button" class="bg-white text-primary px-8 py-3.5 rounded-sm font-bold text-sm uppercase tracking-widest hover:scale-[1.03] hover:brightness-105 transition-all duration-150 w-full sm:w-auto shadow-md">
+                        Request a Demo
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Unified Footer -->
+    <footer class="w-full border-t border-gray-200 bg-[#FAF9F6] py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <p class="font-serif text-lg font-bold text-gray-400">CampusCare</p>
+                <p class="text-xs text-gray-500 mt-1">&copy; 2026 CampusCare &middot; University Name</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-xs font-bold uppercase tracking-widest text-gray-500">
+                <a href="#" class="hover:text-primary transition-colors">Help Center</a>
+                <a href="#" class="hover:text-primary transition-colors">Report an Issue</a>
+                <a href="#" class="hover:text-primary transition-colors">Contact Facilities</a>
+                <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+            </div>
+            <div class="text-xs font-bold uppercase tracking-widest text-primary text-center md:text-right mt-4 md:mt-0">
+                Emergency? Contact Security: <br class="md:hidden">555-0199
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Logic -->
+    <script>
+        // Header Shrink on Scroll
+        const header = document.getElementById('main-header');
+        const heroMockup = document.getElementById('hero-mockup');
+        
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            
+            // Header
+            if (scrollY > 50) {
+                header.classList.remove('py-6', 'bg-transparent');
+                header.classList.add('py-3', 'bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-gray-200');
+            } else {
+                header.classList.add('py-6', 'bg-transparent');
+                header.classList.remove('py-3', 'bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-gray-200');
+            }
+            
+            // Subtle Parallax for hero mockup (max 30px offset)
+            if (heroMockup && scrollY < 800) {
+                // Apply a slow upward movement relative to scroll
+                const offset = Math.min(scrollY * 0.05, 30);
+                heroMockup.style.transform = `translateY(-${offset}px)`;
+            }
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once animated
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        // We will query selector all animation classes and observe them
+        function initObservers() {
+            const animatedElements = document.querySelectorAll('.reveal-on-scroll, .slide-in-left, .slide-in-right, .scale-up, .highlight-sweep-wrapper, .path-line');
+            animatedElements.forEach(el => observer.observe(el));
+        }
+        
+        // Button press feedback delay navigation
+        const ctaButton = document.getElementById('cta-button');
+        if (ctaButton) {
+            ctaButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                ctaButton.style.transform = 'scale(0.97)';
+                setTimeout(() => {
+                    ctaButton.style.transform = 'scale(1.03)';
+                    setTimeout(() => {
+                        window.location.href = '#';
+                    }, 100);
+                }, 150);
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', initObservers);
+    </script>
+</body>
+</html>

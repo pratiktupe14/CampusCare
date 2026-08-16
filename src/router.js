@@ -66,16 +66,21 @@ document.addEventListener('click', async (e) => {
                 const span = a.querySelector('span.material-symbols-outlined');
                 
                 if (isMatch) {
-                    a.className = "flex items-center gap-3 px-3 py-2 rounded-r-full transition-all duration-200 bg-secondary-container text-on-secondary-container font-bold";
+                    a.className = "flex items-center gap-3 px-3 py-2 rounded-r-sm transition-all duration-300 ease-out bg-secondary-container text-on-secondary-container font-bold";
                     if (span) span.style.fontVariationSettings = "'FILL' 1";
                 } else {
-                    a.className = "flex items-center gap-3 px-3 py-2 rounded-r-full transition-all duration-200 text-on-surface-variant hover:bg-surface-container-high";
+                    a.className = "flex items-center gap-3 px-3 py-2 rounded-r-sm transition-all duration-300 ease-out text-on-surface-variant hover:bg-surface-container-high";
                     if (span && !a.href.includes('index.html') && !a.href.includes('dashboard-faculty.html')) {
                         // index.html or dashboard-faculty.html icon might be set to fill true by default in config, keeping it simple
                         span.style.fontVariationSettings = "";
                     }
                 }
             });
+        }
+
+        // Re-bind Lightbox triggers if available
+        if (window.CampusCareLightboxInstance) {
+            window.CampusCareLightboxInstance.bindTriggers();
         }
 
         // Push state to history

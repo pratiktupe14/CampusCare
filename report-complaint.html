@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit New Complaint - CampusCare</title>
     <!-- Google Fonts -->
@@ -17,12 +18,11 @@
     </style>
 </head>
 <body class="bg-paper text-on-background min-h-screen flex flex-col overflow-x-hidden">
-<div class="flex min-h-screen w-full">
 <!-- Side Navigation Shell -->
 <app-sidebar active="report-complaint" role="student"></app-sidebar>
 
 <!-- Main Content Area -->
-<main class="flex-1 md:ml-[260px] bg-paper min-h-screen pb-24 md:pb-8 flex flex-col w-full">
+<main class="flex-1 md:ml-[220px] bg-paper min-h-screen pb-24 md:pb-8 flex flex-col min-w-0">
     <!-- Top Bar -->
     <header class="h-16 flex justify-between items-center px-6 py-2 sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-none backdrop-blur-md bg-opacity-90">
         <div class="flex items-center gap-4">
@@ -57,7 +57,7 @@
                 <!-- Duplicate Notice -->
                 <div class="bg-white border border-gray-200 text-gray-700 px-4 py-3 rounded-sm flex items-center gap-3">
                     <span class="material-symbols-outlined text-primary text-[20px]">error</span>
-                    <p class="text-sm font-medium">A similar report was submitted for this room 2 days ago â€” <a href="#" class="text-primary font-bold hover:underline">view it</a></p>
+                    <p class="text-sm font-medium">A similar report was submitted for this room 2 days ago &mdash; <a href="#" class="text-primary font-bold hover:underline">view it</a></p>
                 </div>
 
                 <section class="bg-white border border-gray-200 rounded-sm p-6">
@@ -66,7 +66,7 @@
                     <div class="space-y-6">
                         <div>
                             <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Complaint Title</label>
-                            <input type="text" placeholder="e.g., Leaking Ceiling in Library" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none">
+                            <input type="text" placeholder="e.g., Leaking Ceiling in Library" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-150 ease-out outline-none">
                         </div>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -82,17 +82,18 @@
                             </div>
                             <div>
                                 <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Priority Level</label>
-                                <div class="flex gap-2">
-                                    <button class="flex-grow py-2 rounded-sm border border-gray-200 text-sm font-semibold hover:bg-gray-50 transition-all text-gray-600">Low</button>
-                                    <button class="flex-grow py-2 rounded-sm border-2 border-primary bg-primary/5 text-primary text-sm font-bold">Medium</button>
-                                    <button class="flex-grow py-2 rounded-sm border border-gray-200 text-sm font-semibold hover:bg-gray-50 transition-all text-gray-600">High</button>
+                                <div class="flex gap-1 relative bg-gray-50 p-1 rounded-sm border border-gray-200" id="priority-container">
+                                    <div id="priority-slider" class="absolute top-1 left-1 bottom-1 w-[calc(33.333%-4px)] bg-primary/10 border-2 border-primary rounded-sm transition-all duration-200 ease-out z-0 pointer-events-none transform translate-x-full"></div>
+                                    <button class="flex-grow py-2 relative z-10 text-sm font-semibold transition-colors duration-200 text-gray-600 focus:outline-none priority-btn" data-index="0">Low</button>
+                                    <button class="flex-grow py-2 relative z-10 text-sm font-bold transition-colors duration-200 text-primary focus:outline-none priority-btn" data-index="1">Medium</button>
+                                    <button class="flex-grow py-2 relative z-10 text-sm font-semibold transition-colors duration-200 text-gray-600 focus:outline-none priority-btn" data-index="2">High</button>
                                 </div>
                             </div>
                         </div>
 
                         <div>
                             <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Description</label>
-                            <textarea rows="4" placeholder="Describe the issue in detail..." class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none"></textarea>
+                            <textarea rows="4" placeholder="Describe the issue in detail..." class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-150 ease-out outline-none"></textarea>
                             <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-right mt-1">0 / 500 characters</div>
                         </div>
                     </div>
@@ -110,15 +111,15 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
                             <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Building</label>
-                            <input type="text" placeholder="e.g., West Wing" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+                            <input type="text" placeholder="e.g., West Wing" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-150 ease-out">
                         </div>
                         <div>
                             <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Floor</label>
-                            <input type="text" placeholder="2nd Floor" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+                            <input type="text" placeholder="2nd Floor" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-150 ease-out">
                         </div>
                         <div>
                             <label class="text-xs font-bold text-gray-700 uppercase tracking-widest mb-2 block">Room</label>
-                            <input type="text" placeholder="Lab 204" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+                            <input type="text" placeholder="Lab 204" class="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm text-on-surface outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-150 ease-out">
                         </div>
                     </div>
                 </section>
@@ -134,14 +135,18 @@
                         <div class="border-2 border-dashed border-gray-200 rounded-sm p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-all cursor-pointer group">
                             <span class="material-symbols-outlined text-4xl text-gray-300 mb-2 group-hover:scale-110 transition-transform">cloud_upload</span>
                             <p class="text-sm font-medium text-gray-600">Drag photos here or <span class="text-primary font-bold">Browse</span></p>
-                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-2">JPG, PNG, or HEIC Â· up to 10MB</p>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-2">JPG, PNG, or HEIC &middot; up to 10MB</p>
                         </div>
                         
                         <!-- Thumbnail Preview placeholder -->
                         <div class="flex gap-2 overflow-x-auto py-2">
-                             <div class="w-16 h-16 rounded-sm border border-gray-200 overflow-hidden relative group cursor-pointer">
+                             <div class="w-16 h-16 rounded-sm border border-gray-200 overflow-hidden relative group cursor-zoom-in hover:border-primary transition-all"
+                                  data-lightbox-src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200&h=1200"
+                                  data-lightbox-caption="Evidence Photo: Leaking Ceiling Pipe Attachment"
+                                  data-lightbox-group="report-evidence"
+                                  title="Click to view full photo">
                                  <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=200&h=200" class="w-full h-full object-cover">
-                                 <button class="absolute top-1 right-1 bg-white/80 rounded-full w-4 h-4 flex items-center justify-center text-gray-600 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[12px]">close</span></button>
+                                 <button class="absolute top-1 right-1 bg-white/80 rounded-full w-4 h-4 flex items-center justify-center text-gray-600 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity" onclick="event.stopPropagation(); this.parentElement.remove();"><span class="material-symbols-outlined text-[12px]">close</span></button>
                              </div>
                         </div>
 
@@ -175,12 +180,12 @@
                 </div>
                 
                 <!-- Action Cards -->
-                <div class="flex flex-col gap-3 pt-4 border-t border-gray-200">
-                    <button class="w-full bg-primary text-white px-4 py-3 text-xs uppercase tracking-widest rounded-sm font-bold flex items-center justify-center gap-2 hover:bg-red-700 transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">send</span>
-                        Submit Complaint
+                <div class="flex flex-col gap-3 pt-4 border-t border-gray-200 relative overflow-hidden">
+                    <button id="submitBtn" class="w-full bg-primary text-white px-4 py-3 text-xs uppercase tracking-widest rounded-sm font-bold flex items-center justify-center gap-2 hover:bg-red-700 transition-all duration-150 ease-out hover:scale-[1.02] active:scale-[0.98]">
+                        <span class="material-symbols-outlined text-[16px] transition-transform" id="submitIcon">send</span>
+                        <span id="submitText">Submit Complaint</span>
                     </button>
-                    <button class="w-full bg-transparent border border-primary text-primary px-4 py-3 text-xs uppercase tracking-widest rounded-sm font-bold flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors">
+                    <button class="w-full bg-transparent border border-primary text-primary px-4 py-3 text-xs uppercase tracking-widest rounded-sm font-bold flex items-center justify-center gap-2 hover:bg-primary/5 transition-all duration-150 ease-out hover:scale-[1.02] active:scale-[0.98]">
                         <span class="material-symbols-outlined text-[16px]">drafts</span>
                         Save as Draft
                     </button>
@@ -233,7 +238,6 @@
     </a>
 </nav>
 
-</div>
 <script>
     // Simple micro-interaction for Voice button
     const voiceBtn = document.getElementById('voiceBtn');
@@ -249,7 +253,56 @@
             voiceBtn.innerHTML = '<span class="material-symbols-outlined">mic</span>';
         }
     });
+
+    // Priority Segmented Control Sliding Animation
+    const priorityBtns = document.querySelectorAll('.priority-btn');
+    const prioritySlider = document.getElementById('priority-slider');
+    
+    priorityBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const index = parseInt(btn.getAttribute('data-index'));
+            
+            // Move slider
+            prioritySlider.style.transform = `translateX(calc(${index * 100}% + ${index * 4}px))`;
+            
+            // Update classes
+            priorityBtns.forEach((b, i) => {
+                if (i === index) {
+                    b.classList.remove('text-gray-600', 'font-semibold');
+                    b.classList.add('text-primary', 'font-bold');
+                } else {
+                    b.classList.remove('text-primary', 'font-bold');
+                    b.classList.add('text-gray-600', 'font-semibold');
+                }
+            });
+        });
+    });
+
+    // Submit micro-feedback
+    const submitBtn = document.getElementById('submitBtn');
+    const submitIcon = document.getElementById('submitIcon');
+    const submitText = document.getElementById('submitText');
+    
+    if(submitBtn) {
+        submitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Start success state
+            submitBtn.classList.add('bg-green-600', 'hover:bg-green-600');
+            submitBtn.classList.remove('bg-primary', 'hover:bg-red-700');
+            
+            submitIcon.innerText = 'check_circle';
+            submitIcon.classList.add('animate-scale-in');
+            submitText.innerText = 'Submitted!';
+            
+            setTimeout(() => {
+                // Redirect or reset (simulating a redirect here)
+                window.location.href = 'my-complaints.html';
+            }, 500);
+        });
+    }
 </script>
+<script src="src/components/lightbox.js" type="module"></script>
 <script src="src/components/sidebar.js" type="module"></script>
 <script src="src/router.js" type="module"></script>
 </body>

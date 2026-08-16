@@ -1,357 +1,401 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Profile &amp; Settings (Faculty) - CampusCare</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F8FAFC;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .custom-shadow {
-            box-shadow: 0px 1px 3px rgba(0,0,0,0.05), 0px 10px 15px -5px rgba(0,0,0,0.05);
-        }
-        .active-nav-item {
-            background-color: #da3437;
-            color: #ffffff;
-        }
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #e6bdb8;
-            border-radius: 10px;
-        }
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Faculty Profile &amp; Settings - CampusCare</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <script src="shared-tailwind-config.js"></script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
     </style>
-<script src="shared-tailwind-config.js"></script>
 </head>
-<body class="bg-surface-container-lowest overflow-x-hidden">
-<!-- Top Navigation Bar -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface border-b border-outline-variant">
-<div class="flex items-center gap-4">
-<a href="dashboard-faculty.html" class="font-headline-lg text-primary font-bold">CampusCare</a>
-<div class="hidden md:flex items-center bg-white px-4 py-2 rounded-full border border-gray-200 w-96 ml-8">
-<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-body-md w-full ml-2 text-on-surface outline-none" placeholder="Search resources..." type="text">
-</div>
-</div>
-<div class="flex items-center gap-md">
-<a href="notifications-faculty.html" class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
-</a>
-<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant">help</span>
-</button>
-<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
-<div class="text-right hidden sm:block">
-<p class="text-label-md font-bold text-on-surface">Dr. Pratik Tupe</p>
-<p class="text-label-md text-on-surface-variant">Computer Science</p>
-</div>
-<img class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="A professional close-up portrait of a senior male professor with a kind expression, wearing a tailored charcoal blazer and a crisp white shirt. The background is a soft-focus academic setting with warm wooden bookshelves. The lighting is bright and even, reflecting a clean light-mode aesthetic with vibrant red accent tones in the surrounding UI elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4LUJVGo6wFHOc6xeO9h2JvIpOWO7DzZjdzEato_839AgO7Pgt4BjFVm8vf1zGIVXpqm2aYhKiScRbObOOqxsVNCuG_R7MPSPAiSBjOehhBDDqIA94em4Ype0f-xMieAbFVrqxCv5_RbQ1FF__anch8IJ6fMisDo-gH0tcSLzksSbZnabSL78ikfWOuTB40dbd9Ao_LGfm9V0iiK0fXfhEKDbR26K9LRCBZpZrnzMlSrOqjJ1VdSzGpA">
-</div>
-</div>
-</header>
+<body class="bg-paper text-on-background min-h-screen flex flex-col font-sans">
+<div class="flex min-h-screen">
+<!-- Side Navigation Shell -->
 <app-sidebar active="profile" role="faculty"></app-sidebar>
+
 <!-- Main Content Area -->
-<main class="md:ml-[260px] mt-16 p-lg min-h-screen">
-<div class="max-w-6xl mx-auto space-y-lg">
-<!-- 1. Profile Header -->
-<section class="bg-white rounded-lg p-lg border border-outline-variant custom-shadow flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
-<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-20 -mt-20"></div>
-<div class="relative">
-<img class="w-40 h-40 rounded-full border-4 border-white shadow-xl object-cover relative z-10" data-alt="A sophisticated headshot of a mature academic professional in a modern office. The subject is wearing a professional suit, and the background features a soft bokeh of a library or research facility. The image is bright, high-contrast, and clean, aligned with a corporate minimalism design aesthetic featuring white and deep red tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9_K5aYkl40yK5a-B4qXO3YKNjhQ5nsnlOnLgSWCScUgaYcdL3jQznMa2BmO8SCifA8uPQ3_jE4Fiphy7cA32pGfB923Ai9F9EwBnzo4T4ZmV2qxdnNMaCiGyrQSDJcl5WFXS1jteIWvW7BLa7B82_uilizrI5DqD2yNeVi9OP9V6GxkWwHZe5yC8GLJ7Uo3cBistBPE8vQbWxx_1tFwAjqRnSCexnHv-1ZhhR9JFgKMAtnwr20P8HsA">
-<div class="absolute bottom-2 right-2 w-8 h-8 bg-green-500 border-4 border-white rounded-full z-20"></div>
-</div>
-<div class="flex-1 text-center md:text-left space-y-2 relative z-10">
-<div class="flex flex-col md:flex-row md:items-center gap-3">
-<h1 class="font-headline-lg text-on-background">Dr. Pratik Tupe</h1>
-<span class="px-3 py-1 bg-green-100 text-green-700 text-label-md rounded-full font-bold self-center md:self-auto">ACTIVE</span>
-</div>
-<p class="text-body-lg text-on-surface-variant font-medium">Senior Lecturer â€¢ Department of Computer Science</p>
-<div class="flex flex-wrap justify-center md:justify-start gap-4 mt-4">
-<div class="flex items-center gap-2 text-on-surface-variant">
-<span class="material-symbols-outlined text-[18px]">badge</span>
-<span class="text-body-md font-medium">ID: EMP-2024-008</span>
-</div>
-<div class="flex items-center gap-2 text-on-surface-variant">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-<span class="text-body-md font-medium">Room 402, Science Block</span>
-</div>
-</div>
-</div>
-<div class="flex flex-col gap-3 w-full md:w-auto relative z-10">
-<button class="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2">
-<span class="material-symbols-outlined">edit</span>
+<main class="flex-1 md:ml-[220px] bg-paper min-h-screen pb-24 md:pb-8 flex flex-col min-w-0">
+    <!-- Top Bar -->
+    <header class="h-16 flex justify-between items-center px-6 py-2 sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-none backdrop-blur-md bg-opacity-90">
+        <div class="flex items-center gap-4">
+            <button class="md:hidden p-2">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <div class="hidden md:flex bg-white items-center px-4 py-1.5 rounded-sm border border-gray-200 w-96">
+                <span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]">search</span>
+                <input class="bg-transparent border-none focus:ring-0 text-sm w-full outline-none" placeholder="Search profile settings, directory, or resources..." type="text">
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="notifications-faculty.html" class="w-10 h-10 flex items-center justify-center rounded-sm hover:bg-surface-container-low transition-colors relative">
+                <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+                <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+            </a>
+            <div class="flex items-center gap-3 pl-3 border-l border-gray-200">
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs font-bold text-on-surface">Dr. Pratik Tupe</p>
+                    <p class="text-[10px] text-on-surface-variant font-medium">Computer Science</p>
+                </div>
+                <img class="w-9 h-9 rounded-full border border-gray-300 object-cover" alt="Dr. Pratik Tupe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4LUJVGo6wFHOc6xeO9h2JvIpOWO7DzZjdzEato_839AgO7Pgt4BjFVm8vf1zGIVXpqm2aYhKiScRbObOOqxsVNCuG_R7MPSPAiSBjOehhBDDqIA94em4Ype0f-xMieAbFVrqxCv5_RbQ1FF__anch8IJ6fMisDo-gH0tcSLzksSbZnabSL78ikfWOuTB40dbd9Ao_LGfm9V0iiK0fXfhEKDbR26K9LRCBZpZrnzMlSrOqjJ1VdSzGpA">
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Body Content -->
+    <div class="p-6 max-w-7xl mx-auto space-y-6 w-full flex-1">
+
+        <!-- 1. Profile Header Card -->
+        <section class="bg-white border border-gray-200 rounded-sm p-6 lg:p-8">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <!-- Profile Avatar & Details -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div class="relative">
+                        <img class="w-24 h-24 sm:w-28 sm:h-28 rounded-sm border border-gray-200 object-cover" alt="Dr. Pratik Tupe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9_K5aYkl40yK5a-B4qXO3YKNjhQ5nsnlOnLgSWCScUgaYcdL3jQznMa2BmO8SCifA8uPQ3_jE4Fiphy7cA32pGfB923Ai9F9EwBnzo4T4ZmV2qxdnNMaCiGyrQSDJcl5WFXS1jteIWvW7BLa7B82_uilizrI5DqD2yNeVi9OP9V6GxkWwHZe5yC8GLJ7Uo3cBistBPE8vQbWxx_1tFwAjqRnSCexnHv-1ZhhR9JFgKMAtnwr20P8HsA">
+                        <span class="absolute -bottom-1.5 -right-1.5 w-4 h-4 bg-emerald-600 border-2 border-white rounded-full" title="Active on campus"></span>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <h1 class="font-serif text-2xl sm:text-3xl font-bold text-on-background tracking-tight">Dr. Pratik Tupe</h1>
+                            <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-sm">Active Faculty &middot; Tenured</span>
+                        </div>
+                        <p class="text-sm text-on-surface-variant font-medium">Senior Lecturer &middot; Department of Computer Science</p>
+                        <div class="flex flex-wrap items-center gap-y-1 gap-x-4 pt-2 text-xs text-gray-600">
+                            <span class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[16px] text-gray-400">badge</span>
+                                EMP-2024-008
+                            </span>
+                            <span class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[16px] text-gray-400">location_on</span>
+                                Room 402, Science Block (Wing B)
+                            </span>
+                            <span class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[16px] text-gray-400">mail</span>
+                                pratik.tupe@campuscare.edu
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-row sm:flex-col md:flex-row gap-2.5 w-full md:w-auto shrink-0">
+                    <button class="flex-1 sm:flex-initial px-4 py-2 bg-primary text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-red-700 transition-colors flex items-center justify-center gap-1.5">
+                        <span class="material-symbols-outlined text-[16px]">edit</span>
                         Edit Profile
                     </button>
-<button class="px-6 py-3 border border-outline text-on-surface font-bold rounded-lg hover:bg-surface-container-low transition-all flex items-center justify-center gap-2">
-<span class="material-symbols-outlined">description</span>
+                    <button class="flex-1 sm:flex-initial px-4 py-2 bg-white border border-gray-200 text-gray-700 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-gray-50 hover:border-gray-300 transition-colors flex items-center justify-center gap-1.5">
+                        <span class="material-symbols-outlined text-[16px]">download</span>
                         Download CV
                     </button>
-</div>
-</section>
-<!-- 2. Complaint Statistics & Quick Actions -->
-<div class="grid grid-cols-1 xl:grid-cols-3 gap-lg">
-<!-- Statistics -->
-<div class="xl:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4">
-<div class="bg-white p-lg rounded-lg border border-outline-variant custom-shadow flex flex-col items-center justify-center text-center">
-<span class="text-headline-lg font-bold text-on-surface">42</span>
-<p class="text-label-md text-on-surface-variant uppercase tracking-wider">Total</p>
-<div class="w-full h-1 bg-surface-container-highest mt-4 rounded-full overflow-hidden">
-<div class="h-full bg-on-surface w-full"></div>
-</div>
-</div>
-<div class="bg-white p-lg rounded-lg border border-outline-variant custom-shadow flex flex-col items-center justify-center text-center">
-<span class="text-headline-lg font-bold text-error">03</span>
-<p class="text-label-md text-on-surface-variant uppercase tracking-wider">Open</p>
-<div class="w-full h-1 bg-surface-container-highest mt-4 rounded-full overflow-hidden">
-<div class="h-full bg-error w-1/4"></div>
-</div>
-</div>
-<div class="bg-white p-lg rounded-lg border border-outline-variant custom-shadow flex flex-col items-center justify-center text-center">
-<span class="text-headline-lg font-bold text-amber-500">08</span>
-<p class="text-label-md text-on-surface-variant uppercase tracking-wider">Progress</p>
-<div class="w-full h-1 bg-surface-container-highest mt-4 rounded-full overflow-hidden">
-<div class="h-full bg-amber-500 w-1/2"></div>
-</div>
-</div>
-<div class="bg-white p-lg rounded-lg border border-outline-variant custom-shadow flex flex-col items-center justify-center text-center">
-<span class="text-headline-lg font-bold text-green-600">31</span>
-<p class="text-label-md text-on-surface-variant uppercase tracking-wider">Solved</p>
-<div class="w-full h-1 bg-surface-container-highest mt-4 rounded-full overflow-hidden">
-<div class="h-full bg-green-600 w-3/4"></div>
-</div>
-</div>
-</div>
-<!-- Quick Actions -->
-<div class="bg-white p-lg rounded-lg border border-outline-variant custom-shadow">
-<p class="text-label-md font-bold text-on-surface-variant uppercase mb-4">Quick Actions</p>
-<div class="space-y-3">
-<a href="report-complaint-faculty.html" class="w-full py-3 px-4 flex items-center justify-between text-on-surface bg-surface-container-low hover:bg-surface-container-high rounded-lg transition-all group border border-transparent hover:border-primary/20">
-<span class="text-body-md font-bold">Report New Complaint</span>
-<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">add_circle</span>
-</a>
-<a href="my-complaints-faculty.html" class="w-full py-3 px-4 flex items-center justify-between text-on-surface bg-surface-container-low hover:bg-surface-container-high rounded-lg transition-all group border border-transparent hover:border-primary/20">
-<span class="text-body-md font-bold">View My History</span>
-<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">history</span>
-</a>
-<button class="w-full py-3 px-4 flex items-center justify-between text-on-surface bg-surface-container-low hover:bg-surface-container-high rounded-lg transition-all group border border-transparent hover:border-primary/20">
-<span class="text-body-md font-bold">Class Schedule</span>
-<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">calendar_today</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Bento Grid Layout for Information -->
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
-<!-- 3. Personal Information -->
-<section class="bg-white rounded-lg p-lg border border-outline-variant custom-shadow">
-<div class="flex items-center gap-3 mb-8">
-<div class="pt-1">
-<span class="material-symbols-outlined text-primary text-[24px]">person</span>
-</div>
-<h2 class="font-title-md text-on-surface">Personal Information</h2>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
-<div class="space-y-1">
-<label class="text-label-md text-on-surface-variant">Gender</label>
-<p class="text-body-md font-bold text-on-surface">Male</p>
-</div>
-<div class="space-y-1">
-<label class="text-label-md text-on-surface-variant">Date of Birth</label>
-<p class="text-body-md font-bold text-on-surface">14 May 1978</p>
-</div>
-<div class="space-y-1">
-<label class="text-label-md text-on-surface-variant">Blood Group</label>
-<p class="text-body-md font-bold text-on-surface">A+</p>
-</div>
-<div class="space-y-1">
-<label class="text-label-md text-on-surface-variant">Mobile Number</label>
-<p class="text-body-md font-bold text-on-surface">+1 (555) 012-3456</p>
-</div>
-<div class="space-y-1 sm:col-span-2">
-<label class="text-label-md text-on-surface-variant">Email Address</label>
-<p class="text-body-md font-bold text-on-surface">pratik.tupe@campuscare.edu</p>
-</div>
-<div class="space-y-1 sm:col-span-2">
-<label class="text-label-md text-on-surface-variant">Residential Address</label>
-<p class="text-body-md font-bold text-on-surface">124 Academic Way, University District, MA 02118</p>
-</div>
-</div>
-</section>
-<!-- 4. Academic Information -->
-<section class="bg-white rounded-lg p-lg border border-outline-variant custom-shadow">
-<div class="flex items-center gap-3 mb-8">
-<div class="pt-1">
-<span class="material-symbols-outlined text-primary text-[24px]">school</span>
-</div>
-<h2 class="font-title-md text-on-surface">Academic Information</h2>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
-<div class="space-y-1">
-<label class="text-label-md text-on-surface-variant">Highest Qualification</label>
-<p class="text-body-md font-bold text-on-surface">Ph.D. in Computer Science</p>
-</div>
-<div class="space-y-1">
-<label class="text-label-md text-on-surface-variant">Specialization</label>
-<p class="text-body-md font-bold text-on-surface">Software Systems &amp; AI</p>
-</div>
-<div class="space-y-1">
-<label class="text-label-md text-on-surface-variant">Experience</label>
-<p class="text-body-md font-bold text-on-surface">15+ Years</p>
-</div>
-<div class="space-y-1">
-<label class="text-label-md text-on-surface-variant">Office Number</label>
-<p class="text-body-md font-bold text-on-surface">B-402, Science Wing</p>
-</div>
-<div class="space-y-1 sm:col-span-2">
-<label class="text-label-md text-on-surface-variant">Core Subjects Handled</label>
-<div class="flex flex-wrap gap-2 mt-1">
-<span class="px-3 py-1 bg-surface-container text-on-surface-variant rounded-full text-label-md font-medium border border-outline-variant">Distributed Systems</span>
-<span class="px-3 py-1 bg-surface-container text-on-surface-variant rounded-full text-label-md font-medium border border-outline-variant">Database Architecture</span>
-<span class="px-3 py-1 bg-surface-container text-on-surface-variant rounded-full text-label-md font-medium border border-outline-variant">Cloud Infrastructure</span>
-</div>
-</div>
-</div>
-</section>
-</div>
-<!-- 5. Account Settings & Security -->
-<section class="bg-white rounded-lg p-lg border border-outline-variant custom-shadow">
-<div class="flex items-center gap-3 mb-8">
-<div class="pt-1">
-<span class="material-symbols-outlined text-primary text-[24px]">security</span>
-</div>
-<h2 class="font-title-md text-on-surface">Account &amp; Security</h2>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-<div class="space-y-6">
-<h3 class="text-label-md font-bold text-on-surface-variant uppercase">Security Preferences</h3>
-<div class="space-y-4">
-<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant">
-<div>
-<p class="text-body-md font-bold text-on-surface">Two-Factor Authentication</p>
-<p class="text-label-md text-on-surface-variant">Highly recommended for staff accounts</p>
-</div>
-<div class="relative inline-flex h-6 w-11 items-center rounded-full bg-green-500 cursor-pointer">
-<span class="inline-block h-4 w-4 translate-x-6 transform rounded-full bg-white transition"></span>
-</div>
-</div>
-<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant">
-<div>
-<p class="text-body-md font-bold text-on-surface">Password Last Changed</p>
-<p class="text-label-md text-on-surface-variant">90 days ago</p>
-</div>
-<button class="text-primary text-label-md font-bold hover:underline">Update</button>
-</div>
-<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant">
-<div>
-<p class="text-body-md font-bold text-on-surface">Session Timeout</p>
-<p class="text-label-md text-on-surface-variant">Automatically logout after 30 mins</p>
-</div>
-<button class="text-primary text-label-md font-bold hover:underline">Manage</button>
-</div>
-</div>
-</div>
-<div class="space-y-6">
-<h3 class="text-label-md font-bold text-on-surface-variant uppercase">Recent Login History</h3>
-<div class="border border-outline-variant rounded-lg overflow-hidden">
-<table class="w-full text-left">
-<thead class="bg-surface-container-low border-b border-outline-variant">
-<tr>
-<th class="px-4 py-3 text-label-md font-bold text-on-surface-variant">Device</th>
-<th class="px-4 py-3 text-label-md font-bold text-on-surface-variant">Location</th>
-<th class="px-4 py-3 text-label-md font-bold text-on-surface-variant">Time</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-outline-variant">
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="px-4 py-3 text-body-md text-on-surface">MacBook Pro (Chrome)</td>
-<td class="px-4 py-3 text-body-md text-on-surface">Boston, US</td>
-<td class="px-4 py-3 text-label-md text-on-surface-variant">Today, 09:45 AM</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="px-4 py-3 text-body-md text-on-surface">iPhone 15 Pro</td>
-<td class="px-4 py-3 text-body-md text-on-surface">Boston, US</td>
-<td class="px-4 py-3 text-label-md text-on-surface-variant">Yesterday, 10:12 PM</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="px-4 py-3 text-body-md text-on-surface">iPad Air</td>
-<td class="px-4 py-3 text-body-md text-on-surface">Boston, US</td>
-<td class="px-4 py-3 text-label-md text-on-surface-variant">12 Mar, 02:30 PM</td>
-</tr>
-</tbody>
-</table>
-<button class="w-full py-3 text-label-md font-bold text-primary hover:bg-surface-container-high transition-colors">View All Activity</button>
-</div>
-</div>
-</div>
-</section>
-</div>
-</main>
-<!-- Mobile Bottom Navigation (Hidden on Desktop) -->
-<nav class="fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant flex justify-around items-center h-16 md:hidden z-50">
-<a href="dashboard-faculty.html" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="text-[10px] font-bold">Dashboard</span>
-</a>
-<a href="report-complaint-faculty.html" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant">
-<span class="material-symbols-outlined">build</span>
-<span class="text-[10px] font-bold">Maintenance</span>
-</a>
-<a href="profile-settings-faculty.html" class="flex flex-col items-center justify-center gap-1 text-primary">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
-<span class="text-[10px] font-bold">Profile</span>
-</a>
-<a href="notifications-faculty.html" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant">
-<span class="material-symbols-outlined">notifications</span>
-<span class="text-[10px] font-bold">Alerts</span>
-</a>
-</nav>
-<script>
-        // Micro-interactions and subtle effects
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('mousedown', () => {
-                button.classList.add('scale-95');
-            });
-            button.addEventListener('mouseup', () => {
-                button.classList.remove('scale-95');
-            });
-            button.addEventListener('mouseleave', () => {
-                button.classList.remove('scale-95');
-            });
-        });
+                </div>
+            </div>
+        </section>
 
-        // Toggle state for 2FA switch
-        const toggleSwitch = document.querySelector('.inline-flex');
-        if(toggleSwitch) {
-            toggleSwitch.addEventListener('click', () => {
-                const circle = toggleSwitch.querySelector('span');
-                if(circle.classList.contains('translate-x-6')) {
-                    circle.classList.remove('translate-x-6');
-                    circle.classList.add('translate-x-1');
-                    toggleSwitch.classList.replace('bg-green-500', 'bg-outline-variant');
-                } else {
-                    circle.classList.remove('translate-x-1');
-                    circle.classList.add('translate-x-6');
-                    toggleSwitch.classList.replace('bg-outline-variant', 'bg-green-500');
-                }
-            });
-        }
-    </script>
+        <!-- 2. Asymmetric Stat Overview & Quick Actions -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <!-- Asymmetric Stat Grid (8 cols) -->
+            <div class="lg:col-span-8 flex flex-col md:flex-row gap-4">
+                <!-- Dominant Card: Open Action Items -->
+                <div class="bg-white border border-gray-200 p-5 rounded-sm flex-1 md:w-5/12 flex flex-col justify-between relative">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary">Needs Attention</span>
+                        <span class="flex items-center text-red-600 text-xs font-bold gap-0.5">
+                            <span class="material-symbols-outlined text-[16px]">priority_high</span> High
+                        </span>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline gap-2">
+                            <h2 class="text-4xl font-serif font-bold text-primary tracking-tight">03</h2>
+                            <span class="text-xs font-bold text-gray-700 uppercase tracking-wider">Open Reports</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2 font-medium">2 require verification today &middot; 1 awaiting facilities dispatch</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+                        <a href="my-complaints-faculty.html" class="text-xs text-primary font-bold hover:underline flex items-center gap-1">
+                            Review open requests <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Slimmer Supporting Stats Strip (7 cols) -->
+                <div class="md:w-7/12 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-1 gap-3">
+                    <!-- Total -->
+                    <div class="bg-white border border-gray-200 px-4 py-3 rounded-sm flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block">Total Submitted</span>
+                            <span class="text-xs text-gray-500">2025–26 academic year</span>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-gray-900">42</h3>
+                    </div>
+                    <!-- In Progress -->
+                    <div class="bg-white border border-gray-200 px-4 py-3 rounded-sm flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-amber-700 block">In Progress</span>
+                            <span class="text-xs text-gray-500">Under repair by staff</span>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-amber-600">08</h3>
+                    </div>
+                    <!-- Resolved -->
+                    <div class="bg-white border border-gray-200 px-4 py-3 rounded-sm flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-700 block">Resolved</span>
+                            <span class="text-xs text-gray-500">94% resolution rate</span>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-emerald-700">31</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Panel (4 cols) -->
+            <div class="lg:col-span-4 bg-white border border-gray-200 p-5 rounded-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Frequent Actions</h3>
+                    <div class="space-y-2">
+                        <!-- Primary frequent action -->
+                        <a href="report-complaint-faculty.html" class="w-full py-2.5 px-3 bg-white border border-primary/40 hover:border-primary hover:bg-primary/5 rounded-sm transition-colors flex items-center justify-between text-xs font-bold text-primary group">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[18px]">add_circle</span>
+                                Report Facility Issue
+                            </span>
+                            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+                        </a>
+                        <!-- Secondary action -->
+                        <a href="my-complaints-faculty.html" class="w-full py-2.5 px-3 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 rounded-sm transition-colors flex items-center justify-between text-xs font-semibold text-gray-700 group">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[18px] text-gray-500">history</span>
+                                View Complaint History
+                            </span>
+                            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+                        </a>
+                        <!-- Tertiary action -->
+                        <a href="#" class="w-full py-2.5 px-3 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 rounded-sm transition-colors flex items-center justify-between text-xs font-semibold text-gray-700 group">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[18px] text-gray-500">calendar_month</span>
+                                Class &amp; Lab Schedule
+                            </span>
+                            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+                <p class="text-[11px] text-gray-400 mt-4 pt-2 border-t border-gray-100">Direct escalation line: Ext. 4400</p>
+            </div>
+        </section>
+
+        <!-- 3. Asymmetric Information Grid: Academic (Wider) & Contact (Narrower) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- Academic Information (Wider 7 cols) -->
+            <section class="lg:col-span-7 bg-white border border-gray-200 rounded-sm p-6 space-y-6">
+                <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
+                    <span class="material-symbols-outlined text-primary text-[20px]">school</span>
+                    <h2 class="font-serif text-lg font-bold text-on-background">Academic Profile &amp; Teaching</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-6">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Highest Degree</label>
+                        <p class="text-sm font-semibold text-gray-900">Ph.D. in Computer Science</p>
+                        <span class="text-xs text-gray-500">MIT &middot; Class of 2014</span>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Specialization</label>
+                        <p class="text-sm font-semibold text-gray-900">Distributed Systems &amp; AI</p>
+                        <span class="text-xs text-gray-500">Infrastructure &amp; Concurrency</span>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Academic Experience</label>
+                        <p class="text-sm font-semibold text-gray-900">15+ Years</p>
+                        <span class="text-xs text-gray-500">8 yrs at University of Tech</span>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Office Hours</label>
+                        <p class="text-sm font-semibold text-gray-900">Tue &amp; Thu &middot; 2:00 – 4:30 PM</p>
+                        <span class="text-xs text-gray-500">Science Block Room 402</span>
+                    </div>
+                </div>
+
+                <div class="pt-2 border-t border-gray-100">
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-2">Core Courses Handled</label>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 bg-gray-50 text-gray-800 rounded-sm text-xs font-medium border border-gray-200">CS 401: Distributed Systems</span>
+                        <span class="px-2.5 py-1 bg-gray-50 text-gray-800 rounded-sm text-xs font-medium border border-gray-200">CS 320: Database Architecture</span>
+                        <span class="px-2.5 py-1 bg-gray-50 text-gray-800 rounded-sm text-xs font-medium border border-gray-200">CS 480L: Cloud Infrastructure Lab</span>
+                        <span class="px-2.5 py-1 bg-gray-50 text-gray-800 rounded-sm text-xs font-medium border border-gray-200">CS 210: Data Structures</span>
+                    </div>
+                </div>
+
+                <div class="pt-2 border-t border-gray-100">
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-1">Lab Supervision &amp; Responsibilities</label>
+                    <p class="text-xs text-gray-700 leading-relaxed">
+                        Faculty Lead for <strong class="font-semibold text-gray-900">Advanced Computing Lab (Lab 302)</strong>. Responsible for reporting server room HVAC faults, network switch issues, and projector replacements.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Personal & Contact Information (5 cols) -->
+            <section class="lg:col-span-5 bg-white border border-gray-200 rounded-sm p-6 space-y-6">
+                <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
+                    <span class="material-symbols-outlined text-gray-600 text-[20px]">person</span>
+                    <h2 class="font-serif text-lg font-bold text-on-background">Contact &amp; Identification</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Institutional Email</label>
+                        <p class="text-sm font-semibold text-gray-900">pratik.tupe@campuscare.edu</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Office Phone</label>
+                            <p class="text-xs font-semibold text-gray-900">+1 (555) 012-3456</p>
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Emergency Mobile</label>
+                            <p class="text-xs font-semibold text-gray-900">+1 (555) 987-6543</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Residential Address</label>
+                        <p class="text-xs text-gray-800">124 Academic Way, University District, MA 02118</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 pt-2 border-t border-gray-100 text-xs">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Blood Group</span>
+                            <span class="font-bold text-gray-900">A+</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Emergency Contact</span>
+                            <span class="font-medium text-gray-900">Sarah Tupe (Spouse)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 4. Security Preferences & Recent Activity -->
+        <section class="bg-white border border-gray-200 rounded-sm p-6 space-y-6">
+            <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
+                <span class="material-symbols-outlined text-gray-600 text-[20px]">shield</span>
+                <h2 class="font-serif text-lg font-bold text-on-background">Account Security &amp; Access Control</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Security Settings -->
+                <div class="space-y-4">
+                    <h3 class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Authentication Safeguards</h3>
+                    
+                    <div class="border border-gray-200 p-4 rounded-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-gray-900">Two-Factor Authentication (2FA)</p>
+                            <p class="text-[11px] text-gray-500">Required for institutional portal login</p>
+                        </div>
+                        <span class="px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold uppercase tracking-wider rounded-sm">Enabled</span>
+                    </div>
+
+                    <div class="border border-gray-200 p-4 rounded-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-gray-900">Password Security</p>
+                            <p class="text-[11px] text-gray-500">Last changed 90 days ago</p>
+                        </div>
+                        <button class="text-primary text-xs font-bold hover:underline">Change Password</button>
+                    </div>
+
+                    <div class="border border-gray-200 p-4 rounded-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-gray-900">Session Inactivity Timeout</p>
+                            <p class="text-[11px] text-gray-500">Automatic logout after 30 minutes of idle time</p>
+                        </div>
+                        <button class="text-gray-600 text-xs font-bold hover:underline">Configure</button>
+                    </div>
+                </div>
+
+                <!-- Recent Login History Table -->
+                <div class="space-y-4">
+                    <h3 class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Recent Login History</h3>
+                    <div class="border border-gray-200 rounded-sm overflow-hidden">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-gray-50 border-b border-gray-200 text-gray-600 text-[10px] uppercase font-bold tracking-wider">
+                                <tr>
+                                    <th class="px-4 py-2.5">Device</th>
+                                    <th class="px-4 py-2.5">Location</th>
+                                    <th class="px-4 py-2.5 text-right">Time</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100 text-xs text-gray-700">
+                                <tr>
+                                    <td class="px-4 py-2.5 font-medium text-gray-900">MacBook Pro (Chrome)</td>
+                                    <td class="px-4 py-2.5 text-gray-500">Boston, US &middot; Campus WiFi</td>
+                                    <td class="px-4 py-2.5 text-right font-mono text-[11px]">Today, 09:45 AM</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2.5 font-medium text-gray-900">iPhone 15 Pro</td>
+                                    <td class="px-4 py-2.5 text-gray-500">Boston, US</td>
+                                    <td class="px-4 py-2.5 text-right font-mono text-[11px]">Yesterday, 10:12 PM</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2.5 font-medium text-gray-900">CS Lab Terminal #04</td>
+                                    <td class="px-4 py-2.5 text-gray-500">Science Block 302</td>
+                                    <td class="px-4 py-2.5 text-right font-mono text-[11px]">Jul 17, 02:30 PM</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Unified Footer -->
+    <footer class="mt-auto w-full border-t border-gray-200 bg-[#FAF9F6] py-8">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <p class="font-serif text-lg font-bold text-gray-400">CampusCare</p>
+                <p class="text-xs text-gray-500 mt-1">&copy; 2026 CampusCare &middot; University Name</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-xs font-bold uppercase tracking-widest text-gray-500">
+                <a href="#" class="hover:text-primary transition-colors">Help Center</a>
+                <a href="#" class="hover:text-primary transition-colors">Report an Issue</a>
+                <a href="#" class="hover:text-primary transition-colors">Contact Facilities</a>
+                <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+            </div>
+            <div class="text-xs font-bold uppercase tracking-widest text-primary text-center md:text-right mt-4 md:mt-0">
+                Emergency? Contact Security: <br class="md:hidden">555-0199
+            </div>
+        </div>
+    </footer>
+</main>
+
+<!-- Bottom Navigation Mobile Only -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-gray-200 shadow-lg">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="dashboard-faculty.html">
+        <span class="material-symbols-outlined">home</span>
+        <span class="text-[10px] font-medium">Home</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="report-complaint-faculty.html">
+        <span class="material-symbols-outlined">add_circle</span>
+        <span class="text-[10px] font-medium">Report</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-colors" href="notifications-faculty.html">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="text-[10px] font-medium">Alerts</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-primary px-4 py-1" href="profile-settings-faculty.html">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+        <span class="text-[10px] font-bold">Profile</span>
+    </a>
+</nav>
+</div>
 
 <script src="src/components/sidebar.js" type="module"></script>
 <script src="src/router.js" type="module"></script>
 </body>
 </html>
-
-

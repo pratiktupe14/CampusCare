@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="light" lang="en">
 <head>
-<meta charset="utf-8">
+    <meta charset="UTF-8">
+
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Faculty Dashboard - CampusCare</title>
 <!-- Tailwind CSS -->
@@ -18,11 +19,10 @@
 </style>
 </head>
 <body class="bg-paper text-on-background min-h-screen flex flex-col">
-<div class="flex min-h-screen">
 <!-- Side Navigation Shell -->
 <app-sidebar active="dashboard" role="faculty"></app-sidebar>
 <!-- Main Content Area -->
-<main class="flex-1 md:ml-[220px] bg-paper min-h-screen pb-24 md:pb-8 flex flex-col">
+<main class="flex-1 md:ml-[220px] bg-paper min-h-screen pb-24 md:pb-8 flex flex-col min-w-0">
 <!-- Top Bar -->
 <header class="h-16 flex justify-between items-center px-6 py-2 sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-none backdrop-blur-md bg-opacity-90">
 <div class="flex items-center gap-4">
@@ -62,7 +62,7 @@
 <!-- Statistics Grid -->
 <section class="flex flex-col lg:flex-row gap-4">
     <!-- Dominant Card -->
-    <div class="bg-white border border-gray-200 p-6 rounded-sm flex-shrink-0 w-full lg:w-64 flex flex-col justify-between relative">
+    <div class="bg-white border border-gray-200 p-6 rounded-sm flex-shrink-0 w-full lg:w-64 flex flex-col justify-between relative animate-fade-slide-up stagger-1 opacity-0">
         <span class="absolute top-4 right-4 bg-gray-100 text-gray-600 text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-sm">Dept-Wide</span>
         <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Action Needed (Open)</h3>
         <div>
@@ -74,7 +74,7 @@
     </div>
     
     <!-- Secondary Metrics Row -->
-    <div class="flex-1 flex flex-col gap-4">
+    <div class="flex-1 flex flex-col gap-4 animate-fade-slide-up stagger-2 opacity-0">
         <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
             <div class="bg-white border border-gray-200 p-4 rounded-sm flex flex-col justify-between">
                 <h3 class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-2">Total</h3>
@@ -143,7 +143,7 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-gray-100">
-<tr class="hover:bg-gray-50 transition-colors">
+<tr class="hover:bg-gray-100 transition-colors duration-150 ease-out animate-fade-in row-stagger-1 opacity-0">
 <td class="px-6 py-4 font-mono text-xs text-gray-600">#CMP-7281</td>
 <td class="px-6 py-4">
 <div class="flex items-center gap-2 text-sm font-medium text-gray-800">
@@ -153,14 +153,14 @@ HVAC Malfunction
 </td>
 <td class="px-6 py-4 text-xs text-gray-600">Prof. John Doe</td>
 <td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-widest">In Progress</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-widest transition-colors duration-200">In Progress</span>
 </td>
 <td class="px-6 py-4 text-xs font-medium text-gray-500">Jul 19, 2026</td>
 <td class="px-6 py-4">
 <a href="complaint-history.html" class="text-primary font-medium text-xs hover:underline">View</a>
 </td>
 </tr>
-<tr class="hover:bg-gray-50 transition-colors">
+<tr class="hover:bg-gray-100 transition-colors duration-150 ease-out animate-fade-in row-stagger-2 opacity-0">
 <td class="px-6 py-4 font-mono text-xs text-gray-600">#CMP-7275</td>
 <td class="px-6 py-4">
 <div class="flex items-center gap-2 text-sm font-medium text-gray-800">
@@ -170,14 +170,14 @@ Projector Replacement
 </td>
 <td class="px-6 py-4 text-xs text-gray-600">Sarah Jenkins (Student)</td>
 <td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-red-100 text-red-800 text-[10px] font-bold uppercase tracking-widest">Pending Admin Review</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-red-100 text-red-800 text-[10px] font-bold uppercase tracking-widest transition-colors duration-200">Pending Admin Review</span>
 </td>
 <td class="px-6 py-4 text-xs font-medium text-gray-500">Jul 18, 2026</td>
 <td class="px-6 py-4">
 <a href="complaint-history.html" class="text-primary font-medium text-xs hover:underline">View</a>
 </td>
 </tr>
-<tr class="hover:bg-gray-50 transition-colors">
+<tr class="hover:bg-gray-100 transition-colors duration-150 ease-out animate-fade-in row-stagger-3 opacity-0">
 <td class="px-6 py-4 font-mono text-xs text-gray-600">#CMP-7269</td>
 <td class="px-6 py-4">
 <div class="flex items-center gap-2 text-sm font-medium text-gray-800">
@@ -187,7 +187,7 @@ Broken Smart Lock
 </td>
 <td class="px-6 py-4 text-xs text-gray-600">Dr. Pratik Tupe</td>
 <td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-green-100 text-green-800 text-[10px] font-bold uppercase tracking-widest">Completed</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-green-100 text-green-800 text-[10px] font-bold uppercase tracking-widest transition-colors duration-200">Completed</span>
 </td>
 <td class="px-6 py-4 text-xs font-medium text-gray-500">Jul 18, 2026</td>
 <td class="px-6 py-4">
@@ -291,7 +291,6 @@ Open Interactive Map
 <span class="text-[10px] font-medium">Profile</span>
 </a>
 </nav>
-</div>
 <script>
     // Update Time Logic
     function updateTime() {

@@ -51,7 +51,7 @@ class AppSidebar extends HTMLElement {
                 
                 // Added whitespace-nowrap to prevent label wrapping causing layout shifts
                 navHTML += `
-                <a class="flex items-center gap-3 px-3 py-2 rounded-r-sm transition-all duration-200 ${activeClasses}" href="${item.href}">
+                <a class="flex items-center gap-3 px-3 py-2 rounded-r-sm transition-all duration-300 ease-out ${activeClasses}" href="${item.href}">
                     <span class="material-symbols-outlined text-[18px]" ${fillStyle}>${item.icon}</span>
                     <span class="text-sm font-medium whitespace-nowrap">${item.text}</span>
                 </a>`;

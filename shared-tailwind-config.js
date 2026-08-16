@@ -89,17 +89,70 @@ try {
                     "body-md": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
                     "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
                     "label-md": ["10px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                },
+                keyframes: {
+                    'fade-slide-up': {
+                        '0%': { opacity: '0', transform: 'translateY(12px)' },
+                        '100%': { opacity: '1', transform: 'translateY(0)' },
+                    },
+                    'fade-in': {
+                        '0%': { opacity: '0' },
+                        '100%': { opacity: '1' },
+                    },
+                    'shimmer': {
+                        '0%': { backgroundPosition: '-1000px 0' },
+                        '100%': { backgroundPosition: '1000px 0' },
+                    },
+                    'scale-in': {
+                        '0%': { opacity: '0', transform: 'scale(0.8)' },
+                        '100%': { opacity: '1', transform: 'scale(1)' },
+                    }
+                },
+                animation: {
+                    'fade-slide-up': 'fade-slide-up 0.4s ease-out forwards',
+                    'fade-in': 'fade-in 0.3s ease-out forwards',
+                    'shimmer': 'shimmer 2s infinite linear',
+                    'scale-in': 'scale-in 0.3s ease-out forwards'
                 }
             },
         },
         plugins: [
-            function({ addBase }) {
+            function({ addBase, addUtilities, addComponents }) {
                 addBase({
                     '::placeholder': {
                         color: '#9ca3af !important',
                         opacity: '1 !important'
                     }
-                })
+                });
+                
+                // Add stagger delays
+                const newUtilities = {};
+                for (let i = 1; i <= 15; i++) {
+                    newUtilities[`.stagger-${i}`] = { 'animation-delay': `${i * 80}ms` };
+                    newUtilities[`.row-stagger-${i}`] = { 'animation-delay': `${i * 40}ms` };
+                }
+                
+                // Skeleton loading styles
+                addComponents({
+                    '.skeleton': {
+                        'background-image': 'linear-gradient(90deg, #f3f4f6 0px, #e5e7eb 40px, #f3f4f6 80px)',
+                        'background-size': '1000px 100%',
+                        'border-radius': '0.25rem',
+                    }
+                });
+                
+                addUtilities(newUtilities);
+                
+                addUtilities({
+                    '@media (prefers-reduced-motion: reduce)': {
+                        '*, ::before, ::after': {
+                            'animation-duration': '0.01ms !important',
+                            'animation-iteration-count': '1 !important',
+                            'transition-duration': '0.01ms !important',
+                            'scroll-behavior': 'auto !important',
+                        }
+                    }
+                });
             }
         ]
     }
